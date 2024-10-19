@@ -1,11 +1,23 @@
-# n = int(input("Enter the numer:"))
-k = 1
-for i in range(5):
+a = 'abcduuubc'
+char_index = {}
+res = -1
+for i, j in enumerate(a):
+    if j in char_index:
+        res = max(res, i - char_index[j] - 1)
+    else:
+        char_index[j] = i
+print(res)
 
-    for j in range(i):
-        print(k,end=" ")
-        k+=1
-    print()
+
+
+# n = int(input("Enter the numer:"))
+# k = 1
+# for i in range(5):
+
+#     for j in range(i):
+#         print(k,end=" ")
+#         k+=1
+#     print()
 
 
 
