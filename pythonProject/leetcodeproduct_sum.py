@@ -1,18 +1,33 @@
-s = "pwwkew"
-count = 0
-max_length = 0
-start = 0
-char_index = {}
+def repeat(n):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for _ in range(n):
+                func(*args, **kwargs)
+        return wrapper
+    return decorator
 
-for i in range(len(s)):
-    if s[i] in char_index and char_index[s[i]] >= start:
-        start = char_index[s[i]] + 1
-        print(char_index,s[i])
+@repeat(3)
+def greet(name):
+    print(f"Hello, {name}!")
 
-    char_index[s[i]] = i
-    count = max(count, i - start + 1)
+greet("Alice")
 
-print(count)
+
+# s = "pwwkew"
+# count = 0
+# max_length = 0
+# start = 0
+# char_index = {}
+
+# for i in range(len(s)):
+#     if s[i] in char_index and char_index[s[i]] >= start:
+#         start = char_index[s[i]] + 1
+#         print(char_index,s[i])
+
+#     char_index[s[i]] = i
+#     count = max(count, i - start + 1)
+
+# print(count)
 
 # nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
 # # print(sum(nums))

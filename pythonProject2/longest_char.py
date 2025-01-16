@@ -42,3 +42,17 @@ print(largest)
 #         lastCharacter = ch
 # print(longestcharacter)
 # print(maxcount)
+
+s = 'jayyiiiaaaa'
+maxcount = 0
+char  = s[0]
+current  = 1
+for i in range(1,len(s)):
+    if s[i]==s[i-1]:
+        current +=1
+    else:
+        maxcount = max(maxcount,current)
+        current = 1
+maxcount = max(maxcount,current)
+print(maxcount)
+

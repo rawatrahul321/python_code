@@ -1,18 +1,43 @@
-def longest_no_repeating_char(s):
-    charSet = set()
-    l = 0
-    res = 0
-    for r in range(len(s)):
-        while s[r] in charSet:
-            charSet.remove(s[l])
-            print(charSet, "charSet")
-            l += 1
-        charSet.add(s[r])
-        res = max(res, r - l + 1)
-    return res
+words = ['mass','as','hero','superhero']
+output = ['as','hero']
+out = []
+s = words.sort(key=len)
+print(words)
+for i in range(len(words)):
+    word = words[i]
+    for j in range(i+1,len(words)):
+        other_words = words[j]
+        print(word,other_words)
+        if word in other_words:
+            out.append(word)
+            break
+print(out)   
+
+words = ['flower','flow','float']
+prefix = words[0]
+for word in words[1:]:
+    prefix = words[0]
+    while not word.startswith(prefix):
+        prefix = prefix[:-1]
+        if not prefix:
+            break
+print(prefix) 
+
+# def longest_no_repeating_char(s):
+#     charSet = set()
+#     l = 0
+#     res = 0
+#     for r in range(len(s)):
+#         while s[r] in charSet:
+#             charSet.remove(s[l])
+#             print(charSet, "charSet")
+#             l += 1
+#         charSet.add(s[r])
+#         res = max(res, r - l + 1)
+#     return res
 
 
-print(longest_no_repeating_char("abcabccbb"))
+# print(longest_no_repeating_char("abcabccbb"))
 
 # nums = [1,2]
 #

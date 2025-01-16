@@ -8,6 +8,29 @@ for i, j in enumerate(a):
         char_index[j] = i
 print(res)
 
+s = '617773339999'
+def largst_sum_3_digits(s):
+    for i in range(len(s)-2):
+        if s[i]==s[i+1]==s[i+2]:
+            s1 = s[i:i+3]
+    return s1
+            
+print(largst_sum_3_digits(s))
+
+# Vowels maximum in array 
+s = 'aaaaabciiifd'
+v = [ 'a','e','i','o','u']
+maxcount  = 0
+d = {}
+for i in s:
+    if i in v:
+        d[i]=d.get(i,0)+1
+        if d[i]>maxcount:
+            maxcount +=1
+print(maxcount,d)
+        
+            
+
 
 
 # n = int(input("Enter the numer:"))

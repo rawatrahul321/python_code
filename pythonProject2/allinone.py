@@ -83,3 +83,16 @@
 
 # print(process_string('aaabbbccaa'))
 # 'a3b3c2a2'
+
+s ='a3b3c2a2'
+output = ''
+f = 1
+char  = s[0]
+for i in s:
+    if not i.isdigit():       
+        char  = i
+    else:
+        f = i
+        output = output +  str(char)*  int(f)
+print(output)
+output = 'aaabbbccaa'

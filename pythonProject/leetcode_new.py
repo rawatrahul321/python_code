@@ -1,3 +1,18 @@
+def length_of_longest_substring(s):
+    char_set = set()
+    left, max_length = 0, 0
+    for right in range(len(s)):
+        while s[right] in char_set:
+            char_set.remove(s[left])
+            left += 1
+        char_set.add(s[right])
+        max_length = max(max_length, right - left + 1)
+    return max_length,s
+
+# Example
+print(length_of_longest_substring("abcabcbb"))  # Output: 3
+
+
 
 # nums = [4,1,2,1,2]
 # def single_number(nums):
@@ -46,4 +61,14 @@
 #             prev+=1
 #     return nums
 # print(last_zero(nums))
+
+def longest_common_string(strs):
+    prefix  = ''
+    for z in zip(*strs):
+        if len(set(z))==1:
+            prefix += z[0]
+        else:
+            break
+    return prefix
+print(longest_common_string(["flower", "flow", "flight"]))
 
