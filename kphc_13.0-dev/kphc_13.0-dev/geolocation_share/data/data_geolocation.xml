@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <data noupdate="1">
+        <record model="ir.config_parameter" id="google_maps_api_key">
+            <field name="key">google_maps_api_key</field>
+            <field name="value">AIzaSyDLoYEb_ymP3n5mdC-OZIvdhwFjGHWZbII</field>
+        </record>
+    </data>
+</odoo>

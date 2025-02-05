@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_packing_unique_no_form" model="ir.ui.view">
+        <field name="name">unique.packing.number.form</field>
+        <field name="model">unique.packing.number</field>
+        <field name="arch" type="xml">
+            <form string="Unique Serial Numbers" version="10.0" create="false" edit="false" delete="false">  
+                <sheet>
+                
+                <div class="oe_title">
+                    <label for="name" class="oe_edit_only"/>
+                    <h1>
+                        <field name="name" placeholder="e.g. LOT/0001/20121"/>
+                    </h1>
+                </div>
+                <group name="main_group">
+                    <group>      
+                    		<field name="ref"/>                  
+                            <label for="product_qty"/>
+                            <div class="o_row">
+                                <field name="product_qty"/>                   
+                            </div>
+                        
+                    </group>
+	                <group>
+	                	<field name="use_unused_barcode"/>
+	                </group>
+                </group>
+                
+                <notebook>
+                    <page string="Traceability">
+                        <field name="line_ids">
+                            <tree string="Stock Moves" editable="bottom">
+                            	<field name="name"/>
+                            	<field name="product_id"/>                            	
+                                <field name="concern_user"/>
+                                <field name="date"/>
+                                <field name="total_qty"/>
+                                <field name="status"/>                                
+                            </tree>
+                         </field>
+                    </page>
+                </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="view_packing_unique_no_tree" model="ir.ui.view">
+        <field name="name">unique.packing.number.tree</field>
+        <field name="model">unique.packing.number</field>
+        <field name="arch" type="xml">
+            <tree colors="violet:use_unused_barcode==True;green:use_unused_barcode == False" string="Unique Serial Numbers" version="10.0" create="false" edit="false">
+                <field name="name"/>
+                <field name="ref"/>
+                <field name="create_date"/>
+                <field name="responible_user"/>
+                <field name="use_unused_barcode"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="search_packing_unique_no_filter">
+        <field name="name">Packing Unique Number Filter</field>
+        <field name="model">unique.packing.number</field>
+        <field name="arch" type="xml">
+            <search string="Product Unique Number Filter">
+                <field name="name" string="Unique Number" filter_domain="['|',('name','ilike',self),('ref','ilike',self)]"/>
+                
+                <group expand="0" string="Group By">
+                    <filter string="Month" domain="[]" context="{'group_by':'create_date'}"/>
+                    <filter string="Responsible User" domain="[]" context="{'group_by':'responible_user'}"/>
+                    <filter name="use_unused_barcode" string="Used Barcode" domain="[('use_unused_barcode','=',True)]"/>
+                    <filter name="use_unused_barcode" string="Unused Barcode" domain="[('use_unused_barcode','=',False)]"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_packing_unique_no_form" model="ir.actions.act_window">
+        <field name="name">Inner Carton Barcode</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">unique.packing.number</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="view_packing_unique_no_tree"/>
+        <field name="search_view_id" ref="search_packing_unique_no_filter"/>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a Unique serial number.
+          </p><p>
+            This is the list of all the Packing unique number you recorded.
+          </p>
+        </field>
+    </record>
+    
+    <menuitem action="action_packing_unique_no_form" id="menu_action_packing_unique_no_form"
+        parent="stock.menu_stock_picking_mgmt" string="Inner Carton Picking"
+        sequence="1"/>
+   
+        
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Inherit Form View to Modify it -->
+    <record id="view_astore_website_shipping_form_inherit" model="ir.ui.view">
+        <field name="name">View.Astar.Website.shipping.Form.Inherit</field>
+        <field name="model">website</field>
+        <field name="inherit_id" ref="website.view_website_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='other']" position="before">
+                <div name="shipping_affress">
+                    <separator string="Shipping Address"/>
+                    <group name="shipping">
+                        <field name="enable_custom_address"/>
+                    </group>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

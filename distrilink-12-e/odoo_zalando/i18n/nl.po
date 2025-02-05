@@ -1,0 +1,312 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* odoo_zalando
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-09 11:32+0000\n"
+"PO-Revision-Date: 2021-12-09 11:32+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.report_invoice_document_inh_zalando
+msgid "<span>\n"
+"                            Rijnkaai 37<br/>\n"
+"                            2000 Antwerpen<br/>\n"
+"                            België\n"
+"                        </span>"
+msgstr "<span>\n"
+"                            Rijnkaai 37<br/>\n"
+"                            2000 Antwerpen<br/>\n"
+"                            België\n"
+"                        </span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.report_invoice_document_inh_zalando
+msgid "<span>(NET: </span>"
+msgstr "<span>(Netto: </span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.inv_zalando_custom_external_layout_standard
+msgid "<span>10243 Berlin</span>"
+msgstr "<span>10243 Berlin</span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.inv_zalando_custom_external_layout_standard
+msgid "<span><b>By order of:</b></span>"
+msgstr "<span><b>Op last van:</b></span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.inv_zalando_custom_external_layout_standard
+msgid "<span><b>Bank details:</b></span>"
+msgstr "<span><b>Bankgegevens:</b></span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.inv_zalando_custom_external_layout_standard
+msgid "<span>Address: </span>"
+msgstr "<span>Adres: </span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.inv_zalando_custom_external_layout_standard
+msgid "<span>BIC: </span>\n"
+"                            <span>COBABEBXXXX</span>"
+msgstr "<span>BIC: </span>\n"
+"                            <span>COBABEBXXXX</span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.inv_zalando_custom_external_layout_standard
+msgid "<span>Bank: </span>\n"
+"                            <span>Commerzbank AG Brussels</span>"
+msgstr "<span>Bank: </span>\n"
+"                            <span>Commerzbank AG Brussels</span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.inv_zalando_custom_external_layout_standard
+msgid "<span>Company number: </span>"
+msgstr "<span>Ondernemingsnummer: </span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.inv_zalando_custom_external_layout_standard
+msgid "<span>DUITSLAND</span>"
+msgstr "<span>DUITSLAND</span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.inv_zalando_custom_external_layout_standard
+msgid "<span>District Court: </span>"
+msgstr "<span>Kantongerecht: </span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.inv_zalando_custom_external_layout_standard
+msgid "<span>IBAN: </span>\n"
+"                            <span>BE82 1796 3107 6768</span>"
+msgstr "<span>IBAN: </span>\n"
+"                            <span>BE82 1796 3107 6768</span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.inv_zalando_custom_external_layout_standard
+msgid "<span>Partner's Company Name: </span>"
+msgstr "<span>Bedrijfsnaam: </span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.inv_zalando_custom_external_layout_standard
+msgid "<span>Purpose of use: </span>"
+msgstr "<span>Gebruiksdoeleinde: </span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.inv_zalando_custom_external_layout_standard
+msgid "<span>Recipient: </span>\n"
+"                            <span>Zalando Payments GmbH</span>"
+msgstr "<span>Begunstigde: </span>\n"
+"                            <span>Zalando Payments GmbH</span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.inv_zalando_custom_external_layout_standard
+msgid "<span>Representative: </span>\n"
+"                            <span>Steven Van Den Ouweland</span>"
+msgstr "<span>Vertegenwoordiger: </span>\n"
+"                            <span>Steven Van Den Ouweland</span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.inv_zalando_custom_external_layout_standard
+msgid "<span>Shop Name: </span>"
+msgstr "<span>Shopnaam: </span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.report_invoice_document_inh_zalando
+msgid "<span>Total Amount </span>"
+msgstr "<span>Totaalprijs </span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.report_invoice_document_inh_zalando
+msgid "<span>VAT</span>"
+msgstr "<span>BTW</span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.inv_zalando_custom_external_layout_standard
+msgid "<span>Valeska-Gert-Straße 5</span>"
+msgstr "<span>Valeska-Gert-Straße 5</span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.inv_zalando_custom_external_layout_standard
+msgid "<span>Zalando SE</span>"
+msgstr "<span>Zalando SE</span>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.report_invoice_document_inh_zalando
+msgid "<strong>Delivery date:</strong>"
+msgstr "<strong>Datum levering:</strong>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.report_invoice_document_inh_zalando
+msgid "<strong>Invoice Date:</strong>"
+msgstr "<strong>Datum factuur:</strong>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.report_invoice_document_inh_zalando
+msgid "<strong>Invoice Number:</strong>"
+msgstr "<strong>Factuurnummer:</strong>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.report_invoice_document_inh_zalando
+msgid "<strong>Order Number:</strong>"
+msgstr "<strong>Bestelnummer:</strong>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.report_invoice_document_inh_zalando
+msgid "<strong>Order date:</strong>"
+msgstr "<strong>Besteldatum:</strong>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.report_invoice_document_inh_zalando
+msgid "<strong>Page:</strong>"
+msgstr "<strong>Pagina:</strong>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.report_invoice_document_inh_zalando
+msgid "<strong>Please transfer outstanding amounts to Zalando only.</strong>"
+msgstr "<strong>Gelieve openstaande bedragen uitsluitend aan Zalando overmaken.</strong>"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.report_invoice_document_inh_zalando
+msgid "<strong>Remark: </strong>When you have chosen the payment method 'pay after receipt', you will receive an e-mail from Zalando with the order confirmation and the outstanding total amount."
+msgstr "<strong>Opmerking: </strong>Wanneer u heeft gekozen voor de betaalmethode 'betalen na ontvangst', ontvangt u een e-mail van Zalando met de orderbevestiging en het openstaande totaalbedrag."
+
+#. module: odoo_zalando
+#: code:addons/odoo_zalando/models/ftp_connection.py:98
+#, python-format
+msgid "Active Ants Orders..., %s"
+msgstr ""
+
+#. module: odoo_zalando
+#: model:ir.model,name:odoo_zalando.model_channelengine_connection
+msgid "ChannelEngine Connection"
+msgstr ""
+
+#. module: odoo_zalando
+#: model:ir.model,name:odoo_zalando.model_channelengine_country_code
+msgid "ChannelOrder Country Code"
+msgstr ""
+
+#. module: odoo_zalando
+#: model:ir.actions.act_window,name:odoo_zalando.action_channelengine_country_code
+#: model:ir.model.fields,field_description:odoo_zalando.field_channelengine_country_code__name
+#: model:ir.ui.menu,name:odoo_zalando.menu_channelengine_country_code
+msgid "ChannelOrderCountryCode"
+msgstr ""
+
+#. module: odoo_zalando
+#: model:ir.model.fields,field_description:odoo_zalando.field_channelengine_country_code__create_uid
+#: model:ir.model.fields,field_description:odoo_zalando.field_zalando_logo__create_uid
+msgid "Created by"
+msgstr "Aangemaakt door"
+
+#. module: odoo_zalando
+#: model:ir.model.fields,field_description:odoo_zalando.field_channelengine_country_code__create_date
+#: model:ir.model.fields,field_description:odoo_zalando.field_zalando_logo__create_date
+msgid "Created on"
+msgstr "Aangemaakt op"
+
+#. module: odoo_zalando
+#: model:ir.model.fields,field_description:odoo_zalando.field_channelengine_country_code__display_name
+#: model:ir.model.fields,field_description:odoo_zalando.field_zalando_logo__display_name
+msgid "Display Name"
+msgstr "Weergavenaam"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.report_invoice_document_inh_zalando
+msgid "Do you have a question? Take a look at our frequently asked questions: zalando.nl/faq."
+msgstr "Heb je een vraag? Neem eens een kijkje bij onze veelgestelde vragen: zalando.nl/faq."
+
+#. module: odoo_zalando
+#: model:ir.model,name:odoo_zalando.model_ftp_connection
+msgid "FTP Connection"
+msgstr ""
+
+#. module: odoo_zalando
+#: model:ir.model.fields,field_description:odoo_zalando.field_channelengine_country_code__id
+#: model:ir.model.fields,field_description:odoo_zalando.field_zalando_logo__id
+msgid "ID"
+msgstr ""
+
+#. module: odoo_zalando
+#: model:ir.model,name:odoo_zalando.model_account_invoice
+msgid "Invoice"
+msgstr "Factuur"
+
+#. module: odoo_zalando
+#: model:ir.model.fields,field_description:odoo_zalando.field_channelengine_country_code____last_update
+#: model:ir.model.fields,field_description:odoo_zalando.field_zalando_logo____last_update
+msgid "Last Modified on"
+msgstr "Laatst gewijzigd op"
+
+#. module: odoo_zalando
+#: model:ir.model.fields,field_description:odoo_zalando.field_channelengine_country_code__write_uid
+#: model:ir.model.fields,field_description:odoo_zalando.field_zalando_logo__write_uid
+msgid "Last Updated by"
+msgstr "Laatst bijgewerkt door"
+
+#. module: odoo_zalando
+#: model:ir.model.fields,field_description:odoo_zalando.field_channelengine_country_code__write_date
+#: model:ir.model.fields,field_description:odoo_zalando.field_zalando_logo__write_date
+msgid "Last Updated on"
+msgstr "Laatst bijgewerkt op"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.inv_zalando_custom_external_layout_standard
+msgid "Logo"
+msgstr ""
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.report_invoice_document_inh_zalando
+msgid "Name"
+msgstr "Benaming"
+
+#. module: odoo_zalando
+#: model:ir.model.fields,field_description:odoo_zalando.field_sale_order__channelengine_order_type_id
+msgid "OrderTypeID"
+msgstr "OrderTypeID"
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.report_invoice_document_inh_zalando
+msgid "Quantity"
+msgstr "Kwantiteit"
+
+#. module: odoo_zalando
+#: model:ir.model,name:odoo_zalando.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.report_invoice_document_inh_zalando
+msgid "Supplier art no."
+msgstr "Leverancier art-nr."
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.report_invoice_document_inh_zalando
+msgid "Total Price"
+msgstr "Totaalprijs"
+
+#. module: odoo_zalando
+#: model:ir.model.fields,field_description:odoo_zalando.field_channelengine_country_code__code
+msgid "Transformation Code"
+msgstr ""
+
+#. module: odoo_zalando
+#: model_terms:ir.ui.view,arch_db:odoo_zalando.report_invoice_document_inh_zalando
+msgid "Unit Price"
+msgstr "Stukprijs"
+
+#. module: odoo_zalando
+#: model:ir.actions.act_window,name:odoo_zalando.action_zalando_logo
+#: model:ir.model,name:odoo_zalando.model_zalando_logo
+#: model:ir.model.fields,field_description:odoo_zalando.field_zalando_logo__marketPlace_logo
+#: model:ir.ui.menu,name:odoo_zalando.menu_zalando_logo
+msgid "Zalando Logo"
+msgstr ""

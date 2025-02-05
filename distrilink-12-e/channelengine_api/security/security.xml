@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="make_invisible" model="res.groups">
+            <field name="name">Show Channable Config Menu</field>
+        </record>
+
+    </data>
+</odoo>

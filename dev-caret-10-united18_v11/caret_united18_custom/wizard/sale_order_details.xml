@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_order_wizard" model="ir.ui.view">
+        <field name="name">sale.order.wizard.form</field>
+        <field name="model">sale.order.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sale Order">
+                <group>
+                </group>
+                <group>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="group_by_customer"/>
+                        <field name="show_payment_details"/>
+                    </group>
+                    <group>
+                       <field name="end_date"/>
+                       <field name="state"/>
+                       <field name="sales_person"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="generate_sale_report" string="Print" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!--  Wizard for sale order report  -->
+    <record id="action_report_sale_order_details" model="ir.actions.act_window">
+        <field name="name">Sale Order Report</field>
+        <field name="res_model">sale.order.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_report_sale_order_details" name="Sale Order Report" action="action_report_sale_order_details" parent="sale.menu_sale_report" sequence="4"/>
+
+    <record id="view_sale_order_excel_form" model="ir.ui.view">
+        <field name="name">sale.order.excel.form</field>
+        <field name="model">sale.order.excel</field>
+        <field name="arch" type="xml">
+            <form string="Excel Report file" version="7.0">
+                <group>
+                    <field name="excel_file" readonly="1" filename="file_name"/>
+                    <field name="file_name" invisible="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sale_order_excel_form" model="ir.actions.act_window">
+        <field name="name">Sale Order Excel Report </field>
+        <field name="view_id" ref="view_sale_order_excel_form"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="res_model">sale.order.excel</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

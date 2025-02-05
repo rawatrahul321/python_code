@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+       <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"></field>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='business_documents']" position="after">
+                    <div id="credentials">
+                        <h2>Credentials</h2>
+                        <div class="row mt16 o_settings_container" id="sms_gateway">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="api_key"/>
+                                    <field name="api_key" class="font-weight-bold"/>
+                                    
+                                    
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="sender"/>
+                                    <field name='sender' class="w-auto pl-1 font-weight-bold"/>
+                                    
+                                    
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <label for="is_phone_code_enable"/>
+                                    <field name="is_phone_code_enable"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

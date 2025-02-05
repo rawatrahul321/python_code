@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_customer_export_wizard" model="ir.ui.view">
+        <field name="name">customer.export.wizard.form</field>
+        <field name="model">customer.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Customer">
+                <group>
+                    <group>
+                        <field name="start_date" invisible="context.get('not_date')"/>
+                    </group>
+                    <group>
+                        <field name="end_date" invisible="context.get('not_date')"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="generate_customer_report" string="Print" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!--  Wizard for sale order report  -->
+    <record id="action_report_customer_xls" model="ir.actions.act_window">
+        <field name="name">Customer Report</field>
+        <field name="res_model">customer.export.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <act_window
+        id="action_export_customers"
+        name="Export Customer"
+        res_model="customer.export.wizard"
+        src_model="pos.order"
+        view_mode="form"
+        multi="True"
+        target="new"
+        key2="client_action_multi"
+        context="{'not_date':1}"
+    />
+
+    <menuitem id="menu_report_customer_export" name="Customer XLS Report" action="action_report_customer_xls" parent="point_of_sale.menu_point_rep" sequence="6"/>
+
+    <record id="view_customer_excel_form" model="ir.ui.view">
+        <field name="name">customer.excel.form</field>
+        <field name="model">customer.excel</field>
+        <field name="arch" type="xml">
+            <form string="Excel Report file" version="7.0">
+                <group>
+                    <field name="excel_file" readonly="1" filename="file_name"/>
+                    <field name="file_name" invisible="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_customer_excel_form" model="ir.actions.act_window">
+        <field name="name">Excel Report </field>
+        <field name="view_id" ref="view_customer_excel_form"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="res_model">customer.excel</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

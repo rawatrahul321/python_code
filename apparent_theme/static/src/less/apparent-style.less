@@ -1,0 +1,334 @@
+
+// Put Loading indicator in the right bottom of the screen
+.o_loading {
+  background-color: darken(@brand-primary, 13.5%) !important;
+  top: inherit;
+  bottom: 0;
+  right: 0;
+  padding: 5px 5px;
+  border-radius: 0 !important;
+  opacity: 0.8;
+}
+
+body a {
+  &:active, &:focus, &:hover {
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+// Fix color Add file button
+.o_control_panel .o_cp_sidebar .o_hidden_input_file .o_form_binary_form span {
+  color: @gray-dark !important;
+}
+
+// Filter search label
+.o_searchview {
+  .o_searchview_facet {
+     background-color: #ffffff;
+    .o_searchview_facet_label {
+      background-color: @brand-primary;
+    }
+  }
+}
+
+// Align green progress indicator
+#oe_main_menu_navbar .o_planner_systray > .progress {
+  margin-top: 18px !important;
+}
+
+// Buttons
+
+.btn {
+  border: none;
+  font-weight: 500;
+}
+
+//.btn-default {
+//    color: @brand-primary;
+//    background-color: transparant;
+//}
+
+.btn-primary, .btn-default {
+  text-transform: uppercase;
+}
+
+.btn-default {
+  color: @brand-primary;
+  background-color: transparent;
+}
+
+.btn-primary {
+  color: #ffffff;
+  background-color: @brand-primary;
+}
+
+/* .btn:active, .btn.active {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-color: @gray-lighter !important;
+} */
+
+.btn-group.open .dropdown-toggle {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-color: @gray-lighter !important;
+}
+
+.o_form_view .oe_button_box .oe_stat_button {
+  border: 1px solid @gray-lighter;
+}
+
+.o_dropdown_toggler_btn, .o_dropdown_toggler_btn:hover, .o_dropdown_toggler_btn:focus, .o_dropdown_toggler_btn:hover, .o_dropdown_toggler_btn:focus, .btn-icon, .o_graph_button {
+  text-transform: none !important;
+  color: @gray-dark !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.oe_highlight {
+  color: #ffffff !important;
+  background-color: @brand-primary !important;
+}
+
+
+//.btn-sm, .btn-group-sm > .btn {
+//    font-size: 13px;
+//}
+
+.o_external_button {
+  color: @brand-primary !important;
+  background: #ffffff;
+}
+
+.o_button_icon {
+  color: @brand-primary !important;
+}
+
+// Forms
+
+.o_form_view {
+  .o_form_sheet_bg {
+    background: none !important;
+    background-color: #F9F9F9 !important;
+    padding: 0px;
+  }
+
+  .o_form_statusbar {
+    //margin: -16px;
+    .o_statusbar_status {
+      > .o_arrow_button {
+        background: #ffffff;
+      }
+    }
+  }
+}
+
+// Controlpanel
+.o_control_panel {
+  background-color: #f0f0f0;
+  .breadcrumb {
+    padding:0 ;
+  }
+}
+
+.breadcrumb {
+  background-color: inherit;
+}
+
+// Listview =======================================
+/*
+.o_list_view.table {
+  border: none;
+}
+.o_list_view.table thead, .o_list_view.table tfoot, .o_list_view.table td,.o_list_view.table th {
+  border: none;
+}
+ 
+.o_list_view.table thead {
+  background-color: #e2e2e0;
+}
+ 
+.o_list_view.table thead > tr > th.o_column_sortable:hover {
+  background-color: #D6D6D3;
+}
+ 
+.o_list_view.table tbody tr.o_group_header {
+  background-color: #dfdfdf;
+  background-image: none;
+  border-top: 1px solid #e2e2e0;
+}
+
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+  background-color: #eef0f0;
+}
+
+.o_list_view tfoot {
+  background-color: @brand-primary;
+  color: #ffffff;
+  cursor: default;
+  font-weight: normal;
+}
+*/
+
+// Checkbox ==========================================
+div.o_checkbox {
+  display: inline-block;
+  position: relative;
+  vertical-align: sub;
+}
+ 
+div.o_checkbox > input {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  opacity: 0;
+  position: absolute;
+  top: auto;
+  left: auto;
+  bottom: auto;
+  right: auto;
+  cursor: pointer;
+}
+ 
+div.o_checkbox > input + span {
+  display: block;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #8f8f8f;
+  background-color: white;
+}
+ 
+div.o_checkbox > input:checked + span {
+  background-repeat: no-repeat;
+  background-image: url(/apparent_theme/static/src/img/checked.svg);
+  background-position: center center;
+}
+ 
+div.o_checkbox > input:disabled + span {
+  opacity: 0.7;
+  border: 1px solid #e2e2e0;
+}
+ 
+ div.o_checkbox > input:focus + span {
+  outline: 1px solid @brand-primary;
+}
+
+// Input field
+
+input[type="text"], input[type="password"], input[type="number"],
+textarea, select, .o_form_view.o_form_editable .o_form_field_many2manytags,
+.o_searchview {
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.o_web_client input:focus, .o_web_client textarea:focus, .o_web_client select:focus {
+  outline: none;
+  // border-bottom: 2px solid @brand-info;
+}
+
+.o_input {
+  border: 1px solid @brand-primary;
+  border-top-style: none;
+  border-right-style: none;
+  border-left-style: none;
+  color: @odoo-brand-optional;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+  background-color: @brand-primary;
+  color: white;
+}
+
+// Sidechatter like EE
+@o-chatter-width: 900px;
+
+
+@media screen and (min-width: 1600px) {
+  .o_form_view {
+    flex-flow: row nowrap;
+    -moz-flex-flow: row nowrap;
+    -ms-flex-flow: row nowrap;
+    -webkit-flex-flow: row nowrap;
+    display: flex;
+    min-height: 100%;
+    height: 100%
+  }
+
+  .o_form_sheet_bg {
+    -ms-flex: 1 1 auto;
+    -moz-flex: 1 1 auto;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
+    width: 100%;
+    overflow: auto;
+  }
+
+  .o_form_view .o_form_sheet_bg .o_form_sheet {
+    width: 100%;
+    max-width: 1200px;
+  }
+  .o_form_view .o_form_sheet_bg {
+    border-bottom: none;
+  }
+
+  .oe_chatter {
+    flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    -webkit-box-flex: 1;
+    -moz-flex: 1 1 auto;
+    -webkit-flex: 1 1 auto;
+    width: @o-chatter-width;
+    background-color: #ffffff;
+    border-left: 1px solid #d9d7d7;
+    overflow: auto;
+    padding: 0 !important;
+    bottom: 0;
+    top: 0;
+    min-height: 100%;
+    right: 0;
+  }
+
+  .o_chatter_topbar {
+    margin: 0 !important;
+  }
+
+  .o_thread_date.btn {
+    color: inherit;
+  }
+
+  // Fix Modal Dialog size = Scheduled Action button
+  .modal .modal-dialog .o_form_view .o_form_sheet_bg, .modal .modal-dialog .o_form_view .o_form_sheet {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.oe_view_nocontent {
+  .oe_view_nocontent_create:before {
+    background: transparent url(/apparent_theme/static/src/img/view_empty_arrow.png) no-repeat 0px 0px;
+  }
+}
+.o_required_modifier {
+  &.o_input, .o_input {
+    background-color: unset !important;
+    border-bottom-width: 2px !important;
+    border-color: rgba(0,0,0,0.3);
+  }
+}
+
+.navbar-default {
+  background-color: @odoo-brand-optional;
+}
+.o_form_view .oe_button_box .oe_stat_button:hover {
+  background-color: @odoo-brand-optional;
+}
+.o_tooltip.active {
+  border: 2px solid @brand-primary;
+}
+.o_tooltip.active.top::before {
+  border-top-color: @brand-primary;
+}

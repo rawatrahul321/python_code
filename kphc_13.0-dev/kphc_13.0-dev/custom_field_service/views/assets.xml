@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="assets_backend" inherit_id="web.report_assets_common" name="service report font">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/custom_field_service/static/src/css/CenturyGothicRegular_font.css"/>
+        </xpath>
+    </template>
+</odoo>

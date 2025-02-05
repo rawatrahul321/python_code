@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- Action Inner Packing Smart Button -->
+	<record model="ir.actions.act_window" id="action_get_work_order_packing_info">
+            <field name="name">Packing Info</field>
+            <field name="res_model">work.order.packing.info</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- Action Outer Packing Smart Button -->
+	<record model="ir.actions.act_window" id="action_get_workOrder_outer_packing_info">
+            <field name="name">Outer Packing Info</field>
+            <field name="res_model">work.order.outer.packing.info</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+    
+	<!-- MRP WorkOrder Inherit -->
+	<record model="ir.ui.view" id="mrp_production_workcenter_form_view_inherit1">
+        <field name="name">mrp.production.work.order.form.inherit</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workcenter_form_view_inherit"/>
+        <field name="arch" type="xml">
+	        <xpath expr="//page[3]" position="before">
+	        	<page string="Record Packing">
+	    			<group>
+		    			<group>
+		    				<field name="final_inner_id" attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}" style="width:110%%"/>
+		    			</group>
+		    			<group>
+		    				<button name="finish_inner_packing_no" type="object" string="Inner Packaging Number" class="btn-info" attrs="{'invisible': [('state', '!=', 'progress')]}"/>
+		    			</group>
+		    		</group>
+		    		<group>
+		    			<group>
+		    				<field name="final_outer_id" attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}" style="width:110%%"/>
+		    			</group>
+		    			<group>
+		    				<button name="finish_outer_packing_no" type="object" string="Outer Packaging Number" class="btn-info" attrs="{'invisible': [('state', '!=', 'progress')]}"/>
+		    			</group>
+		    		</group>
+		    	</page>
+	        </xpath>
+        
+        	
+
+        	
+        	
+        	<xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" name="action_get_work_order_packing_info" type="object" icon="fa-arrows-alt">
+                    <div class="o_form_field o_stat_info">
+                        <span class="o_stat_value"><field name="info_count"/></span>
+                        <span class="o_stat_text">I.C. Packing</span>
+                    </div>
+                </button>
+                <button class="oe_stat_button" name="action_get_workOrder_outer_packing_info" type="object" icon="fa-arrows-alt">
+                    <div class="o_form_field o_stat_info">
+                        <span class="o_stat_value"><field name="outer_info_count"/></span>
+                        <span class="o_stat_text">O.C. Packing</span>
+                    </div>
+                </button>
+        	</xpath>
+        </field>
+    </record>
+    
+    <!-- Inner Packing Module Form -->
+	<record id="view_info_module_form" model="ir.ui.view">
+        <field name="name">work.order.packing.info</field>
+        <field name="model">work.order.packing.info</field>
+        <field name="arch" type="xml">
+            <form string="Inner Carton Packing">
+                <sheet>
+				<group>
+					<group>
+						<field name="name"/>
+						<field name="product_id"/>	
+						<field name="total_qty"/>
+						<field name="box"/>
+						<field name="user"/>
+						<field name="status"/>
+					</group>
+					<group>
+						<field name="work_order_id"/>
+						<field name="product_code"/>
+						<field name="date"/>
+						<field name="picked_box"/>
+						<field name="info_date"/>
+					</group>
+				</group>	    		
+	    	</sheet>
+            </form>
+        </field>
+    </record>
+	
+	<record id="view_work_order_packing_info_form_tree" model="ir.ui.view">
+        <field name="name">work.order.packing.info.tree</field>
+        <field name="model">work.order.packing.info</field>
+        <field name="arch" type="xml">
+            <tree string="Info Module">
+				<field name="name"/>
+				<field name="product_id"/>
+				<field name="date"/>
+				<field name="total_qty"/>
+                <field name="box"/>	
+                <field name="picked_box"/>		
+            </tree>
+        </field>
+    </record>
+
+	<record model="ir.ui.view" id="search_work_order_packing_info_filter">
+        <field name="name">Inner Carton Packing Filter</field>
+        <field name="model">work.order.packing.info</field>
+        <field name="arch" type="xml">
+            <search string="Manufacturing Order Filter">
+                <field name="name" string="Manufacturing Order"/>
+                <!-- <field name="unique_number" string="Unique Number"/> -->
+                <field name="info_date" string="Date"/>
+                <group expand="0" string="Group By">
+                    <filter string="Unique Number" domain="[]" context="{'group_by':'name'}"/>
+                    <filter string="Product" domain="[]" context="{'group_by':'product_id'}"/>
+                    <filter string="Date" domain="[]" context="{'group_by':'info_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>	
+
+	<record id="action_work_order_packing_info_form" model="ir.actions.act_window">
+        <field name="name">Inner Carton Packing</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">work.order.packing.info</field>
+        <field name="view_type">form</field>
+        <!-- <field name="view_id" ref="view_work_order_packing_info_form_tree"/> -->
+        <field name="context">{}</field>
+        <!-- <field name="search_view_id" ref="search_work_order_packing_info_filter"/> -->
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a Info Record.
+          </p><p>
+            This is the list of all the production recorded.
+          </p>
+        </field>
+    </record>
+	
+	<menuitem id="stock.menu_stock_packaging_mgmt" 
+	name="Packaging" parent="stock.menu_stock_root" sequence="5"/>
+	
+	<menuitem action="action_work_order_packing_info_form" id="menu_inner_Carton_packaging"
+        parent="stock.menu_stock_packaging_mgmt" 
+        sequence="1"/>
+	
+	<!-- Inherit Product COde -->
+	<record id="product_template_only_form_view" model="ir.ui.view">
+        <field name="name">product.template.product.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+	        <xpath expr="//field[@name ='purchase_method']" position="after">
+	    		<field name="outer_packing_wo"/>
+	   		</xpath>
+	   		 <xpath expr="//field[@name ='product_validation']" position="before">
+                <field name="custom_product_code"/>
+             </xpath>
+      </field>
+      </record>
+	
+</odoo>

@@ -1,0 +1,16 @@
+.product-set {
+	margin: 10px;
+    padding: 53px;
+    height: 170px;
+    text-align: center;
+    font-size: 36px;
+    text-shadow: 0 0 30px #0501ec;
+    text-shadow: 1px 1px 2px black, 0 0 30px blue, 0 0 88px darkblue;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.product-set a {
+    color: #747494;
+}
+.product-set a:hover {
+    text-decoration: none;
+}

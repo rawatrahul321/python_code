@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_invoice_document_inherit" inherit_id="account.report_invoice_document">
+            <xpath expr="//div[@id='total']/div/table/t/tr/t[2]/td" position="replace">
+                <td>
+                    <span t-esc="amount_by_group[0]"/>
+                        <span>&amp;nbsp;<span>Tax</span>
+                            <!--  <t t-esc="amount_by_group[4]"/> -->
+                        </span>
+                </td>
+            </xpath>
+        </template>
+
+        <template id="report_generalledger_inherit" inherit_id="account.report_generalledger">
+            <xpath expr="//div/table/thead/tr/th[3]" position="attributes">
+                <attribute name="groups">account.group_account_manager</attribute>
+            </xpath>
+            <xpath expr="//div/table/thead/tr/th[5]" position="attributes">
+                <attribute name="groups">account.group_account_manager</attribute>
+            </xpath>
+            <xpath expr="//div/table/thead/tr/th[6]" position="attributes">
+                <attribute name="groups">account.group_account_manager</attribute>
+            </xpath>
+            <xpath expr="//div/table/tbody/t/tr[2]/td[3]" position="attributes">
+                <attribute name="groups">account.group_account_manager</attribute>
+            </xpath>
+            <xpath expr="//div/table/tbody/t/tr[2]/td[5]" position="attributes">
+                <attribute name="groups">account.group_account_manager</attribute>
+            </xpath>
+            <xpath expr="//div/table/tbody/t/tr[2]/td[6]" position="attributes">
+                <attribute name="groups">account.group_account_manager</attribute>
+            </xpath>
+            <xpath expr="//div/table[1]/tbody/t/tr[1]" position="after">
+                <tr style="font-weight: bold;" t-if="flag">
+                    <td colspan="3">
+                        <span style="color: white;" t-esc="'..'"/>
+                        <span t-esc="account['code']"/>
+                        <span t-esc="account['name']"/>
+                    </td>
+                    <td class="text-right">
+                        <span t-esc="account['debit']" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                    </td>
+                    <td class="text-right">
+                        <span t-esc="account['credit']" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                    </td>
+                    <td class="text-right">
+                        <span t-esc="account['balance']" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                    </td>
+                </tr>
+            </xpath>
+            <xpath expr="//div/table/tbody/t/tr[1]" position="attributes">
+                <attribute name="t-if">not flag</attribute>
+            </xpath>
+        </template>
+    </data>
+</odoo>

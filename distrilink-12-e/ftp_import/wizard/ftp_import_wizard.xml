@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_ftp_import_form" model="ir.ui.view">
+            <field name="name">ftp.import.form</field>
+            <field name="model">ftp.import</field>
+            <field name="arch" type="xml">
+                <form string="FTP import form">
+                    <group>
+                        <field name='description'/>
+                    </group>
+                    <footer>
+                        <button string="Import FTP" name="read_ftp_data" type="object" class="oe_highlight"/>
+                            or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ftp_import" model="ir.actions.act_window">
+            <field name="name">FTP Import</field>
+            <field name="res_model">ftp.import</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_ftp_import"
+            name="FTP Import"
+            action="action_ftp_import"
+            parent="sale.sale_menu_root"/>
+
+    </data>
+</odoo>

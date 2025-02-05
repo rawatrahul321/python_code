@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="im assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/caret_united18_pos/static/src/js/pos.js"></script>
+            </xpath>
+            <!-- <xpath expr="//link[@id='pos-stylesheet']" position="after">
+                <link rel="stylesheet" href="/caret_united18_pos/static/src/css/pos.css"/>
+            </xpath> -->
+        </xpath>
+    </template>
+    <template id="assets_xyz" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/caret_united18_pos/static/src/css/pos.css"/>
+                <script type="text/javascript" src="/caret_united18_pos/static/src/js/pos.js"></script>
+        </xpath>
+    </template>
+</odoo>

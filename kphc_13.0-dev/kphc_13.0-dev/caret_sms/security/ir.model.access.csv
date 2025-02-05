@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sms_template,sms_template_sms,caret_sms.model_sms_body_template,base.group_user,1,1,1,1
+access_sms_sms,sms_sms_sms,caret_sms.model_kphc_sms,base.group_user,1,1,1,1
+access_sms_template_user,sms_template_sms_user,caret_sms.model_sms_body_template,base.group_user,1,1,1,0
+access_sms_sms_user,sms_sms_sms_user,caret_sms.model_kphc_sms,base.group_user,1,1,1,0

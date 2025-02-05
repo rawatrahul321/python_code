@@ -1,0 +1,444 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_contact_us
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-16 08:49+0000\n"
+"PO-Revision-Date: 2021-09-16 08:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: website_contact_us
+#: model:mail.template,body_html:website_contact_us.website_cide_contact_mail
+msgid ""
+" \n"
+"<p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\"><font style=\"font-size:18px;\"><span style=\"font-weight:bolder;\">Thank you for your interest</span></font></p><p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\"><span style=\"font-weight:bolder;font-size: 18px; color: rgb(0, 0, 0); font-style: inherit; font-variant-ligatures: inherit; font-variant-caps: inherit; text-align: inherit;\">in the CIDE Back-to School Guidelines</span><br></p>\n"
+"<p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\"><br></p>\n"
+"<p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">\n"
+"    We take pride in supporting our community during this important time and provide herewith the attached:\n"
+"</p>\n"
+"<p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\"><br></p>\n"
+"<ul style=\"margin-right:0px;margin-left: 0px; font-family: lato;\">\n"
+"    <li>\n"
+"        <p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">\n"
+"            <span style=\"font-weight:bolder;\">The Back-to-School Guidelines</span>&nbsp;in English </p>\n"
+"    </li>\n"
+"</ul>\n"
+"<p style=\"font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;margin-left:3em;\">\n"
+"    &nbsp;in addition to a Check List that will facilitate the application and assessment of the provided directives&nbsp;\n"
+"</p>\n"
+"<p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\"><br></p>\n"
+"<ul style=\"margin-right:0px;margin-left: 0px; font-family: lato;\">\n"
+"    <li>\n"
+"        <p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">\n"
+"            <span style=\"font-weight:bolder;\">The Awareness Poster</span>&nbsp;to which you can add your logo and use it </p>\n"
+"    </li>\n"
+"</ul>\n"
+"<p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\"><br></p>\n"
+"<p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\"><br></p>\n"
+"<p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">\n"
+"    We are also pleased to present a SPECIAL OFFER on CIDE products\n"
+"</p>\n"
+"<p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\"><br></p>\n"
+"<p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">\n"
+"    <img class=\"img-fluid o_we_custom_image\" src=\"/website_contact_us/static/src/img/email promo banner - sep 2021.png\" style=\"border-style:none;height:auto;max-width:100%;vertical-align:middle;\">\n"
+"    <br><br>\n"
+"</p>\n"
+"<p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\"><br></p>\n"
+"<p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\">\n"
+"    <b style=\"font-weight:bolder;\">\n"
+"        <font style=\"font-size:24px;\">\n"
+"            <a href=\"/shop\" target=\"_blank\" style=\"background-color:transparent;color:var(--brand-secondary);text-decoration-thickness:initial;\">\n"
+"                SHOP NOW\n"
+"            </a>\n"
+"        </font>\n"
+"    </b>\n"
+"</p>\n"
+"<p style=\"margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;\"><br></p>\n"
+"            "
+msgstr ""
+"<p style=\"text-align: right;\"><span style=\"font-size: 22px;\"><span style=\"font-weight: bolder;\">شكراً لاهتمامكم</span></span></p>\n"
+"<p style=\"text-align: right;\"><span style=\"font-size: 22px;\"><span style=\"font-weight: bolder;\">بتوصيات العودة للمدارس من سايد</span></span></p>\n"
+"<p style=\"text-align: right;\">&nbsp;</p>\n"
+"<p style=\"text-align: right;\">نفخر بدعم مجتمعنا خلال هذه المرحلة المهمّة، ونقدّم لكم طيّه:</p>\n"
+"<p style=\"text-align: right;\">&nbsp;</p>\n"
+"<p style=\"text-align: right;\"><strong>توصيات العودة للمدارس </strong>باللغة العربية -<br />إضافة الى قائمة التدقيق للتأكّد من التطبيق الصحيح للإرشادات وتقييمها بسهولة</p>\n"
+"<p style=\"text-align: right;\"><strong>بوستر توعوي</strong>: يمكن إضافة شعاركم عليه واستخدامه -</p>\n"
+"<p style=\"text-align: right;\">&nbsp;</p>\n"
+"<p style=\"text-align: right;\">كما يسرنا أيضاً تقديم عرض خاص على منتجات سايد</p>\n"
+"<p>&nbsp;</p>\n"
+"<p><img class=\"img-fluid o_we_custom_image\" style=\"border-style: none; height: auto; max-width: 100%; vertical-align: middle; float: right;\" src=\"/web/image/7874/email%20promo%20banner%20-%20sep%202021%20%28Ara%29.png?access_token=b9f2ab24-0f29-4c18-b7f5-8c724cc88b59\" /><br /><br /></p>\n"
+"<p>&nbsp;</p>\n"
+"<p style=\"text-align: right;\"><strong><span style=\"font-size: 24px;\"><a href=\"/shop\" target=\"_blank\">اشتر الآن</a></span></strong></p>\n"
+"<p>&nbsp;</p>"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid ""
+"&amp;nbsp;<b>CIDE 600 mL</b><br/>to use on your hands and any personal item"
+msgstr ""
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.lead_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:website_contact_us.lead_thanks
+msgid ""
+"<b>\n"
+"                                                        <font style=\"background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);\">SPECIAL OFFER</font>\n"
+"                                                        <br/>\n"
+"                                                    </b>\n"
+"                                                    <font style=\"background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);\">FOR TEACHERS, PRINCIPALS</font>\n"
+"                                                    <br/>\n"
+"                                                    <font style=\"background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);\">PARENTS AND STUDENTS<br/></font>"
+msgstr ""
+"<b><font style=\"background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);\">عرض خاص</font></b><b><font style=\"background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);\"><br/></font>\n"
+"</b><font style=\"background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);\">للمعلمين والمشرفين</font>\n"
+"<br/>\n"
+"<font style=\"background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);\">للطلّاب وأولياء أمورهم<br/></font>"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid ""
+"<b>\n"
+"                                        <font style=\"font-size: 18px;\">We take pride in supporting all Education Organizations management, teachers and parents in their efforts to safeguard children in Kuwait for this academic year 2021-2022. This Fall,&amp;nbsp; we go back to school and universities protected thanks to the COVID-19 vaccines and ready to go back to our \"old normal\".&amp;nbsp;&amp;nbsp;</font>\n"
+"                                    </b>"
+msgstr "<font style=\"font-size: 18px;\"><b>نفخر بدعم جهود كلّ من المؤسسات التعليمية، المعلمين وأولياء الأمور في حماية أطفال الكويت لهذا العام الدراسي"
+"2021-2022. إننا نعود إلى المدارس ودور الحضانة، <br/>ونحن نشعر بالحماية بفضل لقاحات COVID-19 ممّا يشجعنا للعودة إلى ما كنا عليه قبل الجائحة.</b></font>"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid ""
+"<b>\n"
+"                              <font style=\"background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);\">SPECIAL OFFER</font>\n"
+"                              <br/>\n"
+"                            </b>\n"
+"                            <font style=\"background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);\">FOR TEACHERS AND PRINCIPLES</font>\n"
+"                            <br/>\n"
+"                            <font style=\"background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);\">FOR PARENTS AND STUDENTS<br/></font>"
+msgstr ""
+"                              <font style=\"background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);\">عرض خاص</font>\n"
+"                             <br/>\n"
+"                            </b>\n"
+"                            <font style=\"background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);\">للمعلمين و مدراء المدارس</font>\n"
+"                            <br/>\n"
+"                            <font style=\"background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);\">للطلّاب وأولياء أمورهم<br/></font>"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid ""
+"<b>&amp;nbsp;CIDE 4 Liters and CIDE sprayer</b>: <br/>to mist in the "
+"classrooms for a germs-controlled environment; also use it to spray all "
+"items, equipment, counter tops, technology, door knobs and more"
+msgstr ""
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.lead_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:website_contact_us.lead_thanks
+msgid "<b>1 x CIDE 4 Liters</b>"
+msgstr "<b>1 x سايد 4 لتر</b>"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.lead_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:website_contact_us.lead_thanks
+msgid "<b>1 x CIDE Sprayer</b>"
+msgstr "<b>1 x مرشة سايد</b>"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.lead_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:website_contact_us.lead_thanks
+msgid "<b>6 x CIDE 600mL<br/><br/></b>"
+msgstr "<b>1 x سايد 600مل</b><b><br/><br/></b>"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "<b>SAFE SCHOOLS<br/>SAFE STUDENTS</b>"
+msgstr ""
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.lead_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:website_contact_us.lead_thanks
+msgid ""
+"<b>This Special Offer provides you with all you need, that includes:</b>"
+msgstr ""
+"<span style=\"font-size: 15px;\"><b>يتضمّن هذا العرض الخاص:</b></span><br/>"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "<b>This Special Offer provides you with all you need:</b>"
+msgstr "<b>يوفّر لك هذا العرض الخاص كل ما تحتاجه ، بما في ذلك:</b>"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid ""
+"<font style=\"font-size: 18px;\">- Maintaining a clear disinfection protocol"
+" by the schools and universities management</font>"
+msgstr "<font style=\"font-size: 18px;\">- تطبيق بروتوكول تعقيم واضح من قبل إدارة المدارس والجامعات</font>"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "<font style=\"font-size: 18px;\">- Social Distancing</font>"
+msgstr "<font style=\"font-size: 18px;\">- التباعد الاجتماعي</font>"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid ""
+"<font style=\"font-size: 18px;\">- Washing hands frequently with soap and "
+"water</font>"
+msgstr "<font style=\"font-size: 18px;\">- غسل اليدين باستمرار بالماء والصابون</font>"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "<font style=\"font-size: 18px;\">- Wearing masks at all times</font>"
+msgstr "<font style=\"font-size: 18px;\">- إرتداء الكمامات في كلّ وقت</font>"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid ""
+"<font style=\"font-size: 18px;\">-&amp;nbsp; Continuing to disinfect hands "
+"and personal items&amp;nbsp;</font>"
+msgstr "<font style=\"font-size: 18px;\">- الاستمرار في تطهير اليدين والأغراض الشخصية</font>"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.lead_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:website_contact_us.lead_thanks
+msgid ""
+"<font style=\"font-size: 18px;\">Thank you for your interest in CIDE Back to School Guidelines.</font>\n"
+"                                            <b style=\"font-size: 18px; color: inherit; font-family: inherit;\">&amp;nbsp;&amp;nbsp;&amp;nbsp;</b>"
+msgstr ""
+"<span style=\"font-size: 18px;\">شكراً لاهتمامكم بتوصيات العودة للمدارس من "
+"سايد.</span><br/>"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid ""
+"<font style=\"font-size: 18px;\">We missed classrooms, playgrounds and human"
+" interactions; but we should not forget the importance of maintaining "
+"necessary safety measures, especially:</font>"
+msgstr "<font style=\"font-size: 18px;\">اشتقنا الى الفصول الدراسية والملاعب والتفاعلات البشرية."
+"لكننا مدركين أهمية الحفاظ على إجراءات السلامة اللازمة، وخاصة:</font>"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.lead_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:website_contact_us.lead_thanks
+msgid ""
+"<span class=\"carousel-control-next-icon te_arrow_top\"/>\n"
+"                                    <span class=\"sr-only o_default_snippet_text\">Next</span>"
+msgstr ""
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid ""
+"<span class=\"carousel-control-next-icon te_arrow_top\"/>\n"
+"                    <span class=\"sr-only o_default_snippet_text\">Next</span>"
+msgstr ""
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+#: model_terms:ir.ui.view,arch_db:website_contact_us.lead_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:website_contact_us.lead_thanks
+msgid "<span class=\"sr-only o_default_snippet_text\">Previous</span>"
+msgstr ""
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.lead_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:website_contact_us.lead_thanks
+msgid ""
+"<span style=\"font-family: inherit;\">\n"
+"                                                <font style=\"font-size: 18px;\">An email has been sent.</font>\n"
+"                                            </span>"
+msgstr ""
+"<span style=\"font-family: inherit;\">\n"
+"<font style=\"font-size: 18px;\">تمّ إرسال بريد إلكتروني.</font></span>"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+#: model_terms:ir.ui.view,arch_db:website_contact_us.lead_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:website_contact_us.lead_thanks
+msgid "Best Discounted Products"
+msgstr "أفضل العروضات على منتجاتنا"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+#: model_terms:ir.ui.view,arch_db:website_contact_us.lead_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:website_contact_us.lead_thanks
+msgid "Buy Now"
+msgstr "إشتر الآن "
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.lead_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:website_contact_us.lead_thanks
+msgid "CIDE All-Day Protection"
+msgstr "حماية تدوم طوال اليوم من سايد<br/><br/>"
+
+#. module: website_contact_us
+#: model:ir.actions.act_url,name:website_contact_us.action_open_website
+#: model:website.menu,name:website_contact_us.menu_cide_back_to_school
+msgid "CIDE Back to School"
+msgstr ""
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "Clarico-3 Columns Style 5"
+msgstr ""
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "Clarico-Full Image"
+msgstr ""
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "Clarico-Offer style 5"
+msgstr ""
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+#: model_terms:ir.ui.view,arch_db:website_contact_us.lead_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:website_contact_us.lead_thanks
+msgid "Clarico-Slider Style 5"
+msgstr ""
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "Download Guidelines Now"
+msgstr ""
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.lead_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:website_contact_us.lead_thanks
+msgid ""
+"For hands, personal items, highly touched surfaces and misting of "
+"classrooms.&amp;nbsp;"
+msgstr ""
+"<span style=\"font-size: 15px;\">للأيدي، الأغراض الشخصيّة، الأسطح الأكثر "
+"عرضة لللّمس وتعقيم الفصول</span>"
+
+#. module: website_contact_us
+#: model:mail.template,subject:website_contact_us.website_cide_contact_mail
+msgid "KPHC - CIDE Guidelines"
+msgstr ""
+
+#. module: website_contact_us
+#: model:ir.model,name:website_contact_us.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "ترشيح/فرصة"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "Mobile Number"
+msgstr "رقم الموبايل"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+#: model_terms:ir.ui.view,arch_db:website_contact_us.lead_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:website_contact_us.lead_thanks
+msgid "Next"
+msgstr "التالي"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.lead_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:website_contact_us.lead_thanks
+msgid ""
+"No matter where you are, CIDE keeps you protected thanks to its <br/>Long-"
+"Lasting Protection and a full range of products that you can use anywhere "
+"anytime"
+msgstr ""
+"<span style=\"font-size: 15px;\">أينما كنتم، يحميكم سايد بفضل حمايته التي "
+"تدوم طويلاً ومجموعة متكاملة من المنتجات تستخدم في أيّ مكان ووقت</span><br/>"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid ""
+"No matter where you are, CIDE keeps you protected thanks to its Long-Lasting"
+" Protection and a full range of products that you can use wherever you "
+"are.&amp;nbsp;"
+msgstr "يمنحك سايد حماية تدوم طوال اليوم أينما تواجدت، بفضل حماية تدوم و مجموعة كاملة من المنتجات التي يمكنك استخدامها في أيّ مكان وأيّ وقت"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "Nursery"
+msgstr "دار حضانة"
+
+#. module: website_contact_us
+#: model:ir.model.fields,field_description:website_contact_us.field_crm_lead__school_university
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "Organization Name"
+msgstr "إسم المؤسسة"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid ""
+"Our experts have worked on elaborating easy to use and apply guidelines, as "
+"an effort to keep all nurseries, schools and universities germ "
+"controlled.&amp;nbsp;"
+msgstr ""
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "Phone Number"
+msgstr "رقم الهاتف"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+#: model_terms:ir.ui.view,arch_db:website_contact_us.lead_thanks_ir_ui_view
+#: model_terms:website.page,arch_db:website_contact_us.lead_thanks
+msgid "Previous"
+msgstr "السابق"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "School"
+msgstr "مدرسة"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "Send"
+msgstr "إرسال"
+
+#. module: website_contact_us
+#: model_terms:mailing.list,toast_content:website_contact_us.back_to_school_mailing_list
+msgid "Thanks for subscribing!"
+msgstr ""
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "The CIDE All-Day Protection <br/>"
+msgstr ""
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "Type of Organization"
+msgstr "نوع المؤسسة"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "University"
+msgstr "جامعة"
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "We take pride in supporting our community for more than 15 years."
+msgstr "نفخر بدعم مجتمعنا لأكثر من 15 عامًا."
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid ""
+"You will receive the guidelines in both English and Arabic for your easier "
+"reference.&amp;nbsp;"
+msgstr ""
+
+#. module: website_contact_us
+#: model_terms:ir.ui.view,arch_db:website_contact_us.create_lead
+msgid "Your Name"
+msgstr "اسمك"

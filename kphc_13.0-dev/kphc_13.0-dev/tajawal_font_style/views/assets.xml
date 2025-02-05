@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Adds all assets in Odoo -->
+        <template id="assets_frontend" name="newfo assets" inherit_id="web.assets_frontend">
+            <xpath expr="." position="inside">
+		         <!-- All links to CSS and JS files should be added in here. -->
+                <link href="https://fonts.googleapis.com/css?family=Century+Gothic&amp;display=swap" rel="stylesheet"/>
+                <link rel="stylesheet" href="/tajawal_font_style/static/src/css/styles.css"/>
+            </xpath>
+        </template>
+<template id="report_assets_common_new" name="Technical Service Assets Reports" inherit_id="web.report_assets_common">		
+            <xpath expr="//link[last()]" position="after">			
+                 <link href="https://fonts.googleapis.com/css?family=Century+Gothic&amp;display=swap" rel="stylesheet"/>
+                <link rel="stylesheet" href="/tajawal_font_style/static/src/css/styles.css"/>
+            </xpath>	
+        </template>
+<template id="external_layout_standard_new" inherit_id="web.external_layout_standard">            
+            <xpath expr="//div[@class='header']" position="attributes">
+                <attribute name="style">font-family: 'CenturyGothic', sans-serif;</attribute>
+            </xpath>
+            <xpath expr="//div[@class='article']" position="attributes">
+                <attribute name="style">font-family: 'CenturyGothic', sans-serif;</attribute>
+            </xpath> 
+            <xpath expr="//div[@class='footer']" position="attributes">
+                <attribute name="style">font-family: 'CenturyGothic', sans-serif;</attribute>
+            </xpath>
+        </template>
+</odoo>

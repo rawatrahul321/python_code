@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_channelengine_country_code,access_channelengine_country_code,model_channelengine_country_code,base.group_user,1,1,1,1
+access_zalando_logo,access_zalando_logo,model_zalando_logo,base.group_user,1,1,1,1

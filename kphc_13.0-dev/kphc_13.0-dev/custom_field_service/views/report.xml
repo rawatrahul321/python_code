@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="service_custom_report" model="ir.actions.report">
+        <field name="name">Service Report</field>
+        <field name="model">project.task</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">custom_field_service.custom_service_report</field>
+        <field name="report_file">custom_field_service.custom_service_report</field>
+        <field name="print_report_name">'service - %s' % (object.reference)</field>
+        <field name="binding_model_id" ref="model_project_task"/>
+        <field name="binding_type">report</field>
+    </record>
+    <record id="paperformat_service_report" model="report.paperformat">
+        <field name="name">Service Report Format</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">12</field>
+        <field name="margin_bottom">22</field>
+        <field name="margin_left">20</field>
+        <field name="margin_right">20</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+    <record id="service_custom_report" model="ir.actions.report">
+        <field name="paperformat_id" ref="custom_field_service.paperformat_service_report" />
+    </record>
+    <record id="industry_fsm_report.task_custom_report" model="ir.actions.report">
+        <field name="paperformat_id" ref="custom_field_service.paperformat_service_report" />
+    </record>
+</odoo>

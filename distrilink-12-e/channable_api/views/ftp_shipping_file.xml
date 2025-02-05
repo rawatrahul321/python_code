@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+        <record id="frp_shipping_file_tree" model="ir.ui.view">
+            <field name="name">ftp.shipping.file.tree</field>
+            <field name="model">ftp.shipping.file</field>
+            <field name="arch" type="xml">
+                <tree string="FTP Shipping File Tree" create="0" edit="0">
+                    <field name="name"/>
+                    <field name="shipping_file"/>
+                    <field name="status"/>
+                    <field name="import_date"/>
+                    <field name="file_md5"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="frp_shipping_file_form" model="ir.ui.view">
+            <field name="name">ftp.shipping.file.form</field>
+            <field name="model">ftp.shipping.file</field>
+            <field name="arch" type="xml">
+                <form string="FTP Shipping File Form" create="0" edit="0">
+                    <sheet>
+                        <group col="4">
+                            <field name="name"/>
+                            <field name="shipping_file" filename="name"/>
+                            <field name="status"/>
+                            <field name="import_date"/>
+                            <field name="file_md5"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_ftp_shipping_files">
+            <field name="name">FTP Shipping File</field>
+            <field name="res_model">ftp.shipping.file</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_ftp_shipping_files"
+                  name="Shipping Files"
+                  parent="menu_channable"
+                  action="action_ftp_shipping_files"
+                  sequence="15"/>
+
+
+    </data>
+</odoo>

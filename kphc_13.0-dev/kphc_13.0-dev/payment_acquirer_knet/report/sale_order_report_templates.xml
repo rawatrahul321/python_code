@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_saleorder_document_payment_knet" inherit_id="sale.report_saleorder_document">
+    <xpath expr="//div[@name='signature']" position="before">
+        <t t-set="transaction" t-value="doc.get_portal_last_transaction()"></t>
+        <div t-if="transaction">
+            <div>
+                <div style="font-weight: bold;">Payment Details:</div>
+                <table style="width: 100%; border-top: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6;">
+                    <tr name="transaction_status">
+                        <td>Transaction Status</td>
+						<t t-if="transaction.state == 'done'">
+                        	<td style="color: green;font-size: 18px;">Paid</td>
+                    	</t>
+                        <t t-elif="transaction.state in ['pending','error']">
+                            <td style="color: red;font-size: 18px;">Unpaid/Decline</td>
+                        </t>
+                        <t t-elif="transaction.state  == 'cancel'">
+                            <td style="font-size: 18px;">Cancel</td>
+                        </t>
+                    </tr>
+                    <tr>
+                        <td>Transaction Date</td>
+                        <td><span t-field="transaction.date"/></td>
+                    </tr>
+                    <tr>
+                        <td>Total Amount</td>
+                        <td><span t-field="transaction.amount"/></td>
+                    </tr>
+                    <tr>
+                        <td>Payment Method</td>
+                        <td><span t-field="transaction.acquirer_id"/></td>
+                    </tr>
+                    <tr>
+                        <td>Payment ID</td>
+                        <td><span t-field="transaction.acquirer_reference"/></td>
+                    </tr>
+                    <tr>
+                        <td>Reference</td>
+                        <td><span t-field="transaction.reference"/></td>
+                    </tr>
+                    <tr>
+                        <td>Invoice</td>
+                        <td><span t-field="transaction.payment_id"/></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </xpath>
+</template>
+
+</odoo>

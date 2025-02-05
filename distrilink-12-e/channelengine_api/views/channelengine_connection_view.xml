@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="channelengine_connection_tree" model="ir.ui.view">
+            <field name="name">channelengine.connection.tree</field>
+            <field name="model">channelengine.connection</field>
+            <field name="arch" type="xml">
+                <tree string="Connection Tree">
+                    <field name="name"/>
+                    <field name="url"/>
+                    <field name="api_key"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="channelengine_connection_form" model="ir.ui.view">
+            <field name="name">channelengine.connection.form</field>
+            <field name="model">channelengine.connection</field>
+            <field name="arch" type="xml">
+                <form string="Connection Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="url" required="1"/>
+                            <field name="api_key" required="1"/>
+                        </group>
+                        <group>
+                            <button name="test_channelengine_connection" type="object" string="Test Connection" icon="fa-television" invisible="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_channaelengine_connection">
+            <field name="name">Connection</field>
+            <field name="res_model">channelengine.connection</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_channelengine_conf"
+                  name="ChannelEngine"
+                  parent="channable_api.menu_channable"
+                  sequence="1"/>
+        <menuitem id="menu_channelengine_connection"
+                  name="Configuration"
+                  parent="menu_channelengine_conf"
+                  action="action_channaelengine_connection"/>
+
+    </data>
+</odoo>

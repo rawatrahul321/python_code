@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_return_order_manger,purchase_return.return.order.manger,model_return_order,,1,1,1,1
+access_return_order_manger,purchase_return.return.order.user,model_return_order,,1,1,1,1
+access_return_order_line_manger,purchase_return.return.order.line.manger,model_return_order_line,,1,1,1,1
+access_return_scan_line_user,purchase_return.return.scan.line.user,model_return_scan_line,,1,1,1,1

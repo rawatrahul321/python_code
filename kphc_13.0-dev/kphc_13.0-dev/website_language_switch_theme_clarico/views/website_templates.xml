@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+	<!-- Language Selector Inherit & Added Language Direction -->
+
+	<!-- Language Flag Template -->
+	<template id="language_switch" name="Language Switch">
+        <div class="language_switch">
+            <t t-if="(request and request.is_frontend_multilang and len(languages) &gt; 1) or (website and (editable or translatable))">
+                <t t-if="request.context.get('lang') == 'en_US'">
+                    <a
+                        t-att-href="url_for(url + '?' + keep_query(), lang_code='ar_SY')"
+                        t-att-data-default-lang="(editable or translatable) and 'true' if website and ar_SY == website.default_lang_id.code else None"
+                        t-att-data-lang="ar_SY"
+                        t-att-data-lang_dir="rtl"
+                        class="js_change_lang nav-link font-weight-bold">
+                        <t>العربية</t>			
+                    </a>
+                </t>
+                <t t-else="request.context.get('lang') == 'ar_SY'">
+                    <a
+                        t-att-href="url_for(url + '?' + keep_query(), lang_code='en_US')"
+                        t-att-data-default-lang="(editable or translatable) and 'true' if website and en_US == website.default_lang_id.code else None"
+                        t-att-data-lang="en_US"
+                        t-att-data-lang_dir="ltr"
+                        class="js_change_lang nav-link font-weight-bold">
+                        <t>English</t>
+                    </a>
+                </t>
+            </t>
+        </div>
+    </template>
+
+    <template id="top_menu_switch" inherit_id="website_language_switch.top_menu_switch">
+        <xpath expr="//t[@t-call='website_language_switch.language_switch']" position="replace">
+        </xpath>
+    </template>
+
+    <!-- Customize Options for Language switch for each theme header layout -->
+    <!-- <template id="top_menu_switch_1" inherit_id="theme_clarico_vega.customize_header_style_1" name="Show Language" active="True" customize_show="True" priority="100">
+        <xpath expr="//div[contains(@class, 'te_user_account')]" position="after">
+            <t t-call="website_language_switch_theme_clarico.language_switch" />
+        </xpath>
+    </template>
+
+    <template id="top_menu_switch_2" inherit_id="theme_clarico_vega.customize_header_style_2"
+        name="Show Language" active="True" customize_show="True">
+        <xpath expr="//div[contains(@class, 'te_user_account')]" position="after">
+            <t t-call="website_language_switch_theme_clarico.language_switch" />
+        </xpath>
+    </template>
+
+    <template id="top_menu_switch_3" inherit_id="theme_clarico_vega.customize_header_style_3"
+        name="Show Language" active="True" customize_show="True">
+        <xpath expr="//div[contains(@class, 'te_user_account')]" position="after">
+            <t t-call="website_language_switch_theme_clarico.language_switch" />
+        </xpath>
+    </template>
+
+    <template id="top_menu_switch_4" inherit_id="theme_clarico_vega.customize_header_style_4"
+        name="Show Language" active="True" customize_show="True">
+        <xpath expr="//div[contains(@class, 'te_user_account')]" position="after">
+            <t t-call="website_language_switch_theme_clarico.language_switch" />
+        </xpath>
+    </template>
+
+    <template id="top_menu_switch_5" inherit_id="theme_clarico_vega.customize_header_style_5"
+        name="Show Language" active="True" customize_show="True">
+        <xpath expr="//div[contains(@class, 'te_user_account')]" position="after">
+            <t t-call="website_language_switch_theme_clarico.language_switch" />
+        </xpath>
+    </template>
+
+    <template id="top_menu_switch_6" inherit_id="theme_clarico_vega.customize_header_style_6"
+        name="Show Language" active="True" customize_show="True">
+        <xpath expr="//div[contains(@class, 'te_user_account')]" position="after">
+            <t t-call="website_language_switch_theme_clarico.language_switch" />
+        </xpath>
+    </template>
+
+    <template id="top_menu_switch_7" inherit_id="theme_clarico_vega.customize_header_style_7"
+        name="Show Language" active="True" customize_show="True">
+        <xpath expr="//div[contains(@class, 'te_user_account')]" position="after">
+            <t t-call="website_language_switch_theme_clarico.language_switch" />
+        </xpath>
+    </template>
+
+    <template id="top_menu_switch_8" inherit_id="theme_clarico_vega.customize_header_style_8"
+        name="Show Language" active="True" customize_show="True">
+        <xpath expr="//div[contains(@class, 'te_user_account')]" position="after">
+            <t t-call="website_language_switch_theme_clarico.language_switch" />
+        </xpath>
+    </template>
+
+    <template id="top_menu_switch_9" inherit_id="theme_clarico_vega.customize_header_style_9"
+        name="Show Language" active="True" customize_show="True">
+        <xpath expr="//div[contains(@class, 'te_user_account')]" position="after">
+            <t t-call="website_language_switch_theme_clarico.language_switch" />
+        </xpath>
+    </template>
+
+    <template id="top_menu_switch_10" inherit_id="theme_clarico_vega.customize_header_style_10"
+        name="Show Language" active="True" customize_show="True">
+        <xpath expr="//div[contains(@class, 'te_user_account')]" position="after">
+            <t t-call="website_language_switch_theme_clarico.language_switch" />
+        </xpath>
+    </template>
+
+    <template id="top_menu_switch_11" inherit_id="theme_clarico_vega.customize_header_style_11"
+        name="Show Language" active="True" customize_show="True">
+        <xpath expr="//div[contains(@class, 'te_user_account')]" position="after">
+            <t t-call="website_language_switch_theme_clarico.language_switch" />
+        </xpath>
+    </template> -->
+
+</data>
+</odoo>

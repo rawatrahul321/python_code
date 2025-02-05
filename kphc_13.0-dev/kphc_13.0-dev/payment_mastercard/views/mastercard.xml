@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <template id="mastercard_acquirer_button">
+                <input type="hidden" name="data_set" t-att-data-action-url="tx_url" data-remove-me=""/>
+                <!-- <input type='hidden' name='Title' t-att-value='Title'/> -->
+                <input type='hidden' name='vpc_Version' t-att-value='vpc_Version'/>
+                <input type='hidden' name='vpc_Command' t-att-value='vpc_Command'/>
+                <input type='hidden' name='vpc_AccessCode' t-att-value='vpc_AccessCode'/>
+                <input type='hidden' name='vpc_MerchTxnRef' t-att-value='vpc_MerchTxnRef'/>
+                <input type='hidden' name='vpc_Merchant' t-att-value='vpc_Merchant'/>
+                <input type='hidden' name='vpc_OrderInfo' t-att-value='vpc_OrderInfo'/>
+                <input type='hidden' name='vpc_Amount' t-att-value='vpc_Amount or 0.0'/>
+                <input type='hidden' name='vpc_ReturnURL' t-att-value='vpc_ReturnURL'/>
+                <input type='hidden' name='vpc_Locale' t-att-value='vpc_Locale'/>
+                <input type='hidden' name='vpc_Currency' t-att-value='vpc_Currency'/>
+                <input type='hidden' name='vpc_SecureHash' t-att-value='vpc_SecureHash'/>
+                <input type='hidden' name='vpc_SecureHashType' t-att-value='vpc_SecureHashType'/>
+        </template>
+    </data>
+</openerp>

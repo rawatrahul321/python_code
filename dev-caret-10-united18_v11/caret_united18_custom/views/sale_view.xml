@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--  Add final_sales_price field on Product form view -->
+        <record id="view_product_form_inherit" model="ir.ui.view">
+            <field name="name">product.template.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/notebook/page[@name='general_information']/group/group/field[@name='list_price']" position="after">
+                    <field name="final_sales_price" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[@name='general_information']/group/group/field[@name='company_id']" position="before">
+                    <field name="available_size"/>
+                    <field name="colours"/>
+                    <field name="pcs"/>
+                    <field name="website_product_qty" groups="caret_united_18.group_show_configuration_menu"/>
+                    <field name="website_product_qty_restrict" groups="caret_united_18.group_show_configuration_menu"/>
+                    <field name="restrict_time" groups="caret_united_18.group_show_configuration_menu" attrs="{'invisible':[('website_product_qty_restrict', '!=', True)]}"/>
+                    <field name="restrict_qty" groups="caret_united_18.group_show_configuration_menu" attrs="{'invisible':[('website_product_qty_restrict', '!=', True)]}"/>
+                </xpath>
+                <xpath expr="//form/sheet/field[@name='image_medium']" position="replace">
+                    <field name="image" widget="image" class="oe_avatar"/>
+                </xpath>
+                <!-- <xpath expr="//field[@name='attribute_id']" position="after">
+                    <field name="price"/>
+                </xpath> -->
+            </field>
+        </record>
+
+        <!--  Add final_sales_price field on Product tree view -->
+        <record id="view_product_tree_inherit" model="ir.ui.view">
+            <field name="name">product.template.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='list_price']" position="after">
+                    <field name="final_sales_price"/>
+                </xpath>
+                <xpath expr="//field[@name='standard_price']" position="after">
+                    <field name="website_product_qty" groups="caret_united_18.group_show_configuration_menu"/>
+                    <field name="available_size"/>
+                    <field name="colours"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--  Add sale order smart butoon on Product Categories view -->
+        <record id="product_category_view_inherit" model="ir.ui.view">
+            <field name="name">product.category.inherit.form</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/div" position="inside">
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button"
+                            name="show_sale_orders"
+                            icon="fa-th-list"
+                            type="object"
+                            context="{'search_default_categ_id': active_id}"
+                            >
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value"><field name="sale_order_count"/></span>
+                                <span class="o_stat_text"> Sale Orders </span>
+                            </div>
+                        </button>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Hide date and invoice status fields in sale order form 
+             Add final_sales_price field,fiscal_position field make read only -->
+        <record id="view_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[1]/group[1]//field[@name='partner_id']" position="attributes">
+                    <attribute name="options">{'always_reload': True, 'no_create_edit': True, 'no_create':True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="is_picking"/>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[2]/group/group/field[@name='invoice_status']" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[2]/group/group/field[@name='date_order']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//sheet/group/group/field[@name='validity_date']" position="before">
+                    <field name="date_order" attrs="{'invisible': [('state', 'in', ['sale', 'done', 'cancel'])]}"/>
+                </xpath>
+                <xpath expr="//sheet/group/group/field[@name='validity_date']" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[1]/field/form/group/group/field[@name='price_unit']" position="after">
+                    <field name="final_sales_price"/>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[1]/field/tree/field[@name='price_unit']" position="after">
+                    <field name="final_sales_price"/>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[1]/field/form/group/group/label[3]" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[1]/field/form/group/group/div[3]" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[1]/field/tree/field[@name='qty_invoiced']" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[1]/field/form/group/group[2]/div[1]" position="after">
+                    <field name="available_size"/>
+                    <field name="colours"/>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[1]/field/tree/field[@name='name']" position="after">
+                    <field name="available_size"/>
+                    <field name="colours"/>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[2]/group/group/field[@name='fiscal_position_id']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', 'not in', ['draft', 'sent'])]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="context">{'search_default_customer':1, 'show_address': 1, 'sale_customer': 1}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="credit_limit"/>
+                    <field name="mobile"/>
+                    <field name="state_id" readonly="1" widget="selection"/>
+                    <field name="is_confirm"/>
+                </xpath>
+                <xpath expr="//tree/field[@name='product_id']" position="attributes">
+                    <attribute name="options">{'no_create_edit': True, 'no_create':True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="attributes">
+                    <attribute name="options">{'no_create_edit': True}</attribute>
+                </xpath>
+                <xpath expr="//tree/field[@name='name']" position="before">
+                    <field name="product_specification" string="Product Note"/>
+                    <field name="website_product_qty" readonly="1"/>
+                </xpath>
+                <xpath expr="//tree/field[@name='name']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-danger">0 > website_product_qty </attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!--  Hide invoice status from sale order tree view and use different color-->
+        <record id="sale_order_invoice_status" model="ir.ui.view">
+            <field name="name">sale.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='invoice_status']" position="after">
+                    <field name="is_picking"/>
+                    <field name="order_line" invisible="1"/>
+                </xpath>
+                <xpath expr="//tree/field[@name='invoice_status']" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-success">state=='sale'</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <!-- <field name="credit_limit"/> -->
+                    <field name="mobile"/>
+                    <field name="state_id" readonly="1" widget="selection"/>
+                </xpath>
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-warning">is_picking != False</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!--  use different color-->
+        <record id="sale_order_tree_color" model="ir.ui.view">
+            <field name="name">sale.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='state']" position="after">
+                    <field name="is_picking"/>
+                </xpath>
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-bf">state=='draft'</attribute>
+                </xpath>
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-info">state=='sent'</attribute>
+                </xpath>
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-success">state=='sale'</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <!-- <field name="credit_limit"/> -->
+                    <field name="mobile"/>
+                    <field name="state_id" readonly="1" widget="selection"/>
+                </xpath>
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-warning">is_picking != False</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!--  Hide Create Invoice button from sale order form -->
+        <record id="sale_order_view_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_management.sale_order_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[1]" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <xpath expr="//button[2]" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Hide Invoicing menu in sale menu -->
+        <record model="ir.ui.menu" id="sale.menu_sale_invoicing">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]" />
+        </record>
+        <record model="ir.ui.menu" id="sale.menu_sale_order_invoice">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]" />
+        </record>
+        <record model="ir.ui.menu" id="sale.menu_sale_order_upselling">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]" />
+        </record>
+
+        <!-- Hide fields in filter of sale order -->
+        <record id="sale_order_view_search_inherit_sale_again" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.sale_order_view_search_inherit_sale"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[2]" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <xpath expr="//filter[3]" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='sales']" position="after">
+                    <filter string="This Month" name="this_month" domain="[('date_order', '&gt;=', context_today().strftime('%%Y-%%m-01'))]"/>
+                    <filter string="States" domain="[]" context="{'group_by':'state_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sale_order_view_search_inherit_current_month" model="ir.ui.view">
+            <field name="name">sale.order.search.inh</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='customer']" position="after">
+                    <filter string="quotation sent" name="this_month" domain="[('state','=','sent')]"/>
+                    <filter string="States" domain="[]" context="{'group_by':'state_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        
+
+        <!-- Default filter for Quoation record( only show quotation sent records) -->
+        <record id="sale.action_quotations" model="ir.actions.act_window">
+            <field name="name">Quotations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="sale.view_quotation_tree"/>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+             <field name="context">{"search_default_this_month":1}</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Create a Quotation, the first step of a new sale.
+              </p><p>
+                Your next actions should flow efficiently: confirm the Quotation
+                to a Sales Order, then create the Invoice and collect the Payment.
+              </p><p>
+                Note that once a Quotation becomes a Sales Order, it will be moved
+                from the Quotations list to the Sales Order list.
+              </p>
+            </field>
+        </record>
+
+        <!-- Hide margin field on sale order form-->
+        <record id="sale_order_view_margin_field" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_margin.sale_margin_sale_order"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='margin']" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_order_line_tree_inherit_sale" model="ir.ui.view">
+            <field name="name">sale.order.line.tree</field>
+            <field name="model">sale.order.line</field>
+            <field name="inherit_id" ref="sale.view_order_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_uom_qty']" position="before">
+                    <field name="product_specification" string="Product Note"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sale.action_orders" model="ir.actions.act_window">
+            <field name="name">Sales Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+            <field name="context">{"search_default_this_month":1}</field>
+            <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel'))]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create a Quotation, the first step of a new sale.
+                </p><p>
+                    Once the quotation is confirmed, it becomes a sales order.
+                    You'll be able to invoice it and collect payments.
+                    From the <i>Sales Orders</i> menu, you can track delivery
+                    orders or services.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

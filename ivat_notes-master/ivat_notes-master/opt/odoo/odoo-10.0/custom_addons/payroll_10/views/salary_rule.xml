@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <record id="hr_rule_new_basic" model="hr.salary.rule">
+            <field name="name">Basic with Hourly Calculation</field>
+            <field name="sequence" eval="1"/>
+            <field name="code">Basic with HC</field>
+            <field name="category_id" ref="hr_payroll.BASIC"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = 0.0
+if contract.is_hourly_pay and payslip.total_hours:
+    result = contract.wage * int(payslip.total_hours.split(':')[0])
+else:
+    result = contract.wage</field>
+            <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+        </record>
+</data>
+</openerp>

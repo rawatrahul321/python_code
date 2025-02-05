@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data noupdate="1">
+		<record id="product_1" model="ingredient.product">
+            <field name="name">Alphacypermethrin 6%</field>
+        </record>
+        <record id="product_2" model="ingredient.product">
+            <field name="name">Boric Acid 20.0 %</field>
+        </record>
+        <record id="product_3" model="ingredient.product">
+            <field name="name">Brodifacoum 0.005%</field>
+        </record>
+        <record id="product_4" model="ingredient.product">
+            <field name="name">Cat Food</field>
+        </record>
+        <record id="product_5" model="ingredient.product">
+            <field name="name">Cat Repellent</field>
+        </record>
+         <record id="product_6" model="ingredient.product">
+            <field name="name">Clothianidin 1%</field>
+        </record>
+         <record id="product_7" model="ingredient.product">
+            <field name="name">Cypermethrin 40%</field>
+        </record>
+        <record id="product_8" model="ingredient.product">
+            <field name="name">Deltamethrin 2.5 %</field>
+        </record>
+        <record id="product_9" model="ingredient.product">
+            <field name="name">Difethialone 0.0025%</field>
+        </record>
+        <record id="product_10" model="ingredient.product">
+            <field name="name">Dry Steam</field>
+        </record>
+        <record id="product_11" model="ingredient.product">
+            <field name="name">Fipronil 0.05%</field>
+        </record>
+        <record id="product_12" model="ingredient.product">
+            <field name="name">Fipronil 2.5%</field>
+        </record>
+        <record id="product_13" model="ingredient.product">
+            <field name="name">Glue Traps</field>
+        </record>
+        <record id="product_14" model="ingredient.product">
+            <field name="name">Hydroprene 90.6%</field>
+        </record>
+        <record id="product_15" model="ingredient.product">
+            <field name="name">Imidacloprid 2.15%</field>
+        </record>
+        <record id="product_16" model="ingredient.product">
+            <field name="name">Imidacloprid 21%β- Cyfluthrin 10.5%</field>
+        </record>
+        <record id="product_17" model="ingredient.product">
+            <field name="name">Indoxacarb 0.05%</field>
+        </record>
+        <record id="product_18" model="ingredient.product">
+            <field name="name">Indoxacarb 0.06%</field>
+        </record>
+        <record id="product_19" model="ingredient.product">
+            <field name="name">Lambda-cyhalothrin 0.045%</field>
+        </record>
+        <record id="product_20" model="ingredient.product">
+            <field name="name">Lamda-Cyhalothrin 2.5%</field>
+        </record>
+        <record id="product_21" model="ingredient.product">
+            <field name="name">Orthoboric Acid 5.0 %</field>
+        </record>
+        <record id="product_22" model="ingredient.product">
+            <field name="name">Permethrin 0.5%</field>
+        </record>
+        <record id="product_23" model="ingredient.product">
+            <field name="name">Permethrin 25%</field>
+        </record>
+        <record id="product_24" model="ingredient.product">
+            <field name="name">Rodent Control Station - Large</field>
+        </record>
+        <record id="product_25" model="ingredient.product">
+            <field name="name">Rodent Control Station - Medium</field>
+        </record>
+        <record id="product_26" model="ingredient.product">
+            <field name="name">Thiamethoxam 10%(Z)-9-Tricosene 0.05%</field>
+        </record>
+    </data>
+</odoo>

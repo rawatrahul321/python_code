@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="textile_menu_root"
+            name="Production"
+            active="True"
+            sequence="20"/>
+
+        <menuitem id="production_main_menu"
+            name="Production"
+            parent="textile_menu_root"
+            sequence="1"/>
+
+        <menuitem id="catalog_main_menu"
+            name="Catalog"
+            parent="textile_menu_root"
+            sequence="2"/>
+
+        <menuitem id="configuration_main_menu"
+            name="Configuration"
+            parent="textile_menu_root"
+            sequence="3"/>
+
+    </data>
+</odoo>

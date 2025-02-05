@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="ir_cron_sync_saleslayer_products" model="ir.cron">
+            <field name="name">Sync Product from Saleslayer to Odoo</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="nextcall" eval="(DateTime.now() - timedelta(days=1)).strftime('%Y-%m-%d 18:31:00')" />
+            <field name="doall" eval="False"/>
+            <field name="model_id" ref="model_saleslayer_connection" />
+            <field name="state">code</field>
+            <!-- <field name="code">if datetime.datetime.now().hour in range(6):
+    model.syncProducts()</field> -->
+            <field name="code">model.syncProducts()</field>
+            <field name="active" eval="True" />
+        </record>
+
+    </data>
+</odoo>

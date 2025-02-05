@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="custom_report_invoice_document">
+            <t t-call="web.basic_layout">
+                <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                <div class="page" style="font-family:'CenturyGothic', sans-serif; src: url('https://fonts.googleapis.com/css?family=Century+Gothic&amp;display=swap');">
+                    <div class="row">
+                        <div class="col-12" align="center">
+                            <br/>
+                            <br/>
+                            <br/>
+                            <h5 >
+                                <strong >
+                                    <span t-if="o.type == 'out_invoice' and o.state == 'posted'">Invoice</span>
+                                    <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft Invoice</span>
+                                    <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Cancelled Invoice
+                                    </span>
+                                    <span t-if="o.type == 'out_refund'">Credit Note</span>
+                                    <span t-if="o.type == 'in_refund'">Vendor Credit Note</span>
+                                    <span t-if="o.type == 'in_invoice'">Vendor Bill</span>
+                                    <span>
+                                        <strong>#</strong>
+                                    </span>
+                                    <span t-if="o.name != '/'" t-esc="o.name[-4:]" style="color:red;"/>
+                                </strong>
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="row mt32 mb32 ml2 mr2">
+                        <div class="col-8">
+                            <table style="width: 100%; border: 1px solid white;" class="table table-sm o_main_table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 50%;">
+                                            <strong>Sold To :</strong>
+                                        </td>
+                                        <td style="width: 50%;">
+                                            <span t-field="o.partner_id.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 50%;">
+                                            <strong>Contact Number :</strong>
+                                        </td>
+                                        <td style="width: 50%;">
+                                            <span t-field="o.partner_id.phone"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 50%;">
+                                            <strong>Address :</strong>
+                                        </td>
+                                        <td style="width: 50%;">
+                                            <span t-if="o.partner_id.street" t-esc="o.partner_id.street + ', '"/>
+                                            <span t-if="o.partner_id.street2" t-esc="o.partner_id.street2 + ', '"/>
+                                            <span t-if="o.partner_id.city" t-esc="o.partner_id.city + ', '"/>
+                                            <span t-if="o.partner_id.country_id.name"
+                                                  t-esc="o.partner_id.country_id.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 50%;">
+                                            <strong>Period of Performance : </strong>
+                                        </td>
+                                        <td style="width: 50%;">
+                                            <span t-field="o.x_studio_pop_start_date_1" t-options='{"format": "dd/MMM/yyyy"}'/>
+                                            untill
+                                            <span t-field="o.x_studio_pop_end_date" t-options='{"format": "dd/MMM/yyyy"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 50%;">
+                                            <strong>Contract Number :</strong>
+                                        </td>
+                                        <td style="width: 50%;">
+                                            <span t-if="o.x_studio_contract_number" t-esc="o.x_studio_contract_number"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 50%;">
+                                            <strong>Our Reference Number : </strong>
+                                        </td>
+                                        <td style="width: 50%;">
+                                            <span t-if="o.ref" t-esc="o.ref"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 50%;">
+                                            <strong>CEN :</strong>
+                                        </td>
+                                        <td style="width: 50%;">
+                                            <span t-if="o.cen_code" t-esc="o.cen_code"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-4" align="right" t-if="o.invoice_date">
+                            <strong>Date:
+                                <span t-field="o.invoice_date" t-options='{"format": "dd/MMM/yyyy"}'/>
+                            </strong>
+                        </div>
+                    </div>
+                    <div class="row ml2 mr2" style="margin: 1px;">
+                        <table style="width: 100%; border: 1px solid black;" class="table-sm">
+                            <thead>
+                                <tr>
+                                    <th class="align-middle"
+                                        style="border: 1px solid black !important; text-align: center;">Item
+                                    </th>
+                                    <th class="align-middle"
+                                        style="border: 1px solid black !important; text-align: center;">
+                                        Description/Services
+                                    </th>
+                                    <th class="align-middle"
+                                        style="border: 1px solid black !important; text-align: center;">Qty
+                                    </th>
+                                    <th class="align-middle"
+                                        style="border: 1px solid black !important; text-align: center;">U.O.M
+                                    </th>
+                                    <th class="align-middle"
+                                        style="border: 1px solid black !important; text-align: center;">Unit Price
+                                        <br/>
+                                        KD
+                                    </th>
+                                    <th class="align-middle"
+                                        style="border: 1px solid black !important; text-align: center;">Total<br/>KD
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="current_subtotal" t-value="0"/>
+                                <t t-set="lines"
+                                   t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
+                                <t t-foreach="lines" t-as="line">
+                                    <tr>
+                                        <t t-if="not line.display_type" name="account_invoice_line_accountable">
+                                            <td style="text-align: center; border-right: 1px solid black !important;width:1%" >
+                                                <span t-field="line.sequence2"/>
+                                            </td>
+                                            <td style="border-right: 1px solid black !important;width:60%">
+                                                <span t-field="line.name" t-options="{'widget': 'text'}"/>
+                                            </td>
+                                            <td style="text-align: center; border-right: 1px solid black !important;width:5%">
+                                                <span t-field="line.quantity"/>
+                                            </td>
+                                            <td style="text-align: center; border-right: 1px solid black !important;width:10%">
+                                                <span t-field="line.product_uom_id.name"/>
+                                            </td>
+                                            <td style="text-align: right; border-right: 1px solid black !important;width:10%">
+                                                <span t-field="line.price_unit"/>
+                                            </td>
+                                            <td class="text-nowrap"
+                                                style="text-align: right; border-right: 1px solid black !important;width:10%">
+                                                <span t-esc="'%.3f' % float(line.price_subtotal)"/>
+                                            </td>
+                                        </t>
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td colspan="5" style="border: 1px solid black !important;">
+                                        <strong>Total: Kuwait Dinars
+                                            <span t-field="o.amt_to_word"/>
+                                            Only.
+                                        </strong>
+                                    </td>
+                                    <td style="border: 1px solid black !important; text-align: right;">
+                                        <span t-esc="'%.3f' % float(o.amount_total)"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row ml2 mr2 mt8 mb8" style="margin: 1px;">
+                        <!--                        <div class="col-12">-->
+                        <table style="width: 100%; border: 1px solid black;">
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 20px; width: 50%;">Prepared By :_____________________</td>
+<!--                                    <td style="padding: 20px; text-align: left;">-->
+
+<!--                                    </td>-->
+                                    <td style="padding: 20px; width: 50%;">Received By :_____________________</td>
+<!--                                    <td style="padding: 20px; text-align: left;">_____________________-->
+
+<!--                                    </td>-->
+                                </tr>
+                                <tr>
+                                    <td style="padding: 20px; width: 50%;">Signature :<a style="color:white">sss</a>_____________________</td>
+<!--                                    <td style="padding: 20px;">_____________________</td>-->
+                                    <td style="padding: 20px; width: 50%;">Signature :<a style="color:white">sss</a>_____________________</td>
+<!--                                    <td style="padding: 20px;">_____________________</td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--                        </div>-->
+                    </div>
+                    <div class="row ml4 mr4 mt16 mb16" style="font-size: 14px !important;">
+                        <div class="col-7">
+                            <strong>EFT Payment Details :</strong>
+                            <br/>
+                            Beneficiary :
+                            <span t-field="o.company_id.name"/>
+                            <br/>
+                            Bank : Gulf Bank
+<!--                            <span t-field="o.company_id.partner_id.bank_ids[0].bank_id.name"/>-->
+                            <br/>
+                            <!-- Bank : <span t-esc="bank.get('bank_name')"/><br/>-->
+                            <span>Branch : Main Branch</span>
+                            <br/>
+                            Account No : 90413911
+<!--                            <span t-field="o.company_id.partner_id.bank_ids[0].acc_number"/>-->
+                            <br/>
+                            <span>Swift Code : GULBKWKW</span>
+                            <br/>
+                            <span>IBAN : KW42 GULB 0000 0000 0000 0090 4139 11</span>
+                            <br/>
+                            Country : Kuwait
+<!--                            <span t-field="o.company_id.country_id.name"/>-->
+                        </div>
+                        <div class="col-5 ml64">
+                            <div style="margin-left: 20px;">
+                                <strong>Cheque Payment Details :</strong>
+                                <br/>
+                                Beneficiary:
+                                <span>Kuwait Public Health Company</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="custom_report_invoice_with_payments">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="lang"
+                       t-value="o.invoice_user_id.sudo().lang if o.type in ('in_invoice', 'in_refund') else o.partner_id.lang"/>
+                    <t t-call="custom_inv_report.custom_report_invoice_document" t-lang="lang"/>
+                </t>
+            </t>
+        </template>
+
+        <report
+                id="custom_account_invoices"
+                model="account.move"
+                string="Custom Invoices"
+                report_type="qweb-pdf"
+                name="custom_inv_report.custom_report_invoice_with_payments"
+                file="custom_inv_report.custom_report_invoice_with_payments"
+                attachment="(object.state == 'posted') and ((object.name or 'INV').replace('/','_')+'.pdf')"
+                print_report_name="(object._get_report_base_filename())"
+        />
+        <!--            groups="account.group_account_invoice"-->
+
+    </data>
+</odoo>

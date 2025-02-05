@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sms.setting</field>
+        <field name="model">res.config.settings</field>
+            <field name="priority" eval="51"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="SMS" string="SMS" data-key="sms">
+                        <h2>SMS Configuration</h2>
+						<div class="row mt16 o_settings_container">
+                            <div class="col-xs-12 col-md-6 o_setting_box" id="sms">
+                                <div class="o_setting_left_pane">
+                                    <label string="API" for="textlocal_api_key"/>
+                                </div>
+                                <div class="o_setting_right_pane" name="auth_ldap_right_pane">
+				                    <field name="textlocal_api_key" class="oe_inline"/>
+                                </div>
+                                <div class="o_setting_left_pane">
+                                    <label string="Sender" for="sender"/>
+                                </div>
+                                <div class="o_setting_right_pane" name="auth_ldap_right_pane">
+				                    <field name="sender" class="oe_inline"/>
+                                </div>
+                            </div>
+		                </div>
+		        </div>
+            </xpath>
+        	</field>
+        </record>
+
+	    <record id="action_sms_configuration" model="ir.actions.act_window">
+	        <field name="name">SMS Settings</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">res.config.settings</field>
+	        <field name="view_mode">form</field>
+	        <field name="target">inline</field>
+	        <field name="context">{'module':'caret_sms'}</field>
+	    </record>
+	
+	    <menuitem id="menu_sms_settings" parent="base.menu_custom"
+	        sequence="2" action="action_sms_configuration"/>
+
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="crm.model_crm_lead" model="ir.model">
+            <field name="website_form_key">create_lead</field>
+            <field name="website_form_default_field_id" ref="crm.field_crm_lead__description" />
+            <field name="website_form_access">True</field>
+            <field name="website_form_label">Create an Opportunity</field>
+        </record>
+
+        <function model="ir.model.fields" name="formbuilder_whitelist">
+            <value>crm.lead</value>
+            <value eval="[
+                'contact_name',
+                'phone',
+                'email_from',
+                'school_university',
+                'mobile',
+                'is_cide_form',
+            ]"/>
+        </function>
+
+    </data>
+
+    <data>
+
+        <record id="action_open_website" model="ir.actions.act_url">
+            <field name="name">CIDE Back to School</field>
+            <field name="target">self</field>
+            <field name="url">/cide-back-to-school</field>
+        </record>
+
+        <record id="base.open_menu" model="ir.actions.todo">
+            <field name="action_id" ref="action_open_website"/>
+            <field name="state">open</field>
+        </record>
+
+    </data>
+
+    <data>
+        <record id="back_to_school_mailing_list" model="mailing.list">
+            <field name="name">Back To School</field>
+        </record>
+    </data>
+</odoo>

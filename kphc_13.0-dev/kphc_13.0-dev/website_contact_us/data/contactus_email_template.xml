@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="website_cide_contact_mail" model="mail.template">
+            <field name="name">Back to school</field>
+            <field name="model_id" ref="crm.model_crm_lead"/>
+            <field name="email_from">KPHC &lt;erp@kphc.com&gt;</field>
+            <field name="email_to">${(object.email_from)}</field>
+            <field name="subject">KPHC - CIDE Guidelines</field>
+            <field name="body_html"> <![CDATA[
+<p style="margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">
+    <font style="font-size:18px;"><span style="font-weight:bolder;">Thank you for your interest</span></font>
+</p>
+<p style="margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">
+    <font style="font-size:18px;"><span style="font-weight:bolder;">in the CIDE Back-to School Guidelines</span></font>
+</p>
+<p style="margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"><br/></p>
+<p style="margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">
+    We take pride in supporting our community during this important time and provide herewith the attached:
+</p>
+<p style="margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"><br/></p>
+<ul style="margin-right:0px;margin-left: 0px; font-family: lato;">
+    <li>
+        <p style="margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">
+            <span style="font-weight:bolder;">The Back-to-School Guidelines</span>
+            in English
+        </p>
+    </li>
+</ul>
+<p style="font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;margin-left:3em;">
+    &nbsp;in addition to a Check List that will facilitate the application and assessment of the provided directives&nbsp;
+</p>
+<p style="margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"><br/></p>
+<ul style="margin-right:0px;margin-left: 0px; font-family: lato;">
+    <li>
+        <p style="margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">
+            <span style="font-weight:bolder;">The Awareness Poster</span>
+            to which you can add your logo and use it
+        </p>
+    </li>
+</ul>
+<p style="margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"><br/></p>
+<p style="margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"><br/></p>
+<p style="margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">
+    We are also pleased to present a SPECIAL OFFER on CIDE products
+</p>
+<p style="margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"><br/></p>
+<p style="margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">
+    <img class="img-fluid o_we_custom_image" src="/website_contact_us/static/src/img/email promo banner - sep 2021.png" style="border-style:none;height:auto;max-width:100%;vertical-align:middle;"/>
+    <br/><br/>
+</p>
+<p style="margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"><br/></p>
+<p style="margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;">
+    <b style="font-weight:bolder;">
+        <font style="font-size:24px;">
+            <a href="/shop" target="_blank" style="background-color:transparent;color:var(--brand-secondary);text-decoration-thickness:initial;">
+                SHOP NOW
+            </a>
+        </font>
+    </b>
+</p>
+<p style="margin:0px;font-size:13px;font-family:&quot;Lucida Grande&quot;, Helvetica, Verdana, Arial, sans-serif;"><br/></p>
+            ]]></field>
+        </record>
+    </data>
+</odoo>

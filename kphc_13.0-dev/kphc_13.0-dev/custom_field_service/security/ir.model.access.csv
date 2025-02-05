@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_task_line,access.project.task.line,model_project_task_line,,1,1,1,1
+access_images_images,access.images.images,model_images_images,,1,1,1,1
+access_technical_crew,access.technical.crew,model_technical_crew,,1,1,1,1
+access_recommendation_recommendation,access.recommendation.recommendation,model_recommendation_recommendation,,1,1,1,1
+access_find_remark,access_find_remark,model_find_remark,,1,1,1,1
+access_pmd_pmd,access_pmd_pmd,model_pmd_pmd,,1,1,1,1
+access_ingredient_product,access_ingredient_product,model_ingredient_product,,1,1,1,1
+access_ingredient_uom,access_ingredient_uom,model_ingredient_uom,,1,1,1,1

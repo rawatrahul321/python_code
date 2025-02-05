@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="delivery_email_template" model="mail.template">
+            <field name="name">Delivery Email Template</field>
+            <field name="email_from">${object.company_id and object.company_id.email or ''}</field>
+            <field name="subject">Congratz ${object.name}</field>
+            <field name="email_to">${object.email|safe}</field>
+            <field name="lang">${object.lang}</field>
+            <field name="model_id" ref="sale.model_sale_order" />
+            <field name="auto_delete" eval="True" />
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Hello, <br/><br/>
+                        A New Express Delivery Order ${(object.name)} has been confirmed and awaiting for your action.
+                    </p>
+                </div>
+                <div style="margin: 16px 8px 16px 8px;">
+                    <a href="${object.get_url_sale_order()}" style="background-color: #875a7b; text-decoration: none; color: #fff; padding: 8px 16px 8px 16px; border-radius: 5px;">
+                        View Sale Order
+                    </a>
+                </div>
+            </field>
+        </record>   
+    </data>
+</odoo>

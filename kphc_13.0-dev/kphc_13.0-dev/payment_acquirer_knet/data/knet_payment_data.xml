@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Payment acquirer "config". -->
+        <record id="knet_payment" model="payment.acquirer">
+            <field name="name">KNET Payment Gateway</field>
+            <field name="display_as">Credit Card (powered by KNET)</field>
+            <field name="description">Payment gateway from KNET to accept online payments from credit cards.</field>
+            <field name="image_128" type="base64" file="payment_acquirer_knet/static/src/img/knet.png"/>
+            <field name="provider">knet</field>
+            <field name="state">test</field>
+            <field name="view_template_id" ref="knet_form"/>
+            <field name="company_id" ref="base.main_company"/>
+
+            <!-- Extra parameters needed by this specific acquirer. -->
+            <field name="knet_tranportal_id">111111</field>
+            <field name="knet_tranportal_password">11111111</field>
+            <field name="knet_terminal_resource_key">1111111111111111</field>
+            <field name="knet_callback_base_url">https://yoursite.com/</field>
+        </record>
+    </data>
+</odoo>

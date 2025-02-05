@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_sale_order_form_kentucky_antive_ants" model="ir.ui.view">
+            <field name="name">sale.order.form.ants.inh</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="channable_api.view_sale_order_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='is_fbm_order']" position="after">
+                    <field name="is_active_kants_order" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_sale_order_form_inh_kentucky_ants" model="ir.ui.view">
+            <field name="name">sale.order.form.inh.ants</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_cancel']" position="attributes">
+                    <attribute name="states">draft,sent,sale,review,channable_order,vendor_process,ants_order,kants_order</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', ('state', 'not in', ['sent', 'review', 'vendor_process', 'channable_order', 'ants_order', 'kants_order']), ('is_channable_error_order', '=', True)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

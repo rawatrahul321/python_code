@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="address_assets_frontend" inherit_id="website.assets_frontend" name="address assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/website_shipping_address/static/src/js/custom.js"></script>
+            <script type="text/javascript" src="/website_shipping_address/static/src/js/portal_my_details.js"></script>
+            <link rel="stylesheet" href="/website_shipping_address/static/src/scss/custom.scss"/>
+        </xpath>
+    </template>
+
+    <!-- Dev one change address -->
+    <template id="inh_address" inherit_id="website_sale.address" name="Address Management" priority="20">
+        <xpath expr="//t[@t-call='website.layout']" position="replace">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="container oe_website_sale">
+                        <t t-call="website_sale.wizard_checkout">
+                            <t t-set="step" t-value="20"/>
+                        </t>
+                        <div class="row">
+                            <div class="col-md-9 oe_cart">
+                                <div class="row">
+                                    <t t-if="mode == ('new', 'billing')">
+                                        <h3 class="page-header mt16">Your Address
+                                            <small>or</small>
+                                            <t t-set='connect'
+                                               t-value="request.env['ir.config_parameter'].sudo().get_param('auth_signup.allow_uninvited') == 'True' and ('signup', 'Sign Up') or ('login', 'Log In')"/>
+                                            <a t-attf-href='/web/{{connect[0]}}?redirect=/shop/checkout'
+                                               class='btn btn-primary' style="margin-top: -11px">
+                                                <t t-esc='connect[1]'/>
+                                            </a>
+                                        </h3>
+                                    </t>
+                                    <t t-if="mode == ('edit', 'billing')">
+                                        <h3 class="page-header mt16">Your Address</h3>
+                                    </t>
+                                    <t t-if="mode[1] == 'shipping'">
+                                        <h3 class="page-header mt16">Shipping Address</h3>
+                                    </t>
+                                    <t t-if="error" t-foreach="error.get('error_message', [])" t-as="err">
+                                        <h4 class="text-danger" t-esc="err"/>
+                                    </t>
+                                    <form name="/shop/checkout" method="post" class="checkout_autoformat row">
+                                        <!-- <div t-attf-class="form-group #{error.get('addr_nm') and 'has-error' or ''} col-md-12 div_street">
+                                            <label class="control-label" for="addr_nm">Reach us by -->
+                                                <!-- <i class="fa fa-asterisk" style="color:red;font-size:10px;"/>-->
+                                            <!-- </label> -->
+<!--                                            <input type="text" name="addr_nm" class="form-control"-->
+<!--                                                   t-att-value="'addr_nm' in checkout and checkout['addr_nm']"/>-->
+                                            <!-- <select name="addr_nm" class="form-control" required="required">
+                                                <option value=""> Reach us by... </option>
+                                                <option value="doctor">Doctor</option>
+                                                <option value="social_media">Social media</option>
+                                                <option value="friend">Friend</option>
+                                                <option value="personal_search">Personal search</option>
+                                            </select>
+                                        </div> -->
+
+                                        <div t-attf-class="form-group #{error.get('firstname') and 'has-error' or ''} col-md-6 div_name">
+                                            <label class="control-label" for="firstname">First Name
+                                                <i class="fa fa-asterisk" style="color:red;font-size:10px;"/>
+                                            </label>
+                                            <input type="text" name="firstname" class="form-control"
+                                                   t-att-value="'firstname' in checkout and checkout['firstname']"
+                                                   required="True"/>
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('name') and 'has-error' or ''} col-md-6 div_name">
+                                            <label class="control-label" for="name">Last Name
+                                                <i class="fa fa-asterisk" style="color:red;font-size:10px;"/>
+                                            </label>
+                                            <input type="text" name="name" class="form-control"
+                                                   t-att-value="'name' in checkout and checkout['name']" required="True"/>
+                                        </div>
+                                        <div class="clearfix"/>
+                                        <div t-attf-class="form-group #{error.get('phone') and 'has-error' or ''} col-md-6"
+                                             id="div_phone">
+                                            <label class="control-label" for="phone">Phone
+                                                <i class="fa fa-asterisk" style="color:red;font-size:10px;"/>
+                                            </label>
+                                            <input type="tel" name="phone" class="form-control"
+                                                   t-att-value="'phone' in checkout and checkout['phone']" required="True"/>
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('email') and 'has-error' or ''} col-md-6"
+                                             id="div_email">
+                                            <label class="control-label" for="email">
+                                                Email
+                                            </label>
+                                            <input type="email" name="email" class="form-control"
+                                                   t-att-value="'email' in checkout and checkout['email']"/>
+                                        </div>
+                                        <div class="clearfix"/>
+                                        <div t-attf-class="form-group #{error.get('country_id') and 'has-error' or ''} col-md-12 div_country" style="display: none;">
+                                            <label class="control-label" for="country_id">Country
+                                                <i class="fa fa-asterisk" style="color:red;font-size:10px;"/>
+                                            </label>
+                                            <select id="country_id" name="country_id" class="form-control">
+                                                <option value="">Country...</option>
+                                                <t t-foreach="countries" t-as="c">
+                                                    <option t-att-value="c.id"
+                                                            t-att-selected="c.id == (country and country.id or -1) or c.code == 'KW'">
+                                                        <t t-esc="c.name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                        <div class="clearfix"/>
+                                        <div t-attf-class="form-group #{error.get('state_id') and 'has-error' or ''} col-md-12 div_state">
+                                            <label class="control-label" for="state_id">State / City
+                                                <i class="fa fa-asterisk" style="color:red;font-size:10px;"/>
+                                            </label>
+                                            <!-- Dev one note: kuwait does not have state so it will hide by website_sale.js code -->
+                                            <select name="state_id" class="form-control" data-init="1" required="True">
+                                                <option value="">State / City...</option>
+                                                <t t-foreach="country and country.state_ids or []" t-as="s">
+                                                    <option t-att-value="s.id"
+                                                            t-att-selected="s.id == ('state_id' in checkout and country and checkout['state_id'] != '' and int(checkout['state_id']))">
+                                                        <t t-esc="s.name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                        <div class="clearfix"/>
+                                        <div t-attf-class="form-group #{error.get('area_id') and 'has-error' or ''} col-md-12 div_street">
+                                            <label class="control-label" for="area">Area
+                                                <i class="fa fa-asterisk" style="color:red;font-size:10px;"/>
+                                            </label>
+                                            <select id="area_id" name="area_id" class="form-control" required="True">
+                                                <option value="">Area...</option>
+                                                <t t-foreach="areas_ids" t-as="c">
+                                                    <option t-att-value="c.id" t-att-data-state_id="c.state_id.id"
+                                                            t-att-selected="c.id == int('area_id' in checkout and checkout['area_id'] or -1)">
+                                                        <t t-esc="c.name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                        <div class="clearfix"/>
+                                        <div t-attf-class="form-group #{error.get('block') and 'has-error' or ''} col-md-6 div_street">
+                                            <label class="control-label" for="block">Block
+                                                No <!--<i class="fa fa-asterisk" style="color:red;font-size:10px;" />--></label>
+                                            <input type="text" name="block" class="form-control"
+                                                   t-att-value="'block' in checkout and checkout['block']"/>
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('Avenue') and 'has-error' or ''} col-md-6 div_street">
+                                            <label class="control-label" for="avenue">
+                                                Avenue<!--<i class="fa fa-asterisk" style="color:red;font-size:10px;" />--></label>
+                                            <input type="text" name="avenue" class="form-control"
+                                                   t-att-value="'avenue' in checkout and checkout['avenue']"/>
+                                        </div>
+                                        <div class="clearfix"/>
+                                        <div t-attf-class="form-group #{error.get('street') and 'has-error' or ''} col-md-12 div_street">
+                                            <label class="control-label" for="street">Street
+                                                Name/No <i class="fa fa-asterisk" style="color:red;font-size:10px;" /></label>
+												<input type="text" name="street" class="form-control"
+                                                   t-att-value="'street' in checkout and checkout['street']" required="True"/>
+                                            <!--<textarea name="street" class="form-control">
+                                                <t t-esc="'street' in checkout and checkout['street']"/>
+                                            </textarea>-->
+                                        </div>
+                                        <div class="clearfix"/>
+                                        <div t-attf-class="form-group #{error.get('building') and 'has-error' or ''} col-md-12 div_street">
+                                            <label class="control-label" for="building">Building
+                                                Name/No <i class="fa fa-asterisk" style="color:red;font-size:10px;" /></label>
+                                            <input type="text" name="building" class="form-control"
+                                                   t-att-value="'building' in checkout and checkout['building']" required="True"/>
+                                        </div>
+                                        <div class="clearfix"/>
+                                        <div t-attf-class="form-group #{error.get('floor') and 'has-error' or ''} col-md-12 div_street">
+                                            <label class="control-label" for="floor">Floor No</label>
+                                            <input type="text" name="floor" class="form-control"
+                                                   t-att-value="'floor' in checkout and checkout['floor']"/>
+                                        </div>
+                                        <div class="clearfix"/>
+                                        <div t-attf-class="form-group #{error.get('apart_number') and 'has-error' or ''} col-md-12 div_street">
+                                            <label class="control-label" for="apart_number">Apartment No</label>
+                                            <input type="text" name="apart_number" class="form-control"
+                                                   t-att-value="'apart_number' in checkout and checkout['apart_number']"/>
+                                        </div>
+                                        <div class="clearfix"/>
+                                        <div t-attf-class="form-group #{error.get('street2') and 'has-error' or ''} col-md-12 div_street">
+                                            <label class="control-label" for="street2">Remarks/Other Information</label>
+                                            <input type="text" name="street2" class="form-control"
+                                                   t-att-value="'street2' in checkout and checkout['street2']"/>
+                                        </div>
+                                        <div class="clearfix"/>
+                                        <!-- <div t-attf-class="form-group #{error.get('location_type') and 'has-error' or ''} col-md-12 div_state">
+                                            <label class="control-label" for="location_type">Location
+                                                Type</label>
+                                            <select name="location_type" class="form-control" data-init="1">
+                                                <option value="Home"
+                                                        t-att-selected="'Home' == ('location_type' in checkout and checkout['location_type'] or '')">
+                                                    Home
+                                                </option>
+                                                <option value="Buisness"
+                                                        t-att-selected="'Buisness' == ('location_type' in checkout and checkout['location_type'] or '')">
+                                                    Buisness
+                                                </option>
+                                            </select>
+                                        </div> -->
+                                        <div class="clearfix"/>
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <input type="hidden" name="submitted" value="1"/>
+                                        <input type="hidden" name="partner_id" t-att-value="partner_id or '0'"/>
+                                        <input type="hidden" name="callback" t-att-value="callback"/>
+                                        <input type="hidden" name="field_required"
+                                               t-att-value="mode[1] == 'billing' and 'phone,name' or ''"/>
+                                        <input type="checkbox" id='shipping_use_same' class="mr8 d-none" name='use_same'
+                                               value="1" checked='checked'/>
+                                        <div class="clearfix"/>
+                                        <div>
+                                            <a t-att-href="mode == ('new', 'billing') and '/shop/cart' or '/shop/checkout'"
+                                               class="btn btn-default mb32">
+                                                <span class="fa fa-long-arrow-left"/>
+                                                Back
+                                            </a>
+                                            <button class="btn btn-default btn-primary pull-right mb32 a-submit a-submit-disable a-submit-loading">
+                                                <span>Next</span>
+                                                <span class="fa fa-long-arrow-right"/>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 text-muted">
+                                <h3 class="page-header mt16 text-center">Your Order</h3>
+                                <t t-set="website_sale_order" t-value="website.sale_get_order()"/>
+                                <t t-call="website_sale.total"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+    <!-- Dev one change address end -->
+
+    <!-- Dev one change address -->
+    <template id="hide_tax" inherit_id="website_sale.total" name="Hide Tax">
+        <xpath expr="//tr[@id='order_total_taxes']" position="attributes">
+            <attribute name="style">display:none;</attribute>
+        </xpath>
+    </template>
+    <!-- Dev one change address end -->
+
+    <record model='ir.ui.view' id='view_res_partner_inherit_for_firstname'>
+        <field name='name'>res.partner.base.form.view.inhertite</field>
+        <field name='model'>res.partner</field>
+        <field name='inherit_id' ref="base.view_partner_form"/>
+        <field name='arch' type='xml'>
+            <xpath expr="//page//field//form//sheet//group//field[@name='name']" position="replace">
+                <field name='addr_nm' string="Address Name"/>
+                <field name='firstname' string="First Name"/>
+                <field name='name' string="Last Name"/>
+                <field name='area_id'/>
+                <field name='block'/>
+                <field name='avenue'/>
+                <field name='building'/>
+                <field name='floor'/>
+                <field name='apart_number' string="Apartment Number"/>
+                <field name='location_type'/>
+            </xpath>
+            <xpath expr="//sheet//field[@name='website']" position="before">
+                <field name='addr_nm' string="Reach Us By"/>
+                <field name='area_id' attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                <field name='block' attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                <field name='avenue' attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                <field name='building' attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                <field name='floor' attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                <field name='apart_number' string="Apartment Number"
+                       attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                <field name='location_type'
+                       attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_res_city_area_tree" model="ir.ui.view">
+        <field name="name">res.city.area.tree</field>
+        <field name="model">res.city.area</field>
+        <field name="arch" type="xml">
+            <tree string="State">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="state_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_res_city_area_form" model="ir.ui.view">
+        <field name="name">res.city.area.form</field>
+        <field name="model">res.city.area</field>
+        <field name="arch" type="xml">
+            <form string="State">
+                <group>
+                    <field name="name" required="1"/>
+                    <field name="code"/>
+                    <field name="state_id" options='{"no_open": True}' required="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_res_city_area" model="ir.actions.act_window">
+        <field name="name">Area</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.city.area</field>
+        <field name="view_id" ref="view_res_city_area_tree"/>
+        <field name="help">Create A new area</field>
+    </record>
+    <menuitem action="action_res_city_area" id="menu_country_state_partner" parent="contacts.menu_localisation"
+              sequence="3"/>
+
+    <!-- Signup form Changes by Krutarth on 5th March -->
+    <template id="astore_signup_fields" inherit_id="auth_signup.fields">
+        <xpath expr="//div[hasclass('field-login')]/label" position="after">
+            <sup class="alert alert-danger email-error d-none">
+                Please provide proper email address.
+            </sup>
+        </xpath>
+        <xpath expr="//div[hasclass('field-confirm_password')]" position="after">
+            <t t-if="website.enable_custom_address">
+                <div class="form-group field-phone">
+                    <label for="phone">Phone</label>
+                    <input type="text" name="phone" id="phone" class="form-control form-control-sm phone_input"
+                           required="required"/>
+                </div>
+            </t>
+        </xpath>
+    </template>
+<!--    &lt;!&ndash;<template id="portal_my_address_add_menu_sale" name="Portal layout : sales menu entries" inherit_id="portal.portal_layout" priority="25">-->
+<!--      <xpath expr="//ul[contains(@class,'o_portal_submenu')]" position="inside">-->
+<!--        <li>-->
+<!--          <a href="/my/address">Address</a>-->
+<!--        </li>-->
+<!--      </xpath>-->
+<!--    </template>&ndash;&gt;-->
+<!--    &lt;!&ndash;  <template id="address_display">-->
+<!--          <t t-call="portal.portal_layout">-->
+<!--              <div id="wrap">-->
+<!--                  <div class="container oe_website_sale">-->
+<!--                      <div class="row">-->
+<!--                          <div class="col-md-12 oe_cart">-->
+<!--                              <div class="row">-->
+<!--                                  <div class="col-md-12">-->
+<!--                                      <h3 class="page-header mt16">-->
+<!--                                          <b>Billing Address</b>-->
+<!--                                      </h3>-->
+<!--                                  </div>-->
+<!--                                  <div class="col-md-6 one_kanban">-->
+<!--                                      <t t-call="website_sale.address_kanban">-->
+<!--                                          <t t-set='contact' t-value="partner_id"/>-->
+<!--                                          <t t-set='selected' t-value="1"/>-->
+<!--                                          <t t-set='readonly' t-value="1"/>-->
+<!--                                      </t>-->
+<!--                                  </div>-->
+<!--                              </div>-->
+<!--                              <div class="row">-->
+<!--                                  <div class="col-md-12">-->
+<!--                                      <h3 class="page-header mt16">-->
+<!--                                          <b>Shipping Address</b>-->
+<!--                                      </h3>-->
+<!--                                  </div>-->
+<!--                              </div>-->
+<!--                              <div class="row all_shipping">-->
+<!--                                  <div class="col-md-12">-->
+<!--                                      <div class="row mt8">-->
+<!--                                          <div class="col-sm-12 col-md-12 one_kanban">-->
+<!--                                              <form action="/shop/address" method="post" class=''>-->
+<!--                                                  <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>-->
+<!--                                                  <a class='a-submit btn btn-default mb16 btn-block'>-->
+<!--                                                      <i class="fa fa-plus-square" aria-hidden="true"></i>-->
+<!--                                                      Add an address-->
+<!--                                                  </a>-->
+<!--                                              </form>-->
+<!--                                          </div>-->
+<!--                                          <t t-foreach="shippings" t-as="ship">-->
+<!--                                              <div class="col-sm-12 col-md-6 one_kanban">-->
+<!--                                                  <t t-call="website_sale.address_kanban">-->
+<!--                                                      <t t-set='contact' t-value="ship"/>-->
+<!--                                                       <t t-set='selected' t-value="order.partner_shipping_id==ship" />-->
+<!--                                                      <t t-set='readonly' t-value="bool(len(shippings)==1)"/>-->
+<!--                                                      <t t-set='edit_billing' t-value="bool(ship==partner_id)"/>-->
+<!--                                                  </t>-->
+<!--                                              </div>-->
+<!--                                          </t>-->
+<!--                                      </div>-->
+<!--                                  </div>-->
+<!--                              </div>-->
+<!--                              <div class="clearfix"/>-->
+<!--                          </div>-->
+<!--                      </div>-->
+<!--                  </div>-->
+<!--              </div>-->
+<!--          </t>-->
+<!--      </template>&ndash;&gt;-->
+
+
+</odoo>

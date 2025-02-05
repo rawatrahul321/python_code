@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data noupdate="1">
+		<record id="rec_1" model="recommendation.recommendation">
+            <field name="name">To help us render better services and attain utmost results, please make sure that the premises are always accessible for our technical crew during scheduled visits.</field>
+        </record>
+        <record id="rec_2" model="recommendation.recommendation">
+        	<field name="name">Pest and wildlife can enter facility areas and create contamination, therefore holes/cracks in walls, pipe chases, spilled food items, or open doors/windows shall be noted to reduce chances of future infestation.</field>
+        </record>
+        <record id="rec_3" model="recommendation.recommendation">
+        	<field name="name">Certain types of vegetation/plantings around the building/facility may be susceptible to pest harborage. Vegetation should be well maintained by the landscape contractor to reduce chances of infestation.</field>
+        </record>
+        <record id="rec_4" model="recommendation.recommendation">
+        	<field name="name">Trees should not be close enough to touch a building since crawling insects and rats often follow branches to enter a building. All tree branches that touch the facility should be trimmed.</field>
+        </record>
+        <record id="rec_5" model="recommendation.recommendation">
+        	<field name="name">All garbage and rubbish must be so conveyed, stored and disposed to minimize the development of odor, diminish the potential for the waste becoming an attractant and harborage or breeding place for pests (i.e. rodents, roaches, flying insects, etc.</field>
+        </record>
+        <record id="rec_6" model="recommendation.recommendation">
+        	<field name="name">All personnel working in the facility must conform to hygienic practices and maintain high sanitation standard necessary to protect the facility against pest infestation.</field>
+        </record>
+        <record id="rec_7" model="recommendation.recommendation">
+        	<field name="name">Poor sanitation makes life easy for pests that need little more than spilled food, a good hiding place, and sometime a bit of water to establish an infestation in a facility.</field>
+        </record>
+        <record id="rec_8" model="recommendation.recommendation">
+        	<field name="name">Pest prevention through sanitation is an essential practice to prevent pest harborage and infestation.</field>
+        </record>
+	</data>
+</odoo>

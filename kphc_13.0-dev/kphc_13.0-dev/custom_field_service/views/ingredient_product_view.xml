@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="ingredient_product_tree_view" model="ir.ui.view">
+		<field name="name">ingredient.product.tree.view</field>
+		<field name="model">ingredient.product</field>
+		<field name="arch" type="xml">
+			<tree editable="top">
+				<field name="name"/>
+			</tree>
+		</field>
+	</record>
+	<record id="action_ingredient_product" model="ir.actions.act_window">
+        <field name="name">Ingredient Product</field>
+        <field name="res_model">ingredient.product</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="ingredient_product_tree_view"/>
+    </record>
+    <menuitem
+            id="menu_ingredient_product"
+            name="Ingredient Product"
+            action="action_ingredient_product"
+            parent="industry_fsm.fsm_menu_settings"/>
+</odoo>

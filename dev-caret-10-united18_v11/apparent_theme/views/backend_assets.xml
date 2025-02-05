@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <template id="less_helpers" name="Apparent Theme Helper" inherit_id="web.less_helpers">
+    <xpath expr=".">
+      <!-- <link rel="stylesheet" href="/apparent_theme/static/src/less/apparent-variables.less"/> -->
+    </xpath>
+  </template>
+
+  <template id="assets_backend" name="Apparent Theme" inherit_id="web.assets_backend">
+    <xpath expr=".">
+      <link rel="stylesheet" href="/apparent_theme/static/src/less/apparent-variables.less"/>
+      <link rel="stylesheet" type="text/css" href="/apparent_theme/static/lib/css/drawer.3.2.2.css"/>
+      <link rel="stylesheet" href="/apparent_theme/static/src/less/main.less"/>
+      <link rel="stylesheet" href="/apparent_theme/static/src/less/apparent-navbar.less"/>
+      <link rel="stylesheet" href="/apparent_theme/static/src/less/app-drawer.less"/>
+      <link rel="stylesheet" href="/apparent_theme/static/src/less/form-style.less"/>
+      <link rel="stylesheet" href="/apparent_theme/static/src/less/apparent-style.less"/>
+
+      <script type="application/javascript" src="/apparent_theme/static/lib/js/iscroll-probe.js"/>
+      <script type="application/javascript" src="/apparent_theme/static/lib/js/drawer.3.2.2.js"/>
+      <script type="application/javascript" src="/apparent_theme/static/src/js/apparent.js"/>
+    </xpath>
+  </template>
+
+</odoo>

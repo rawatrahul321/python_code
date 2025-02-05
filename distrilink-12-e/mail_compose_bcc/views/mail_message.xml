@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <!-- ToDo: Finish this view. Add cc and bcc field on mail.message. -->
+        <record model="ir.ui.view" id="view_message_form_cc_bcc">
+            <field name="name">mail.message.form.bcc</field>
+            <field name="model">mail.message</field>
+            <field name="inherit_id" ref="mail.view_message_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_ids']" position="after">
+                    <field name="email_cc"/>
+                </xpath>
+                <xpath expr="//field[@name='needaction_partner_ids']" position="after">
+                    <field name="email_bcc"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

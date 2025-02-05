@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Hide date approve, Billing status, payment term and incorterm fields
+             and Hide Smart button Vendor Bill in purchase order form 
+             add final_sales_price field // hide send rfq by email button also put some condition on it-->
+        <record id="purchase_order_form_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/div/button[@name='action_view_invoice']" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[2]/group/group/field[@name='incoterm_id']" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[2]/group/group/field[@name='payment_term_id']" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                 <xpath expr="//sheet/notebook/page[2]/group/group/field[@name='date_approve']" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[2]/group/group/field[@name='invoice_status']" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[1]/field/tree/field[@name='price_unit']" position="after">
+                    <field name="final_sales_price"/>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[1]/field/form/sheet/group/group/field[@name='price_unit']" position="after">
+                    <field name="final_sales_price"/>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[1]/field/tree/field[@name='name']" position="after">
+                    <field name="available_size"/>
+                    <field name="colours"/>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[1]/field/form/sheet/group/group[2]/field[@name='company_id']" position="after">
+                    <field name="available_size"/>
+                    <field name="colours"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_ref']" position="after">
+                    <field name="so_reference" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="attributes">
+                    <attribute name="options">{'no_create_edit': True}</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']/form//field[@name='product_id']" position="attributes">
+                    <attribute name="options">{'no_create_edit': True}</attribute>
+                </xpath>
+                <xpath expr="//header/button[1]" position="before">
+                    <field name="login_company_check" invisible="1"/>
+                </xpath>
+                <xpath expr="//header/button[1]" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                    <attribute name="attrs">{'invisible': ['|',('login_company_check', '=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//header/button[2]" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                    <attribute name="attrs">{'invisible': ['|',('login_company_check', '=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//header/button[5]" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+                <xpath expr="//header/button[6]" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+                <xpath expr="//header/button[8]" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+                <xpath expr="//header/button[8]" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|',('login_company_check', '=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//header/button[@name='button_draft']" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+                <xpath expr="//header/button[@name='button_cancel']" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+                <xpath expr="//header/button[@name='button_done']" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+                <xpath expr="//header/button[@name='button_unlock']" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+                 <xpath expr="//tree/field[@name='name']" position="before">
+                    <field name="product_specification" string="Product Note"/>
+                </xpath>
+                <xpath expr="//tree/field[@name='name']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//group[1]/group[1]/field[@name='partner_id']" position="attributes">
+                    <attribute name="options">{'no_create_edit': True}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Hide Billing status field from purchase order line -->
+        <record id="purchase_order_tree_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.tree</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_status']" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!--  Hide Waiting Bills and Bill Received filter on purchase order form -->
+        <record id="view_purchase_order_filter_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.filter</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='not_invoiced']" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='invoiced']" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                 <xpath expr="//filter[@name='invoiced']" position="after">
+                     <filter name="cancel_removed" string="Removed Cancel" domain="[('state','!=', 'cancel')]" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="purchase_order_line_search_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.line.search</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_search"/>
+            <field name="arch" type="xml">
+            <xpath expr="//filter[@name='groupby_supplier']" position="after">
+                    <filter name="cancel_removed" string="Removed Cancel" domain="[('state','!=', 'cancel')]" />
+                </xpath>
+            </field>
+        </record>
+
+         <record id="purchase_order_line_tree_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.line.tree</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="product_specification" string="Product Note"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="purchase_order_line_form2_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.line.form</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_planned']" position="after">
+                    <field name="product_specification" string="Product Note"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!--  Hide vendor bill in control menu and show configuration menu in Purchase menu -->
+        <record model="ir.ui.menu" id="purchase.menu_procurement_management_pending_invoice">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]" />
+        </record>
+
+        <!--  Hide Incoming Product sub menu in control menu in Purchase menu -->
+        <record model="ir.ui.menu" id="purchase.menu_action_picking_tree_in_move">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]" />
+        </record>
+
+        <record model="ir.ui.menu" id="purchase.menu_purchase_config">
+            <field name="groups_id" eval="[(6, 0, [ref('purchase.group_purchase_user')])]" />
+        </record>
+
+        <record model="ir.ui.menu" id="purchase.menu_product_in_config_purchase">
+            <field name="groups_id" eval="[(6, 0, [ref('purchase.group_purchase_user')])]" />
+        </record>
+
+         <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+            <field name="name">Requests for Quotation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="context">{'search_default_todo':1, 'show_purchase': False}</field>
+            <field name="domain">[('state','in',('draft','sent','bid','cancel', 'confirmed'))]</field>
+            <field name="view_mode">tree,kanban,form,pivot,graph,calendar</field>
+            <field name="context">{'search_default_cancel_removed': 1}</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a request for quotation.
+              </p><p>
+                The quotation contains the history of the discussion/negotiation
+                you had with your vendor. Once confirmed, a request for
+                quotation is converted into a purchase order.
+              </p><p>
+                Most propositions of purchase orders are created automatically
+                by Odoo based on inventory needs.
+              </p>
+            </field>
+        </record>
+
+        <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+            <field name="name">Purchase Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,kanban,form,pivot,graph,calendar</field>
+            <field name="context">{'search_default_cancel_removed': 1, 'show_purchase': True}</field>
+            <field name="domain">[('state','not in',('draft','sent','bid', 'confirmed'))]</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a quotation that will be converted into a purchase order.
+              </p><p>
+                Use this menu to search within your purchase orders by
+                references, vendor, products, etc. For each purchase order,
+                you can track the related discussion with the vendor, control
+                the products received and control the vendor bills.
+              </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

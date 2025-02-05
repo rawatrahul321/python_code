@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_picking_form_inh_ce" model="ir.ui.view">
+            <field name="name">stock.picking.form.inh</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="channable_api.view_picking_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='shipment_channable']" position="attributes">
+                    <attribute name="string">ChannelEngine</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

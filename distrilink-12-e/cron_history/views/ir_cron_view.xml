@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="show_cron_history" model="ir.actions.act_window">
+        <field name="name">Cron History</field>
+        <field name="res_model">ir.cron.history</field>
+        <field name="search_view_id" ref="cron_history.ir_cron_history_tree_view"/>
+        <field name="domain">[('cron', '=', active_id)]</field>
+        <field name="context">{'search_default_cron_id': [active_id], 'default_cron_id': active_id}
+        </field>
+    </record>
+
+    <record id="ir_cron_view_form_inherit" model="ir.ui.view">
+        <field name="name">ir.cron.view.form.inherit</field>
+        <field name="model">ir.cron</field>
+        <field name="inherit_id" ref="base.ir_cron_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']/button[last()]" position="after">
+                <button name="toggle_track_history" type="object" class="oe_stat_button" icon="fa-history">
+                    <field string="History" name="track_history" widget="boolean_button"/>
+                </button>
+                <button name="%(show_cron_history)d" type="action" string="Show History" class="oe_inline oe_stat_button" icon="fa-history" attrs="{'invisible': [('track_history', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

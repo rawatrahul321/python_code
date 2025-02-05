@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="email_compose_message_wizard_form_cc_bcc">
+            <field name="name">mail.compose.message.bcc.form</field>
+            <field name="model">mail.compose.message</field>
+            <field name="inherit_id" ref="mail.email_compose_message_wizard_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='subject']" position="before">
+                    <field name="email_cc" placeholder="Comma-separated carbon copy recipients addresses"/>
+                    <field name="email_bcc" placeholder="Comma-separated blind carbon copy recipients addresses"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

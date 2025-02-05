@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Hide Invoice button and payment tab on pos order form view -->
+        <record model="ir.ui.view" id="view_pos_pos_form_inherit">
+            <field name="name">pos.order.form</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header/button[@name='action_pos_order_invoice']" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+                <xpath expr="//tree/field[@name='product_id']" position="attributes">
+                    <attribute name="options">{'no_create_edit': True}</attribute>
+                </xpath>
+                 <xpath expr="//sheet/div/button[@name='action_view_invoice']" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+                 <xpath expr="//sheet/notebook/page[2]" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- only show current company partners(customer) -->
+         <record id="view_pos_order_filter_inherit" model="ir.ui.view">
+            <field name="name">pos.order.form</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_order']" position="after">
+                    <filter string="Cash" domain="[('cash','=','Cash')]"/>
+                    <filter string="Digital" domain="[('digital','=','Digital')]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Hide settings menu in Point of sale Dasboard -->
+        <record id="view_pos_config_kanban_inherit" model="ir.ui.view">
+            <field name="name">pos.config.kanban.view</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_config_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//templates/t/div/div[3]/div[2]" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                 <xpath expr="//div[hasclass('o_kanban_primary_right')]/div[2]" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="remove_pos_invocing_option" model="ir.ui.view">
+            <field name="name">pos.config.form</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form//div[@id='iface_invoicing']" position="replace">
+                    <div></div>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- only show current company partners(customer) -->
+         <record id="view_pos_pos_form_inh" model="ir.ui.view">
+            <field name="name">pos.order.form</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="domain">[('company_id', '=', company_id),('customer', '=', True)]</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="cash" invisible="1"/>
+                    <field name="digital" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="point_of_sale.menu_point_of_sale" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0,[ref('point_of_sale.group_pos_user')])]"/>
+        </record>
+        <record id="point_of_sale.menu_point_rep" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0,[ref('point_of_sale.group_pos_user')])]"/>
+        </record>
+        <record id="point_of_sale.menu_pos_session_all" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0,[ref('point_of_sale.group_pos_user')])]"/>
+        </record>
+
+        <!-- Hide catalog menu in Point of sale menu -->
+        <record id="point_of_sale.pos_config_menu_catalog" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+        </record>
+
+        <record id="point_of_sale.pos_config_menu_action_product_product" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+        </record>
+
+        <record id="point_of_sale.pos_config_menu_action_product_pricelist" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+        </record>
+
+        <record id="point_of_sale.menu_action_account_journal_form_open" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+        </record>
+
+        <!-- Hide configuration menu in Point of sale menu -->
+        <record model="ir.ui.menu" id="point_of_sale.menu_point_config_product">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]" />
+        </record>
+
+        <!-- customer menu for pos -->
+        <menuitem
+            id="menu_pos_customer"
+            parent="point_of_sale.menu_point_of_sale"
+            action="base.action_partner_form"
+            />
+    </data>
+</odoo>

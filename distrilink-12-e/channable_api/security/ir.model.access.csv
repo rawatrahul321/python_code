@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_channable_connection,channable.connection,model_channable_connection,base.group_user,1,1,1,1
+access_channable_product_price,channable.product.price,model_channable_product_price,base.group_user,1,1,1,1
+csv_stock_file_access,csv.stock.aceess,model_csv_stock,base.group_user,1,1,1,1
+csv_stock_file_access_public,csv.stock.public.aceess,model_csv_stock,base.group_public,1,1,1,1
+channable_order_channel_access,channable.order.channel,model_channable_order_channel,base.group_user,1,1,1,1
+ftp_connectionl_access,ftp.connection,model_ftp_connection,base.group_user,1,1,1,1
+ftp_shipping_file_access,ftp.shipping.file,model_ftp_shipping_file,base.group_user,1,1,1,1

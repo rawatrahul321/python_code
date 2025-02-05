@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="find_1" model="find.remark">
+            <field name="name">Crawling Insects (i.e. American Cockroaches)</field>
+        </record>
+        <record id="find_2" model="find.remark">
+            <field name="name">Crawling Insects (i.e. Ants)</field>
+        </record>
+        <record id="find_3" model="find.remark">
+            <field name="name">Crawling Insects (i.e. German Cockroaches)</field>
+        </record>
+        <record id="find_4" model="find.remark">
+            <field name="name">Crawling Insects (i.e. German Cockroaches, American Cockroaches)</field>
+        </record>
+        <record id="find_5" model="find.remark">
+            <field name="name">Crawling Insects (i.e. German Cockroaches, Ants)</field>
+        </record>
+        <record id="find_6" model="find.remark">
+            <field name="name">Flying Insects (i.e. Drain Flies)</field>
+        </record>
+        <record id="find_7" model="find.remark">
+            <field name="name">Flying Insects (i.e. Fruit Flies)</field>
+        </record>
+        <record id="find_8" model="find.remark">
+            <field name="name">Flying Insects (i.e. Fruit Flies, Drain Flies)</field>
+        </record>
+        <record id="find_9" model="find.remark">
+            <field name="name">Flying Insects (i.e. House Flies)</field>
+        </record>
+        <record id="find_10" model="find.remark">
+            <field name="name">Occasional Invaders (i.e. Black Beetles)</field>
+        </record>
+        <record id="find_11" model="find.remark">
+            <field name="name">Occasional Invaders (i.e. Crickets)</field>
+        </record>
+        <record id="find_12" model="find.remark">
+            <field name="name">Occasional Invaders (i.e. Crickets, Black Beetles)</field>
+        </record>
+        <record id="find_13" model="find.remark">
+            <field name="name">Parasites (i.e. Bed Bugs)</field>
+        </record>
+        <record id="find_14" model="find.remark">
+            <field name="name">Rodents (i.e. Mice)</field>
+        </record>
+        <record id="find_15" model="find.remark">
+            <field name="name">Rodents (i.e. Rats)</field>
+        </record>
+        <record id="find_16" model="find.remark">
+            <field name="name">Rodents (i.e. Mice,Mice)</field>
+        </record>
+        <record id="find_17" model="find.remark">
+            <field name="name">Stored Products Pest (i.e. Grain Beetles)</field>
+        </record>
+        <record id="find_18" model="find.remark">
+            <field name="name">Stored Products Pest (i.e. Grain Weeviles)</field>
+        </record>
+        <record id="find_19" model="find.remark">
+            <field name="name">Stored Products Pest (i.e. Indian Meal Moth)</field>
+        </record>
+        <record id="find_20" model="find.remark">
+            <field name="name">Stray Animals (i.e. Cats)</field>
+        </record>
+        <record id="find_21" model="find.remark">
+            <field name="name">Stray Animals (i.e. Cats, Dogs)</field>
+        </record>
+        <record id="find_22" model="find.remark">
+            <field name="name">Stray Animals (i.e. Dogs)</field>
+        </record>
+	</data>
+</odoo>

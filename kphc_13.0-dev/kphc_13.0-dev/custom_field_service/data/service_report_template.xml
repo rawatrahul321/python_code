@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="mail_template_data_service_report" model="mail.template">
+            <field name="name">Service Report</field>
+            <field name="model_id" ref="project.model_project_task"/>
+            <field name="subject">${object.name} Report</field>
+            <field name="email_to">${(object.partner_id.email_formatted) |safe}</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="report_template" ref="industry_fsm_report.task_custom_report"/>
+            <field name="report_name">Service ${object.name}${(' - ' + object.partner_id.name) if object.partner_id else ''}.pdf</field>
+            <field name="body_html" type="html">
+                <p>
+                    Dear ${object.partner_id.name or 'Customer'},<br/><br/>
+                    Please find hereunder our Report following our visits to your esteemed, on January st 2021.<br/><br/>
+                    Please treat this report as an effective tool that ensures KPHC treatments are efficient. Thus, it will help us all be in line to take all necessary measures to ensure a guaranteed Pest free environment.<br/><br/>
+                    Best regards,<br/><br/>
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

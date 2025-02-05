@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!--    WEBSITE MENU-->
+    <record id="menu_cide_back_to_school" model="website.menu">
+        <field name="name">CIDE Back to School</field>
+        <field name="url">/cide-back-to-school</field>
+        <field name="parent_id" ref="website.main_menu"/>
+    </record>
+
+<!--    WEBSITE FORM-->
+    <template id="create_lead" name="CIDE Back to School">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <div class="oe_structure" data-name="Style 5">
+                    <section class="oe_img_bg oe_custom_bg" data-name="Full Image Banner" style="background-image: url(&quot;/web/image/6928/website%20banners.png&quot;); background-position: 0% 0%;">
+                      <section class="t_img_hover_1 te_banner_img pb0 pt0">
+                        <img class="img-fluid d-block mx-auto" alt="Clarico-Full Image" src="/website_contact_us/static/src/img/Untitled.png" data-original-title="" title="" aria-describedby="tooltip362254"/>
+                      </section>
+                    </section>
+                </div>
+                <section class="py-3 py-sm-5 te_space_style pb0 bg-alpha" data-name="Space"/>
+
+                <section class="s_text_block" data-name="Text block">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 pt4 pb4">
+                                <p class="lead">
+                                    <b>
+                                        <font style="font-size: 18px;">We take pride in supporting all Education Organizations management, teachers and parents in their efforts to safeguard children in Kuwait for this academic year 2021-2022. This Fall,&amp;nbsp; we go back to school and universities protected thanks to the COVID-19 vaccines and ready to go back to our "old normal".&amp;nbsp;&amp;nbsp;</font>
+                                    </b>
+                                </p>
+                                <p class="lead">
+                                    <br/>
+                                </p>
+                                <p class="lead">
+                                    <font style="font-size: 18px;">We missed classrooms, playgrounds and human interactions; but we should not forget the importance of maintaining necessary safety measures, especially:</font>
+                                </p>
+                                <p class="lead">
+                                    <font style="font-size: 18px;">- Social Distancing</font>
+                                </p>
+                                <p class="lead">
+                                    <font style="font-size: 18px;">- Wearing masks at all times</font>
+                                </p>
+                                <p class="lead">
+                                    <font style="font-size: 18px;">- Washing hands frequently with soap and water</font>
+                                </p>
+                                <p class="lead">
+                                    <font style="font-size: 18px;">- Maintaining a clear disinfection protocol by the schools and universities management</font>
+                                </p>
+                                <p class="lead">
+                                    <font style="font-size: 18px;">-&amp;nbsp; Continuing to disinfect hands and personal items&amp;nbsp;</font>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="py-3 py-sm-5 te_space_style pb0" data-name="Space"/>
+                <section class="d-inline-block w-100 offer_5_bg" data-name="Style 5">
+                    <div class="container">
+                        <div class="row align-items-center te_left_to_right pt32 pb32">
+                            <section class="col-lg-6 col-md-6 te_offer_5_text_left te_left_side">
+                                <h2>
+                                    <b>SAFE SCHOOLS<br/>SAFE STUDENTS</b>
+                                </h2>
+                                <div class="s_hr text-left pt32 pb32" data-name="Separator">
+                                    <hr class="s_hr_1px s_hr_solid border-600 w-100 mx-auto"/>
+                                </div>
+                                <h3>Download Guidelines Now</h3>
+                                <p>Our experts have worked on elaborating easy to use and apply guidelines, as an effort to keep all nurseries, schools and universities germ controlled.&amp;nbsp;</p>
+                                <p>You will receive the guidelines in both English and Arabic for your easier reference.&amp;nbsp;</p>
+                                <p>
+                                    <br/>
+                                </p>
+                                <p>We take pride in supporting our community for more than 15 years.</p>
+                            </section>
+                            <div class="col-lg-6 col-md-6 te_text_middle p-0 py-2 te_offer_img_center bg-100" style="">
+                                <div class="t_img_hover_1">
+                                    <img class="img img-responsive img-fluid d-block mx-auto" alt="Clarico-Offer style 5" src="/web/image/6907/Untitled%20design.png" data-original-title="" title="" aria-describedby="tooltip54612"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <form action="/website_form/" method="post" data-model_name="crm.lead" data-success_page="/thank-you-back-to-school" class="s_website_form container-fluid mt32" enctype="multipart/form-data" data-editable-form="false">
+                    <div class="form-group row form-field o_website_form_required_custom">
+                        <label class="col-lg-3 col-md-4 col-form-label" for="contact_name">Name</label>
+                        <div class="col-lg-7 col-md-8">
+                            <input type="text" class="form-control o_website_form_input" name="contact_name" t-att-value="request.params.get('contact_name', '')" required=""/>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group row form-field">
+                        <label class="col-lg-3 col-md-4 col-form-label" for="phone">Phone Number</label>
+                        <div class="col-lg-7 col-md-8">
+                            <input type="text" class="form-control o_website_form_input" name="phone" t-att-value="request.params.get('phone', '')" />
+                        </div>
+                    </div> -->
+                    <div class="form-group row form-field o_website_form_required_custom">
+                        <label class="col-lg-3 col-md-4 col-form-label" for="mobile">Mobile Number</label>
+                        <div class="col-lg-7 col-md-8">
+                            <input type="text" class="form-control o_website_form_input" name="mobile" t-att-value="request.params.get('mobile', '')" required=""/>
+                        </div>
+                    </div>
+                    <div class="form-group row form-field o_website_form_required_custom">
+                        <label class="col-lg-3 col-md-4 col-form-label" for="email_from">Email</label>
+                        <div class="col-lg-7 col-md-8">
+                            <input type="text" class="form-control o_website_form_input" name="email_from" required="" t-att-value="request.params.get('email_from', '')" />
+                        </div>
+                    </div>
+                    <div class="form-group row form-field">
+                        <label class="col-lg-3 col-md-4 col-form-label" for="school_university">Organization</label>
+                        <div class="col-lg-7 col-md-8">
+                            <input type="text" class="form-control o_website_form_input" name="school_university" t-att-value="request.params.get('school_university', '')" />
+                        </div>
+                    </div>
+                    <div class="row form-field o_fake_not_editable">
+                        <input type="hidden" class="form-control o_website_form_input" name="is_cide_form" value="true" />
+                    </div>
+                    <div class="row form-group form-field o_website_form_custom o_fake_not_editable">
+                        <div class="col-lg-3 col-md-4">
+                            <label class="col-form-label o_fake_editable" for="type_of_organization">Type of Organization</label>
+                        </div>
+                        <div class="col-lg-7 col-md-8">
+                            <select class="form-control o_website_form_input" name="type_of_organization" required="false" style="display: block;">
+                                <option value="Nursery">Nursery</option>
+                                <option value="School">School</option>
+                                <option value="University">University</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <!-- <div id="editable_select" class="form-control o_website_form_input">
+                                <div id="Nursery" class="o_website_form_select_item">Nursery</div>
+                                <div id="School" class="o_website_form_select_item">School</div>
+                                <div id="University" class="o_website_form_select_item">University</div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-lg-3 offset-md-4 col-md-8 col-lg-7">
+                            <a href="#" role="button" class="btn btn-primary btn-lg o_website_form_send">Send</a>
+                            <span id="o_website_form_result"></span>
+                        </div>
+                    </div>
+              </form>
+              <!-- <section class="py-3 py-sm-5 te_space_style bg-200 pb0" data-name="Space"/>
+              <div class="oe_structure" data-name="Style 1"/> -->
+              <!-- <div id="myCarousel1630834787014" class="s_carousel carousel pointer-event aos-init slide" data-interval="0" data-name="Style 2" data-aos="slide">
+                <ol class="carousel-indicators d-none">
+                  <li data-target="#myCarousel1630834787014" data-slide-to="0" class="active"/>
+                </ol>
+                <div class="carousel-inner te_arrow_small">
+                  <div class="carousel-item bg-white-75 pb0 active" style="opacity: 1;" data-name="Slide">
+                    <div class="container carousel-content">
+                      <div class="row align-items-center te_t_shop_title_text">
+                        <section class="col-lg-6">
+                          <div class="t_img_hover_1">
+                            <img class="img img-responsive img-fluid d-block mx-auto" alt="Clarico-Slider Style 5" src="/web/image/6894/21.png" data-original-title="" title="" aria-describedby="tooltip835252"/>
+                          </div>
+                        </section>
+                        <section class="col-lg-6 te_t_slider_5_txt aos-init pt64 none" data-aos="none">
+                          <h5 class="te_t_furniture_text">
+                            <b>
+                              <font style="background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);">SPECIAL OFFER</font>
+                              <br/>
+                            </b>
+                            <font style="background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);">FOR TEACHERS AND PRINCIPLES</font>
+                            <br/>
+                            <font style="background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);">FOR PARENTS AND STUDENTS<br/></font>
+                          </h5>
+                          <div class="s_hr text-left pt32 pb32" data-name="Separator">
+                            <hr class="s_hr_1px s_hr_solid border-600 w-100 mx-auto"/>
+                          </div>
+                          <h2 class="te_t_slider_5_title_text">The CIDE All-Day Protection <br/></h2>
+                          <p class="te_t_good_product_text">No matter where you are, CIDE keeps you protected thanks to its Long-Lasting Protection and a full range of products that you can use wherever you are.&amp;nbsp;</p>
+                          <p class="te_t_good_product_text">
+                            <br/>
+                          </p>
+                          <p class="te_t_good_product_text">
+                            <b>This Special Offer provides you with all you need:</b>
+                          </p>
+                          <ol>
+                            <li>
+                              <p class="te_t_good_product_text"><b>&amp;nbsp;CIDE 4 Liters and CIDE sprayer</b>: <br/>to mist in the classrooms for a germs-controlled environment; also use it to spray all items, equipment, counter tops, technology, door knobs and more</p>
+                            </li>
+                            <li>
+                              <p class="te_t_good_product_text">&amp;nbsp;<b>CIDE 600 mL</b><br/>to use on your hands and any personal item</p>
+                            </li>
+                          </ol>
+                          <section class="s_btn pb4 pt8" data-name="Button">
+                            <a href="/start" class="te_theme_button mt16 btn btn-delta" data-original-title="" title="" aria-describedby="tooltip904402" target="_blank">Buy Now</a>
+                          </section>
+                        </section>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-control-prev d-none" data-target="#myCarousel1630834787014" data-slide="prev" role="img" aria-label="Previous" title="Previous">
+                    <span class="sr-only o_default_snippet_text">Previous</span>
+                  </div>
+                  <div class="carousel-control-next d-none" data-target="#myCarousel1630834787014" data-slide="next" role="img" aria-label="Next" title="Next">
+                    <span class="carousel-control-next-icon te_arrow_top"/>
+                    <span class="sr-only o_default_snippet_text">Next</span>
+                  </div>
+                </div>
+              </div> -->
+              <!-- <section class="py-3 py-sm-5 te_space_style pb8" data-name="Space"/> -->
+              <section data-name="Product Discount Slider">
+                <div class="container">
+                  <h3 class="te_slider_title o_default_snippet_text">Best Discounted Products</h3>
+                </div>
+                <div class="js_product_discount hidden" data-isemipro="true" data-slider-style-id="3"/>
+              </section>
+              <div class="oe_structure" data-name="Style 2">
+                <div class="oe_structure" data-name="Style 5"/>
+                <section class="s_three_columns pt32 pb32" data-name="Style 5">
+                  <div class="container">
+                    <div class="row d-flex align-items-stretch aos-init" data-aos="align-items-stretch">
+                      <div class="col-lg-4 col-md-4 s_col_no_bgcolor te_col_ind">
+                        <div class="te_image_overflow t_img_hover_1">
+                          <img class="card-img-top img img-responsive te_feature_image" src="/web/image/6904/9.png" alt="Clarico-3 Columns Style 5" data-original-title="" title="" aria-describedby="tooltip515190"/>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-4 s_col_no_bgcolor te_col_ind">
+                        <div class="te_image_overflow t_img_hover_1">
+                          <img class="card-img-top img img-responsive te_feature_image" src="/web/image/6897/11.png" alt="Clarico-3 Columns Style 5" data-original-title="" title="" aria-describedby="tooltip845410"/>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-4 s_col_no_bgcolor te_col_ind">
+                        <div class="te_image_overflow t_img_hover_1">
+                          <img class="card-img-top img img-responsive te_feature_image" src="/web/image/6905/15.png" alt="Clarico-3 Columns Style 5" data-original-title="" title="" aria-describedby="tooltip8583"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+          </div>
+          <div class="oe_structure" data-name="Style 6"/>
+          <div class="oe_structure" data-name="Style 5"/>
+          <section class="py-3 py-sm-5 te_space_style pb4" data-name="Space"/>
+        </div>
+  </t>
+</template>
+
+<!--    RECORD SAVE AND THANK YOU PAGE -->
+    <record id="lead_thanks" model="website.page">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/thank-you-back-to-school</field>
+        <field name="website_published">True</field>
+        <field name="key">website_contact_us.lead_thanks</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="website_contact_us.lead_thanks">
+                <t t-call="website.layout">
+                    <div id="wrap" class="oe_structure oe_empty">
+                        <p>
+                            <img class="img-fluid o_we_custom_image" src="/website_contact_us/static/src/img/thanks_banner.png"/>
+                        </p>
+                        <section class="py-3 py-sm-5 te_space_style pb0 bg-alpha" data-name="Space"/>
+                        <div class="oe_structure" data-name="Style 5"/>
+                        <section class="s_text_block" data-name="Text block">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12 pt32 pb32">
+                                        <p class="lead"/>
+                                        <div style="text-align: center;">
+                                            <span style="font-family: inherit;">
+                                                <font style="font-size: 18px;">An email has been sent.</font>
+                                            </span>
+                                        </div>
+                                        <div style="text-align: center;">
+                                            <br/>
+                                        </div>
+                                        <p/>
+                                        <p class="lead" style="text-align: center;">
+                                            <font style="font-size: 18px;">Thank you for your interest in CIDE Back to School Guidelines.</font>
+                                            <b style="font-size: 18px; color: inherit; font-family: inherit;">&amp;nbsp;&amp;nbsp;&amp;nbsp;</b>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <div class="oe_structure" data-name="Style 1"/>
+                        <div id="myCarousel1630834787014" class="s_carousel carousel pointer-event aos-init slide" data-interval="0" data-name="Style 2" data-aos="slide">
+                            <ol class="carousel-indicators d-none">
+                                <li data-target="#myCarousel1630834787014" data-slide-to="0" class="active"/>
+                            </ol>
+                            <div class="carousel-inner te_arrow_small">
+                                <div class="carousel-item bg-white-75 pb0 active" style="opacity: 1;" data-name="Slide">
+                                    <div class="container carousel-content">
+                                        <div class="row align-items-center te_t_shop_title_text">
+                                            <section class="col-lg-6">
+                                                <div class="t_img_hover_1">
+                                                    <img class="img img-responsive img-fluid d-block mx-auto" alt="Clarico-Slider Style 5" src="/website_contact_us/static/src/img/12.png" data-original-title="" title="" aria-describedby="tooltip835252"/>
+                                                </div>
+                                            </section>
+                                            <section class="col-lg-6 te_t_slider_5_txt aos-init pt64 none" data-aos="none">
+                                                <h5 class="te_t_furniture_text">
+                                                    <b>
+                                                        <font style="background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);">SPECIAL OFFER</font>
+                                                        <br/>
+                                                    </b>
+                                                    <font style="background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);">FOR TEACHERS, PRINCIPALS</font>
+                                                    <br/>
+                                                    <font style="background-color: rgb(255, 255, 255); color: rgb(140, 123, 198);">PARENTS AND STUDENTS<br/></font>
+                                                </h5>
+                                                <div class="s_hr text-left pt32 pb32" data-name="Separator">
+                                                    <hr class="s_hr_1px s_hr_solid border-600 w-100 mx-auto"/>
+                                                </div>
+                                                <h2 class="te_t_slider_5_title_text">CIDE All-Day Protection</h2>
+                                                <p class="te_t_good_product_text">No matter where you are, CIDE keeps you protected thanks to its <br/>Long-Lasting Protection and a full range of products that you can use anywhere anytime</p>
+                                                <p class="te_t_good_product_text"><br/></p>
+                                                <p class="te_t_good_product_text">
+                                                    <b>This Special Offer provides you with all you need, that includes:</b>
+                                                </p>
+                                                <p class="te_t_good_product_text">
+                                                    <b>1 x CIDE 4 Liters</b>
+                                                </p>
+                                                <p class="te_t_good_product_text">
+                                                    <b>1 x CIDE Sprayer</b>
+                                                </p>
+                                                <p class="te_t_good_product_text">
+                                                    <b>6 x CIDE 600mL<br/><br/></b>
+                                                </p>
+                                                <p class="MsoNormal">For hands, personal items, highly touched surfaces and misting of classrooms.&amp;nbsp;</p>
+                                                <p/>
+                                                <p/>
+                                                <section class="s_btn pb4 pt8 text-right aos-init" data-name="Button" data-aos="text-right">
+                                                    <a href="/shop/product/cide-back-to-school-offer" class="te_theme_button mt16 btn btn-delta" data-original-title="" title="" aria-describedby="tooltip904402" target="_blank">Buy Now</a>
+                                                </section>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-control-prev d-none" data-target="#myCarousel1630834787014" data-slide="prev" role="img" aria-label="Previous" title="Previous">
+                                    <span class="sr-only o_default_snippet_text">Previous</span>
+                                </div>
+                                <div class="carousel-control-next d-none" data-target="#myCarousel1630834787014" data-slide="next" role="img" aria-label="Next" title="Next">
+                                    <span class="carousel-control-next-icon te_arrow_top"/>
+                                    <span class="sr-only o_default_snippet_text">Next</span>
+                                </div>
+                            </div>
+                        </div>
+                        <section class="py-3 py-sm-5 te_space_style pb8 bg-300" data-name="Space"/>
+                        <section data-name="Product Discount Slider">
+                            <div class="container">
+                            <h3 class="te_slider_title">Best Discounted Products</h3>
+                            </div>
+                            <div class="js_product_discount hidden" data-isemipro="true" data-slider-style-id="3"/>
+                        </section>
+                        <div class="oe_structure" data-name="Style 6"/>
+                        <div class="oe_structure" data-name="Style 5"/>
+                        <section class="py-3 py-sm-5 te_space_style pb4" data-name="Space"/>
+                        <p/>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="external_layout_move_report_header">
+            <div class="header">
+                <div class="text-center col-xs-12" style="border-bottom : 1px solid black !important;">
+                    <h1> Inventory Report </h1>
+                    <br/>
+                    <div class="text-left col-xs-4">
+                        <b><t t-esc="start_date.strftime('%d-%m-%Y')"/> to <t t-esc="end_date.strftime('%d-%m-%Y')"/></b>
+                    </div>
+                    <div class="col-xs-4 text-center" style="font-size:20px;">
+                        <b>
+                            <t t-esc="user.company_id.name"/>
+                        </b>
+                    </div>
+                    <div class="col-xs-4 text-right">
+                        <span>Page:</span>
+                        <span class="page"/>
+                        of
+                        <span class="topage"/>
+                    </div>
+                </div>
+            </div>
+            <div class="article o_report_layout_standard">
+                <t t-raw="0" />
+            </div>
+        </template>
+
+        <template id="external_layout_move_report">
+            <t t-call="caret_united18_custom.external_layout_move_report_header" >
+            <t t-raw="0" /></t>
+        </template>
+
+        <template id="report_stocketails">
+            <t t-call="web.html_container">
+                <t t-call="caret_united18_custom.external_layout_move_report">
+                    <div class="page">
+                        <div class="row" style="font-size:11px">
+                            <div class="col-xs-12">
+                                 <style>
+                                 .border_top{
+                                            border-top : 1px solid black !important;
+                                 }
+                                 .border_bottom{
+                                                border-bottom : 1px solid black !important;
+                                 }
+                                 th{
+                                    padding:2px 5px 2px 5px !important;
+                                 }
+                                 td{
+                                    padding:2px 5px 2px 5px !important;
+                                 }
+                                </style>
+                                <br/><br/>
+                                <table class="col-xs-12" style="font-size:16px;">
+                                    <thead class="border_bottom text-center">
+                                        <tr>
+                                            <th class="text-left col-xs-4">
+                                                <h4><b><t t-esc="user.company_id.name"/></b></h4>
+                                            </th>
+                                            <th class="col-xs-2"></th>
+                                            <th>Beginning</th>
+                                            <th>Received</th>
+                                            <th>Sales</th>
+                                            <th>Internal</th>
+                                            <th>Ending</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border_bottom text-center">
+                                        <t t-foreach="result" t-as="data">
+                                            <tr>
+                                                <td class="text-left col-xs-4">
+                                                    <t t-esc="data"/>
+                                                </td>
+                                                <td class="col-xs-2"></td>
+                                                <td>
+                                                    <t t-esc="result[data]['beginning']"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="result[data]['total_incoming']"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="result[data]['total_outgoing']"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="result[data]['total_internal']"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="round(result[data]['record'].qty_available)"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        <tr class="border_bottom border_top text-center">
+                                            <td class="col-xs-4"></td>
+                                            <td class="col-xs-2"><h4><b>Total Inventory</b></h4></td>
+                                            <td>
+                                                <t t-esc="total_begining"/>
+                                            </td>
+                                            <td>
+                                                <h4><t t-esc="total_incoming"/></h4>
+                                            </td>
+                                            <td>
+                                                <h4><t t-esc="total_outgoing"/></h4>
+                                            </td>
+                                            <td>
+                                                <h4><t t-esc="total_internal"/></h4>
+                                            </td>
+                                            <td>
+                                                <h4><t t-esc="total_end"/></h4>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

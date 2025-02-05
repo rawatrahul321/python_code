@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+    <report id="action_report_unique_inner_no_barcode"
+     model="unique.packing.number"
+     report_type="qweb-pdf"
+     name="custom_picking.report_unique_inner_no_barcode"
+     string="Unique Inner Carton BarCode"
+     file="custom_picking.unique_inner_carton"/>
+     
+     <report id="action_report_unique_outer_no_barcode"
+     model="unique.outer.packing.number"
+     report_type="qweb-pdf"
+     name="custom_picking.report_unique_outer_no_barcode"
+     string="Unique Outer Carton BarCode"
+     file="custom_picking.unique_outer_carton"/>
+     
+	</data>
+</odoo>     

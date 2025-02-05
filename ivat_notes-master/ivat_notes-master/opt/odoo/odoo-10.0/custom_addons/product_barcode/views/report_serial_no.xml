@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+<template id="report_lot_barcode_inherit" inherit_id="stock.report_lot_barcode">
+    <xpath expr="//table[@class='table table-condensed']" position="replace">
+    	<div class="row">
+    	<div class="col-xs-8">
+        <table class="table table-condensed">
+            
+        </table>
+    </div>
+    
+       </div>                 
+    </xpath>
+    <xpath expr="//div[@class='col-xs-4']" position="replace">
+    <img class="image" />
+    </xpath>
+    
+    <xpath expr="//div[@class='col-xs-12 mt32']" position="replace">
+    <div class="row">
+        <div class="col-xs-12 mt32">
+            
+            <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px"/>
+            <br/><p class="text-left" t-field="o.name" style="padding-left:110px;"></p>
+        </div>
+    </div>
+    </xpath>
+    
+</template>
+</data>
+</odoo>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- Sale Order Inherit -->
+	<record id="view_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//field[@name ='amount_untaxed']" position="after">		            
+		            <label for="list_discount" string="List Discount" />
+				    <div class="address_format">
+				    	 <field name="list_discount_percentage" readonly="1" style="width: 33%"/>&#x2063; &#x2063;
+				         <field name="list_discount"  style="width: 33%"/>
+				    </div>
+		            
+		            <label for="breakage_discount" string="Breakage" />
+				    <div class="address_format">
+				    	 <field name="breakage_discount_percentage" readonly="1" style="width: 33%"/>&#x2063; &#x2063;
+				         <field name="breakage_discount"  style="width: 33%"/>
+				    </div>
+		            
+		            <label for="truck_load_discount" string="Truck Load" />
+				    <div class="address_format">
+				    	 <field name="truck_discount_percentage" readonly="1" style="width: 33%"/>&#x2063; &#x2063;
+				         <field name="truck_load_discount"  style="width: 33%"/>
+				    </div>
+		            
+		            <field name="freight_charge" readonly="0"/>
+				</xpath>
+				<xpath expr="//field[@name='amount_tax']" position="replace">
+            	</xpath>
+            	<xpath expr="//field[@name ='freight_charge']" position="after">
+            		<field name="discount_amount"/> 
+            		<field name="sub_total"/> 
+            		<field name="total_quantity"/>
+            		<field name="tax_id"/> 
+            		<field name="taxAmount"/>
+            	</xpath>
+            	<!-- HIDE FIELDS -->
+            	<xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='qty_delivered']" position="attributes">
+		            <attribute name="invisible">1</attribute>
+		        </xpath>
+		        <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='qty_invoiced']" position="attributes">
+		            <attribute name="invisible">1</attribute>
+		        </xpath>
+		        <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
+		            <attribute name="invisible">1</attribute>
+		        </xpath>
+		    
+			</field>
+	</record>
+	
+	<!-- Res Partner Inherit -->
+	<record id="view_partner_form_inh" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name ='lang']" position="after">
+		            <field name="discount"/>
+	             	<field name="breakage"/>
+				</xpath>
+				<xpath expr="//field[@name ='location']" position="after">
+					<field name="truck_load"/>
+				</xpath>
+            </field>
+    </record>
+    
+    <!-- Account Invoice Inherit -->
+    <record id="invoice_form_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.form.inh</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+    			<xpath expr="//field[@name ='amount_untaxed']" position="after">
+		            <field name="list_discount"/>
+		            <field name="breakage_discount" readonly="0"/>
+		            <field name="truck_load_discount" readonly="0"/>
+		            <field name="freight_charge" readonly="0"/>
+				</xpath>
+				<xpath expr="//field[@name='amount_tax']" position="replace">
+            	</xpath>
+            	<xpath expr="//field[@name ='freight_charge']" position="after">
+            		<field name="discount_amount"/> 
+            		<field name="sub_total"/> 
+            		<field name="total_quantity"/>
+            		<field name="tax_id"/> 
+            		<field name="taxAmount"/>
+            	</xpath>
+    		</field>
+	</record>
+    
+    
+    
+    
+    
+</odoo>

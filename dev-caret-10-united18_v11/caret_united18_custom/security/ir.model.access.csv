@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_partner_group,res_partner_group,base.model_res_partner,base.group_user,1,1,1,1
+access_product_transfer_group,product_transfer_group,caret_united18_custom.model_product_transfer,base.group_user,1,1,1,1
+access_product_transfer_line_group,product_transfer_line_group,caret_united18_custom.model_product_transfer_line,base.group_user,1,1,1,1
+stock.access_stock_quant_user,stock.quant user,stock.model_stock_quant,stock.group_stock_user,1,1,1,1

@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--  this code is useful for hide and show menus in inventory menu. -->
+        <record model="ir.ui.menu" id="stock.menu_procurement_compute">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]" />
+        </record>
+         <record model="ir.ui.menu" id="stock.menu_reordering_rules_config">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]" />
+        </record>
+        <record model="ir.ui.menu" id="stock.menu_stock_config_settings">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]" />
+        </record>
+        <record model="ir.ui.menu" id="stock.menu_action_inventory_form">
+            <field name="groups_id" eval="[(6, 0, [ref('caret_united_18.group_show_configuration_menu')])]" />
+        </record>
+         <menuitem
+            action="product.product_category_action_form" 
+            id="stock.menu_product_category_config_stock"
+            parent="stock.menu_stock_inventory_control"
+            sequence="2"/>
+
+        <!-- Hide Reordering Rule and product move smart button and quantity update button in header of products menu of inventory menu -->
+        <record model="ir.ui.view" id="product_template_form_view_procurement_button_inherit">
+            <field name="name">product.template_procurement</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//button[2]" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+                 <xpath expr="//button[@name='action_view_stock_move_lines']" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_view_orderpoints']" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Hide update quantity button from header and Reordering Rule,product moves smart button on products menu of inventory menu -->
+        <record model="ir.ui.view" id="product_template_form_view_reordering_button_inherit">
+            <field name="name">product.product_procurement</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="stock.product_form_view_procurement_button"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[2]" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_view_stock_move_lines']" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+                <xpath expr="//button[6]" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <xpath expr="//button[7]" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!--  Add Point Of Sale Button on Product form-->
+        <record model="ir.ui.view" id="product_template_form_view_pos_button">
+            <field name="name">product.template.pos.button</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <button name="%(stock.action_view_change_product_quantity)d" position="after">
+                    <button name="change_so_lines_price" string="Update SO lines price" type="object" groups="sales_team.group_sale_manager"/>
+                </button>
+                <button name="toggle_active" position="before">
+                     <button class="oe_stat_button" name="action_view_pos"
+                        type="object" icon="fa-usd">
+                        <field string="Point Of Sale" name="pos_count" widget="statinfo" />
+                    </button>
+                    <button class="oe_stat_button" name="action_view_picking_sales"
+                        type="object" icon="fa-usd" groups="sales_team.group_sale_manager">
+                        <field string="Picking Sales" name="picking_sales_count" widget="statinfo" />
+                    </button>
+                </button>
+            </field>
+        </record>
+
+        <!-- Hide sale smart button on product form menu -->
+        <record model="ir.ui.view" id="product_template_form_view_sales_button_inherit">
+            <field name="name">product.template.sale</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="sale.product_template_form_view_sale_order_button"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//button[1]" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Hide sale smart button on product form menu -->
+        <record model="ir.ui.view" id="product_template_form_view_sale_button_inherit1">
+            <field name="name">product.template.sale</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="sale_stock.product_template_view_form_inherit_stock"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//button[@name='action_view_sales']" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!--  Hide Pos category and to weigh with scale field in product template form -->
+        <record id="product_template_form_view_inheritaa1" model="ir.ui.view">
+            <field name="name">product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="point_of_sale.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='pos_categ_id']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='to_weight']" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!--  Hide sales, inventory tab and toggle active smart button in product template form -->
+        <record id="product_template_form_view_inheritasa" model="ir.ui.view">
+            <field name="name">product.template.sale_tab.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='sales']" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[@name='inventory']" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+                <xpath expr="//button[@name='toggle_active']" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+                <xpath expr="//field[@name='company_id']" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!--  Hide alternative product ids and accessory product ids field -->
+        <record model="ir.ui.view" id="website_product_template_form_views_website">
+            <field name="name">product.template.product.website.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="website_sale.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='alternative_product_ids']" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <xpath expr="//field[@name='accessory_product_ids']" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+                <xpath expr="//button[@name='website_publish_button']" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Hide purchase tab in inventory products -->
+        <record id="view_product_supplier_inherit_purchase" model="ir.ui.view">
+            <field name="name">product.template.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="purchase.view_product_supplier_inherit"/>
+            <field name="arch" type="xml">
+                <page name="purchase" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </page>
+                <group name="bill" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </group>
+                <group name="invoicing" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </group>
+                <xpath expr="//group[@name='description']/group[2]" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Hide property_account_creditor_price_difference field in inventory products -->
+        <record id="product_template_form_view_inherit_credit_price_different_field" model="ir.ui.view">
+            <field name="name">product.template.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="purchase.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='property_account_creditor_price_difference']" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Hide fields from inventory products inventory tab -->
+        <record id="view_template_property_form_inherit" model="ir.ui.view"> 
+            <field name="name">product.template.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="stock.view_template_property_form"/>
+            <field name="arch" type="xml">
+                <group name="operations" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </group>
+                <group name="group_lots_and_weight" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </group>
+                <group name="traceability" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </group>
+                <xpath expr="//group[2]/group[1]" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </xpath>
+                <xpath expr="//group[2]/group[2]" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </xpath>
+                <xpath expr="//group[2]/group[3]" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Rename Invoicing tab to Taxes in Inventory products -->
+        <record id="product_template_form_view_inheritq" model="ir.ui.view">
+            <field name="name">product.template.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="account.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <page name="invoicing" position="attributes">
+                    <attribute name="string">Taxes</attribute>
+                </page>
+                <page name="invoicing" position="attributes">
+                    <attribute name="groups">caret_united_18.group_show_configuration_menu</attribute>
+                </page>
+                <xpath expr="//field[@name='property_account_income_id']" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </xpath>
+                <xpath expr="//field[@name='property_account_expense_id']" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Hide "Logistics" in product category -->
+        <record id="product_category_form_view_inherit_inherit" model="ir.ui.view">
+            <field name="name">product.category.form</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="stock.product_category_form_view_inherit" />
+            <field name="arch" type="xml">
+             <xpath expr="//group[2]" position="attributes">
+             <attribute name="groups">base.group_system</attribute>
+             </xpath>
+            </field>
+        </record>
+
+        <!-- Hide Inventory Valuation and Account Stock Properties in product category -->
+        <record id="view_category_property_form_inherit" model="ir.ui.view">
+            <field name="name">product.category.form1</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="stock_account.view_category_property_form" />
+            <field name="arch" type="xml">
+             <xpath expr="//group[@name='account_stock_property']" position="attributes">
+                <attribute name="groups">base.group_system</attribute>
+             </xpath>
+             <xpath expr="//group[3]" position="attributes">
+                <attribute name="groups">base.group_system</attribute>
+             </xpath>
+             <xpath expr="//group[2]" position="attributes">
+                <attribute name="groups">base.group_system</attribute>
+             </xpath>
+            </field>
+        </record>
+
+        <!-- Hide settings menu in inventory Dasboard -->
+        <record id="stock_picking_type_kanban_inherit" model="ir.ui.view">
+            <field name="name">stock.picking.type.kanban</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.stock_picking_type_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//templates/t/div/div/div[3]/div[2]/div[2]" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+            </field>
+        </record>
+       
+         <record id="lr_carrier_custom_view" model="ir.ui.view">
+            <field name="name">lr.carrier.custom.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//button[@name='action_cancel']" position="after">
+                    <button string="Send SMS"
+                        type="object"
+                        name="send_sms_for_picking" class="btn-primary"
+                        attrs="{'invisible': ['|',('state', '!=', 'assigned'),('picking_type_code','!=','outgoing')]}"
+                        />
+				</xpath>
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="lr_number"/>
+                    <field name="carrier_info"/>
+                    <field name="currency_id" invisible="1"/>
+
+                </xpath>
+                <button name="action_see_move_scrap" position="after">
+                    <button name="action_view_invoice"
+                        string="invoices"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-pencil-square-o">
+                    </button>
+                </button>
+<!--                 <xpath expr="//field[@name='quantity_done']" position="after">
+                    <field name="price_unit"/>
+                </xpath> -->
+<!--                 <xpath expr="//field[@name='price_unit']" position="after">
+                    <field name="currency_ids" invisible="1"/>
+                    0<field name="price_subtotal" widget="monetary" options="{'currency_field': 'currency_ids'}"/>
+                </xpath> -->
+                <xpath expr="//field[@name='move_lines']/tree/field[@name='product_id']" position="attributes">
+                    <attribute name="options">{'no_create_edit': True}</attribute>
+                </xpath>
+<!--                 <xpath expr="//field[@name='move_lines']" position="after">
+                    <group class="oe_subtotal_footer oe_right">
+                        <div class="oe_subtotal_footer_separator oe_inline">
+                            <label for="amount_total"/>
+                        </div>
+                       <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/> 
+                    </group>
+                </xpath> -->
+                <xpath expr="//form/header/button[@name='action_toggle_is_locked']" position="after">
+                    <button name="invoice_view" string="Invoice" type="object" attrs="{'invisible': ['|', ('state', '!=', 'done'), ('is_locked', '=', False)]}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="action_product_published" model="ir.actions.server">
+            <field name="name">Product Published</field>
+            <field name="model_id" ref="model_product_template"/>
+            <field name="binding_model_id" ref="model_product_template"/>
+            <field name="state">code</field>
+            <field name="code">
+            for rec in records:
+                rec.website_publish()
+            </field>
+        </record>
+
+        <record id="action_product_unpublished" model="ir.actions.server">
+            <field name="name">Product Unpublished</field>
+            <field name="model_id" ref="model_product_template"/>
+            <field name="binding_model_id" ref="model_product_template"/>
+            <field name="state">code</field>
+            <field name="code">
+            for rec in records:
+                rec.website_unpublish()
+            </field>
+        </record>
+
+        <record id="view_move_form_inh_u18" model="ir.ui.view">
+            <field name="name">stock.move.form.u18</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_form"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="attributes">
+                    <attribute name="options">{'no_create_edit': True}</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_inventory_form_inh_u18" model="ir.ui.view">
+            <field name="name">stock.inventory.form.u18</field>
+            <field name="model">stock.inventory</field>
+            <field name="inherit_id" ref="stock.view_inventory_form"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="attributes">
+                    <attribute name="options">{'no_create_edit': True}</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="stock_scrap_form_view_inh_u18" model="ir.ui.view">
+            <field name="name">stock.scrap.form.u18</field>
+            <field name="model">stock.scrap</field>
+            <field name="inherit_id" ref="stock.stock_scrap_form_view"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="attributes">
+                    <attribute name="options">{'no_create_edit': True}</attribute>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

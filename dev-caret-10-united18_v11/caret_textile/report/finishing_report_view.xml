@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="finishing_report_template_id">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="oe_structure" />
+                            <div style="width:100%; font-size:16px;">
+                                <div style="float:left; width:50%;">
+                                    <div t-if="o.name" class="col-xs-6">
+                                        <strong>Design Number:<p t-field="o.name"/></strong>
+                                    </div>
+                                    <div t-if="o.article_number" class="col-xs-6">
+                                        <strong>Article Number:<p t-field="o.article_number"/></strong>
+                                    </div>
+                                </div>
+                                <div style="float:left; width:50%;">
+                                    <div t-if="o.final_location_id" class="col-xs-6">
+                                        <strong>GODOWN:<p t-field="o.final_location_id.name"/></strong>
+                                    </div>
+                                    <div t-if="o.company_id" class="col-xs-6">
+                                        <strong>Company:<p t-field="o.company_id.name"/></strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+
+ 							<h2>
+                               <strong>Size</strong>
+                            </h2>
+                            <table class="table table-condensed">
+                                <thead style="font-size:16px;">
+                                    <tr>
+                                        <th><strong>Name</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o.size_attribute_ids" t-as="size">
+                                        <td><span t-field="size.name"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+ 							<h2>
+                               <strong>Color</strong>
+                            </h2>
+                            <table class="table table-condensed">
+                                <thead style="font-size:16px;">
+                                    <tr>
+                                        <th><strong>Name</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o.colour_attribute_ids" t-as="colour">
+                                        <td><span t-field="colour.name"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+ 							<h2>
+                                  <strong>Accessories</strong>
+                            </h2>
+                            <table class="table table-condensed">
+                                <thead style="font-size:16px;">
+                                    <tr>
+                                        <th><strong>Product</strong></th>
+                                        <th><strong>Price Per Unit</strong></th>
+                                        <th><strong>Quantity</strong></th>
+                                        <th><strong>Total</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o.accessory_ids" t-as="accessory">
+                                        <td><span t-field="accessory.product_id.name"/></td>
+                                        <td><span t-field="accessory.price_per_unit"/></td>
+                                        <td><span t-field="accessory.quantity"/></td>
+                                        <td><span t-field="accessory.total_accessory_cost"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+ 							<h2>
+                               <strong>Finish Product Detail</strong>
+                            </h2>
+                            <table class="table table-condensed">
+                                <thead style="font-size:16px;">
+                                    <tr>
+                                        <th><strong>Product</strong></th>
+                                        <th><strong>UOM</strong></th>
+                                        <th><strong>GoDown</strong></th>
+                                        <th><strong>Qty From Washing</strong></th>
+                                        <th><strong>Actual Received</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o.finishing_ids" t-as="finishing">
+                                        <td><span t-field="finishing.product_id.name"/></td>
+                                        <td><span t-field="finishing.uom_id.name"/></td>
+                                        <td><span t-field="finishing.location_id.name"/></td>
+                                        <td><span t-field="finishing.process_qty"/></td>
+                                        <td><span t-field="finishing.actual_received"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+        
+        <template id="report_finishing_custom">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="caret_textile.finishing_report_template_id" t-lang="request.env.user.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+
+        <report
+            string="Finishing Order"
+            id="action_report_finishing"
+            model="finishing.order"
+            report_type="qweb-pdf"
+            name="caret_textile.report_finishing_custom"
+            file="caret_textile.report_finishing_custom"
+        />
+
+        <record id="paperformat_finishing_report" model="report.paperformat">
+            <field name="name">Finishing Report Format</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">25</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="caret_textile.action_report_finishing" model="ir.actions.report">
+            <field name="paperformat_id" ref="caret_textile.paperformat_finishing_report"/>
+        </record>
+
+    </data>
+</odoo>

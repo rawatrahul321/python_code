@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <record id="pos_session_close_cron" model="ir.cron">
+            <field name="name">POS Daily Session Close </field>
+            <field name="model_id" ref="caret_united18_pos.model_pos_session"/>
+            <field name="state">code</field>
+            <field name="code">model.posSessionClose()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="nextcall" eval="(datetime.utcnow() + timedelta(days=1)).strftime('%Y-%m-%d 23:19:00')" />
+            <field name="doall" eval="False" />
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="seq_pos_session_custom" model="ir.sequence">
+            <field name="name">POS Session Custom</field>
+            <field name="code">pos.session.custom</field>
+            <field name="prefix"></field>
+            <field name="padding">2</field>
+            <field name="company_id" eval="False" />
+        </record>
+
+    </data>
+</odoo>

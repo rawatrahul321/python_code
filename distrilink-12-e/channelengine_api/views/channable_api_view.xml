@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="ChannelEngine Integration"
+            id="channable_api.menu_channable"
+            parent="base.menu_administration"
+            sequence="2"/>
+
+        <menuitem name="Channable"
+            id="channable_api.menu_channable_configuration"
+            parent="channable_api.menu_channable"
+            sequence="2" groups="make_invisible"/>
+
+        <record id="channelengine_sale_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.inh</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="channable_api.view_sale_order_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='channable']" position="attributes">
+                    <attribute name="string">ChannelEngine</attribute>
+                </xpath>
+                <xpath expr="//field[@name='channable_order_id']" position="attributes">
+                    <attribute name="string">ChannelEngine Order</attribute>
+                </xpath>
+                <xpath expr="//field[@name='channable_order_date']" position="attributes">
+                    <attribute name="string">ChannelEngine Order Date</attribute>
+                </xpath>
+                <xpath expr="//field[@name='channable_project_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

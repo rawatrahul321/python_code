@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>       
+    <template id="service_report_custom_page">
+        <t t-call="web.basic_layout">
+           <!--  <br/><br/> -->
+        <div class="row">
+            <div class="col-3">
+                <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" style="width: 220px;height: 120px;" alt="Logo" />
+            </div>
+        </div><br/>
+        <div style="font-family:'CenturyGothiBold';">
+            <span><b>Date</b></span><span style="padding-left: 18px;"><b>:</b></span>
+            <b><t t-if="doc.report_date" t-esc="doc.report_date.strftime('%d/%b/%Y')"/></b>
+            <br/>
+            <div style="margin-bottom: -10px;">
+                <span><b>Ref</b></span><span style="padding-left: 34px;"><b>:</b></span>
+                <b><t t-esc="doc.reference"/></b>
+            </div>
+            <br/>
+            <span><b>M/s.</b></span><span style="padding-left: 23px;"><b>:</b></span>
+            <b><t t-esc="doc.partner_id.name"/></b>
+            <br/>
+            <span><b>Attn.</b></span><span style="padding-left: 20px;"><b>:</b></span>
+            <b><span t-field="doc.attn"/></b>  <b><span t-field="doc.first_name"/></b>  <b><span t-field="doc.family_name"/></b>
+            <br/>
+            <b style="padding-left: 73px;"><span t-field="doc.job_title"/></b>
+            <br/>
+            <div style="margin-top:10px;">
+                <span><b>Sub</b></span><span style="padding-left: 28px;"><b>: SERVICE REPORT</b></span>
+                <span style="padding-left:5px;">
+                    <b><t t-esc="doc.number_id"/></b>
+                </span>
+            </div>
+            <b><span style="padding-left: 73px;" t-field="doc.type_of_service"/></b>
+        </div>
+        <br/>
+
+        <p style="border: 1px solid black;"></p>
+        <div style="margin: 0px; padding: 0px; font-family:'CenturyGothic';">
+            <div class="body">
+                <p style="margin: 0px; padding: 0px;">
+                    Dear 
+                    <span t-field="doc.attn"/> 
+                    <span>
+                        <t t-esc="doc.family_name"/>,
+                    </span>
+                    <br/><br/>
+                <p style="text-align: justify;">
+                    Please find hereunder the Service Report following our visit to your esteemed
+                    premises. Please treat this report as an effective tool to ensure KPHC services are efficient. Thus, it will help us all align and take proactive measures aiming to attain utmost results from implemented pest management program.
+                </p>
+                </p>
+            </div>
+        </div>
+        <div style="font-family:'CenturyGothic';"> 
+            <center style="text-align: left;padding-left: 10px;background: #003ea5;color: white;font-weight: bold;font-size: 20px;padding-bottom: 3px;"><span>SERVICE SPECIFICS</span></center>
+            <br/>
+            <span>This section will highlight the details of our service.</span><br/><br/>
+            <table class="table">
+                <tbody>
+                    <tr class="border-black" style="border: 1px solid black;">
+                        <td  colspan="2" style="border-right: 1px solid black;width: 24%;">
+                            <center style="padding-top: 25px;text-align: left;">Date of Service</center>
+                        </td>
+                        <td colspan="2" name="report_date" style="border-right: 1px solid black;width: 21.5%;vertical-align: middle;">
+                            <center t-if="doc.report_date">
+                                <span> 
+                                    <t t-esc="doc.report_date.strftime('%d/%b/%Y')"/>
+                                </span>
+                            </center>
+                        </td>
+                        <td colspan="1" style="border-right: 1px solid black;width: 14.5%;vertical-align: middle;">
+                            <center>Time of Service</center>
+                        </td>
+                        <td colspan="4" style="border-right: 1px solid black;padding: 0.0rem !important;width: 20%;">
+                            <div style="border-bottom: 1px solid black;background: #919393;color: white;text-align: center;height: 40px;padding-top: 5px;">
+                                <strong>FROM</strong>
+                            </div>
+                            <br/>
+                            <div>
+                                <center style="padding-bottom: 15px;margin-top: -5px;">
+                                    <!-- <span t-esc = "doc.start_time" t-options= '{"widget": "float_time"}'/> -->
+                                    <span t-esc = "doc.start_time"/>
+                                </center>
+                            </div>
+                        </td>
+                        <td colspan="3" style="border-right: 1px solid black;padding: 0.0rem !important;width: 20%;">
+                            <div style="border-bottom: 1px solid black;background: #919393;color: white;text-align: center;height: 40px;padding-top: 5px;">
+                                <strong>TO</strong>
+                            </div>
+                            <br/>
+                            <div>
+                                <center style="padding-bottom: 15px;margin-top: -5px;">
+                                    <span t-esc = "doc.end_time"/>
+                                </center>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="border-black" style="border: 1px solid black;">
+                        <th colspan="2" style="border-right: 1px solid black;font-weight: normal;vertical-align: middle;">
+                            <center style="text-align: left;">Locations</center>
+                        </th>
+                        <td colspan="10" name="doc.location" style="border: 1px solid black;">
+                            <span>
+                                <t t-esc="doc.location"/>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="border-black" style="border: 1px solid black;">
+                        <th colspan="2" style="border-right: 1px solid black;font-weight: normal;">
+                            <center style="text-align: left;">Contact Person</center>
+                        </th>
+                        <td colspan="10" name="name" style="border: 1px solid black;">
+                            <span>
+                                <t t-esc="doc.contact_person"/>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="border-black" style="border: 1px solid black;">
+                        <th colspan="2" style="border-right: 1px solid black;vertical-align: middle;font-weight: normal;">
+                            <center style="text-align: left;">Technical Crew</center>
+                        </th>
+                        <td colspan="10" name="doc.technical_crew" style="border: 1px solid black;">
+                            <span>- <t t-esc="doc.user_id.name"/></span>
+                            <span>- <t t-esc="doc.user_id.function"/></span>
+                            <br/>
+                            <t t-foreach="doc.technical_crew" t-as="crew">
+                                <span>- <t t-esc="crew.name"/></span><br/>
+                            </t>
+                        </td>
+                    </tr>
+                    <tr class="border-black" style="border: 1px solid black;">
+                        <th colspan="2" style="border-right: 1px solid black;font-weight: normal;">
+                            <center style="text-align: left;">Covered Areas</center>
+                        </th>
+                        <td colspan="10" style="border: 1px solid black;">
+                            <span t-field="doc.covered_area"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br/>
+        <div style="font-family:'CenturyGothic';page-break-before: always;">
+            <center style="text-align: left;padding-left: 10px;background: #003ea5;color: white;font-weight: bold;font-size: 20px;padding-bottom: 3px;"><span>TREATMENT NOTES</span></center>
+            <br/>
+            <table class="table">
+                <tbody>
+                    <tr class="border-black" style="border: 1px solid black;background: #919393;color: white;">
+                        <th colspan="3" style="border-right: 1px solid black;vertical-align: middle;width: 42%;">
+                            <center><strong>Description</strong></center>
+                        </th>
+                        <th colspan="3" style="border-right: 1px solid black;width: 8%;vertical-align:middle;">
+                            <center><strong>Quantity</strong></center>
+                        </th>
+                        <th colspan="3" style="border-right: 1px solid black;vertical-align: middle;width: 42%;">
+                            <center><strong>Where Applied</strong></center>
+                        </th>
+                        <th colspan="3" style="border-right: 1px solid black;width: 8%;">
+                            <center><strong>Applied Against</strong></center>
+                        </th>
+                    </tr>
+                    <t t-foreach="doc.ingredients" t-as="a">
+                        <tr class="border-black" style="border: 1px solid black;">
+                            <td colspan="3" style="border-right: 1px solid black;vertical-align:middle;">
+                                <center style="text-align: left;">
+                                    <span>
+                                        <t t-esc="a.ingredients.name"/>
+                                    </span>
+                                </center>
+                            </td>
+                            <td colspan="3" style="border-right: 1px solid black;vertical-align:middle;">
+                                <center>
+                                    <span>
+                                        <t t-esc="a.quantity"/>
+                                    </span>
+                                    <span>
+                                        <t t-esc="a.product_uom_id.name"/>
+                                    </span>
+                                </center>
+                            </td>
+                            <td colspan="3" style="border-right: 1px solid black;vertical-align: middle;">
+                                <center style="text-align: left;">
+                                    <span>
+                                        <t t-esc="a.where_applied"/>
+                                    </span>
+                                </center>
+                            </td>
+                            <td colspan="3" style="border-right: 1px solid black;">
+                                <center>
+                                    <span t-field="a.applied_against"/>
+                                </center>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </div>
+        <br/><br/>
+        <div style="font-family:'CenturyGothic';">
+            <center style="text-align: left;padding-left: 10px;background: #003ea5;color: white;font-weight: bold;font-size: 20px;padding-bottom: 3px;"><b><span>FINDINGS AND REMARKS</span></b></center>
+            <!-- <br/> -->
+            <div>
+                <t t-if="doc.activities == 'pest_activity'">
+                    <span><b style="CenturyGothiBold">Pest activity:</b></span><br/>
+                    <t t-foreach="doc.find_and_remark" t-as="find">
+                        <span style="padding-left: 105px;">
+                            - 
+                            <t t-esc="find.name" />
+                        </span>
+                        <br/>
+                    </t>
+                </t>
+                <t t-if="doc.activities != 'pest_activity'">
+                   <br/><center><span><b style="font-size:25px;">NO PEST ACTIVITY</b></span></center><br/>
+                </t>
+            </div>
+        </div>
+        <br/>
+        <div style="font-family:'CenturyGothic';">
+            <!-- <span style="font-size:18px;"><b>Note :</b></span><br/> -->
+            <span>
+                <p>Please refer to <b>clarifying Pictures</b> taken at your esteemed premises for more details -Treated <b>CONFIDENTIAL:</b></p>
+            </span>
+            <br/>
+            <t t-set="images_g" t-value="doc.images_group()"/>
+            <t t-set="counter" t-value="0"/>
+            <t t-foreach="images_g" t-as="name">
+                <t  t-set="counter" t-value="counter + 1"/>
+                <!-- <span style="display: table;padding-bottom: 15px;"> -->
+                <span t-esc="counter"/>. 
+                    <p style="text-align: justify;margin-top: -28px;padding-left: 30px;" t-esc="name"/>
+                <!-- </span> -->
+               <!--  <div style="display: table;">
+                    <t t-foreach="images_g[name]" t-as="img">
+                        <div t-if="img['image']" style="width: 35%;float: left;display: contents;margin-right: 30px;margin-left: 30px;padding-bottom:20px;">
+                            <img style="height: 200px;width: 300px;" t-attf-src="data:image/*;base64,{{img['image']}}"/>
+                        </div>
+                    </t>
+                </div> -->
+                <table style="display: table;">
+                    <t t-foreach="images_g[name]" t-as="img">
+                        <tr t-if="img['image']">
+                            <img style="height: 200px;width: 300px !important;margin-left: 35px;padding-left;margin-top:10px;margin-bottom:10px;width:45%;" t-attf-src="data:image/*;base64,{{img['image']}}"/>
+                        </tr>
+                    </t>
+                </table><br/>
+            </t>
+            <br/>
+            <t t-if="doc.show_on_report_following_area_visit">
+               <span style="padding-bottom: 10px;">
+               <t t-set="counter" t-value="counter + 1"/>
+               <span t-esc="counter"/>. <p style="text-align: justify;margin-top: -28px;padding-left: 30px;">Following areas were not inspected/treated as it was found closed/locked - opperational during the visit;</p>
+                </span>
+                <div style="text-align: justify;padding-left: 30px;">
+                    <span widget="html" t-field="doc.operational_during_the_visit"></span>
+                </div>
+                <br/>
+            </t>
+            <t t-if="doc.show_on_report_up_callback">
+               <t t-set="counter" t-value="counter + 1"/>
+               <span t-esc="counter"/>. <p style="text-align: justify;margin-top: -28px;padding-left: 30px;" t-field="doc.up_callback"></p><br/>
+            </t>
+            <t t-if="doc.show_on_report_itls">
+                <t t-set="counter" t-value="counter + 1"/>
+                <span t-esc="counter"/>. <p style="text-align: justify;margin-top: -28px;padding-left: 30px;" t-field="doc.select_ilts"></p><br/><br/>
+            </t>
+        </div>
+        <div style="font-family:'CenturyGothic';">
+            <center style="text-align: left;padding-left: 10px;background: #003ea5;color: white;font-weight: bold;font-size: 20px;padding-bottom: 3px;"><span>PEST MANAGEMENT DEVICES - PMD</span></center>
+            <br/>
+            <table class="table">
+                <tbody>
+                    <tr class="border-black" style="border: 1px solid black;background: #919393;color: white;">
+                        <th colspan="2" style="border-right: 1px solid black;vertical-align: middle;width: 10%;">
+                            <center><strong>Type</strong></center>
+                        </th>
+                        <th colspan="1" style="border-right: 1px solid black;vertical-align: middle;width: 10%;">
+                            <div style="text-align: center;">
+                                <strong>QTY</strong>
+                            </div><br/>
+                            <div>
+                                <center style="margin-top: -30px;">
+                                    <span>Pcs.</span>
+                                </center>
+                            </div>
+                        </th>
+                        <th colspan="2" style="border-right: 1px solid black;vertical-align: middle;width: 30%;">
+                            <center><strong>Location</strong></center>
+                        </th>
+                       <!--  <th colspan="2" style="border-right: 1px solid black;vertical-align: middle;">
+                            <center><strong>Pest Activity</strong></center>
+                        </th> -->
+                        <th colspan="2" style="border-right: 1px solid black;vertical-align: middle;width: 10%;">
+                            <center><strong>Status</strong></center>
+                        </th>
+                        <th colspan="2" style="border-right: 1px solid black;vertical-align: middle;width: 30%;">
+                            <center><strong>Action</strong></center>
+                        </th>
+                        <th colspan="1" style="border-right: 1px solid black;vertical-align: middle;width: 10%;">
+                            <center><strong>S/N</strong></center>
+                        </th>
+                    </tr>
+                    <t t-foreach="doc.pwds" t-as="a">
+                        <tr class="border-black" style="border: 1px solid black;">
+                            <td colspan="2" style="border-right: 1px solid black;">
+                                <center>
+                                    <span t-field="a.type_id"/>
+                                </center>
+                            </td>
+                            <td colspan="1" style="border-right: 1px solid black;">
+                                <center>
+                                    <span>
+                                        <t t-esc="a.qty"/>
+                                    </span>
+                                </center>
+                            </td>
+                            <td colspan="2" style="border-right: 1px solid black;">
+                                <center>
+                                    <span>
+                                        <t t-esc="a.location"/>
+                                    </span>
+                                </center>
+                            </td>
+                            <!-- <td colspan="2" style="border-right: 1px solid black;">
+                                <center>
+                                    <span t-field="a.pest_activity"/>
+                                </center>
+                            </td> -->
+                            <td colspan="2" style="border-right: 1px solid black;">
+                                <center>
+                                    <span t-field="a.status"/>
+                                </center>
+                            </td>
+                            <td colspan="2" style="border-right: 1px solid black;">
+                                <center>
+                                    <span t-field="a.action"/>
+                                </center>
+                            </td>
+                            <td colspan="1" style="border-right: 1px solid black;">
+                                <center>
+                                    <span>
+                                        <t t-esc="a.serial_no"/>
+                                    </span>
+                                </center>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </div>
+        <br/><br/>
+
+        <div style="display: inline-table;font-family:'CenturyGothic';">
+            <span>
+                <center style="text-align: left;padding-left: 10px;background: #003ea5;color: white;font-weight: bold;font-size: 20px;padding-bottom: 3px;"><span>RECOMMENDATION</span></center>
+                <br/>
+                <t t-foreach="doc.recommendations" t-as="rec">
+                    <p style="text-align: justify;">
+                        <t t-esc="rec.name"/>
+                    </p>
+                </t>
+            </span>
+        </div>
+        <br/>
+        <span style="font-family:'CenturyGothic';">Regards,</span><br/>
+
+        <div class="row mt-4" style="font-family:'CenturyGothic';">
+            <div class="col-md-4">
+                <span t-field="doc.choose_coordinator"></span><br/>
+                <span t-if="doc.job_position">
+                    <t t-esc="doc.job_position"/>
+                </span>
+                <br/><br/>                
+                <span>Kuwait Public Health Company</span>
+                <br/>
+                <span>Tel </span><span style="padding-left: 47px;padding-right: 5px;">:</span><span>(965)-182-5742</span><br/>
+                <span>Cell </span><span style="padding-left: 36px;padding-right: 5px;">:</span><span><t t-esc="doc.phone"/></span>
+                <br/>
+                <span>P.O.Box</span><span style="padding-left: 5px;padding-right: 5px;">:</span><span>20717 Safat 13068 Kuwait</span><br/>
+                <span>Website</span><span style="padding-left: 3px;padding-right: 5px;">:</span><a href="https://kphc.com/">kphc.com</a>
+                <br/>
+                <center style="text-align:left;">
+                    <img style="width: 600px;height: 60px;background-repeat: no-repeat;background-size: cover;" src="/custom_field_service/static/src/img/KPHC_Affiliations_logos.png"/>
+                </center>
+                <span style="font-size:14px;color:#B4B2B2;font-family:'CenturyGothic';">Copyright © 2012 - 2021 Kuwait Public Health Company. All rights reserved</span>
+            </div>
+        </div>
+    </t>
+    <t t-call="custom_field_service.custom_service_footer"/>
+    </template>
+    <template id="custom_service_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="custom_field_service.service_report_custom_page" t-lang="doc.partner_id.lang" />
+            </t>
+        </t>
+    </template>
+    <record id="project_task_server_action_service_report" model="ir.actions.server">
+        <field name="name">Send Report</field>
+        <field name="model_id" ref="industry_fsm.model_project_task"/>
+        <field name="binding_model_id" ref="project.model_project_task"/>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+            action = records.action_send_report()
+        </field>
+    </record>
+</odoo>

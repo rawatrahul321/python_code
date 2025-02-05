@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_order_email_template" model="mail.template">
+            <field name="name">Sale Order Confirmation Email</field>
+            <field name="email_from">${object.company_id and object.company_id.email or ''}</field>
+            <field name="subject">Sale Order: ${object.name}</field>
+            <field name="lang">${object.lang}</field>
+            <field name="model_id" ref="sale.model_sale_order" />
+            <field name="auto_delete" eval="True" />
+            <field name="body_html" type="html">
+                <div>
+                    Hello ${(object.partner_id.firstname)} ${(object.partner_id.name)},<br /><br />
+                    <p>Thank you for shopping with us.<br /><br />
+                        Your order ${(object.name)} amounting ${(object.amount_total)} has been confirmed. It will be out for delivery soon.</p><br />
+                    We’ll send a confirmation when your item(s) ship.<br /><br />
+                    Please do not hesitate to contact us on +9651825742 or +96599000180 if you have any questions.<br /><br />
+                    <h3><b>Order Details:</b></h3>
+                    <table style="width:100%">
+                        <tr style="background: lightgrey;">
+                            <th> </th>
+                            <th><b>Product(s)</b></th>
+                            <th><b>Quantity</b></th>
+                            <th><b>Unit Price</b></th>
+                            <th><b>Total</b></th>
+                        </tr>
+                        % for so_line in object.order_line:
+                        <tr>
+                            <td>
+                                <img src="/web/image/product.product/${so_line.product_id.id}/image_128" style="width:64px;height: 64px; object-fit: contain;" alt="Product image" />
+                            </td>
+                            <td>${so_line.product_id.name}</td>
+                            <td>${so_line.product_uom_qty}</td>
+                            <td>${so_line.price_unit}</td>
+                            <td>${so_line.price_subtotal}</td>
+                        </tr>
+                        %endfor
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td align="right"><strong>SubTotal:</strong></td>
+                            <td align="right">${format_amount(object.amount_untaxed, object.currency_id)}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td align="right"><strong>Delivery:</strong></td>
+                            <td align="right">${format_amount(object.amount_delivery, object.currency_id)}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td align="right"><strong>Total:</strong></td>
+                            <td align="right">${format_amount(object.amount_untaxed + object.amount_delivery, object.currency_id)}</td>
+                        </tr>
+                    </table><br />
+                    <h3><b>Payment Details:</b></h3>
+                    % set transaction = object.get_portal_last_transaction()
+                    <table style="width:100%">
+                        <tr>
+                            <td style="width: 15%;">Transaction Status</td>
+                            <td>: ${(object.state)}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 15%;">Transaction Date</td>
+                            <td>: ${(object.date_order)}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 15%;">Total Amount</td>
+                            <td>: ${(object.amount_total)}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 15%;">Payment Method</td>
+                            <td>: ${transaction.acquirer_id.name}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 15%;">Payment ID</td>
+                            <td>: ${transaction.payment_token_id.name}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 15%;">Reference</td>
+                            <td>: ${object.reference}</td>
+                        </tr>
+                    </table><br />
+                    <h3><b>Delivery Details:</b></h3>
+                    <table style="width:100%">
+                        <tr>
+                            <td><b>Name:</b> ${object.partner_shipping_id.firstname} ${object.partner_shipping_id.name}</td>
+                            <td><b>Mobile #</b> ${object.partner_shipping_id.phone}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><b>Area:</b> ${object.partner_shipping_id.area_id.name}, <b>Block:</b> ${object.partner_shipping_id.block},</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><b>Street:</b> ${object.partner_shipping_id.street}, <b>Avenue:</b> ${object.partner_shipping_id.avenue}, <b>Building:</b> ${object.partner_shipping_id.building}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><b>Floor:</b> ${object.partner_shipping_id.floor}, <b>Apartment:</b> ${object.partner_shipping_id.apart_number}</td>
+                        </tr>
+                    </table>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

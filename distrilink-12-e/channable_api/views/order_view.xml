@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_order_tree_inherit" model="ir.ui.view">
+            <field name="name">sale.order.tree.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="marketplace_id"/>
+                    <field name="channable_channel_id"/>
+                </field>
+                <field name="user_id" position="after">
+                    <field name="channable_commission" sum="Total Commission" widget="monetary"/>
+                </field>
+                <field name="invoice_status" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="state" position="attributes">
+                    <attribute name="invisible">0</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_quotation_tree_inherit" model="ir.ui.view">
+            <field name="name">sale.order.tree.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="marketplace_id"/>
+                    <field name="channable_channel_id"/>
+                </field>
+                <field name="user_id" position="after">
+                    <field name="channable_commission" sum="Total Commission" widget="monetary"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_sale_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_confirm']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', ('state', 'not in', ['sent', 'review', 'vendor_process', 'channable_order']), ('is_channable_error_order', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='print_quotation']" position="attributes">
+                    <attribute name="states">sent,sale</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_cancel']" position="attributes">
+                    <attribute name="states">draft,sent,sale,review,channable_order,vendor_process</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_done']" position="attributes">
+                    <attribute name="states">sale,review</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_unlock']" position="attributes">
+                    <attribute name="states">done,review</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="before">
+                    <field name="channable_product_commission"/>
+                    <field name="is_line_review_product" invisible="1"/>
+                </xpath>
+                <xpath expr="//button[@name='action_quotation_send']" position="after">
+                    <button name="action_channable_order" string="Channable Order" type="object" attrs="{'invisible': ['|', '|', ('state', 'not in', ['draft', 'review', 'sent']), ('is_channable_error_order', '=', True), ('channable_order_id', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                    <attribute name="decoration-danger">is_line_review_product==True</attribute>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page name="channable" string="Channable">
+                        <group>
+                            <field name="channable_order_id"/>
+                            <field name="channable_commission"/>
+                            <field name="is_channable_error_order" invisible="1"/>
+                            <field name="order_platform_id"/>
+                            <field name="channable_channel_id"/>
+                            <field name="marketplace_id"/>
+                            <field name="is_exported_to_ftp" invisible="1"/>
+                            <field name="channable_order_date"/>
+                            <field name="vendor_process_date" invisible="1"/>
+                            <field name="tracking_urls" invisible="1"/>
+                            <field name="is_empty_shipping" invisible="1"/>
+                            <field name="channable_project_id"/>
+                            <field name="is_fbm_order" invisible="1"/>
+                        </group>
+                    </page>
+                </xpath>
+                <field name="payment_term_id" position="after">
+                    <field name="delivery_validate_error" attrs="{'invisible':[('delivery_validate_error','=',False)]}"/>
+                </field>
+                <field name="partner_invoice_id" position="attributes">
+                    <attribute name="context">{'default_type':'invoice', 'show_only_child_name': 1}</attribute>
+                </field>
+                <field name="partner_shipping_id" position="attributes">
+                    <attribute name="context">{'default_type':'delivery', 'show_only_child_name': 1}</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_sale_order_inherit_search_channable" model="ir.ui.view">
+            <field name="name">sale.order.search.expand.filter</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="marketplace_id" string="MarketPlace Order ID"/>
+                </field>
+                <xpath expr="//search" position="inside">
+                    <separator/>
+                    <filter string="Vendor Process > 12 Hours" name="vendor_process_filter" domain="[('state', '=', 'vendor_process'), ('vendor_process_date','&lt;=',(datetime.datetime.now() - datetime.timedelta(hours=12)).strftime('%Y-%m-%d %H:%M:%S'))]"/>
+                    <filter string="Error Order > 8 Hours" name="error_order_filter" domain="[('state', '=', 'review'), ('create_date','&lt;=',(datetime.datetime.now() - datetime.timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S'))]"/>
+                </xpath>
+                <xpath expr="//search/group" position="inside">
+                    <filter string="Order Status" name="order_status" domain="[]" context="{'group_by':'state'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_channable_order_channel_tree" model="ir.ui.view">
+            <field name="name">channable.order.channel.tree</field>
+            <field name="model">channable.order.channel</field>
+            <field name="arch" type="xml">
+                <tree string="Channel">
+                    <field name="name"/>
+                    <field name="channel_id"/>
+                    <field name="description"/>
+                    <field name="channel_image" widget="image" height="30"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_channable_order_channel_form" model="ir.ui.view">
+            <field name="name">channable.order.channel.form</field>
+            <field name="model">channable.order.channel</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="channel_image" widget="image" class="oe_avatar"/>
+                        <div class="oe_left">
+                            <group>
+                                <field name="name"/>
+                                <field name="channel_id"/>
+                                <field name="description"/>
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_channable_order_channel" model="ir.actions.act_window">
+            <field name="name">Channel</field>
+            <field name="res_model">channable.order.channel</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="menu_channable_order_channel"
+            name="Channel"
+            action="action_channable_order_channel"
+            parent="menu_channable_config"/>
+
+        <record id="purchase_order_tree_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.tree.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+            <field name="arch" type="xml">
+                <field name="date_planned" position="attributes">
+                    <attribute name="string">Delivery Date</attribute>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

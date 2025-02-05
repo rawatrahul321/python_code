@@ -1,0 +1,53 @@
+<odoo>
+    <!-- <record id="product_multi_uom_price_form_view" model="ir.ui.view">
+        <field name="name">product.multi.uom.price.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.view_template_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='pos']" position="inside">
+                    <group name="uom_price" attrs="{'invisible': [('available_in_pos', '=', False)]}">
+                    	<field name="multi_uom_price_id" context="{'default_pro_id': id, 'default_product_id': id}">
+                            <tree>
+                                <field name="uom_id"/>
+                                <field name="pro_id"/>
+                                <field name="product_id"/>
+                                <field name="price"/>
+                            </tree>
+                        </field>                                
+                    </group>
+            </xpath>
+        </field>
+    </record> -->
+
+     <record id="product_product_multi_uom_price_form_view" model="ir.ui.view">
+        <field name="name">product.multi.uom.price.form.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_form_view_procurement_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='pos']" position="inside">
+                    <group name="uom_price" attrs="{'invisible': [('available_in_pos', '=', False)]}">
+                        <field name="multi_uom_price_id" context="{'default_pro_id': id, 'default_product_id': product_tmpl_id}">
+                            <tree>
+                                <field name="uom_id"/>
+                                <field name="price"/>
+                                <field name="barcode"/>
+                            </tree>
+                            <form>
+                                <sheet>
+                                    <group>
+                                        <group>
+                                            <field name="pro_id"/>
+                                            <field name="uom_id"/>
+                                            <field name="price"/>
+                                            <field name="barcode"/>
+                                        </group>
+                                        <group></group>
+                                    </group>
+                                </sheet>
+                            </form>
+                        </field>                                
+                    </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

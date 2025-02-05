@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--================Account Inovice Line(Customer Invoice)==============-->
+        <record id="account_invoice_form_inherit_word_amount" model="ir.ui.view">
+            <field name="name">account.invoice.form.inherit.amount</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line_ids']" position="after">
+                    <group>
+                        <field name="amt_to_word" readonly="1"/>
+                    </group>
+                </xpath>
+                <!--
+                <xpath expr="//field[@name='amount_untaxed']" position="before">
+                    <field name="total_product_qty"/>
+                </xpath>
+                -->
+            </field>
+        </record>
+
+        <!--================Account Inovice Line(Vendor bill)==============-->
+        <!--
+                    <record id="account_invoice_supplier_form_inherit_word_amount" model="ir.ui.view">
+                <field name="name">account.invoice.supplier.form.inherit.amount</field>
+                <field name="model">account.invoice</field>
+                <field name="inherit_id" ref="account.invoice_supplier_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name='invoice_line_ids']" position="after">
+                        <group>
+                            <field name="amt_to_word" readonly="1"/>
+                        </group>
+                    </xpath>
+                    <xpath expr="//field[@name='amount_untaxed']" position="before">
+                        <field name="total_product_qty"/>
+                    </xpath>
+                </field>
+            </record>
+
+        -->
+
+        <!--================Account Inovice Report==============-->
+        <!--        <template id="report_invoice_document_inherit_qty" inherit_id="account.report_invoice_document">-->
+        <!--            <xpath expr="//div[@class='clearfix']" position="after">-->
+        <!--                <td><strong>Amount In Word :</strong></td>-->
+        <!--                <td>-->
+        <!--                     <span t-field="o.amt_to_word"/>-->
+        <!--                </td>-->
+        <!--            </xpath>-->
+        <!--            <xpath expr="//div[@class='clearfix']/div/div/table/tr[1]" position="before">-->
+        <!--                <tr class="border-black" style="border-bottom:1px solid #dddddd;">-->
+        <!--                    <td><strong>Total Product Qty</strong></td>-->
+        <!--                    <td class="text-right">-->
+        <!--                        <span t-field="o.total_product_qty"/>-->
+        <!--                    </td>-->
+        <!--                </tr>-->
+        <!--            </xpath>-->
+        <!--        </template>-->
+
+
+        <!--================Sale Order Report==============-->
+        <!--         <template id="report_saleorder_document_inherit_qty" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//div[@class='mt32 ml16 mr16']" position="before">
+                <td><strong>Amount In Word :</strong></td>
+                <td >
+                    <span t-field="doc.amt_to_word"/>
+                </td>
+            </xpath>
+            <xpath expr="//div[@class='clearfix']/div/div/table/tr[1]" position="before">
+                <tr class="border-black" style="border-bottom:1px solid #dddddd;">
+                    <td><strong>Total Product Qty</strong></td>
+                    <td class="text-right">
+                        <span t-field="doc.total_product_uom_qty"/>
+                    </td>
+                </tr>
+            </xpath>
+
+        </template>
+        -->
+
+        <!--================Purchase Order Report==============-->
+        <!--         <template id="report_purchaseorder_document_inherit_qty" inherit_id="purchase.report_purchaseorder_document">
+            <xpath expr="//div[@class='page']/div[4]" position="before">
+                <td><strong>Amount In Word :</strong></td>
+                <td>
+                     <span t-field="o.amt_to_word"/>
+                </td>
+            </xpath>
+            <xpath expr="//div[@class='page']/div[@class='row justify-content-end']/div/table/tr[1]" position="before">
+                <tr class="border-black" style="border-bottom:1px solid #dddddd;">
+                    <td><strong>Total Product Qty</strong></td>
+                    <td class="text-right">
+                        <span t-field="o.total_product_qty"/>
+                    </td>
+                </tr>
+            </xpath>
+        </template>
+       -->
+
+        <!-- =========Inherited Sale order View============== -->
+        <!--              <record id="view_order_form_inherit_word_amount" model="ir.ui.view">
+                <field name="name">sale.order.form.inherit.amount</field>
+                <field name="model">sale.order</field>
+                <field name="inherit_id" ref="sale.view_order_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name='order_line']" position="after">
+                        <group>
+                            <field name="amt_to_word" readonly="1"/>
+                        </group>
+                    </xpath>
+
+                    <xpath expr="//field[@name='amount_untaxed']" position="before">
+                        <field name="total_product_uom_qty"/>
+                    </xpath>
+
+                    <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom_qty']" position="before">
+                        <field name="qty_available"/>
+                    </xpath>
+
+                    <xpath expr="//field[@name='order_line']/form//field[@name='product_uom_qty']" position="before">
+                        <field name="qty_available"/>
+                    </xpath>
+
+                </field>
+            </record>
+       -->
+
+        <!-- =========Inherited Purchase order View============== -->
+        <!--              <record id="purchase_order_form_inherit_word_amount" model="ir.ui.view">
+                <field name="name">purchase.order.form.inherit.amount</field>
+                <field name="model">purchase.order</field>
+                <field name="inherit_id" ref="purchase.purchase_order_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name='order_line']" position="after">
+                        <group>
+                            <field name="amt_to_word" readonly="1"/>
+                        </group>
+                    </xpath>
+                    <xpath expr="//field[@name='amount_untaxed']" position="before">
+                        <field name="total_product_qty"/>
+                    </xpath>
+
+                    <xpath expr="//field[@name='order_line']/tree//field[@name='product_qty']" position="before">
+                        <field name="qty_available"/>
+                    </xpath>
+
+                    <xpath expr="//field[@name='order_line']/form//field[@name='product_qty']" position="before">
+                        <field name="qty_available"/>
+                    </xpath>
+
+
+                </field>
+            </record>
+      -->
+
+        <!-- Inherited Stock Picking View -->
+        <!--               <record id="view_picking_form_inherit" model="ir.ui.view">
+                <field name="name">stock.picking.form.inherit</field>
+                <field name="model">stock.picking</field>
+                <field name="inherit_id" ref="stock.view_picking_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name='move_ids_without_package']" position="after">
+                        <group class="oe_subtotal_footer oe_right" colspan="2" >
+                            <field name="total_product_qty_demand" readonly="1"/>
+                            <field name="total_product_qty_done" readonly="1"/>
+                        </group>
+                    </xpath>
+                </field>
+            </record>
+     -->
+
+    </data>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report id = "report_gst_sale_menu"
+        model = "sale.order"
+        string = "GST Sale Order report"
+        report_type = "qweb-pdf"
+        name = "caret_united18_custom.gst_sale_template_report_id"
+        file = "caret_united18_custom.gst_sale_template_report_id"
+    />
+
+    <record id="paperformat_payslip_sale_order" model="report.paperformat">
+        <field name="name">GST Report</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">210</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">28</field>
+        <field name="margin_bottom">32</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">32</field>
+        <field name="dpi">90</field>
+    </record>
+    <record id="caret_united18_custom.report_gst_sale_menu" model="ir.actions.report">
+        <field name="paperformat_id" ref="caret_united18_custom.paperformat_payslip_sale_order" />
+    </record>
+
+</odoo>

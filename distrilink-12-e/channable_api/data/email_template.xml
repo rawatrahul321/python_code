@@ -1,0 +1,136 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <data noupdate="0">
+        <record id="account.email_template_edi_invoice" model="mail.template">
+            <field name="email_from">"Distrilink Customer Service" &lt;${object.user_id.email_formatted |safe}&gt;</field>
+            <field name="email_cc">mafrest@yukiworks.be</field>
+            <field name="subject">
+% if object.type == 'out_invoice':
+Your Distrilink order ${object.marketplace_id or 'n/a'} is shipped – Track &amp; Trace your delivery
+%else:
+${object.company_id.name} Invoice (Ref ${object.number or 'n/a'})
+% endif
+            </field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        % if object.type == 'out_invoice':
+                            Dear Customer,
+                            <br/><br/>
+                            % if object.sale_order_id and object.sale_order_id.tracking_urls:
+                                Your Distrilink order ${object.marketplace_id or 'n/a'} via ${object.sale_order_id.channable_channel_id.description} is shipped and you can track the delivery via: 
+                                <a target="_blank" href="${object.sale_order_id.tracking_urls}" style="color: #875A7B;">${object.sale_order_id.tracking_urls}</a>
+                            % else:
+                                Your Distrilink order ${object.marketplace_id or 'n/a'} is shipped
+                            % endif
+                            <br /><br />
+                            <b>If you have questions about your delivery, please contact the courier service via your track &amp; trace url.</b>
+                            <br /><br />
+                            Attached you can find the invoice of your order.
+                            <br /><br />
+                            For service-related questions, please get in touch via service@distrilink.be.
+                            <br/><br/>
+                            Enjoy your purchase!
+                            <br/><br/>
+                            Best regards,
+                            <br/>
+                            Distrilink customer service
+                        % endif
+                        % if object.type == 'out_refund':
+                            Hi,
+                            <br/><br/>
+                            Please find attached your credit note.
+                            <br/><br/>
+                            At your service!
+                            <br/><br/>
+                            Best regards,
+                            <br/>
+                            Distrilink customer service
+                        % endif
+                        % if object.type in ['in_invoice', 'in_refund']:
+                            Dear ${object.partner_id.name}
+                            % if object.partner_id.parent_id:
+                                (${object.partner_id.parent_id.name})
+                            % endif
+                            <br /><br />
+                            Here is your 
+                            % if object.number:
+                                invoice <strong>${object.number}</strong>
+                            % else:
+                                invoice
+                            %endif
+                            % if object.origin:
+                                (with reference: ${object.origin})
+                            % endif
+                            amounting in <strong>${format_amount(object.amount_total, object.currency_id)}</strong>
+                            from ${object.company_id.name}.
+                            % if object.state=='paid':
+                                This invoice is already paid.
+                            % else:
+                                Please remit payment at your earliest convenience.
+                            % endif
+                            <br /><br />
+                            Do not hesitate to contact us if you have any question.
+                        % endif
+                    </p>
+                </div>
+            </field>
+        </record>
+
+        <record id="purchase.email_template_edi_purchase_done" model="mail.template">
+            <field name="email_from">${object.user_id.email}</field>
+            <field name="email_to">service@distrilink.be</field>
+            <field name="reply_to">${object.user_id.email}</field>
+            <field name="subject">${object.company_id.name} Order (Ref ${object.name or 'n/a' }) - ${object.picking_type_id.warehouse_id.name or 'n/a'}: ${object.picking_type_id.name or 'n/a'}</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Dear ${object.partner_id.name}
+        <br/><br/>
+        Please find attached our purchase order with reference number ${object.name or 'n/a' } and expected delivery date ${object.date_planned.strftime('%d/%m/%Y') or 'n/a' }.
+        <br/><br/>
+        Please inform us via service@distrilink.be if prices are incorrect or you face replenish issues for the quantities requested in this purchase order.
+        <br/><br/>
+        Many thanks!
+        <br/><br/>
+        Best regards,
+        <br/><br/>
+        ${object.company_id.name}
+    </p>
+</div></field>
+        </record>
+
+    </data>
+
+    <data>
+
+        <template id="mail_notification_paynow_custom" inherit_id="mail.mail_notification_paynow">
+            <xpath expr="//table/tr/td/table/tbody/tr[3]" position="replace">
+                <td style="padding: 0; font-size:11px;">
+                    <div t-if="record.user_id and record.user_id.sudo().signature" style="font-size: 13px;">
+                        <div t-raw="record.user_id.sudo().signature"/>
+                    </div>
+                </td>
+            </xpath>
+            <xpath expr="//table/tr/td/table/tbody/tr[2]/td" position="replace">
+                <td style="padding: 0">
+                    <t t-raw="message.body"/>
+                    <div t-if="is_online and not record._context.get('proforma')" style="margin: 32px 0px 32px 0px; text-align: center;">
+                        <a t-att-href="access_url"
+                            style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                            <t t-esc="access_name"/>
+                        </a>
+                    </div>
+                </td>
+            </xpath>
+            <xpath expr="//table/tr/td/table/tbody/tr" position="replace"></xpath>
+            <xpath expr="//table/tr[2]/td" position="replace"></xpath>
+            <xpath expr="//table" position="attributes">
+                <attribute name="style">background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: auto; border-collapse:separate;</attribute>
+            </xpath>
+        </template>
+
+    </data>
+
+</odoo>

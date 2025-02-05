@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_stock_move_wizard" model="ir.ui.view">
+            <field name="name">stock.move.wizard.form</field>
+            <field name="model">stock.move.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Inventory Report">
+                    <group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="start_date"/>
+                        </group>
+                        <group>
+                           <field name="end_date"/>
+                        </group>
+                        <group>
+                            <field name="location_id"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="generate_stock_report" string="Print" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_custom_stock_report" model="ir.actions.act_window">
+            <field name="name">Inventory Report</field>
+            <field name="res_model">stock.move.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="stock_move_report" model="ir.actions.report">
+            <field name="name">Inventory Details Report</field>
+            <field name="model">report.caret_united18_custom.report_stocketails</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">caret_united18_custom.report_stocketails</field>
+        </record>
+
+        <record id="paperformat_stock_details" model="report.paperformat">
+            <field name="name">Inventory Details Report</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">30</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">20</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="caret_united18_custom.stock_move_report" model="ir.actions.report">
+            <field name="paperformat_id" ref="caret_united18_custom.paperformat_stock_details" />
+        </record>
+
+        <menuitem action="action_custom_stock_report" id="stock_moves_menu" string="Inventory Report" parent="stock.menu_stock_inventory_control" sequence="8"/>
+    </data>
+</odoo>

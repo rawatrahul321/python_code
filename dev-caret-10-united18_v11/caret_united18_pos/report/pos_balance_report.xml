@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="external_layout_pos_balance_report_header">
+            <div class="header">
+                <div class="row text-center">
+                    <div>
+                        <h2>POS Total Amount</h2>
+                    </div>
+                    <br/>
+                </div>
+                <div class="row ml8 mr8">
+                    <div class="pull-left">
+                        <b>Date : <t t-esc="start_date.strftime('%d-%m-%Y')"/></b>
+                    </div>
+                    <div class="pull-right">
+                        Page:
+                        <span class="page"/>
+                        of
+                        <span class="topage"/>
+                    </div>
+                    <hr/>
+                </div>
+            </div>
+            <div class="article o_report_layout_standard">
+                <t t-raw="0" />
+            </div>
+        </template>
+
+        <template id="external_layout_pos_balance_report">
+            <t t-call="caret_united18_pos.external_layout_pos_balance_report_header" >
+            <t t-raw="0" /></t>
+        </template>
+
+        <template id="report_pos_balance">
+            <t t-call="web.html_container">
+                <t t-call="caret_united18_pos.external_layout_pos_balance_report">
+                    <div class="page">
+                        <div class="row" style="font-size:11px">
+                            <div class="col-xs-12">
+                                 <style>
+                                 .border_top{
+                                            border-top : 1px solid black !important;
+                                 }
+                                 .border_bottom{
+                                                border-bottom : 1px solid black !important;
+                                 }
+                                 th{
+                                    padding:2px 5px 2px 5px !important;
+                                 }
+                                 td{
+                                    padding:2px 5px 2px 5px !important;
+                                 }
+                                </style>
+                                <br/><br/>
+                                <table class="col-xs-12" style="font-size:16px;">
+                                    <thead class="border_bottom">
+                                        <tr>
+                                            <th class="text-left">Company Name</th>
+                                            <th class="text-right">Total Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border_bottom">
+                                        <t t-set="total" t-value="0"/>
+                                        <t t-foreach="result" t-as="data">
+                                            <tr>
+                                                <td class="text-left">
+                                                    <t t-esc="result[data]['company_name']"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <b><t t-esc="round(result[data]['amount_total'], 2)"/></b>
+                                                </td>
+                                                <t t-set="total" t-value="total + result[data]['amount_total']"/>
+                                            </tr>
+                                        </t>
+                                        <tr class="border_bottom border_top text-center">
+                                            <td><h4><b>Total POS Orders Amount</b></h4></td>
+                                            <td class="text-right">
+                                                <h4><b><t t-esc="round(total, 2)"/></b></h4>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

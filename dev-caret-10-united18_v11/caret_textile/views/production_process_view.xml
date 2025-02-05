@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_production_process_tree" model="ir.ui.view">
+            <field name="name">production.process.tree</field>
+            <field name="model">production.process</field>
+            <field name="arch" type="xml">
+                <tree string="Production Process">
+                	<field name="name"/>
+                    <field name="inward_material_id"/>
+                    <field name="product_id"/>
+                    <field name="process_method"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_production_process_search" model="ir.ui.view">
+            <field name="name">production.process.list.select</field>
+            <field name="model">production.process</field>
+            <field name="arch" type="xml">
+                <search string="Search Production Process">
+                    <field name="name"/>
+                    <field name="product_uom_id"/>
+                    <field name="product_id"/>
+                    <field name="process_method"/>
+                    <field name="inward_location_id"/>
+                    <field name="cutting_location_id"/>
+                    <field name="cutting_jober_id"/>
+                    <field name="washing_location_id"/>
+                    <field name="washing_jober_id"/>
+                    <field name="finishing_location_id"/>
+                    <field name="finishing_jober_id"/>
+					<field name="final_location_id"/>
+					<field name="qa_id"/>
+                    <field name="state"/>
+	                <separator/>
+	                <filter string="Designing" name="design" domain="[('state','=','design')]"/>
+	                <filter string="Cutting &amp; Stitching" name="cuttingstitch" domain="[('state','in',('cutting','stitching'))]"/>
+	                <filter string="Washing" name="washing" domain="[('state','=','washing')]"/>
+	                <filter string="Finishing &amp; QA" name="finishqa" domain="[('state','in',('finishing','qa'))]"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Name" domain="[]" context="{'group_by':'name'}"/>
+                        <filter string="Product UOM" domain="[]" context="{'group_by':'product_uom_id'}"/>
+                        <filter string="Fabric Product" domain="[]" context="{'group_by':'product_id'}"/>
+                        <filter string="Process Method" domain="[]" context="{'group_by':'process_method'}"/>
+                        <filter string="State" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Inward Location" domain="[]" context="{'group_by':'inward_location_id'}"/>
+                        <filter string="Cutting Location" domain="[]" context="{'group_by':'cutting_location_id'}"/>
+                        <filter string="Washing Location" domain="[]" context="{'group_by':'washing_location_id'}"/>
+                        <filter string="Finishing Location" domain="[]" context="{'group_by':'finishing_location_id'}"/>
+                        <filter string="Final Stock Location" domain="[]" context="{'group_by':'final_location_id'}"/>
+                        <filter string="Cutting Jober" domain="[]" context="{'group_by':'cutting_jober_id'}"/>
+                        <filter string="Washing Jober" domain="[]" context="{'group_by':'washing_jober_id'}"/>
+                        <filter string="Finishing Jober" domain="[]" context="{'group_by':'finishing_jober_id'}"/>
+                        <filter string="QA" domain="[]" context="{'group_by':'qa_id'}"/>
+                    </group>
+               	</search>
+        	</field>
+        </record>
+
+
+        <record id="view_production_process_form" model="ir.ui.view">
+            <field name="name">production.process.form</field>
+            <field name="model">production.process</field>
+            <field name="arch" type="xml">
+                <form string="Production Process" class="o_sale_order">
+                <header>
+                    <button name="action_send_to_cutting" string="Send for Cutting" type="object" states="design" class="btn-primary"/>
+                    <button name="action_send_to_stitching" string="Send for Stitching" type="object" states="cutting" class="btn-primary" groups="caret_textile.group_production_head_jober"/>
+                    <button name="action_send_to_washing" string="Send To Washing" type="object" states="stitching" class="btn-primary"/>
+					<button name="action_send_to_finishing" string="Send To Finishing" type="object" states="washing" class="btn-primary"/>
+                    <button name="action_send_to_qa" string="Quality Check" type="object" states="finishing" class="btn-primary"/>
+                    <button name="action_send_to_approve" string="Mark As Done" type="object" states="qa" class="btn-primary" groups="caret_textile.group_production_head_jober"/>
+                    <button name="%(action_finishing_export_report_wizard)d" string="Print Excel" type="action"  class="oe_highlight" states="finishing,qa,done" groups="caret_textile.group_production_head_jober"/>
+                    <field name="state" widget="statusbar" statusbar_visible="design,cutting,stitching,washing,finishing,qa,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" class="oe_inline" readonly="1"/></h1>
+                    </div>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_invoice"
+                            type="object"
+                            class="oe_stat_button"
+                            string="Jober Invoices"
+                            icon="fa-pencil-square-o" groups="caret_textile.group_production_head_jober"/>
+                        <button name="action_view_stock_moves"
+                            type="object"
+                            class="oe_stat_button"
+                            string="Stock Moves"
+                            icon="fa-pencil-square-o" groups="caret_textile.group_production_head_jober"/>
+                    </div>
+                    <group>
+                        <group>
+		                    <field name="inward_material_id" domain="[('product_id.qty_available','&gt;',0.0)]" required="1" options="{'no_create': True, 'no_open': True}" attrs="{'readonly': [('state','=','done')]}"/>
+		                    <field name="product_id" options="{'no_create': True, 'no_open': True}" required="1" attrs="{'readonly': [('state','=','done')]}"/>
+							<label for="available_qty" attrs="{'readonly': [('state','=','done')]}"/>
+							  <div name='available_qty' attrs="{'readonly': [('state','=','done')]}">
+							      <div>
+							      </div>
+							      <div>
+                    				<field name="available_qty" attrs="{'readonly': [('state','=','done')]}" required="1"/>
+		                    		<field name="product_uom_id" attrs="{'readonly': [('state','=','done')]}" required="1" domain="[('name','in',['Meter','m','meter','kg'])]" options="{'no_create': True, 'no_open': True}"/>
+							      </div>
+							  </div>
+                        </group>
+                        <group>
+		                    <field name="product_category_id" attrs="{'readonly': [('state','=','done')]}" required="1" options="{'no_create': True, 'no_open': True}"/>
+		                    <field name="process_method" attrs="{'readonly': [('state','=','done')]}"/>
+							<label for="process_qty" attrs="{'readonly': [('state','=','done')]}"/>
+							  <div name='process_qty' attrs="{'readonly': [('state','=','done')]}">
+							      <div>
+							      </div>
+							      <div>
+                    				<field name="process_qty" required="1" attrs="{'readonly': [('state','=','done')]}"/>
+		                    		<field name="product_uom_id" attrs="{'readonly': [('state','=','done')]}" required="1" domain="[('name','in',['Meter','m','meter','kg'])]" options="{'no_create': True, 'no_open': True}"/>
+							      </div>
+							  </div>
+							<field name="inward_location_id" attrs="{'readonly': [('state','=','done')]}" invisible="1" options="{'no_create': True, 'no_open': True}"/>
+						    <field name="cutting_jober_id" attrs="{'readonly': [('state','=','done')]}" required="1" options="{'no_create': True, 'no_open': True}" 
+						    	groups="caret_textile.group_production_head_jober,caret_textile.group_production_designing_jober"/>
+						    	
+						    <field name="cutting_location_id" attrs="{'readonly': [('state','=','done')]}" required="1" domain="[('usage','=','production')]" 
+						    	string="Cutting/Stitching GODOWN" options="{'no_create': True, 'no_open': True}" groups="caret_textile.group_production_head_jober,caret_textile.group_production_designing_jober"/>
+
+		                    <field name="washing_jober_id" attrs="{'readonly': [('state','=','done')]}" 
+		                    	options="{'no_create': True, 'no_open': True}" groups="caret_textile.group_production_head_jober,caret_textile.group_production_stitching_jober"/>
+
+		                    <field name="washing_location_id" attrs="{'readonly': [('state','=','done')]}" 
+		                    	options="{'no_create': True, 'no_open': True}" groups="caret_textile.group_production_head_jober,caret_textile.group_production_stitching_jober"/>
+
+		                    <field name="finishing_jober_id" attrs="{'readonly': [('state','=','done')]}" 
+		                    	options="{'no_create': True, 'no_open': True}" groups="caret_textile.group_production_head_jober,caret_textile.group_production_washing_jober"/>
+		                    
+		                    <field name="finishing_location_id" attrs="{'readonly': [('state','=','done')]}" 
+		                    	options="{'no_create': True, 'no_open': True}" groups="caret_textile.group_production_head_jober,caret_textile.group_production_washing_jober"/>
+
+		                    <field name="qa_id" attrs="{'readonly': [('state','=','done')]}" 
+		                    	options="{'no_create': True, 'no_open': True}" groups="caret_textile.group_production_head_jober,caret_textile.group_production_finishing_jober"/>
+
+		                    <field name="final_location_id" attrs="{'readonly': [('state','=','done')]}" 
+		                    	options="{'no_create': True, 'no_open': True}" groups="caret_textile.group_production_head_jober,caret_textile.group_production_finishing_jober"/>
+
+		                    <field name="article_number" attrs="{'readonly': [('state','=','done')]}" groups="caret_textile.group_production_head_jober,caret_textile.group_production_finishing_jober"/>
+                        
+                        </group>
+                    </group>
+                 <notebook>
+                    <page string="PDF">
+                        <field name="worksheet" widget="pdf_viewer" attrs="{'readonly': [('state','=','done')]}"/>
+                    </page>
+                    <page string="Colour and Size">
+                    <group>
+                        <group>
+	                    	<field name="size_attribute_ids" attrs="{'readonly': [('state','=','done')]}"/>
+                        </group>
+                        <group>
+	                    	<field name="colour_attribute_ids" attrs="{'readonly': [('state','=','done')]}"/>
+                        </group>
+                    </group>
+                    </page>
+                    <page string="Accessories">
+	    				<field name='accessory_ids' attrs="{'readonly': [('state','=','done')]}">
+	                       <tree editable="top">
+	                            <field name="product_id" domain="[('is_accessory', '=', True)]" required="1" context="{'default_is_accessory':1,'default_type':'product'}" options="{'no_create': True, 'no_open': True}"/>
+	                            <field name="price_per_unit"/>
+	                            <field name="quantity"/>
+	                            <field name="total_accessory_cost"/>
+	                        </tree>           
+                		</field>
+	                    <group class="oe_subtotal_footer oe_right">
+	                        <div class="oe_subtotal_footer_separator oe_inline">
+	                            <label for="final_accessory_cost"/>
+	                        </div>
+	                        <field name="final_accessory_cost" nolabel="1" class="oe_subtotal_footer_separator"/>
+	                    </group>
+                    </page>
+                    <page string="Cutting" groups="caret_textile.group_production_stitching_jober,caret_textile.group_production_head_jober">
+	                    <group>
+	                        <group>
+								<field name="fabric_color_type" attrs="{'readonly': [('state','not in',['design','cutting'])]}"/>
+	                        	<field name="total_cutting_cost" readonly="1"/>
+							</group>
+	                        <group>
+	                        	<field name="cutting_cost_per_unit" attrs="{'readonly': [('state','not in',['design','cutting'])]}"/>
+	                        	<field name="total_cutting_produced_qty" readonly="1"/>
+	                        </group>
+							<field name="cutting_order_ids" attrs="{'readonly': [('state','not in',['design','cutting'])]}">
+			                   <tree editable="bottom">
+			                   		<field name="size_id" options="{'no_create': True, 'no_open': True}"/>
+			                   		<field name="size_qty"/>
+			                   		<field name="product_id" readonly="1"/>
+           		                    <field name="product_uom_id"/>
+           		                    <field name="color_id" domain="[('id','in',parent.colour_attribute_ids)]"
+           		                    	options="{'no_create': True, 'no_open': True}"
+           		                    	attrs="{'invisible': [('parent.fabric_color_type','=','noncolor')],'required': [('parent.fabric_color_type','=','color')]}" />
+			                   		<field name="company_id" invisible="1"/>
+			                   		<field name="process_id" invisible="1"/>
+							   </tree>
+	                		</field>
+	                    </group>
+                    </page>
+                    <page string="Stitching" groups="caret_textile.group_production_stitching_jober,caret_textile.group_production_head_jober">
+	                    <group>
+	                        <group>
+								<field name="stitching_type" attrs="{'readonly': [('state','!=','stitching')]}"/>
+			                    <field name="product_template_id" readonly="1"/>
+							</group>
+	                        <group>
+	                        	<field name="cost_per_unit" attrs="{'readonly': [('state','!=','stitching')]}"/>
+	                        	<field name="total_stitching_cost"/>
+	                        	<field name="total_jobwork_cost"/>
+	                        	<field name="total_cost_stitching"/>
+	                        	<field name="total_produced_qty"/>
+	                        	<field name="average_per_meter"/>
+	                        </group>
+							<field name="joborder_ids" attrs="{'readonly': [('state','!=','stitching')]}">
+			                   <tree editable="bottom">
+			                   		<field name="size_id" options="{'no_create': True, 'no_open': True}"/>
+			                   		<field name="size_qty" options="{'no_create': True, 'no_open': True}"/>
+    		                   		<field name="product_id" options="{'no_create': True, 'no_open': True}"/>
+           		                    <field name="product_uom_id" options="{'no_create': True, 'no_open': True}"/>
+			                   		<field name="company_id" invisible="1"/>
+			                   		<field name="process_id" invisible="1"/>
+           		                    <field name="color_id" domain="[('id','in',parent.colour_attribute_ids)]"
+           		                    	options="{'no_create': True, 'no_open': True}" attrs="{'readonly': [('parent.fabric_color_type','=','noncolor')]}"/>
+							   </tree>
+	                		</field>
+							<field name="jobwork_ids" attrs="{'readonly': [('state','!=','stitching')],'invisible': [('stitching_type','=','normal')]}">
+			                   <tree editable="bottom">
+			                   		<field name="jober_id" options="{'no_create': True, 'no_open': True}"/>
+			                   		<field name="product_id" options="{'no_create': True, 'no_open': True}"/>
+				                    <field name="cost_per_piece"/>
+				                    <field name="total_cost"/>
+				                    <field name="process_id" invisible="1"/>
+							   </tree>
+	                		</field>
+	                    </group>
+                    </page>
+                    <page string="Washing" groups="caret_textile.group_production_washing_jober,caret_textile.group_production_head_jober">
+                        <label for="washing_ids" attrs="{'readonly': [('state','!=','washing')]}"/>
+						<field name='washing_ids' attrs="{'readonly': [('state','!=','washing')]}">
+	                       <tree editable="top">
+	                            <field name="product_id" readonly="1"/>
+	                            <field name="uom_id" string="UOM" readonly="1"/>
+                                <field name="size_id" readonly="1"/>
+                            	<field name="color_id" attrs="{'invisible': [('parent.fabric_color_type','=','noncolor')],'required': [('parent.fabric_color_type','=','color')]}" options="{'no_create': True, 'no_open': True}"/>
+	                            <field name="location_id" invisible="1"/>
+	                            <field name="process_qty" readonly="1"/>
+	                            <field name="actual_received_qty"/>
+	                            <field name="missing_qty_from_stitch"/>
+	                            <field name="washing_order_id" invisible="1"/>
+	                        </tree>           
+                		</field>
+                        <label for="washing_colour_ids" string="Add Details for Colouring" attrs="{'readonly': [('state','!=','washing')],'invisible': [('fabric_color_type','=','color')]}"/>
+                    	<field name="washing_colour_ids" attrs="{'readonly': [('state','!=','washing')],'invisible': [('fabric_color_type','=','color')]}">
+	                       <tree editable="top">
+	                            <field name="product_id" domain="[('product_tmpl_id', '=', parent.product_template_id)]" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+	                            <field name="uom_id" string="UOM" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                                <field name="size_id" options="{'no_create': True, 'no_open': True}"/>
+	                            <field name="colour_id" options="{'no_create': True, 'no_open': True}" domain="[('id','in',parent.colour_attribute_ids)]"/>
+	                            <field name="colour_qty" string="Piece"/>
+	                            <field name="colour_washing_id" invisible="1"/>
+	                        </tree> 
+                		</field>
+                        <group class="oe_subtotal_footer oe_right">
+                            <div class="oe_subtotal_footer_separator oe_inline">
+                                <label for="total_washing_produced_qty"/>
+                            </div>
+                            <field name="total_washing_produced_qty" nolabel="1" class="oe_subtotal_footer_separator"/>
+                        	<field name="washing_cost_per_unit"/>
+                        	<field name="total_washing_cost"/>
+                        </group>
+                    </page>
+                    <page string="Finishing" groups="caret_textile.group_production_finishing_jober,caret_textile.group_production_head_jober">
+	    				<field name='finishing_ids' attrs="{'readonly': [('state','!=','finishing')]}">
+	                       <tree editable="top">
+	                            <field name="product_id"/>
+	                            <field name="uom_id"/>
+	                            <field name="size_id" options="{'no_create': True, 'no_open': True}"/>
+	                            <field name="color_id" attrs="{'invisible': [('color_id','=',False)]}"/>
+								<field name="lot_id" readonly="1"/>
+	                            <field name="location_id" invisible="1"/>
+	                            <field name="process_qty" string="Qty From Washing"/>
+	                            <field name="actual_received" string="Final Finished Quantity"/>
+	                            <field name="mrp" readonly="0"/>
+	                            <field name="finishing_order_id" invisible="1"/>
+	                        </tree>           
+                		</field>
+                        <label for="finishing_colour_ids" string="Add Details for Colouring" attrs="{'readonly': [('state','!=','finishing')],'invisible': [('fabric_color_type','=','color')]}"/>
+                    	<field name="finishing_colour_ids" attrs="{'readonly': [('state','!=','finishing')],'invisible': [('fabric_color_type','=','color')]}">
+	                       <tree editable="top">
+	                            <field name="product_id" domain="[('product_tmpl_id', '=', parent.product_template_id)]" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+	                            <field name="uom_id" string="UOM" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                                <field name="size_id" options="{'no_create': True, 'no_open': True}"/>
+	                            <field name="colour_id" options="{'no_create': True, 'no_open': True}" domain="[('id','in',parent.colour_attribute_ids)]"/>
+								<field name="lot_id" readonly="1" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+	                            <field name="colour_qty" string="Final Finished Quantity"/>
+	                            <field name="mrp" readonly="0"/>
+	                            <field name="finishing_process_id" invisible="1"/>
+	                        </tree> 
+                		</field>
+                        <group class="oe_subtotal_footer oe_right">
+                            <div class="oe_subtotal_footer_separator oe_inline">
+                                <label for="total_actual_finished_qty"/>
+                            </div>
+                            <field name="total_actual_finished_qty" nolabel="1" class="oe_subtotal_footer_separator"/>
+                        	<field name="finishing_cost_per_unit"/>
+							<field name="total_finishing_cost"/>
+                        </group>
+                    </page>
+                    <page string="Costing" groups="caret_textile.group_production_finishing_jober,caret_textile.group_production_head_jober">
+                    	<group>
+	                    	<group>
+	                    		<field name="total_cutting_cost" string="Cutting Total Cost"/>
+	                    		<field name="total_cost_stitching" string="Stitching Total Cost"/>
+	                    		<field name="total_washing_cost" string="Washing Total Cost"/>
+	                    		<field name="final_accessory_cost" string="Accessory Total Cost"/>
+	                    		<field name="total_overall_costing" string="Total Overall Cost"/>
+	                    		<field name="total_actual_finished_qty" string="Total Finishing Qty"/>
+	                    		<field name="mrp_per_unit" string="MRP"/>
+	                    	</group>
+	                    	<group>
+	                    	</group>
+                    	</group>
+                    </page>
+                </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_production_process" model="ir.actions.act_window">
+            <field name="name">Production</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">production.process</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_production_process_search"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem id="menu_production_process"
+            action="action_production_process"
+            parent="production_main_menu"
+            groups="caret_textile.group_production_head_jober,caret_textile.group_production_designing_jober,caret_textile.group_production_stitching_jober,caret_textile.group_production_washing_jober,caret_textile.group_production_finishing_jober"
+            sequence="2"/>
+            
+    </data>
+</odoo>

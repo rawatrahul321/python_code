@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+	<record id="payment_acquirer_cash_on_delivery" model="payment.acquirer">
+        <field name="name">Cash on Delivery</field>
+        <field name="sequence">3</field>
+        <field name="view_template_id" ref="payment.default_acquirer_button"/>
+        <field name="image_128" type="base64" file="payment_transfer/static/src/img/transfer_icon.png"/>
+        <field name="module_id" ref="base.module_payment_transfer"/>
+        <field name="pending_msg">&lt;i&gt;Confirmed&lt;/i&gt;... Confirmed, Your online payment has been successfully processed. But your order is not validated yet.</field>
+        <field name="description" type="html">
+            <p>
+                Provide instructions to customers so that they can pay their orders manually.
+            </p>
+        </field>
+    </record>
+    <record id="payment_acquirer_machine_on_delivery" model="payment.acquirer">
+        <field name="name">Machine on Delivery</field>
+        <field name="sequence">3</field>
+        <field name="view_template_id" ref="payment.default_acquirer_button"/>
+        <field name="image_128" type="base64" file="payment_transfer/static/src/img/transfer_icon.png"/>
+        <field name="module_id" ref="base.module_payment_transfer"/>
+        <field name="pending_msg">&lt;i&gt;Confirmed&lt;/i&gt;... Confirmed, Your online payment has been successfully processed. But your order is not validated yet.</field>
+        <field name="description" type="html">
+            <p>
+                Provide instructions to customers so that they can pay their orders manually.
+            </p>
+        </field>
+    </record>
+</odoo>

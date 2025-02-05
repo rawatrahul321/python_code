@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="todays_attendance_report_view" model="ir.ui.view">
+            <field name="name">Todays Attendance Report</field>
+            <field name="model">today.attendance.report</field>
+           	<field name="type">form</field>
+			<field name="arch" type="xml">
+			<form string="Todays Attendance Report"> 
+			<group>
+		    <group colspan="4" col="4">
+		    
+            
+ 				<field name="filename" invisible="1"/>
+		                <field name="filedata" filename="filename" attrs="{'invisible':[('filedata','=',False)]}"/>
+             <button string="Cancel" class="oe_link" special="cancel" />
+             or
+             <button name="print_today_attendance_report" string="Print" type="object" class="oe_highlight"/>
+                       
+		    </group>
+		                        
+             </group>
+             </form>
+            </field>
+			</record>
+
+        <record id="todays_attendance_report" model="ir.actions.act_window">
+		    <field name="name">Todays Attendance Report</field>
+		    <field name="res_model">today.attendance.report</field>
+		    <field name="type">ir.actions.act_window</field>
+		    <field name="view_type">form</field>
+		    <field name="view_mode">form</field>
+		    <field name="target">new</field>
+		    <field name="view_id" ref="todays_attendance_report_view"/>
+    	</record>
+			        
+
+ <menuitem  id="menu_todays_attendance_report" action="todays_attendance_report" parent="hr_attendance.menu_hr_attendance_root" name="Todays Present Report" sequence="33"/>		
+</data>
+</odoo>
+

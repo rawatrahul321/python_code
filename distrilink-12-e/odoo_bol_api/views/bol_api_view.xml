@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="bol_connection_form_inh" model="ir.ui.view">
+            <field name="name">bol.connection.form</field>
+            <field name="model">bol.connection</field>
+            <field name="inherit_id" ref="update_stock_api.bol_connection_form"/>
+            <field name="arch" type="xml">
+                <field name="pages" position="after">
+                    <field name="is_processed" invisible="1"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

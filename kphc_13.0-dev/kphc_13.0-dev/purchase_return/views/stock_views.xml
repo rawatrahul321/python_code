@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="stock_move_return" model="ir.ui.view">
+            <field name="name">stock.move.form</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//group[@name='origin_grp']" position="inside">
+                    <field name="return_line_id"/>
+                </xpath>
+            </field>
+        </record>
+<!--        <record id="account_move_return" model="ir.ui.view">-->
+<!--            <field name="name">stock.move.form</field>-->
+<!--            <field name="model">account.move</field>-->
+<!--            <field name="inherit_id" ref="account.view_move_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--&lt;!&ndash;                <xpath expr="//field[@name='name']" position="after">&ndash;&gt;-->
+<!--&lt;!&ndash;					<field  name="apply_discount" invisiable="1"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </xpath>&ndash;&gt;-->
+<!--&lt;!&ndash;                <xpath expr="//field[@name='invoice_line_ids']//field[@name='discount']" position="replace">&ndash;&gt;-->
+<!--&lt;!&ndash;					<field string="Discount Type" name="discount_type" />&ndash;&gt;-->
+<!--&lt;!&ndash;					<field string="Discount" name="discount1"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </xpath>&ndash;&gt;-->
+<!--&lt;!&ndash;                <xpath expr="//field[@name='invoice_line_ids']//field[@name='price_subtotal']" position="after">&ndash;&gt;-->
+<!--&lt;!&ndash;					<field name="price_subtotal" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                </xpath>&ndash;&gt;-->
+<!--&lt;!&ndash;				<xpath expr="//field[@name='invoice_line_ids']//tree//field[@name='price_unit']" position="after">&ndash;&gt;-->
+<!--&lt;!&ndash;				<field name="price_avg"  force_save="1" readonly="1"/>&ndash;&gt;-->
+<!--&lt;!&ndash;				</xpath>&ndash;&gt;-->
+
+<!--            </field>-->
+<!--        </record>-->
+</odoo>

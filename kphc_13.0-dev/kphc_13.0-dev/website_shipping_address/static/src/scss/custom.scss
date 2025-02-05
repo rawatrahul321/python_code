@@ -1,0 +1,7 @@
+form.checkout_autoformat {
+    .div_name,#div_email,#div_phone,.div_street,.div_city,.div_country,.div_state {
+        > label:after {
+            content: '' !important;
+        }
+    }
+}

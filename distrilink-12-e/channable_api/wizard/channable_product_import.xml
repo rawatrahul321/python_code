@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="view_channable_product_import_form" model="ir.ui.view">
+            <field name="name">channable.product.import.form</field>
+            <field name="model">channable.product.import</field>
+            <field name="arch" type="xml">
+                <form string="channable import form">
+                    <group>
+                        <field name="channable_product_file" filename="channable_file_name"/>
+                        <field name="channable_file_name" invisible="1"/>
+                        <field name="delimiter"/>
+                    </group>
+                    <footer>
+                        <button string="Import" name="import_channable_products" type="object" class="oe_highlight"/>
+                            or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_channable_product_import" model="ir.actions.act_window">
+            <field name="name">Product Import</field>
+            <field name="res_model">channable.product.import</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_channable_product_import"
+            name="Product Import"
+            action="action_channable_product_import"
+            parent="sale.sale_menu_root"/>
+
+    </data>
+</odoo>

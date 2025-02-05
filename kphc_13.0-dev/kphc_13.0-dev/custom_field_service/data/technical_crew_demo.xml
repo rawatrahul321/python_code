@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="crew_1" model="technical.crew">
+            <field name="name">Alfred Palermo - Crew Leader</field>
+        </record>
+        <record id="crew_2" model="technical.crew">
+            <field name="name">Tirso Flores Jr. - Crew Leader</field>
+        </record>
+        <record id="crew_3" model="technical.crew">
+            <field name="name">Adrian Cruz - Crew Leader</field>
+        </record>
+        <record id="crew_4" model="technical.crew">
+            <field name="name">Joey Ni Og - Crew Leader</field>
+        </record>
+        <record id="crew_5" model="technical.crew">
+            <field name="name">Jose Adorio - Crew Leader</field>
+        </record>
+        <record id="crew_6" model="technical.crew">
+            <field name="name">Marvin Clarin - Crew Leader</field>
+        </record>
+        <record id="crew_7" model="technical.crew">
+            <field name="name">Lennard Opulento - Crew Leader</field>
+        </record>
+        <record id="crew_8" model="technical.crew">
+            <field name="name">Jonrie Canadilla - Crew Leader</field>
+        </record>
+        <record id="crew_9" model="technical.crew">
+            <field name="name">Thor Domalaon - Technician</field>
+        </record>
+        <record id="crew_10" model="technical.crew">
+            <field name="name">Pablo Sulleza - Technician</field>
+        </record>
+        <record id="crew_11" model="technical.crew">
+            <field name="name">Antonino Misa - Technician</field>
+        </record>
+        <record id="crew_12" model="technical.crew">
+            <field name="name">Cristopher Gazmen - Technician</field>
+        </record>
+        <record id="crew_13" model="technical.crew">
+            <field name="name">Kerwin Nasataya - Technician</field>
+        </record>
+        <record id="crew_14" model="technical.crew">
+            <field name="name">Roel Montebon - Technician</field>
+        </record>
+        <record id="crew_15" model="technical.crew">
+            <field name="name">Arnold Paino - Technician</field>
+        </record>
+        <record id="crew_16" model="technical.crew">
+            <field name="name">Jezer Bayron - Technician</field>
+        </record>
+        <record id="crew_17" model="technical.crew">
+            <field name="name">Jeremiah Bongcawil Jr. - Technician</field>
+        </record>
+        <record id="crew_18" model="technical.crew">
+            <field name="name">Alessandro Rubio - Technician</field>
+        </record>
+        <record id="crew_19" model="technical.crew">
+            <field name="name">Butch Crio - Technician</field>
+        </record>
+        <record id="crew_20" model="technical.crew">
+            <field name="name">Ronald Poncio - Technician</field>
+        </record>
+        <record id="crew_21" model="technical.crew">
+            <field name="name">Joey Estrao - Technician</field>
+        </record>
+        <record id="crew_22" model="technical.crew">
+            <field name="name">Jaco Pactol - Technician</field>
+        </record>
+        <record id="crew_23" model="technical.crew">
+            <field name="name">Cezar Reluna - Technician</field>
+        </record>
+    </data>
+</odoo>

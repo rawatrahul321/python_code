@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    	<record id="saleslayer_connection_tree" model="ir.ui.view">
+            <field name="name">saleslayer.connection.tree</field>
+            <field name="model">saleslayer.connection</field>
+            <field name="arch" type="xml">
+                <tree string="Saleslayer Connection Tree">
+                    <field name="name"/>
+                    <field name="url"/>
+                    <field name="code"/>
+                    <field name="private_key"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="saleslayer_connection_form" model="ir.ui.view">
+            <field name="name">saleslayer.connection.form</field>
+            <field name="model">saleslayer.connection</field>
+            <field name="arch" type="xml">
+                <form string="Saleslayer Connection Form">
+                    <sheet>
+                        <group col="4">
+                            <field name="name" required="1"/>
+                            <field name="url" required="1"/>
+                            <field name="code" required="1"/>
+                            <field name="private_key" required="1"/>
+                            <field name="start_index" invisible="1"/>
+                            <field name="end_index" invisible="1"/>
+                            <field name="gapping_index" invisible="1"/>
+                            <field name="last_modified_hours"/>
+                        </group>
+                        <group>
+                            <button name="test_saleslayer_connection" type="object" string="Test Connection" icon="fa-television"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_saleslayer_connection">
+            <field name="name">Saleslayer Connection</field>
+            <field name="res_model">saleslayer.connection</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_saleslayer"
+                  name="Saleslayer"
+                  parent="channable_api.menu_channable"
+                  sequence="10"/>
+        <menuitem id="menu_saleslayer_connection"
+                  name="Configuration"
+                  parent="menu_saleslayer"
+                  action="action_saleslayer_connection"/>
+
+    </data>
+</odoo>

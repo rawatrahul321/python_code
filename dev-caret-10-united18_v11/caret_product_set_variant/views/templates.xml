@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_frontend" inherit_id="website.assets_frontend" name="Shop">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/caret_product_set_variant/static/src/css/product_set.css" />
+        </xpath>
+    </template>
+
+    <template id="shop_category" inherit_id="website_sale.products" active="True" customize_show="True" name="Shop by Category">
+<!--         <xpath expr="//div[hasclass('products_pager')]" position="before">
+            <div class="alert alert-warning alert-dismissable" style="margin-top: 10px;margin-bottom: 0px !important;">
+                <em t-esc="credit_limit" /> Remain Credit Limit.
+            </div>
+        </xpath> -->
+        <xpath expr="//div[hasclass('products_pager')]/div/t[@t-call][last()]" position="after">
+            <div class="dropdown btn-group dropdown_sorty_by_category">
+                <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown">
+                    <span>Shop by Category</span>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li class="prod_set_category" t-foreach="productSetCategories" t-as="pset_category">
+                        <a t-att-href="keep('/product_set/%s' % pset_category.id)">
+                        <!-- <a t-att-href="keep('/shop')"> -->
+                            <span t-raw="pset_category.name"/>
+                        </a>
+                    </li>
+                </ul>
+<!--                 <ul class="dropdown-menu" role="menu">
+                    <li t-att-class=" '' if category else 'active' ">
+                        <a t-att-href="keep('/shop',category=0)" class="o_not_editable">All Products</a>
+                    </li>
+                    <t t-foreach="categories" t-as="c">
+                        <t t-call="website_sale.categories_recursive" />
+                    </t>
+                </ul> -->
+            </div>
+        </xpath>
+    </template>
+
+    <template id="product_set" name="Product Set">
+        <t t-call="website.layout">
+            <div id="wrap" class="">
+                <div class="oe_structure" />
+                <div class="container">
+                    <div class="row">
+                        <t t-foreach="productSets" t-as="ps">
+                            <div class="col-md-3 product-set">
+                                <a t-att-href="'/product_set/products/%s' % ps.id">
+                                    <span t-esc="ps.name"/>
+                                </a>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+                <div class="oe_structure mb32" />
+            </div>
+        </t>
+    </template>
+
+    <template id="set_products_item" name="Products item">
+        <form action="/shop/cart/update" method="post">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+            <div itemscope="itemscope" itemtype="http://schema.org/Product">
+                <div class="ribbon-wrapper">
+                    <div class="ribbon btn btn-danger">Sale</div>
+                </div>
+                <div class="oe_product_image">
+                    <a itemprop="url" t-attf-href="/shop/product/#{ slug(product) }">
+                        <span itemprop="image" t-attf-content="{{request.httprequest.url_root}}web/image/product.template/{{product.id}}/image" t-field="product.image" t-options="{'widget': 'image', 'resize': None if product_image_big else '300x300', 'zoom': 'image'}" t-att-alt="product.name" />
+                    </a>
+                </div>
+                <t t-if="show_publish">
+                    <div id="website_published_button" class="" groups="sales_team.group_sale_manager">
+                        <t t-call="website.publish_management">
+                            <t t-set="object" t-value="product" />
+                            <t t-set="publish_edit" t-value="True" />
+                            <t t-set="action" t-value="'product.product_template_action'" />
+                        </t>
+                    </div>
+                </t>
+                <section>
+                    <h5>
+                        <strong>
+                            <a itemprop="name" t-attf-href="/shop/product/#{ slug(product) }" t-att-content="product.name" t-field="product.name" />
+                        </strong>
+                    </h5>
+                    <div itemprop="offers" itemscope="itemscope" itemtype="http://schema.org/Offer" class="product_price" t-if="product.product_variant_ids">
+                        <b>
+                            <t t-if="product.website_price_difference and website.get_current_pricelist().discount_policy=='without_discount'">
+                                <del class="text-danger mr8" style="white-space: nowrap;" t-esc="compute_currency(product.website_public_price)" t-options="{'widget': 'monetary', 'display_currency': website.get_current_pricelist().currency_id, 'from_currency': website.currency_id}" />
+                            </t>
+
+                            <span t-esc="product.website_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                            <span itemprop="price" style="display:none;" t-esc="product.website_price" />
+                            <span itemprop="priceCurrency" style="display:none;" t-esc="website.currency_id.name" />
+                        </b>
+                    </div>
+                </section>
+            </div>
+        </form>
+    </template>
+
+    <template id="set_products" name="Set Products">
+        <t t-call="website.layout">
+            <t t-set="additional_title">Shop</t>
+            <div id="wrap" class="js_sale">
+                <div class="oe_structure" />
+                <div class="container oe_website_sale">
+                    <div class="row">
+                        <div class="hidden" id="set_products_grid_before"></div>
+                        <div class="col-md-12" id="products_grid">
+                            <table width="100%">
+                                <tbody>
+                                    <tr t-ignore="true">
+                                        <td t-foreach="range(0,rows)" t-as="row" t-attf-width="#{100/rows}%"></td>
+                                    </tr>
+                                    <!-- <tr t-foreach="products" t-as="product">
+                                        <t t-if="product">
+                                            <td t-attf-class="oe_product" style="height: 250px;">
+                                                <div class="oe_product_cart" t-att-data-publish="product.website_published and 'on' or 'off'">
+                                                    <t t-call="caret_product_set_variant.set_products_item" />
+                                                </div>
+                                            </td>
+                                        </t>
+                                        <td t-if="not product" class="oe-height-2" />
+                                    </tr> -->
+                                    <tr t-foreach="bins" t-as="tr_product">
+                                        <t t-foreach="tr_product" t-as="td_product">
+                                            <t t-if="td_product">
+                                                <t t-set="product" t-value="td_product['product']" />
+                                                <td t-att-colspan="td_product['x'] != 1 and td_product['x']" t-att-rowspan="td_product['y'] != 1 and td_product['y']" t-attf-class="oe_product oe_grid oe-height-#{td_product['y']*2} #{ td_product['class'] }">
+                                                    <div class="oe_product_cart" t-att-data-publish="product.website_published and 'on' or 'off'">
+                                                        <t t-call="caret_product_set_variant.set_products_item" />
+                                                    </div>
+                                                </td>
+                                            </t>
+                                            <td t-if="not td_product" class="oe-height-2" />
+                                        </t>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <t t-if="not products">
+                                <div class="text-center text-muted oe_product">
+                                    <h3 class="css_editable_display">No product defined.</h3>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure mb32" />
+            </div>
+        </t>
+    </template>
+
+    <template id="restrict_variants" inherit_id="website_sale.variants" active="True" customize_show="True" name="Restrict Variants">
+        <xpath expr="//li" position="replace">
+            <li t-if="len(variant_id.value_ids) > 1">
+
+                <strong t-field="variant_id.attribute_id.name"/>
+
+                <t t-if="variant_id.attribute_id.type == 'select'">
+                    <t t-if="product.attrubute_restrict_id.name != variant_id.attribute_id.name">
+                        <select t-attf-class="form-control #{'js_variant_change' if variant_id.attribute_id.create_variant else ''}" t-att-name="'attribute-%s-%s' % (product.id, variant_id.attribute_id.id)">
+                        <t t-foreach="variant_id.value_ids" t-as="value_id">
+                          <option t-att-value="value_id.id">
+                              <span t-field="value_id.name"/>
+                              <span t-if="value_id.price_extra">
+                                  <t t-esc="value_id.price_extra > 0 and '+' or ''"/><span t-field="value_id.price_extra" style="white-space: nowrap;" t-options='{
+                                           "widget": "monetary",
+                                            "from_currency": product.currency_id,
+                                           "display_currency": website.currency_id
+                                       }'/>
+                              </span>
+                          </option>
+                        </t>
+                        </select>
+                    </t>
+                    <t t-if="product.attrubute_restrict_id.name == variant_id.attribute_id.name">
+                        <select t-attf-class="form-control #{'js_variant_change' if variant_id.attribute_id.create_variant else ''}" t-att-name="'attribute-%s-%s' % (product.id, variant_id.attribute_id.id)" disabled="disabled">
+                        <t t-foreach="variant_id.value_ids" t-as="value_id">
+                          <option t-att-value="value_id.id">
+                              <span t-field="value_id.name"/>
+                              <span t-if="value_id.price_extra">
+                                  <t t-esc="value_id.price_extra > 0 and '+' or ''"/><span t-field="value_id.price_extra" style="white-space: nowrap;" t-options='{
+                                           "widget": "monetary",
+                                            "from_currency": product.currency_id,
+                                           "display_currency": website.currency_id
+                                       }'/>
+                              </span>
+                          </option>
+                        </t>
+                        </select>
+                    </t>
+                </t>
+
+                <t t-if="variant_id.attribute_id.type == 'radio'">
+                    <t t-if="product.attrubute_restrict_id.name != variant_id.attribute_id.name">
+                        <ul class="list-unstyled">
+                            <t t-set="inc" t-value="0"/>
+                            <t t-foreach="variant_id.value_ids" t-as="value_id">
+                                <li class="form-group js_attribute_value" style="margin: 0;">
+                                    <label class="control-label" style="margin: 0 20px;">
+                                        <input type="radio" t-att-class="'js_variant_change' if variant_id.attribute_id.create_variant else None" t-att-checked="'checked' if not inc else None" t-att-name="'attribute-%s-%s' % (product.id, variant_id.attribute_id.id)" t-att-value="value_id.id" style="vertical-align: top; margin-right: 10px;"/>
+                                        <span t-field="value_id.name"/>
+                                        <span class="badge" t-if="value_id.price_extra">
+                                            <t t-esc="value_id.price_extra > 0 and '+' or ''"/><span t-field="value_id.price_extra" style="white-space: nowrap;" t-options='{
+                                                  "widget": "monetary",
+                                                  "from_currency": product.currency_id,
+                                                  "display_currency": website.currency_id
+                                               }'/>
+                                        </span>
+                                    </label>
+                                </li>
+                                <t t-set="inc" t-value="inc+1"/>
+                            </t>
+                        </ul>
+                    </t>
+                    <t t-if="product.attrubute_restrict_id.name == variant_id.attribute_id.name">
+                        <ul class="list-unstyled">
+                            <t t-set="inc" t-value="0"/>
+                            <t t-foreach="variant_id.value_ids" t-as="value_id">
+                                <li class="form-group js_attribute_value" style="margin: 0;">
+                                    <label class="control-label" style="margin: 0 20px;color: gray;">
+                                        <input type="radio" t-att-class="'js_variant_change' if variant_id.attribute_id.create_variant else None" t-att-checked="'checked' if not inc else None" t-att-name="'attribute-%s-%s' % (product.id, variant_id.attribute_id.id)" t-att-value="value_id.id" style="vertical-align: top; margin-right: 10px;" disabled="disabled"/>
+                                        <span t-field="value_id.name"/>
+                                        <span class="badge" t-if="value_id.price_extra">
+                                            <t t-esc="value_id.price_extra > 0 and '+' or ''"/><span t-field="value_id.price_extra" style="white-space: nowrap;" t-options='{
+                                                  "widget": "monetary",
+                                                  "from_currency": product.currency_id,
+                                                  "display_currency": website.currency_id
+                                               }'/>
+                                        </span>
+                                    </label>
+                                </li>
+                                <t t-set="inc" t-value="inc+1"/>
+                            </t>
+                        </ul>
+                    </t>
+                </t>
+
+                <t t-if="variant_id.attribute_id.type == 'color'">
+                    <t t-if="product.attrubute_restrict_id.name != variant_id.attribute_id.name">
+                        <ul class="list-inline">
+                            <t t-set="inc" t-value="0"/>
+                            <li t-foreach="variant_id.value_ids" t-as="value_id">
+                                <label t-attf-style="background-color:#{value_id.html_color or value_id.name}"
+                                  t-attf-class="css_attribute_color #{'active' if not inc else ''}">
+                                <input type="radio" t-att-class="'js_variant_change' if variant_id.attribute_id.create_variant else None"
+                                  t-att-checked="'checked' if not inc else None"
+                                  t-att-name="'attribute-%s-%s' % (product.id, variant_id.attribute_id.id)"
+                                  t-att-value="value_id.id"
+                                  t-att-title="value_id.name"/>
+                                </label>
+                                <t t-set="inc" t-value="inc+1"/>
+                            </li>
+                        </ul>
+                    </t>
+                    <t t-if="product.attrubute_restrict_id.name == variant_id.attribute_id.name">
+                        <ul class="list-inline">
+                            <t t-set="inc" t-value="0"/>
+                            <li t-foreach="variant_id.value_ids" t-as="value_id">
+                                <label t-attf-style="background-color:#{value_id.html_color or value_id.name}"
+                                  t-attf-class="css_attribute_color #{'active' if not inc else ''}">
+                                <input type="radio" t-att-class="'js_variant_change' if variant_id.attribute_id.create_variant else None"
+                                  t-att-checked="'checked' if not inc else None"
+                                  t-att-name="'attribute-%s-%s' % (product.id, variant_id.attribute_id.id)"
+                                  t-att-value="value_id.id"
+                                  t-att-title="value_id.name"
+                                  disabled="disabled"/>
+                                </label>
+                                <t t-set="inc" t-value="inc+1"/>
+                            </li>
+                        </ul>
+                    </t>
+                </t>
+
+            </li>
+        </xpath>
+    </template>
+
+</odoo>

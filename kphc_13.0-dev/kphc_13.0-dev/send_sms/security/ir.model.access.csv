@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wk_sms_sms,access_wk_sms_sms,model_wk_sms_sms,base.group_user,1,1,1,1
+access_wk_sms_template,access_wk_sms_template,model_wk_sms_template,base.group_user,1,1,1,0
+access_sms_mail_server,access_sms_mail_server,model_sms_mail_server,base.group_user,1,1,1,1

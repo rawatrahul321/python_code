@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="hr_payroll.report_payslip">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+        	<div class="header">
+        <div class="row">
+            <table width="100%" border="1">
+					<tr width="100%">
+				    	<td style="color:black;text-transform: uppercase;" width="33%" class="text-left;"><img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % o.company_id.logo" valign="bottom" style="height:1.8cm;width:5cm;align:left"/></td>
+						<td width="7%">
+							
+						</td>
+                                               <center>
+						<td valign="top" style="color:black;vertical-align:top;font-size:15px;" width="60%">
+                          <center> 
+                              <p style="color:red;height:0cm;width:1cm;">
+                               <h4>
+                              <b><span style="color:red;margin-left:-340px;" t-raw="o.company_id.name"/></b>
+                               </h4>
+                             </p>
+                           </center>
+                             
+                             <!--<p class="text-right;" style="color:black;line-height:0.3cm;height:2px;margin-right:55px;"><span style="color:white;">H. O. &amp; Factory :</span><span style="color:blue;" t-raw="o.company_id.rml_header1"/>
+                             </p>-->
+                             
+                           
+                                 <center>
+                                <p style="margin-left:-340px;">
+                                <span style="color:black;" t-raw="o.company_id.partner_id.street"/>
+                                <span style="color:black;" t-raw="o.company_id.partner_id.street2"/><br/>
+                                <span style="color:black;" class="text-left" t-raw="o.company_id.partner_id.city"/>
+	                        <span style="color:black;" class="text-left" t-raw="o.company_id.partner_id.state_id.name"/>
+	                        <span style="color:black;" class="text-left" t-raw="o.company_id.partner_id.zip"/>
+	                        <span class="text-center" style="color:black;" t-raw="o.company_id.partner_id.country_id.name"/>
+                                </p>
+                                </center>
+                           <center>
+                           <div style="margin-left:-340px;">
+                                 <p style="line-height:0.1cm;"><!-- <b>Contact :</b> -->
+                                 <!-- <span style="color:black;" t-raw="o.company_id.partner_id.phone"/>, 
+                                 <span style="color:black;" class="text-left" t-raw="o.company_id.partner_id.email"/><br/> -->
+                                 <span style="line-height:-1.0cm;"><b>Pan No. : </b>AMXPG7885N</span>&#x2063; &#x2063;
+                                 <span style="line-height:0.6cm;"><b>GST No. : </b>09AMXPH4585N1ZV</span>
+                                 <div style="margin-left:290px;">
+                           <!--      <span style="color:black;" >   <b>CIN :</b>    </span> <span style="color:black;" class="text-right" t-raw="o.company_id.company_registry"/>-->
+                                 </div>
+                                 </p>  
+                           </div>
+                           
+                           </center>
+                           </td>
+                           </center>
+					</tr>
+				</table>
+        </div>
+    </div>
+            <t t-call="report.external_layout">
+                <div class="page">
+                    <h2>Pay Slip</h2>
+                    <p t-field="o.name"/>
+
+                    <table class="table table-condensed table-bordered">
+                        <tr>
+                            <td><strong>Name</strong></td>
+                            <td><span t-field="o.employee_id"/></td>
+                            <td><strong>Designation</strong></td>
+                            <td><span t-field="o.employee_id.job_id"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Department</strong></td>
+                            <td><span t-field="o.employee_id.sub_dept.name"/></td>
+                            <td><strong>Email</strong></td>
+                            <td><span t-field="o.employee_id.work_email"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date Of Joining</strong></td>
+                            <td><span t-field="o.employee_id.date_of_joining"/></td>
+                            <td><strong>Pan Number</strong></td>
+                            <td><span t-field="o.employee_id.identification_id"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reference</strong></td>
+                            <td><span t-field="o.number"/></td>
+                            <td><strong>Bank Account</strong></td>
+                            <td><span t-field="o.employee_id.bank_account_id.acc_number"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date From</strong></td>
+                            <td><span t-field="o.date_from"/></td>
+                            <td><strong>Date To</strong></td>
+                            <td><span t-field="o.date_to"/></td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Name</th>
+                                <th>Quantity/rate</th>
+                                <th>Amount</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.line_ids.filtered(lambda line: line.appears_on_payslip)" t-as="line">
+                                <td><span t-field="line.code"/></td>
+                                <td><span t-field="line.name"/></td>
+                                <td><span t-field="line.quantity"/></td>
+                                <td><span t-esc="line.amount"
+                                          t-esc-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td>
+                                <td><span t-esc="line.total"
+                                          t-esc-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+					<br/><br/><br/><br/>
+                    <p class="text-right"><h4>This is auto generated Payslip and does not require any signature.</h4></p>
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>

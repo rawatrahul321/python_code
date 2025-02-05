@@ -1,0 +1,945 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * channable_api
+#   * account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-18 04:59+0000\n"
+"PO-Revision-Date: 2019-09-18 04:59+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: channable_api
+#: model:mail.template,subject:channable_api.custom_invoice_email_template
+msgid "${object.company_id.name} Invoice (Ref ${object.number or 'n/a'})"
+msgstr "${object.company_id.name} Factuur (Ref ${object.number or 'n/b'})"
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.report_invoice_document_inh
+msgid "&amp;nbsp;<span>on</span>"
+msgstr "&amp;nbsp;<span>over</span>"
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.report_invoice_document_inh
+msgid "<br/>\n"
+"                            <strong>Marketplace:</strong>"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.report_invoice_document_inh
+msgid "<span groups=\"account.group_show_line_subtotals_tax_excluded\">SUBTOTAL</span>"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.report_invoice_document_inh
+msgid "<strong>Marketplace Id:</strong>"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.report_invoice_document_inh
+msgid "<strong>Subtotal</strong>"
+msgstr "<strong>Subtotaal</strong>"
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.report_invoice_document_inh
+msgid "<strong>Total</strong>"
+msgstr "<strong>Totaal</strong>"
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_connection__api_token
+msgid "API Token"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.view_product_template_form_inherit
+msgid "Accept"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_sale_order__delivery_validate_error
+msgid "Auto Delivery Validation Issue"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_product_product__channable_brand
+#: model:ir.model.fields,field_description:channable_api.field_product_template__channable_brand
+msgid "Brand"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_csv_stock__csv_file
+msgid "CSV File"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model,name:channable_api.model_csv_stock
+msgid "CSV Stock Model"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.view_channable_product_import_form
+msgid "Cancel"
+msgstr "Annuleren"
+
+#. module: channable_api
+#: selection:sale.order,state:0
+msgid "Cancelled"
+msgstr "Geannuleerd"
+
+#. module: channable_api
+#: model:ir.ui.menu,name:channable_api.menu_channable_config
+#: model:ir.ui.menu,name:channable_api.menu_channable_configuration
+#: model_terms:ir.ui.view,arch_db:channable_api.view_picking_form_inherit
+#: model_terms:ir.ui.view,arch_db:channable_api.view_product_template_form_inherit
+#: model_terms:ir.ui.view,arch_db:channable_api.view_sale_order_form_inherit
+msgid "Channable"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model,name:channable_api.model_channable_connection
+msgid "Channable Connection"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.ui.menu,name:channable_api.menu_channable
+msgid "Channable Integration"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_sale_order__channable_order_id
+#: model_terms:ir.ui.view,arch_db:channable_api.view_sale_order_form_inherit
+#: selection:sale.order,state:0
+msgid "Channable Order"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_sale_order__channable_order_date
+msgid "Channable Order Date"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_product_product__channable_product_id
+#: model:ir.model.fields,field_description:channable_api.field_product_template__channable_product_id
+msgid "Channable Product ID"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model,name:channable_api.model_channable_product_import
+msgid "Channable Product Import"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model,name:channable_api.model_channable_product_price
+msgid "Channable Product Price"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_product_product__channable_vendor_ids
+#: model:ir.model.fields,field_description:channable_api.field_product_template__channable_vendor_ids
+msgid "Channable Vendors"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.actions.act_window,name:channable_api.action_channable_order_channel
+#: model:ir.ui.menu,name:channable_api.menu_channable_order_channel
+#: model_terms:ir.ui.view,arch_db:channable_api.view_channable_order_channel_tree
+msgid "Channel"
+msgstr "Kanaal"
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_sale_order__channable_commission
+msgid "Commission"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_connection__api_company_id
+msgid "Company ID"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.ui.menu,name:channable_api.menu_channable_connection
+#: model:ir.ui.menu,name:channable_api.menu_ftp_connection
+msgid "Configuration"
+msgstr "Instellingen"
+
+#. module: channable_api
+#: model:ir.actions.act_window,name:channable_api.action_channable_connection
+msgid "Connection"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.channable_connection_form
+msgid "Connection Form"
+msgstr ""
+
+#. module: channable_api
+#: code:addons/channable_api/models/channable_connection.py:37
+#: code:addons/channable_api/models/ftp_connection.py:67
+#, python-format
+msgid "Connection Test Succeeded! Everything seems properly set up!"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.channable_connection_tree
+msgid "Connection Tree"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model,name:channable_api.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_res_partner__courier_name
+#: model:ir.model.fields,field_description:channable_api.field_res_users__courier_name
+msgid "Courier Name"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_connection__create_uid
+#: model:ir.model.fields,field_description:channable_api.field_channable_order_channel__create_uid
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_import__create_uid
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_price__create_uid
+#: model:ir.model.fields,field_description:channable_api.field_csv_stock__create_uid
+#: model:ir.model.fields,field_description:channable_api.field_ftp_connection__create_uid
+#: model:ir.model.fields,field_description:channable_api.field_ftp_shipping_file__create_uid
+msgid "Created by"
+msgstr "Aangemaakt door"
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_connection__create_date
+#: model:ir.model.fields,field_description:channable_api.field_channable_order_channel__create_date
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_import__create_date
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_price__create_date
+#: model:ir.model.fields,field_description:channable_api.field_csv_stock__create_date
+#: model:ir.model.fields,field_description:channable_api.field_ftp_connection__create_date
+#: model:ir.model.fields,field_description:channable_api.field_ftp_shipping_file__create_date
+msgid "Created on"
+msgstr "Aangemaakt op"
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_order_channel__description
+msgid "Description"
+msgstr "Omschrijving"
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_connection__display_name
+#: model:ir.model.fields,field_description:channable_api.field_channable_order_channel__display_name
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_import__display_name
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_price__display_name
+#: model:ir.model.fields,field_description:channable_api.field_csv_stock__display_name
+#: model:ir.model.fields,field_description:channable_api.field_ftp_connection__display_name
+#: model:ir.model.fields,field_description:channable_api.field_ftp_shipping_file__display_name
+msgid "Display Name"
+msgstr "Weergavenaam"
+
+#. module: channable_api
+#: selection:sale.order,state:0
+msgid "Error Order"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model,name:channable_api.model_ftp_shipping_file
+msgid "FRP Shipping FtpShipping File"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.ui.menu,name:channable_api.menu_ftp
+msgid "FTP"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_ftp_connection__ftp_login
+msgid "FTP Accounts"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.actions.act_window,name:channable_api.action_ftp_connection
+#: model:ir.model,name:channable_api.model_ftp_connection
+msgid "FTP Connection"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.ftp_connection_form
+msgid "FTP Connection Form"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.ftp_connection_tree
+msgid "FTP Connection Tree"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_ftp_connection__ftp_location
+msgid "FTP Location"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.actions.act_window,name:channable_api.action_ftp_shipping_files
+msgid "FTP Shipping File"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.frp_shipping_file_form
+msgid "FTP Shipping File Form"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.frp_shipping_file_tree
+msgid "FTP Shipping File Tree"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_import__channable_file_name
+#: model:ir.model.fields,field_description:channable_api.field_ftp_shipping_file__name
+msgid "File Name"
+msgstr "Bestandsnaam"
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_ftp_connection__folder_path
+msgid "Folder Path"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.actions.server,name:channable_api.ir_cron_sync_orders_ir_actions_server
+#: model:ir.cron,cron_name:channable_api.ir_cron_sync_orders
+#: model:ir.cron,name:channable_api.ir_cron_sync_orders
+msgid "Get Order from Channable to Odoo"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.actions.server,name:channable_api.ir_cron_import_shipping_files_ir_actions_server
+#: model:ir.cron,cron_name:channable_api.ir_cron_import_shipping_files
+#: model:ir.cron,name:channable_api.ir_cron_import_shipping_files
+msgid "Get Shipping File from FTP to Odoo"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_connection__id
+#: model:ir.model.fields,field_description:channable_api.field_channable_order_channel__id
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_import__id
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_price__id
+#: model:ir.model.fields,field_description:channable_api.field_csv_stock__id
+#: model:ir.model.fields,field_description:channable_api.field_ftp_connection__id
+#: model:ir.model.fields,field_description:channable_api.field_ftp_shipping_file__id
+msgid "ID"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.view_channable_product_import_form
+msgid "Import"
+msgstr "Importeren"
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_ftp_shipping_file__import_date
+msgid "Import Date"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model,name:channable_api.model_account_invoice
+msgid "Invoice"
+msgstr "Factuur"
+
+#. module: channable_api
+#: model:mail.template,report_name:channable_api.custom_invoice_email_template
+msgid "Invoice_${(object.number or '').replace('/','_')}${object.state == 'draft' and '_draft' or ''}"
+msgstr "Factuur_${(object.number or '').replace('/','_')}${object.state == 'draft' and '_draft' or ''}"
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_sale_order__is_channable_error_order
+msgid "Is Error Order"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_product_product__is_review_product
+#: model:ir.model.fields,field_description:channable_api.field_product_template__is_review_product
+msgid "Is Review Product"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_connection____last_update
+#: model:ir.model.fields,field_description:channable_api.field_channable_order_channel____last_update
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_import____last_update
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_price____last_update
+#: model:ir.model.fields,field_description:channable_api.field_csv_stock____last_update
+#: model:ir.model.fields,field_description:channable_api.field_ftp_connection____last_update
+#: model:ir.model.fields,field_description:channable_api.field_ftp_shipping_file____last_update
+msgid "Last Modified on"
+msgstr "Laatst gewijzigd op"
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_connection__write_uid
+#: model:ir.model.fields,field_description:channable_api.field_channable_order_channel__write_uid
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_import__write_uid
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_price__write_uid
+#: model:ir.model.fields,field_description:channable_api.field_csv_stock__write_uid
+#: model:ir.model.fields,field_description:channable_api.field_ftp_connection__write_uid
+#: model:ir.model.fields,field_description:channable_api.field_ftp_shipping_file__write_uid
+msgid "Last Updated by"
+msgstr "Laatst bijgewerkt door"
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_connection__write_date
+#: model:ir.model.fields,field_description:channable_api.field_channable_order_channel__write_date
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_import__write_date
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_price__write_date
+#: model:ir.model.fields,field_description:channable_api.field_csv_stock__write_date
+#: model:ir.model.fields,field_description:channable_api.field_ftp_connection__write_date
+#: model:ir.model.fields,field_description:channable_api.field_ftp_shipping_file__write_date
+msgid "Last Updated on"
+msgstr "Laatst bijgewerkt op"
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_ftp_connection__location_type
+msgid "Location Type"
+msgstr "Locatiesoort"
+
+#. module: channable_api
+#: selection:sale.order,state:0
+msgid "Locked"
+msgstr "Geblokkeerd"
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.custom_external_layout_standard
+msgid "Logo"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_ftp_shipping_file__file_md5
+msgid "MD5"
+msgstr ""
+
+#. module: channable_api
+#: code:addons/channable_api/models/channable_connection.py:147
+#, python-format
+msgid "Make Sure Channable API Configuration Details are Valid."
+msgstr ""
+
+#. module: channable_api
+#: code:addons/channable_api/models/channable_connection.py:34
+#, python-format
+msgid "Make Sure Channable API Token is Correct!"
+msgstr ""
+
+#. module: channable_api
+#: code:addons/channable_api/models/ftp_connection.py:49
+#, python-format
+msgid "Make Sure FTP Configuration Details are Valid."
+msgstr ""
+
+#. module: channable_api
+#: code:addons/channable_api/models/ftp_connection.py:57
+#, python-format
+msgid "Make Sure FTP Login Details and FTP Location are Valid."
+msgstr ""
+
+#. module: channable_api
+#: code:addons/channable_api/models/channable_connection.py:36
+#, python-format
+msgid "Make Sure Your Project ID and Company ID is Correct!"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_sale_order__channable_channel_id
+msgid "MarketPlace"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_order_channel__channel_id
+msgid "MarketPlace Id"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_order_channel__channel_image
+msgid "MarketPlace Logo"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_order_channel__name
+msgid "MarketPlace Name"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_sale_order__marketplace_id
+msgid "MarketPlace Order ID"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_csv_stock__file_name
+msgid "Name"
+msgstr "Naam"
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_ftp_connection__name
+msgid "Name of Location"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_price__name
+msgid "Name of Website"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_connection__api_offset
+msgid "Offset"
+msgstr ""
+
+#. module: channable_api
+#: selection:ftp.connection,location_type:0
+msgid "Order Export"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.actions.server,name:channable_api.ir_cron_export_orders_ir_actions_server
+#: model:ir.cron,cron_name:channable_api.ir_cron_export_orders
+#: model:ir.cron,name:channable_api.ir_cron_export_orders
+msgid "Order Export from Odoo to FTP"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_sale_order__order_platform_id
+msgid "Order Platform Id"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_product_product__parent_reference
+#: model:ir.model.fields,field_description:channable_api.field_product_template__parent_reference
+msgid "Parent Reference"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_ftp_connection__password
+msgid "Password"
+msgstr "Wachtwoord"
+
+#. module: channable_api
+#: code:addons/channable_api/models/ftp_connection.py:65
+#: code:addons/channable_api/models/ftp_connection.py:256
+#, python-format
+msgid "Please Confirm Your Folder Path is Valid."
+msgstr ""
+
+#. module: channable_api
+#: code:addons/channable_api/models/stock_picking.py:50
+#, python-format
+msgid "Please Fill Order Tracking Info Proper"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_price__channable_price_amount
+msgid "Price"
+msgstr "Prijs"
+
+#. module: channable_api
+#: selection:ftp.shipping.file,status:0
+msgid "Proceed"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model,name:channable_api.model_product_product
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_price__product_id
+msgid "Product"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_sale_order_line__channable_product_commission
+msgid "Product Commission"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_product_import__channable_product_file
+msgid "Product File"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.actions.act_window,name:channable_api.action_channable_product_import
+#: model:ir.ui.menu,name:channable_api.menu_channable_product_import
+msgid "Product Import"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_product_product__name
+msgid "Product Name"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.actions.act_window,name:channable_api.action_channable_product_price
+#: model:ir.model.fields,field_description:channable_api.field_product_product__channable_product_price
+#: model:ir.model.fields,field_description:channable_api.field_product_template__channable_product_price
+#: model:ir.ui.menu,name:channable_api.menu_channable_product_price
+#: model_terms:ir.ui.view,arch_db:channable_api.view_channable_product_price_tree
+msgid "Product Price"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.view_channable_product_price_form
+msgid "Product Price form"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model,name:channable_api.model_product_template
+msgid "Product Template"
+msgstr "Productsjabloon"
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_connection__api_project_id
+msgid "Project ID"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_channable_connection__name
+msgid "Project Name"
+msgstr ""
+
+#. module: channable_api
+#: selection:sale.order,state:0
+msgid "Quotation"
+msgstr "Offerte"
+
+#. module: channable_api
+#: selection:sale.order,state:0
+msgid "Quotation Sent"
+msgstr "Offerte verstuurd"
+
+#. module: channable_api
+#: model:ir.actions.server,name:channable_api.ir_cron_import_shipping_ir_actions_server
+#: model:ir.cron,cron_name:channable_api.ir_cron_import_shipping
+#: model:ir.cron,name:channable_api.ir_cron_import_shipping
+msgid "Read Shipping Information received from FTP in to Odoo and Update on Channable (Deliery order validate...)"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model,name:channable_api.model_sale_order
+msgid "Sale Order"
+msgstr "Verkooporder"
+
+#. module: channable_api
+#: selection:sale.order,state:0
+msgid "Sales Order"
+msgstr "Verkooporder"
+
+#. module: channable_api
+#: model:ir.model,name:channable_api.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Verkooporderregel"
+
+#. module: channable_api
+#: model:ir.model,name:channable_api.model_ir_cron
+msgid "Scheduled Actions"
+msgstr "Geplande acties"
+
+#. module: channable_api
+#: code:addons/channable_api/models/stock_picking.py:25
+#: model:ir.model.fields,field_description:channable_api.field_stock_picking__tracking_url
+#: model_terms:ir.ui.view,arch_db:channable_api.view_picking_form_inherit
+#, python-format
+msgid "Shipment URL"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.view_partner_form_inherit
+msgid "Shipping"
+msgstr "Afleveradres"
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_ftp_shipping_file__shipping_file
+msgid "Shipping File"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.ui.menu,name:channable_api.menu_ftp_shipping_files
+msgid "Shipping Files"
+msgstr ""
+
+#. module: channable_api
+#: selection:ftp.connection,location_type:0
+msgid "Shipping Import"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_ftp_shipping_file__status
+#: model:ir.model.fields,field_description:channable_api.field_sale_order__state
+msgid "Status"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.actions.server,name:channable_api.ir_cron_channable_stock_update_ir_actions_server
+#: model:ir.cron,cron_name:channable_api.ir_cron_channable_stock_update
+#: model:ir.cron,name:channable_api.ir_cron_channable_stock_update
+msgid "Stock Export from Odoo to Channable"
+msgstr ""
+
+#. module: channable_api
+#: selection:ftp.connection,location_type:0
+msgid "Stock Import"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.actions.server,name:channable_api.ir_cron_import_stock_ir_actions_server
+#: model:ir.cron,cron_name:channable_api.ir_cron_import_stock
+#: model:ir.cron,name:channable_api.ir_cron_import_stock
+msgid "Stock Import form FTP to Odoo"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.channable_connection_form
+#: model_terms:ir.ui.view,arch_db:channable_api.ftp_connection_form
+msgid "Test Connection"
+msgstr "Test verbinding"
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.custom_external_layout_standard
+msgid "Thanks for shopping with us!"
+msgstr ""
+
+#. module: channable_api
+#: code:addons/channable_api/models/product.py:67
+#, python-format
+msgid "The number of variants to generate is too high. You should either not generate variants for each combination or generate them on demand from the sales order. To do so, open the form view of attributes and change the mode of *Create Variants*."
+msgstr ""
+
+#. module: channable_api
+#: sql_constraint:ftp.connection:0
+msgid "This location type is already created, please create another one."
+msgstr ""
+
+#. module: channable_api
+#: selection:ftp.shipping.file,status:0
+msgid "To Be Process"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.view_order_tree_inherit
+#: model_terms:ir.ui.view,arch_db:channable_api.view_quotation_tree_inherit
+msgid "Total Commission"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_stock_picking__tracking_code
+msgid "Tracking Code"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model,name:channable_api.model_stock_picking
+msgid "Transfer"
+msgstr "Overplaatsing"
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_res_partner__tracking_url_prefix
+#: model:ir.model.fields,field_description:channable_api.field_res_users__tracking_url_prefix
+msgid "URL Prefix"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.custom_external_layout_standard
+msgid "VAT NO:"
+msgstr ""
+
+#. module: channable_api
+#: selection:sale.order,state:0
+msgid "Vendor Process"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.view_product_template_form_inherit
+msgid "Vendors"
+msgstr "Leveranciers"
+
+#. module: channable_api
+#: model:ir.model,name:channable_api.model_channable_order_channel
+msgid "channable Order Channel"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.view_channable_product_import_form
+msgid "channable import form"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_sale_order__is_exported_to_ftp
+msgid "is Exported to FTP"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_sale_order_line__is_line_review_product
+msgid "is error product"
+msgstr ""
+
+#. module: channable_api
+#: code:addons/channable_api/models/order.py:58
+#, python-format
+msgid "message"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.view_channable_product_import_form
+msgid "or"
+msgstr "of"
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.custom_external_layout_standard
+msgid "service@distrilink.be"
+msgstr ""
+
+#. module: channable_api
+#: model:ir.model.fields,field_description:channable_api.field_stock_picking__transporter
+msgid "transporter"
+msgstr ""
+
+#. module: channable_api
+#: model_terms:ir.ui.view,arch_db:channable_api.custom_external_layout_standard
+msgid "www.distrilink.be"
+msgstr ""
+
+#. module: account
+#: model:mail.template,body_html:account.email_template_edi_invoice
+msgid "<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                        % if object.type == 'out_invoice':\n"
+"                            Dear Customer,\n"
+"                            <br/><br/>\n"
+"                            % if object.sale_order_id and object.sale_order_id.tracking_urls:\n"
+"                                Your Distrilink order ${object.marketplace_id or 'n/a'} via ${object.sale_order_id.channable_channel_id.description} is shipped and you can track the delivery via: \n"
+"                                <a target=\"_blank\" href=\"${object.sale_order_id.tracking_urls}\" style=\"color: #875A7B;\">${object.sale_order_id.tracking_urls}</a>\n"
+"                            % else:\n"
+"                                Your Distrilink order ${object.marketplace_id or 'n/a'} is shipped\n"
+"                            % endif\n"
+"                            <br/><br/>\n"
+"                            <b>If you have questions about your delivery, please contact the courier service via your track &amp; trace url.</b>\n"
+"                            <br/><br/>\n"
+"                            Attached you can find the invoice of your order.\n"
+"                            <br/><br/>\n"
+"                            For service-related questions, please get in touch via service@distrilink.be.\n"
+"                            <br/><br/>\n"
+"                            Enjoy your purchase!\n"
+"                            <br/><br/>\n"
+"                            Best regards,\n"
+"                            <br/>\n"
+"                            Distrilink customer service\n"
+"                        % endif\n"
+"                        % if object.type == 'out_refund':\n"
+"                            Hi,\n"
+"                            <br/><br/>\n"
+"                            Please find attached your credit note.\n"
+"                            <br/><br/>\n"
+"                            At your service!\n"
+"                            <br/><br/>\n"
+"                            Best regards,\n"
+"                            <br/>\n"
+"                            Distrilink customer service\n"
+"                        % endif\n"
+"                        % if object.type in ['in_invoice', 'in_refund']:\n"
+"                            Dear ${object.partner_id.name}\n"
+"                            % if object.partner_id.parent_id:\n"
+"                                (${object.partner_id.parent_id.name})\n"
+"                            % endif\n"
+"                            <br/><br/>\n"
+"                            Here is your \n"
+"                            % if object.number:\n"
+"                                invoice <strong>${object.number}</strong>\n"
+"                            % else:\n"
+"                                invoice\n"
+"                            %endif\n"
+"                            % if object.origin:\n"
+"                                (with reference: ${object.origin})\n"
+"                            % endif\n"
+"                            amounting in <strong>${format_amount(object.amount_total, object.currency_id)}</strong>\n"
+"                            from ${object.company_id.name}.\n"
+"                            % if object.state=='paid':\n"
+"                                This invoice is already paid.\n"
+"                            % else:\n"
+"                                Please remit payment at your earliest convenience.\n"
+"                            % endif\n"
+"                            <br/><br/>\n"
+"                            Do not hesitate to contact us if you have any question.\n"
+"                        % endif\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+msgstr "<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                        % if object.type == 'out_invoice':\n"
+"                            geachte klant,\n"
+"                            <br/><br/>\n"
+"                            % if object.sale_order_id and object.sale_order_id.tracking_urls:\n"
+"                                Uw Distrilink-bestelling ${object.marketplace_id or 'n/a'} via ${object.sale_order_id.channable_channel_id.description} wordt verzonden en u kunt de levering volgen via: \n"
+"                                <a target=\"_blank\" href=\"${object.sale_order_id.tracking_urls}\" style=\"color: #875A7B;\">${object.sale_order_id.tracking_urls}</a>\n"
+"                            % else:\n"
+"                                Uw Distrilink-bestelling ${object.marketplace_id or 'n/a'} wordt verzonden\n"
+"                            % endif\n"
+"                            <br/><br/>\n"
+"                            <b>als u vragen heeft over uw levering, neem dan contact op met de koeriersdienst via uw nummer & trace url.</b>\n"
+"                            <br/><br/>\n"
+"                            Bijgevoegd vindt u de factuur van uw bestelling.\n"
+"                            <br/><br/>\n"
+"                            Neem voor servicegerelateerde vragen contact op via service@distrilink.be.\n"
+"                            <br/><br/>\n"
+"                            geniet van uw aankoop!\n"
+"                            <br/><br/>\n"
+"                            Vriendelijke groeten\n"
+"                            <br/>\n"
+"                            Distrilink klantendienst\n"
+"                        % endif\n"
+"                        % if object.type == 'out_refund':\n"
+"                            Hallo,\n"
+"                            <br/><br/>\n"
+"                            Gelieve in bijlage je credit nota terug te vinden.\n"
+"                            <br/><br/>\n"
+"                            Tot uw dienst!\n"
+"                            <br/><br/>\n"
+"                            Vriendelijke groeten\n"
+"                            <br/>\n"
+"                            Distrilink klantendienst\n"
+"                        % endif\n"
+"                        % if object.type in ['in_invoice', 'in_refund']:\n"
+"                            "Beste ${object.partner_id.name}\n"
+"                            % if object.partner_id.parent_id:\n"
+"                                (${object.partner_id.parent_id.name})\n"
+"                            % endif\n"
+"                            <br/><br/>\n"
+"                            Zie hier \n"
+"                            % if object.number:\n"
+"                                factuur <strong>${object.number}</strong>\n"
+"                            % else:\n"
+"                                factuur\n"
+"                            %endif\n"
+"                            % if object.origin:\n"
+"                                (with reference: ${object.origin})\n"
+"                            % endif\n"
+"                            voor een bedrag van <strong>${format_amount(object.amount_total, object.currency_id)}</strong>\n"
+"                            ten aanzien van ${object.company_id.name}.\n"
+"                            % if object.state=='paid':\n"
+"                                Deze factuur werd reeds betaald.\n"
+"                            % else:\n"
+"                                Met het oog op een vlotte afwikkeling zouden we het op prijs stellen indien u dit zo spoedig mogelijk doet.\n"
+"                            % endif\n"
+"                                <br/><br/>\n"
+"                                Mocht u vragen hebben aarzel dan niet om contact met ons op te nemen . \n"
+"                        % endif\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+
+#. module: account
+#: model:mail.template,subject:account.email_template_edi_invoice
+msgid "\n"
+"% if object.type == 'out_invoice':\n"
+"Your Distrilink order ${object.origin or 'n/a'} is shipped – Track & Trace your delivery\n"
+"%else:\n"
+"${object.company_id.name} Invoice (Ref ${object.number or 'n/a'})\n"
+"% endif\n"
+"            "
+msgstr "\n"
+"% if object.type == 'out_invoice':\n"
+"Uw Distrilink-bestelling ${object.origin or 'n/a'} wordt verscheept - Track & trace uw levering\n"
+"%else:\n"
+"${object.company_id.name} Factuur (Ref ${object.number or 'n/a'})\n"
+"% endif\n"
+"            "

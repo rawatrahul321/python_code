@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.rule" id="product_transfer_comp_rule">
+            <field name="name">Purchase Order multi-company</field>
+            <field name="model_id" ref="model_product_transfer"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">
+                [('company_id','=',user.company_id.id)]</field>
+        </record>
+
+        <record model="ir.rule" id="stock.stock_quant_rule">
+            <field name="name">stock_quant multi-company</field>
+            <field name="model_id" ref="stock.model_stock_quant"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id','=',user.company_id.id)]</field>
+        </record>
+
+        <record model="ir.rule" id="stock.stock_picking_rule">
+            <field name="name">stock_picking multi-company</field>
+            <field name="model_id" search="[('model','=','stock.picking')]" model="ir.model"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id','=',user.company_id.id)]</field>
+        </record>
+
+        <record model="ir.rule" id="stock.stock_picking_type_rule">
+            <field name="name">Stock Operation Type multi-company</field>
+            <field name="model_id" search="[('model','=','stock.picking.type')]" model="ir.model"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('warehouse_id.company_id','=',False),('warehouse_id.company_id','=',user.company_id.id)]</field>
+        </record>
+
+        <record id="point_of_sale.rule_pos_config_multi_company" model="ir.rule">
+            <field name="name">Point Of Sale Config</field>
+            <field name="model_id" ref="point_of_sale.model_pos_config" />
+            <field name="global" eval="True" />
+            <field name="domain_force">[('company_id','=',user.company_id.id)]</field>
+        </record>
+
+        <record id="point_of_sale.rule_pos_order_report_multi_company" model="ir.rule">
+            <field name="name">Point Of Sale Order Analysis multi-company</field>
+            <field name="model_id" ref="point_of_sale.model_report_pos_order"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id','=',user.company_id.id)]</field>
+        </record>
+
+        <record id="rule_stock_move_line_multi_company" model="ir.rule">
+            <field name="name">Stock Move Line multi-company</field>
+            <field name="model_id" ref="stock.model_stock_move_line" />
+            <field name="global" eval="True" />
+            <field name="domain_force">['|',('location_id.company_id','=',user.company_id.id),
+                                        ('location_dest_id.company_id','=',user.company_id.id)]</field>
+        </record>
+
+        <record model="ir.rule" id="account.account_payment_comp_rule">
+            <field name="name">Account payment company rule</field>
+            <field name="model_id" ref="account.model_account_payment"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id','=',user.company_id.id)]</field>
+        </record>
+
+        <!-- 
+        <record model="ir.rule" id="stock.stock_location_comp_rule">
+            <field name="name">Location multi-company</field>
+            <field name="model_id" ref="stock.model_stock_location"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id','=',user.company_id.id)]</field>
+        </record> -->
+    </data>
+</odoo>

@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_order_form_line,access_order_form_line,model_order_form_line,,1,1,1,1
+access_order_form,access_order_form,model_order_form,,1,1,1,1
+
+access_product_product_order,product.product order,model_product_product,,1,1,1,1
+
+access_truck_details,access_truck_details,model_truck_details,group_order_manager,1,0,0,0
+access_truck_location,access_truck_location,model_truck_location,,1,0,0,0
+
+access_reject_reason,access_reject_reason,model_reject_reason,,1,1,1,1

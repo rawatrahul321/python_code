@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="sms_sms_body_template_form_view">
+            <field name="name">sms.body.template.form</field>
+            <field name="model">sms.body.template</field>
+            <field name="arch" type="xml">
+                <form string="SMS">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="model_id"/>
+                                <field name="model"/>
+                            </group>
+                            <group>
+                                <field name="sms_from"/>
+                                <field name="sms_to"/>
+                            </group>
+                        </group>
+						<group string="Message">
+                        	<field name="template_body" nolabel="1"/>
+                       	</group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sms_sms_body_template_tree_view">
+            <field name="name">sms.body.template.tree</field>
+            <field name="model">sms.body.template</field>
+            <field name="arch" type="xml">
+                <tree string="SMS">
+                    <field name="name"/>
+                    <field name="model"/>
+	                <field name="sms_from"/>
+	                <field name="sms_to"/>
+	                <field name="template_body"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="action_sms_template">
+            <field name="name">KPHC SMS Template</field>
+            <field name="res_model">sms.body.template</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem parent="menu_parent_sms" id="menu_action_sms_template" action="action_sms_template" sequence="2"/>
+
+
+        <menuitem parent="base.menu_administration" id="menu_parent_sms_kphc" name="KPHC SMS" sequence="2"/>
+
+        <menuitem parent="menu_parent_sms_kphc" id="menu_action_kphc_sms" action="action_kphc_sms" sequence="1"/>
+
+        <menuitem parent="menu_parent_sms_kphc" id="menu_action_sms_template" action="action_sms_template" sequence="2"/>
+    </data>
+</odoo>

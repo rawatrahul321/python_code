@@ -1,0 +1,21 @@
+{
+    'name': 'KPHC Delivery Notification Development',
+    'version': '13.0.1.1',
+    'summary': 'KPHC Delivery Notification Development',
+    'category': 'Field Service',
+    'author': 'Caret IT Solutions Pvt. Ltd.',
+    'website': 'http://www.caretit.com',
+    'depends': ['website_sale', 'sale_management'],
+    'data': [
+        'security/ir_rule.xml',
+        'edi/sms_template_for_order_creation.xml',
+        'edi/sms_template_for_order_confirm.xml',
+        'security/ir.model.access.csv',
+        'views/sms_sms_view.xml',
+        'views/res_config.xml',
+        'views/sms_template_views.xml',
+        'views/configure_gateway_view.xml',
+    ],
+    'installable': True, 
+    'auto_install': False,
+}

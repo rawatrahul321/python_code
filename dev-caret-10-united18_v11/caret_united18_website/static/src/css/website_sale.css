@@ -1,0 +1,20 @@
+@media (min-width: 400px) {
+  .oe_product.oe_list {
+    border: none;
+    border-bottom: 1px solid rgba(100, 100, 100, 0.2);
+    width: 100%;
+    min-height: 250px;
+    position: relative;
+    padding-bottom: 5px;
+    padding-left: 330px !important;
+  }
+  .oe_product.oe_list .oe_product_image {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 315px !important;
+  }
+  .oe_product_image #o-carousel-product .carousel-inner div.item {
+  height: 220px;
+}

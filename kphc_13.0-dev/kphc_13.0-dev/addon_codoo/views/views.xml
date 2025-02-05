@@ -1,0 +1,49 @@
+<odoo>
+    <data>
+
+        <record model='ir.ui.view' id='view_res_partner_inherit_for_remark'>
+            <field name='name'>res.partner.base.form.view.inhertite</field>
+            <field name='model'>res.partner</field>
+            <field name='inherit_id' ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name='remark' string="Remark"/>
+                </xpath>
+                <xpath expr="//div[@class='oe_kanban_details']//field[@name='name']" position="replace">
+                    <field name='display_name'/>
+                </xpath>
+            </field>
+        </record>
+        <record model='ir.ui.view' id='view_sale_order_inherit_for_mobile'>
+            <field name='name'>sale.order.form.view.mobile</field>
+            <field name='model'>sale.order</field>
+            <field name='inherit_id' ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name='mobile' string="Mobile"/>
+                </xpath>
+            </field>
+        </record>
+        <record model='ir.ui.view' id='view_sale_order_inherit_for_tree'>
+            <field name='name'>sale.order.form.view.mobile</field>
+            <field name='model'>sale.order</field>
+            <field name='inherit_id' ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name='mobile' string="Mobile"/>
+                </xpath>
+            </field>
+        </record>
+        <record model='ir.ui.view' id='view_sale_order_inherit_for_tree_2'>
+            <field name='name'>sale.order.form.view.mobile</field>
+            <field name='model'>sale.order</field>
+            <field name='inherit_id' ref="sale.view_quotation_tree_with_onboarding"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name='mobile' string="Mobile"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

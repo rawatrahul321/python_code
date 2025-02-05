@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="sms_sms_form_view">
+            <field name="name">kphc.sms.form</field>
+            <field name="model">kphc.sms</field>
+            <field name="arch" type="xml">
+                <form string="SMS">
+                    <header>
+                        <button string="Send SMS"
+                            type="object"
+                            name="sendSMS" class="btn-primary"
+                            attrs="{'invisible': [('state','in',('sent','fail'))]}"
+                            />
+                        <button string="Retry"
+                            type="object"
+                            name="sendSMS" class="btn-primary"
+                            attrs="{'invisible': [('state','in',('draft','sent'))]}"
+                            />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,sent,fail"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="to_number"/>
+                                <field name="sender"/>
+                                <field name="language"/>
+                            </group>
+                            <group>
+                                <field name="res_id"/>
+                                <field name="res_model"/>
+                            </group>
+                        </group>
+						<group string="Message">
+                        	<field name="message" nolabel="1"/>
+                       	</group>
+                        <group string="Response Log">
+                            <field name="response_log" nolabel="1" readonly="1"/>
+                        </group>
+                        
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sms_sms_tree_view">
+            <field name="name">kphc.sms.tree</field>
+            <field name="model">kphc.sms</field>
+            <field name="arch" type="xml">
+                <tree string="SMS" default_order='create_date desc'>
+                    <field name="create_date"/>
+                    <field name="to_number"/>
+                    <field name="sender"/>
+                    <field name="message"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="action_kphc_sms">
+            <field name="name">KPHC SMS</field>
+            <field name="res_model">kphc.sms</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem parent="base.menu_custom" id="menu_parent_sms" name="KPHC SMS" sequence="2"/>
+
+        <menuitem parent="menu_parent_sms" id="menu_action_sms_sms" action="action_kphc_sms" sequence="1"/>
+
+    </data>
+</odoo>

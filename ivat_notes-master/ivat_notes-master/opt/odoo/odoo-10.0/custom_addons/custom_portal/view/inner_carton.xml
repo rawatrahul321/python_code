@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+<template id="inner_carton">
+    <t t-call="report.html_container">
+    <t t-foreach="docs" t-as="o">
+        <t t-foreach="range(0,o.no_of_labels)" t-as="n">
+	        <t t-call="custom_portal.template_inner_carton"/>
+	    </t>
+    </t>
+    </t>
+</template>
+
+		<template id="template_inner_carton">
+		    <t t-call="report.html_container">
+		        <div class="page" style="font-size: 20px !important;">
+		            <t t-foreach="docs" t-as="o">
+		            <table style="border-spacing:0;margin-bottom:0;height:122px;" class="table">
+		               <div  style="padding:0;font-size: 20px !important;">
+		               <strong style="font-size: 15px !important;">PART NO :-</strong>
+                           <strong style="line-height: 5pt;font-size: 25px !important;" t-field="o.product_id.default_code"/>
+                       
+				    	<t t-if="o.product_id.name">
+                           <h3><b><span t-field="o.product_id.name"/></b></h3>
+                        </t>
+                        <strong style="font-size: 25px !important;">COLOR :-</strong>
+                        <t t-if="o.product_id.prod_color">
+                           <strong style="font-size: 25px !important;" t-field="o.product_id.prod_color"/>
+                        </t>&#160; &#160; <b>Qty.  :-</b> <span t-esc="o.product_id.inner_carton_qty"/> <b>PC</b><br/>
+                        
+                        <strong>M.R.P. -</strong>
+                        <t t-if="o.product_id.list_price">
+                           <strong t-field="o.product_id.list_price"/>
+                        </t><b>EACH</b> (Incl. Of all taxes)<br/>
+                        
+                        <b>Date Of Pkg :-</b>
+                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m-%Y')"/><br/>
+	                    
+						<img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.product_id.barcode, 600, 100)" style="width:300px;height:50px"/>
+			            <br/><p class="text-left" t-field="o.product_id.barcode" style="padding-left:110px;"></p>
+					    </div> 
+					    </table>
+		            </t>
+		        </div>
+		    </t>
+		</template>
+
+		<report 
+            id="report_labels"
+            string="Inner Carton Label"
+            model="product.carton.label" 
+            report_type="qweb-pdf"
+            file="custom_portal.inner_carton" 
+            name="custom_portal.inner_carton"
+            menu="False" 
+         />
+            
+</data>
+</odoo>
+
+

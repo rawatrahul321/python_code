@@ -1,0 +1,31 @@
+@font-face{
+	font-family:'CenturyGothic';
+	src:url('../fonts/CenturyGothicRegular_font.ttf');
+}
+@font-face{
+	font-family:'CenturyGothiBold';
+	src:url('../fonts/CenturyGothicBold.ttf');
+}
+p {
+	font-size: 19px;
+}
+span {
+	font-size: 19px;
+}
+b {
+	font-size: 19px;
+}
+strong {
+	font-size: 19px;
+}
+center {
+	font-size: 19px;
+}
+a {
+	font-size: 19px;
+}
+.table th, .table td {
+    padding: 0.5rem !important;
+}
+$font-family-sans-serif: "CenturyGothic";
+$font-family-sans-serif: "CenturyGothiBold";

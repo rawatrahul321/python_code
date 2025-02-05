@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="payment_acquirer_mastercard" model="payment.acquirer">
+            <field name="name">MasterCard</field>
+            <field name="provider">mastercard</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="image_128" type="base64" file="payment_mastercard/static/src/img/mastercard_icon.png"/>
+            <field name="view_template_id" ref="payment_mastercard.mastercard_acquirer_button"/>
+            <field name="state">test</field>
+            <field name="pre_msg"><![CDATA[
+            <p>You will be redirected to  MasterCard payment after clicking Pay Now.</p>]]></field>
+            <field name="mastercard_merchant_id">TEST001070010750</field>
+            <field name="mastercard_merchant_access_code">42F65FD2</field>
+            <field name="mastercard_hash_secret">FDFFC3191FB9BE294043A36E5187F96F</field>
+        </record>
+    </data>
+</openerp>

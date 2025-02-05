@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_zalando_form" model="ir.ui.view">
+            <field name="name">zalando.logo.form</field>
+            <field name="model">zalando.logo</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="marketPlace_logo" widget="image"/>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_zalando_logo">
+            <field name="name">Zalando Logo</field>
+            <field name="res_model">zalando.logo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_zalando_logo"
+                  name="Zalando Logo"
+                  parent="channable_api.menu_channable"
+                  action="action_zalando_logo"
+                  sequence="21"/>
+
+    </data>
+</odoo>

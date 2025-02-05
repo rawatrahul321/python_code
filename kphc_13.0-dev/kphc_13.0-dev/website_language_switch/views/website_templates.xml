@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ <data>
+
+	<!-- Language Selector Inherit & Added Language Direction -->
+
+	<!-- Language Flag Template -->
+	<template id="language_switch" name="Language Switch">
+		<t t-if="(request and request.is_frontend_multilang and len(languages) &gt; 1) or (website and (editable or translatable))">
+			<t t-if="request.context.get('lang') == 'en_US'">
+                <a
+                    t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang_code='ar_SY')"
+                    t-att-data-default-lang="(editable or translatable) and 'true' if website and ar_SY == website.default_lang_id.code else None"
+                    t-att-data-lang="ar_SY"
+                    t-att-data-lang_dir="rtl"
+                    class="js_change_lang nav-link font-weight-bold">
+                    <t>العربية</t>			
+                </a>
+			</t>
+			<t t-else="request.context.get('lang') == 'ar_SY'">
+                <a
+                    t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang_code='en_US')"
+                    t-att-data-default-lang="(editable or translatable) and 'true' if website and en_US == website.default_lang_id.code else None"
+                    t-att-data-lang="en_US"
+                    t-att-data-lang_dir="ltr"
+                    class="js_change_lang nav-link font-weight-bold">
+                    <t>English</t>
+                </a>
+		    </t>
+	    </t>
+    </template>
+
+    <!-- Customize Options for Language switch -->
+	<!-- <template id="top_menu_switch" inherit_id="website.layout"
+		name="Show Language" active="True" customize_show="True">
+        <xpath expr="//header//ul[@id='top_menu']" position="after">
+			<t t-call="website_language_switch.language_switch" />
+		</xpath>
+	</template> -->
+
+    <template id="language_selector_website_language_switch" inherit_id="website.language_selector">
+        <xpath expr="//ul/li[1]/div[hasclass('dropup')]" position="replace">
+            <t t-if="len(languages) > 2">
+                <div class="dropup">
+                    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span t-esc="list(filter(lambda lg : lg[0] == lang, languages))[0][2].split('/').pop()"/>
+                        <span class="caret ml4"/>
+                    </button>
+                    <div class="dropdown-menu test" role="menu">
+                        <t t-foreach="filter(lambda lg : lg[0] != lang, languages)" t-as="lg"> <!-- filter(lambda x: x[0] == languages[0][0], languages) -->
+                            <a t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang_code=lg[0])"
+                                class="dropdown-item js_change_lang test"
+                                t-att-data-url_code="lg[1]">
+                                <t t-esc="lg[2].split('/').pop()"/>
+                            </a>
+                        </t>
+                    </div>
+                </div>
+            </t>
+            <div t-else="">
+                <t t-foreach="filter(lambda lg : lg[0] != lang, languages)" t-as="lg">
+                    <a t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang_code=lg[0])"
+                        class="js_change_lang test"
+                        t-att-data-url_code="lg[1]"
+                        style="margin-left: 15px; margin-right: 15px;">
+                        <t t-esc="lg[2].split('/').pop()"/>
+                    </a>
+                </t>
+            </div>
+        </xpath>
+    </template>
+
+ </data>
+</odoo>

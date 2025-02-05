@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="audit_log_tree" model="ir.ui.view">
+            <field name="name">audit.log.tree</field>
+            <field name="model">audit.log</field>
+            <field name="arch" type="xml">
+                <tree create="0" edit="0">
+                    <field name="processed_time"/>
+                    <field name="name"/>
+                    <field name="status"/>
+                    <field name="api_response" class="limit_char"/>
+                    <field name="error_message" class="limit_char2"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="audit_log_form" model="ir.ui.view">
+            <field name="name">audit.log.form</field>
+            <field name="model">audit.log</field>
+            <field name="arch" type="xml">
+                <form create="0" edit="0">
+                    <sheet>
+                        <group>
+                            <field name="processed_time"/>
+                            <field name="name"/>
+                            <field name="status"/>
+                            <field name="api_response"/>
+                            <field name="error_message"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_audit_log" model="ir.actions.act_window">
+            <field name="name">Audit Logs</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">audit.log</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem action="action_audit_log" id="menu_audit_log" parent="sale.sale_menu_root"/>
+
+    </data>
+</odoo>

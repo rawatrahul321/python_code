@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+<!--         <delete model="product.product" search="[('id','=',ref('point_of_sale.product_product_consumable'))]"/> -->
+
+        <!-- <record id="point_of_sale.product_product_consumable" model="product.product">
+            <field name="name">Discount</field>
+            <field name="standard_price">1</field>
+            <field name="list_price">1</field>
+            <field name="type">service</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="default_code">DISC</field>
+        </record> -->
+
+        <record id="point_of_sale.product_product_tip" model="product.product">
+            <field name="active" eval="False"/>
+        </record>
+
+<!--         <delete model="product.product" search="[('id','=',ref('point_of_sale.product_product_tip'))]"/> -->
+        <delete model="product.category" search="[('id','=',ref('product.product_category_1'))]"/>
+        
+        <record id="pos_category_all" model="pos.category">
+            <field name="name">All</field>
+        </record>
+        <record id="website_category_all" model="product.public.category">
+            <field name="name">All</field>
+        </record>
+        <record id="goto_website" model="ir.actions.act_url">
+            <field name="name">Website</field>
+            <field name="url">/shop</field>
+            <field name="target">self</field>
+        </record>
+    </data>
+</odoo>

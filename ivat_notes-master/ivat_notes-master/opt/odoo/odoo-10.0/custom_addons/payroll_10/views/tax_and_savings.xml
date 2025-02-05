@@ -1,0 +1,670 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+    <menuitem id="tax" parent="hr.menu_hr_root" name="Tax"/>
+    <menuitem id="menu_hr_configuration" name="Configuration" parent="hr.menu_hr_root"  sequence="50"/>
+	<menuitem id="tax_submenu" parent="hr.menu_hr_root" name="Tax and Savings" groups="hr.group_hr_manager"/>
+	
+<!-- =============================Tax Slabs================== -->	
+
+<record model="ir.ui.view" id="tax_slab_form">
+		<field name="name">tax.slab.form</field>
+			<field name="model">tax.slabs</field>
+			<field name="type">form</field>
+		<field name="arch" type="xml">
+				<form string="Tax Slabs">
+				<sheet>
+				<group>
+						<group>
+							<field name="name" required='1'/>
+							<field name="from_limit" required='1' />
+						</group>
+						<group>
+							<field name="percent" required='1'/>
+						<field name="to_limit" required='0'  />
+							
+						</group>
+				</group>
+				</sheet>
+				</form>
+		</field>
+</record>
+
+<record model="ir.ui.view" id="tax_slab_tree">
+			<field name="name">tax.slab.tree</field>
+			<field name="model">tax.slabs</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<form string="Tax Slabs" >
+					<field name ="name"/>
+					<field name="from_limit"/>
+					<field name="to_limit" />
+					<field name="percent" />
+				</form>
+			</field>
+</record>
+
+<record id="tax_slabs_action" model="ir.actions.act_window">
+	        <field name="name">Tax Slabs</field>
+	        <field name="res_model">tax.slabs</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="help" type="html">
+	          <p class="oe_view_nocontent_create">
+			Click Here to create a new Tax Slabs          
+			</p>
+	        </field>
+	    </record>
+	<menuitem id="tax_slabs" parent="hr.menu_human_resources_configuration" name="Tax Slabs" action="tax_slabs_action" />
+
+<!-- ============================= Tax Slabs================== -->
+
+	
+<!-- =============================saving category================== -->
+	 <record model="ir.ui.view" id="tax_and_saving_form">
+			<field name="name">tax.and.savings.form</field>
+			<field name="model">tax.and.savings</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Saving Category">
+				<sheet>
+				
+				<group>
+					<group colspan="1" style= "width:70%">
+				<field name="name" required='1' />
+				</group>
+				<group>				
+				<field name="catagory_limit" required='1'  />
+				</group>
+				
+			</group>
+			</sheet>
+				</form>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="tax_and_saving_tree">
+			<field name="name">tax.and.savings.tree</field>
+			<field name="model">tax.and.savings</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<form string="Saving Category">
+					
+				<field name="name" />
+				<field name="catagory_limit" />
+				
+			</form>
+			</field>
+		</record>
+	
+	<record id="saving_category_action" model="ir.actions.act_window">
+	        <field name="name">Saving Category</field>
+	        <field name="res_model">tax.and.savings</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="help" type="html">
+	          <p class="oe_view_nocontent_create">
+			Click Here to create a new Category for Savings.	          
+			</p>
+	        </field>
+	    </record>
+	<menuitem id="savings_category" parent="hr.menu_human_resources_configuration" name="Saving Catagory" action="saving_category_action" />
+	
+	<!-- =============================saving category================== -->
+	
+	<!-- =============================saving type================== -->
+	
+	<record model="ir.ui.view" id="saving_type_form">
+			<field name="name">saving.type.form</field>
+			<field name="model">saving.type</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Saving Type">
+				<sheet>
+					<group>	
+						<group>
+							<field name="savings"  required='1' />
+						</group>		
+						<group>				
+							<field name="name" required='1'  />
+						</group>		
+					</group>
+				</sheet>
+			</form>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="saving_type_tree">
+			<field name="name">saving.type.tree</field>
+			<field name="model">saving.type</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<form string="Saving Type">
+					
+				<field name="savings" />
+				<field name="name" />
+			</form>
+			</field>
+		</record>
+	
+	<record id="saving_type_action" model="ir.actions.act_window">
+	        <field name="name">Saving Type</field>
+	        <field name="res_model">saving.type</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="help" type="html">
+	          <p class="oe_view_nocontent_create">
+			Click Here to create a new Saving Type.	          
+			</p>
+	        </field>
+	    </record>
+	    	<menuitem id="saving_type" parent="hr.menu_human_resources_configuration" name="Saving Type" action="saving_type_action" />
+	    	
+	    	
+	    	
+	<!-- =============================saving type================== -->
+	    	
+<!-- =====================SAVINGS DETAILS====================   -->
+
+
+	    <record id="view_employee_saving" model="ir.ui.view">
+            <field name="name">employee.saving.form</field>
+            <field name="model">employee.saving</field>
+            <field name="arch" type="xml">
+            <form>
+             <sheet>
+             <group>
+                 <group>
+	                 <field name="employee_id"/>
+	                 <field name="fin_year_id" required='1'/>
+                 </group>
+                 <group>
+					<field name="proposed_amount"/>
+					<field name="bill_amount"/>
+					<field name="hra_receipt_amount"/>
+					<field name="other_income_amount"/>
+                 </group>	
+              </group>
+                <notebook>
+                  <page string="Saving Lines">
+                    <field name="saving_line_ids">
+                        <tree string="Tax Saving Lines" editable="bottom">
+                        <field name="salary_rule_id" required='1'/>
+			
+                        <field name="type" required='1'/>
+						<field name="prop_type"/>
+                        <field name="saving_no"/>
+          	            <field name="amount" required='1'/> 
+          	            </tree>
+                  	  </field>   
+                  </page>
+                  <page string="Medical Bill">
+                    <field name="medical_line_ids">
+                        <tree string="Bill" editable="bottom">
+                        <field name="reference"/>
+                        <field name ="bill_num"/>
+                        <field name="date"/>
+                        <field name="type" required='1'/>
+          	            <field name="amount" required='1'/>
+          	            </tree>
+                  	  </field>   
+                  </page>
+                  <page string="HRA Receipt">
+                    <field name="hra_line_ids">
+                        <tree string="Receipt" editable="bottom">
+                        <field name="reference"/>
+                        <field name="date"/>
+                        <field name="type" required='1'/>
+          	            <field name="amount" required='1'/>
+          	            </tree>
+                  	  </field>   
+                  </page>
+                  <page string="Other Source Income">
+                    <field name="other_income_ids">
+                        <tree string="Other Source Income" editable="bottom">
+                        <field name="income_source"/>
+                        <field name="reference"/>
+                        <field name="date"/>
+          	            <field name="amount" required='1'/>
+          	            </tree>
+                  	  </field>   
+                  </page>
+                 <page string="Other Information">
+                     <group string="Previous Employment">
+                       <group>
+                        <field name="gross_income_previous"/>
+                        <field name="professional_tax_previous"/>
+                       </group>
+                       <group>
+                        <field name="ded_previous_emp"/>
+                        <field name="income_tax_paid"/>
+                        </group>
+                     </group>
+                    <!-- <group string="YTM Perks &amp; Recovery">
+                       <group>
+                        <field name="car_perks"/>
+                        <field name="lease_perks"/>
+                        <field name="hard_furnishing_perks"/>
+                        <field name="other_perks"/>
+                        <field name="entertainment_allowance"/>
+                       </group>
+                       <group>
+                        <field name="lease_exemption"/>
+                        <field name="furniture_rent_recovery"/>
+                        <field name="actual_lease_rent_paid"/>
+                        <field name="furnishing_allowance"/>
+                        <field name="conveyance_recovery"/>
+                        </group>
+                     </group> -->
+                     <group string="Other">
+				<group>
+					<field name="medical_exp_reimbursement"/>
+					<field name="preconstruction_interest" invisible='1'/>
+					<field name="prof_updation_exempt"/>
+					<field name="house_income_sl"/>
+				</group>
+				<group>
+					<field name="prp_amount"/>
+					<field name="uniform_amount"/>
+					<field name="property_type" invisible='1'/>
+					<field name="uniform_fitment_exempt"/>
+				</group> 
+                      </group>  
+                  </page>
+                </notebook>
+              </sheet>
+            </form>
+		</field>
+        </record>
+        
+        <record id="view_employee_saving_tree" model="ir.ui.view">
+            <field name="name">employee.saving.tree</field>
+            <field name="model">employee.saving</field>
+            <field name="arch" type="xml">
+            <tree>
+        	    <field name="employee_id"/>
+              	<field name="proposed_amount"/>
+              	<field name="bill_amount"/>
+                <field name="hra_receipt_amount"/>
+                <field name="other_income_amount"/>
+            </tree>
+		</field>
+        </record>
+        
+        <record id="view_employee_saving_filter" model="ir.ui.view">
+            <field name="name">employee.saving.filter</field>
+            <field name="model">employee.saving</field>
+            <field name="arch" type="xml">
+                <search string="Employee Saving">
+                    <field name="employee_id" string="Employees"/> 
+                    <group expand="0" string="Group By">
+                        <filter string="Employee" icon="terp-personal" domain="[]" context="{'group_by':'employee_id'}"/>
+                        <filter string="Month" icon="terp-personal+" domain="[]" context="{'group_by':'date'}"/>
+                    </group>                   
+                </search>
+             </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="employee_saving">
+            <field name="name">Employee Saving Details</field>
+            <field name="res_model">employee.saving</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+             <field name="help" type="html">
+	          <p class="oe_view_nocontent_create">
+			Click Here to create a new Saving Detail.	          
+			</p>
+	        </field>
+        </record>
+
+        <menuitem name="Saving Details" parent="tax_submenu" id="menu_employee_saving" groups="hr.group_hr_manager" action="employee_saving" />
+            
+           
+            <record id="view_saving_line_tree" model="ir.ui.view">
+            <field name="name">saving.line.tree</field>
+            <field name="model">saving.line</field>
+            <field name="arch" type="xml">
+            <tree>
+	            	    <field name="salary_rule_id" required='1'/>
+	                <field name="type" required='1'/>
+			   	    <field name="prop_type"/>	
+	                <field name="saving_no"/>
+	      	        <field name="amount" required='1'/>  
+            </tree>
+		</field>
+        </record>
+        <!-- Medical Receipt Line Tree -->
+            
+        <record id="view_medical_bill_tree" model="ir.ui.view">
+            <field name="name">medical.bill.line.tree</field>
+            <field name="model">medical.bill.line</field>
+            <field name="arch" type="xml">
+            <tree>
+                    <field name="name"/>
+                    <field name="bill_num"/>
+                    <field name="reference"/>
+      	            <field name="amount" required='1'/>  
+            </tree>
+		</field>
+        </record>
+        <!-- HRA Receipt Line Tree -->
+            
+        <record id="view_hra_receipt_tree" model="ir.ui.view">
+            <field name="name">hra.receipt.line.tree</field>
+            <field name="model">hra.receipt.line</field>
+            <field name="arch" type="xml">
+            <tree>
+                    <field name="name"/>
+                    <field name="hra_receipt_id"/>
+                    <field name="date"/>
+      	            <field name="amount" required='1'/>  
+            </tree>
+		</field>
+        </record>
+        
+          <!-- internal saving details -->
+       
+           <record id="view_employee_internal_saving" model="ir.ui.view">
+            <field name="name">employee.internal.saving.form</field>
+            <field name="model">employee.internal.saving</field>
+            <field name="arch" type="xml">
+            <form>
+             <sheet>
+               <group>
+                 <group>
+	                  <field name="employee_id" required='1'/>
+	                  <field name="salary_rule_id" domain="[('rule_type','=','I')]" required='1'/>
+	                  <field name="amount" required='1'/>
+                  
+                 </group>
+                 <group>
+                  		<field name="saving_no"/>
+	               		<field name="date_to" required='1'/>
+	                
+                 </group>	
+                </group>
+                
+              </sheet>
+            </form>
+		</field>
+        </record>
+        <record id="view_employee_internal_saving_tree" model="ir.ui.view">
+            <field name="name">employee.internal.saving.tree</field>
+            <field name="model">employee.internal.saving</field>
+            <field name="arch" type="xml">
+            <tree>
+        	   <field name="employee_id" required='1'/>
+               <field name="salary_rule_id" required='1'/>
+               <field name="amount" required='1'/>
+               <field name="saving_no"/>
+               <field name="date_to" required='1'/>
+            </tree>
+		</field>
+        </record>
+        <record id="view_employee_internal_saving_filter" model="ir.ui.view">
+            <field name="name">employee.internal.saving.filter</field>
+            <field name="model">employee.internal.saving</field>
+            <field name="arch" type="xml">
+                <search string="Employee Internal Saving">
+                    <field name="employee_id" string="Employees"/>  
+                    <group expand="0" string="Group By">
+                        <filter string="Employee" icon="terp-personal" domain="[]" context="{'group_by':'employee_id'}"/>
+                        <filter string="Month" icon="terp-personal+" domain="[]" context="{'group_by':'date'}"/>
+                    </group>                   
+                </search>
+             </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="employee_internal_saving">
+            <field name="name">Employee Internal Saving Details</field>
+            <field name="res_model">employee.internal.saving</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+<!-- =====================SAVINGS DETAILS====================   -->
+
+
+
+<!-- ===================== INCOME TAX ====================   -->
+<record id="view_employee_tds_form" model="ir.ui.view">
+            <field name="name">employee.tds.form</field>
+            <field name="model">employee.tds</field>
+            <field name="arch" type="xml">
+            <form>
+            	<header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+             <sheet>
+              <group>
+               <group>
+        	      <field name="employee_id"/>
+                  <field name="tds_gross_amount"/>
+                  <field name="tds_net_salary_taxable"/>
+               </group>
+               <group>
+               	<field name="net_tds_paid"/>
+                  <field name="net_tds_amount"/>
+                  <field name="date_from"/>
+                  <field name="date_to"/>
+            </group>
+            <group>
+                  <field name="professional_tax_paid"/>
+                  <field name="cpf_paid"/>
+                  <field name="gis_paid"/>
+                  <field name="fin_year_id" required='1'/>
+            </group>
+            <group>
+		  		 <field name="eps_paid"/>
+		  		 <field name="lic_paid"/>
+		  		 <field name="vpf_paid"/>
+		  		 <field name="region_id"/>
+		  		
+            </group>
+            <group>
+		  		 <field name="professional_tax_monthly"/>
+		  		 <field name="cpf_monthly"/>
+		  		 <field name="gis_monthly"/>
+		  		 <field name="total_taxable_amount"/>
+		  		
+            </group>
+            <group>
+		  		 <field name="lic_monthly"/>
+		  		 <field name="vpf_monthly"/>
+		  		 <field name="medical_expense_monthly"/>
+		  		  <field name="medical_expense_paid"/>
+		  		
+            </group>
+            </group>
+            <notebook> 
+	        <page string="Income Tax Details">
+            <field name="tds_line_ids"/>
+            </page>
+            </notebook>
+            </sheet>
+            </form>
+		</field>
+        </record>
+       
+          
+        <record id="view_employee_tds_tree" model="ir.ui.view">
+            <field name="name">employee.tds.tree</field>
+            <field name="model">employee.tds</field>
+            <field name="arch" type="xml">
+            <tree>
+        	      <field name="employee_id"/>
+                  <field name="tds_gross_amount"/>
+                  <field name="tds_net_salary_taxable"/>
+                  <field name="net_tds_amount"/>
+                  <field name="net_tds_paid"/>
+                  
+                  <field name="date_from"/>
+                  <field name="date_to"/>
+		  <field name="region_id"/>
+            </tree>
+		</field>
+        </record>
+        <record id="view_employee_tds_filter" model="ir.ui.view">
+            <field name="name">employee.tds.filter</field>
+            <field name="model">employee.tds</field>
+            <field name="arch" type="xml">
+                <search string="Income Tax">
+                    <field name="employee_id" string="Employees"/> 
+                     <group expand="0" string="Group By">
+                        <filter string="Employee" icon="terp-personal" domain="[]" context="{'group_by':'employee_id'}"/>
+                        <filter string="Month" icon="terp-personal+" domain="[]" context="{'group_by':'date_from'}"/>
+                        <filter string="Region" icon="terp-personal+" domain="[]" context="{'group_by':'region_id'}"/>
+                    </group>                  
+                </search>
+             </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="employee_tds">
+            <field name="name">Income Tax </field>
+            <field name="res_model">employee.tds</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            name="Income Tax"
+            parent="tax_submenu"
+            id="menu_employee_tds" groups="hr.group_hr_manager" action="employee_tds" sequence="35"/>
+        
+       <record id="view_employee_tds_line_tree" model="ir.ui.view">
+            <field name="name">employee.tds.line.tree</field>
+            <field name="model">employee.tds.line</field>
+            <field name="arch" type="xml">
+            <tree>
+                  <field name="name"/>
+        	      <field name="total_amount"/>
+                  <field name="exempted_amount"/>
+                  <field name="taxable_amount"/>
+                  
+            </tree>
+		</field>
+        </record>
+        
+       <!-- Income Tax Run start -->
+       <!--  <record id="view_employee_tds__run_form" model="ir.ui.view">
+            <field name="name">employee.tds.run.form</field>
+            <field name="model">employee.tds.run</field>
+            <field name="arch" type="xml">
+            <form>
+             <header>
+                    <button name="compute_tax" type="object" string="Compute Income Tax" states="draft" class="oe_highlight"/>
+                    <button name="confirm_sheet" string="Confirm" type="object" states="draft" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <label for="name" class="oe_edit_only"/>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group col="4">
+                        <label for="date_start" string="Period"/>
+                         <div>
+                               <field name="date_from" class="oe_inline"/> - <field name="date_to" class="oe_inline"/>
+                         </div>
+                        <field name="company_id" required='1' widget="selection"/>
+                    </group>
+                    <label for="message" class="oe_edit_only"/>
+                    <h3 align="center" style="color:green;">
+                        <field name="message"/>
+                    </h3>
+                    <notebook>
+                  <page string="Income Tax Lines">
+                    <field name="tds_ids">
+                        <tree string="Income Tax" editable="bottom">
+                        <field name="employee_id"/>
+                        <field name="tds_gross_amount"/>
+                        <field name="tds_net_salary_taxable"/>
+          	            <field name="net_tds_amount"/>
+          	            </tree>
+                  	  </field>   
+                  </page>
+                </notebook>
+                    
+                </sheet>
+            </form>
+		</field>
+        </record>
+       
+          
+        <record id="view_employee_tds_run_tree" model="ir.ui.view">
+            <field name="name">employee.tds.run.tree</field>
+            <field name="model">employee.tds.run</field>
+            <field name="arch" type="xml">
+            <tree>
+        	      <field name="name"/>
+                  <field name="date_from"/>
+                  <field name="date_to"/>
+                  <field name="state"/>
+                  <field name="company_id"/>
+
+
+            </tree>
+		</field>
+        </record>
+        
+
+        <record model="ir.actions.act_window" id="employee_tds_run">
+            <field name="name">Income Tax Computation </field>
+            <field name="res_model">employee.tds.run</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            name="Income Tax Computation"
+            parent="tax_submenu"
+            id="menu_employee_tds_run" action="employee_tds_run"/> -->
+<!-- ===================== INCOME TAX ====================   -->
+
+<!-- ====================== COMPUTE TAX =================== -->
+<!-- <record id="hr_payslip_form_inherit" model="ir.ui.view">
+            <field name="name">hr.paslip.form.inherit</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+	            <field name="arch" type="xml">
+	            <data>
+	                <xpath expr="//button[@name='compute_sheet']" position="after">
+	                    <button name="compute_income_tax" type="object" string="Compute Tax" states="draft" class="oe_highlight"/>
+	                </xpath>
+	                <xpath expr=
+	
+				</data>
+				</field>
+</record> -->
+
+<!-- ======================= PAY IMAGE HIDE SET TO DRAFT =================== -->
+ <!-- <record id="hr_payslip_run_form_inherit_" model="ir.ui.view">
+            <field name="name">hr.paslip.form.inherit</field>
+            <field name="model">hr.payslip.run</field>
+            <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+	            <field name="arch" type="xml">
+		            <data>
+			            <xpath expr="//button[@name='draft_payslip_run']" position="attributes">
+			                    <attribute name="invisible">True</attribute>
+			            </xpath>
+		            </data>
+	            </field></record>  -->
+<!-- ======================= PAY IMAGE HIDE SET TO DRAFT =================== -->
+<!-- ================== Hide Tds Field ===================================== -->
+<record id="hr_contract_form_in_inherited" model="ir.ui.view">
+            <field name="name">hr.contract.form.in.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="l10n_in_hr_payroll.hr_contract_form_in_inherit"/>
+            <field name="arch" type="xml">
+            <data>
+                 <xpath expr="//field[@name='tds']" position="replace">
+                 <field name='notds' invisible='1'/>
+                 </xpath>
+            </data>
+            </field>
+        </record>
+
+<!-- ================== Hide Tds Field ===================================== -->
+
+
+</data>
+</openerp>

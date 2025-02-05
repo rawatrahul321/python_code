@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>   
+        <record id="send_sms" model="ir.ui.view">
+            <field name="name">wk.sms</field>
+            <field name="model">wk.sms.sms</field>            
+            <field name="arch" type="xml">
+                <form string="Messaging Form">
+                    <header>
+                        <button name="send_now" string="Send" type="object" class="oe_highlight" states="new"/>
+                        <field name="state" widget="statusbar" statusbar_visible="new,sent,delivered,undelivered" />        
+                    </header>
+                    <sheet>
+                        <field name="id" invisible="1"/>
+                        <group string='Messaging'>
+                            <group string="SMS To">
+                                <field name="group_type" attrs="{'readonly':[('state','in',('sent','delivered'))]}" required="1"/>
+                                <field name="template_id"/>
+                                <field name="sms_gateway_config_id"/>
+                            </group>
+                            <group>
+                                <field name="partner_id" attrs="{'invisible':[('group_type' , '!=','individual')],'readonly':[('state','in',('sent','delivered'))]}" />
+                                <field name="partner_ids" attrs="{'invisible':[('group_type' , '!=','multiple')],'readonly':[('state','in',('sent','delivered'))]}" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                        <group string='Message'>
+                            <field name="msg" placeholder="Type your message here..!!!" attrs="{'readonly':[('state','in',('sent','delivered'))]}"/> 
+                            
+                            <field name="to" placeholder="Receiver Numbers" attrs="{'readonly':[('state','in',('sent','delivered'))]}"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="sms_report_treeview" model="ir.ui.view">
+            <field name="name">wk.sms.report</field>
+            <field name="model">wk.sms.sms</field>            
+            <field name="arch" type="xml">
+                <tree string="Message Report" decoration-success="state=='sent'">
+                    <field name="group_type" string="SMS To"/>
+                    <field name="sms_gateway_config_id"/>
+                    <field name="state"/>
+                    <button name="send_now" string="Send" type="object" icon="fa-paper-plane text-success" states="new" help="Send Now"/>
+                </tree>
+            </field>            
+        </record> 
+
+        <record id="send_group_sms" model="ir.actions.act_window">
+            <field name="name">Send SMS</field>
+            <field name="res_model">wk.sms.sms</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">inline</field>
+            <field name="view_id" ref="send_sms"/>
+        </record>
+
+        <record id="sent_sms_sms" model="ir.actions.act_window">
+            <field name="name">Sent SMS</field>
+            <field name="res_model">wk.sms.sms</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state','=','sent')]</field>
+            <field name="view_id" ref="sms_report_treeview"/>
+        </record>
+
+        <menuitem id="base.menu_sms" name="SMS"/>
+            <menuitem id="menu_sms_sub_menu_1" name="Send SMS" parent="base.menu_sms" sequence="1" action="send_group_sms"/>
+            <menuitem id="menu_sms_sub_menu_3" name="History" parent="base.menu_sms" sequence="3"/>
+                <menuitem id="menu_sms_sub_menu_3_sub_menu_1" name="Sent SMS" parent="menu_sms_sub_menu_3" sequence="3" action="sent_sms_sms"/>
+    </data>
+</odoo>

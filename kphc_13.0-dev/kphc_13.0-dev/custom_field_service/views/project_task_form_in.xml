@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_task_form2_in" model="ir.ui.view">
+        <field name="name">project.task.form.view</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="industry_fsm.project_task_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]/button[1]" position="replace">
+                <!-- replace the button --> 
+            </xpath>
+            <xpath expr="//field[@name='description']" position="replace">
+                <!-- description section hide -->
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="attn"/>
+                <field name="first_name"/>
+                <field name="family_name"/>
+                <field name="job_title"/>
+                <field name="location"/>
+                <field name="type_of_service"/>
+                <field name="schedule_date"/>
+                <field name="user_id" options="{'no_open': True}"/>
+                <field name="number_id"/>
+                <field name="reference"/>
+                <field name="report_date"/>
+                <field name="project_id" domain="[('is_fsm', '=', True)]" required="True" options="{'no_create': True, 'no_edit': True, 'no_open': 'True'}" groups="industry_fsm.group_fsm_manager"/>
+            </xpath>
+            <!-- <xpath expr="//field[@name='partner_email']" position="after">
+            </xpath> -->
+            <xpath expr="//group/group[2]" position="replace">
+                <group>
+                    <field name="start_time"/>
+                    <field name="end_time"/>
+                    <field name="technical_crew" widget="many2many_tags"/>
+                    <field name="covered_area"/>
+                    <field name="worksheet_template_id"/>
+                    <field name="contact_person"/>
+                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                </group>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page name="ingredients" string="Treatment Details">
+                        <field name="ingredients" widget="one2many">
+                            <tree string="Ingredient" editable="bottom">
+                                <field name="ingredients"/>
+                                <field name="quantity"/>
+                                <field name="product_uom_id"/>
+                                <field name="where_applied"/>
+                                <field name="applied_against"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page name="pest_activity" string="Pest Activity">
+                        <group>
+                            <group>
+                                <field name="activities"/>
+                                <field attrs="{'invisible': [('activities', '!=', 'pest_activity')]}" name="find_and_remark" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Images">
+                        <field name="image_ids" widget="one2many" mode="kanban" options="{'create_text':'Add a Media'}">
+                            <kanban>
+                                <field name="image"/>
+                                <field name="image_id"/>
+                                <field name="name"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div class="card oe_kanban_global_click p-0">
+                                            <div class="o_squared_image">
+                                                <field name="image" widget="image"/>
+                                                <center><field name="name"/></center>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                            <form>
+                                <group>
+                                    <group>
+                                        <field name="name"/>
+                                    </group>
+                                    <group>
+                                        <field name="image" widget='image' class="oe_avatar"/>
+                                    </group>
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+                    <page string="Non-accessible areas">                        
+                        <group>
+                            <group>
+                                <field name="show_on_report_following_area_visit"/>
+                                <field  name="operational_during_the_visit"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="show_on_report_up_callback"/>
+                            <field name="up_callback"/>
+                        </group>
+                        <group>
+                            <field name="show_on_report_itls"/>
+                            <field name="select_ilts"/>
+                        </group>
+                    </page>
+                    <page string="PMD">
+                        <field name="pwds" widget="one2many">
+                            <tree string="Pest management Devices" editable="bottom">
+                                <field name="type_id"/>
+                                <field name="qty"/>
+                                <field name="location"/>
+                                <!-- <field name="pest_activity"/> -->
+                                <field name="status"/>
+                                 <field name="action"/>
+                                <field name="serial_no"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Recommendation">
+                        <group>
+                            <field name="recommendations" widget="many2many_tags"/>
+                        </group>
+                    </page>
+                    <page string="Other info">
+                        <group>
+                            <group>
+                                <field name="choose_coordinator"/>
+                                <field name="phone"/>
+                                <field name="job_position"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+    <record id="project_task_view_kanban_fsm_in" model="ir.ui.view">
+        <field name="name">project.task.kanban.in.fsm</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="industry_fsm.project_task_view_kanban_fsm"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban" position="attributes">
+                <attribute name="default_group_by">schedule_date:day</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="project_task_view_search_fsm_in" model="ir.ui.view">
+        <field name="name">project.task.search.fsm.inhe</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="industry_fsm.project_task_view_search_fsm"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='planned_today']" position="replace">
+
+            </xpath>
+            <xpath expr="//filter[@name='my_tasks']" position="replace">
+            </xpath>
+            <xpath expr="//filter[@name='planned_future']" position="replace">
+            </xpath>
+        </field>
+    </record>
+</odoo>

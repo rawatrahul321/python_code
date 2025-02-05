@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!-- Hide website menu to all users -->
+        <record model="ir.ui.menu" id="website.menu_website_configuration">
+            <field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+        </record>
+
+        <!-- Hide Translations menu in settins menu for all users -->
+        <record model="ir.ui.menu" id="base.menu_translation">
+            <field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+        </record>
+
+        <!--  separate menu created for email in setting-->
+       <menuitem id="menu_email_custom" name="Email" parent="base.menu_administration" sequence="1"/>
+
+<!--  make sure first then remove from comment
+           <menuitem name="Emails"
+                     id="menu_mail_mail"
+                     parent="menu_email_custom"
+                     action="mail.action_view_mail_mail" />
+            <menuitem name="Messages"
+                     id="menu_mail_message"
+                     parent="menu_email_custom"
+                     action="mail.action_view_mail_message"/>
+-->
+            <menuitem id="menu_email_templates"
+                     parent="menu_email_custom"
+                     action="mail.action_email_template_tree_all"
+                     sequence="20"/>
+            <menuitem parent="menu_email_custom"
+                     id="menu_action_fetchmail_server_tree_custom"
+                     action="fetchmail.action_email_server_tree"
+                     name="Incoming Mail Servers"
+                     sequence="14"/>
+            <menuitem id="menu_mail_servers_custom"
+                     parent="menu_email_custom"
+                     action="base.action_ir_mail_server_list"
+                     sequence="15"/>
+
+            <!--  Add new menu for redirect on website -->
+            <menuitem id="menu_website_root"
+                      name="Goto Website"
+                      web_icon="caret_united_18,static/description/icon1.png"
+                      action="goto_website"/>
+</odoo>

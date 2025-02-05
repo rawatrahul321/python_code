@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ir_cron_history_form_view" model="ir.ui.view">
+            <field name="name">ir.cron.history.form.view</field>
+            <field name="model">ir.cron.history</field>
+            <field name="arch" type="xml">
+                <form string="Ir Cron History">
+                    <sheet>
+                        <h3 class="oe_title">
+                            <field name="name"/>
+                        </h3>
+                        <group>
+                            <group>
+                                <field name="date"/>
+                                <field name="cron"/>
+                                <field name="status"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Exception" name="exception">
+                                <field name="exception"/>
+                            </page>
+                            <page string="Logs" name="logs">
+                                <field name="log_ids">
+                                    <tree>
+                                        <field name="log_type"/>
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="ir_cron_history_tree_view" model="ir.ui.view">
+            <field name="name">ir.cron.history.tree.view</field>
+            <field name="model">ir.cron.history</field>
+            <field name="arch" type="xml">
+                <tree string="Cron History" decoration-danger="status == 'fail'">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="status"/>
+                    <field name="exception"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

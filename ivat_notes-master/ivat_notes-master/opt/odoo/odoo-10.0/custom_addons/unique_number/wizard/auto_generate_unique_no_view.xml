@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	
+		 <record id="wizard_auto_generate_unique_no_view" model="ir.ui.view">
+		 <field name="name">wizard.auto.generate.unique.number</field>
+		 <field name="model">auto.generate.unique.number</field>
+		 <field name="arch" type="xml">
+		 <form string="Auto Generate Unique Number">
+			 <group>
+			 	 <group>
+					<field name="total_barcode"/>
+			 	 </group>
+				 <group>
+					<field name="message" readonly="1"/>
+			 	 </group>
+			 </group>
+			 <footer>
+				  <button name="auto_generate_no" string="Generate Number" type="object" class="oe_highlight"/>
+				  or
+				  <button string="Cancel" class="oe_link" special="cancel"/>
+			 </footer>
+		 </form>
+		 </field>
+		</record>
+		
+		<!-- Action -->
+	    <record id="open_wizard_action_id" model="ir.actions.act_window">
+		  <field name="name">Auto Generate Unique Number</field>
+		  <field name="type">ir.actions.act_window</field>
+		  <field name="res_model">auto.generate.unique.number</field>
+		  <field name="view_type">form</field>
+		  <field name="view_mode">form</field>
+		  <field name="target">new</field>
+		  <field name="view_id" ref="wizard_auto_generate_unique_no_view"/>
+	 	</record>
+	 	
+	 	<menuitem  id="menu_auto_generate_unique_no" action="open_wizard_action_id" 
+	 	parent="mrp.menu_mrp_manufacturing" name="Auto Generate Unique Number" sequence="27"/>	 
+	 	 
+		  <!-- Inherit Manufacturing Order -->
+   
+   <!-- <record id="mrp_production_form_view_inherit" model="ir.ui.view">
+            <field name="name">mrp.production.form</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+            
+            <xpath expr="//button[@name='button_unreserve']"  postition='after'>
+            	<button name="%(open_wizard_action_id)d" type="action" string="Generate Unique Serial Number"/>            
+            </xpath>
+            
+            </field>
+   </record> -->
+
+</odoo>

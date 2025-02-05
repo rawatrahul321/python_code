@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="delivery_report_custom_page">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="custom_field_service.custom_delivery_layout">
+                    <br/><br/><br/><br/> <br/><br/><br/><br/>
+                    <span style="font-size:15px !important;">M/s. : </span>
+                    <span style="font-size:15px !important;" t-esc="doc.x_task_id.partner_id.name" />
+                    <br/> 
+                    <span style="font-size:15px !important;">Attn. : </span>
+                    <span style="font-size:15px !important;" t-esc="doc.x_task_id.attn" />
+                    <br/>
+                    <br/>
+                    <br/>
+                    <span style="font-size:15px !important;">Sub : PROOF OF DELIVERY</span>
+                    <br/>
+                    <br/>
+                    <p style="border: 1px solid black; border-style: dashed;"></p>
+                    <center style="text-align: left; padding-left: 10px; background: #003ea5; color: white; font-weight: bold;padding-bottom: 5px;">
+                        <span style="font-size: 20px !important;">SERVICE SPECIFICS*</span>
+                    </center>
+                    <br/>
+                    <table class="table">
+                        <tbody>
+                            <tr class="border-black" style="border: 1px solid black;">
+                                <td colspan="2" style="border-right: 1px solid black;">
+                                    <center style="padding-top: 10px;"><span style="font-size:15px !important;">Date of Service</span></center>
+                                </td>
+                                <td colspan="2" name="report_date" style="border-right: 1px solid black;">
+                                    <center t-if="doc.x_task_id.report_date" style="padding-top: 10px;">
+                                        <span style="font-size:15px !important;">
+                                            <t t-esc="doc.x_task_id.report_date.strftime('%d-%m-%Y')" />
+                                        </span>
+                                    </center>
+                                </td>
+                                <td colspan="2" style="border-right: 1px solid black;">
+                                    <center style="padding-top: 10px;"><strong style="font-size:15px !important;font-weight: 500;">Time of Service</strong></center>
+                                </td>
+                                <td colspan="3" style="border-right: 1px solid black; padding: 0rem !important;">
+                                    <div style="border-bottom: 1px solid black; padding-bottom: 5px; background: #919393; color: white;">
+                                        <center><strong style="font-size:15px !important;">From</strong></center>
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <center style="margin-top: -27px;">
+                                            <span>
+                                               <!--  <span t-esc = "doc.x_task_id.start_time" t-options= '{"widget": "float_time"}'/> -->
+                                                <span style="font-size:15px !important;" t-esc = "doc.x_task_id.start_time"/>
+                                            </span>
+                                        </center>
+                                    </div>
+                                </td>
+                                <td colspan="3" style="border-right: 1px solid black; padding: 0rem !important;">
+                                    <div style="border-bottom: 1px solid black; padding-bottom: 5px; background: #919393; color: white;">
+                                        <center><strong style="font-size:15px !important;">To</strong></center>
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <center style="margin-top: -27px;">
+                                            <!-- <span t-esc = "doc.x_task_id.end_time" t-options= '{"widget": "float_time"}'/> -->
+                                            <span style="font-size:15px !important;" t-esc = "doc.x_task_id.end_time"/>
+                                        </center>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="border-black" style="border: 1px solid black;">
+                                <th colspan="2" style="border-right: 1px solid black;">
+                                    <span style="font-size:15px !important;font-weight: 500;">TYPE OF VISIT</span>
+                                </th>
+                                <td colspan="10" style="border: 1px solid black;">
+                                    <span style="font-size:15px !important;" t-field="doc.x_type_of_visit"/>
+                                </td>
+                            </tr>
+                            <tr class="border-black" style="border: 1px solid black;">
+                                <th colspan="2" style="border-right: 1px solid black;vertical-align: middle;">
+                                    <span style="font-size:15px !important;font-weight: 500;text-align: left;">TECHNICAL CREW</span>
+                                </th>
+                                <td colspan="10" style="border: 1px solid black;">
+                                    <t t-foreach="doc.x_task_id.technical_crew" t-as="crew">
+                                        <span style="font-size:15px !important;">- <t t-esc="crew.name"/></span><br/>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr class="border-black" style="border: 1px solid black;">
+                                <th colspan="2" style="border-right: 1px solid black;">
+                                    <span style="font-size:15px !important;font-weight: 500;"> COVERED AREAS</span>
+                                </th>
+                                <td colspan="10" style="border: 1px solid black;">
+                                    <span style="font-size:15px !important;" t-field="doc.x_task_id.covered_area"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <span style="font-size:15px !important;">
+                    I, the undersigned, do hereby acknowledge that KPHC technical crew have attended to site per above details.
+                    </span>
+                    <br/>
+                    <br/>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th style="border: 1px solid black; width: 25%;">
+                                    <center style="padding-top: 28px;"><span style="font-size:15px !important;font-weight: 500;">POC</span></center>
+                                </th>
+                                <td style="border: 1px solid black; width: 25%;">
+                                    <center style="padding-top: 40px;font-size:15px !important;">
+                                        <t t-esc="doc.x_poc" />
+                                    </center>
+                                </td>
+                                <th style="border: 1px solid black; width: 25%;">
+                                    <center style="padding-top: 40px;font-size:15px !important;font-weight: 500;">SIGNATURE</center>
+                                </th>
+                                <td style="border: 1px solid black; width: 25%;">
+                                    <img t-if="doc.x_worker_signature" t-att-src="image_data_uri(doc.x_worker_signature)" style="height: 100px;" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

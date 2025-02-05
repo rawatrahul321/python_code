@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="kentucky_active_ants_connection_tree" model="ir.ui.view">
+            <field name="name">kentucky.active.ants.connection.tree</field>
+            <field name="model">kentucky.active.ants.connection</field>
+            <field name="arch" type="xml">
+                <tree string="Connection Tree">
+                    <field name="name"/>
+                    <field name="url"/>
+                    <field name="user_name"/>
+                    <field name="password" password="True"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="kentucky_active_ants_connection_form" model="ir.ui.view">
+            <field name="name">kentucky.active.ants.connection.form</field>
+            <field name="model">kentucky.active.ants.connection</field>
+            <field name="arch" type="xml">
+                <form string="Connection Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="url" required="1"/>
+                            <field name="user_name" required="1"/>
+                            <field name="password" required="1" password="True"/>
+                            <field name="kants_order_type_id"/>
+                        </group>
+                        <group>
+                            <button name="test_kentucky_active_ants_connection" type="object" string="Test Connection" icon="fa-television"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="kentucky_action_active_ants_connection">
+            <field name="name">Connection</field>
+            <field name="res_model">kentucky.active.ants.connection</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_kentucky_active_ants_conf"
+                  name="Kentucky Active Ants"
+                  parent="channable_api.menu_channable"
+                  sequence="2"/>
+        <menuitem id="menu_kentucky_active_ants_connection"
+                  name="Configuration"
+                  parent="menu_kentucky_active_ants_conf"
+                  action="kentucky_action_active_ants_connection"/>
+
+    </data>
+</odoo>

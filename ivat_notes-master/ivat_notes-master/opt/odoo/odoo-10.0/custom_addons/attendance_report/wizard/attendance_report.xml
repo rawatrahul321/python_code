@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="attendance_report_view" model="ir.ui.view">
+            <field name="name">Attendance Report</field>
+            <field name="model">attendance.report</field>
+           	<field name="type">form</field>
+			<field name="arch" type="xml">
+			<form string="Attendance Report"> 
+			<group>
+		    <group colspan="4" col="4">
+		    <!-- <group colspan='2'>
+		    <label for="from_date" string="Period"/>
+			    <div colspan="2">
+		            <div>
+		            	<field name="date_from" class="oe_inline"/> - <field name="date_to" class="oe_inline"/>
+		            </div>
+	            </div>
+            </group> -->
+            <!-- <group colspan='2'>
+		    <label for="employee" string="Employee" class="oe_inline"/>
+		    	<div colspan='4'>
+				    <div>	
+				    	<field name="employee" class="oe_inline"/>
+				    </div>
+		   		</div>
+		    </group> -->
+            
+ 				<field name="filename" invisible="1"/>
+		                <field name="filedata" filename="filename" attrs="{'invisible':[('filedata','=',False)]}"/>
+             <button string="Cancel" class="oe_link" special="cancel" />
+             or
+             <button name="print_employee_report" string="Print" type="object" class="oe_highlight"/>
+                       
+		    </group>
+		                        
+             </group>
+             </form>
+            </field>
+			</record>
+
+        <record id="attendance_report" model="ir.actions.act_window">
+		    <field name="name">Todays Absent Report</field>
+		    <field name="res_model">attendance.report</field>
+		    <field name="type">ir.actions.act_window</field>
+		    <field name="view_type">form</field>
+		    <field name="view_mode">form</field>
+		    <field name="target">new</field>
+		    <field name="view_id" ref="attendance_report_view"/>
+    	</record>
+			        
+
+ <menuitem  id="menu_attendance_report" action="attendance_report" parent="hr_attendance.menu_hr_attendance_root" name="Absent Report" sequence="32"/>		
+</data>
+</odoo>
+

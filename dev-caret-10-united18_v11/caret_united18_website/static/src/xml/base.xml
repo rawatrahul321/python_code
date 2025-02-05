@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="WebsiteMenu">
+        <li class="" id="goto-website">
+            <a class="" href="#" title="Go To Website">
+                <span class="fa fa-globe"/>
+            </a>
+        </li>
+    </t>
+</templates>

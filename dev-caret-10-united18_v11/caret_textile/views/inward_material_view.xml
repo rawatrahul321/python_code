@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <record id="view_inward_material_tree" model="ir.ui.view">
+            <field name="name">inward.material.tree</field>
+            <field name="model">inward.material</field>
+            <field name="arch" type="xml">
+                <tree string="Inward Material" decoration-bf="message_needaction==True" decoration-muted="state=='cancel'">
+                    <field name="message_needaction" invisible="1"/>
+                    <field name="name" string="Name"/>
+                    <field name="rate"/>
+                    <field name="quantity"/>
+                    <field name="product_uom_id"/>
+                    <field name="supplier_id"/>
+                    <field name="location_id"/>
+                    <field name="state"/>
+					<field name="product_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_inward_material_form" model="ir.ui.view">
+            <field name="name">inward.material.form</field>
+            <field name="model">inward.material</field>
+            <field name="arch" type="xml">
+                <form string="Inward Material" class="o_sale_order">
+                <header>
+                    <button name="action_send_for_approval" string="Send for Approval" type="object" states="draft" class="btn-primary"/>
+                    <button name="action_inward_material" string="Inward Material" type="object" states="waiting_approval" class="btn-primary" groups="caret_textile.group_production_head_jober"/>
+                    <button name="action_cancel" states="draft" type="object" string="Cancel"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,waiting_approval,inward"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_invoice"
+                            type="object"
+                            class="oe_stat_button"
+                            string="Purchase Invoice"
+                            icon="fa-pencil-square-o" groups="account.group_account_manager"/>
+                    </div>
+                    <group>
+                        <group>
+                    		<field name="name" string="Name" required="1" attrs="{'readonly': [('state','=','inward')]}"/>
+	                    	<field name="rate" attrs="{'readonly': [('state','=','inward')]}"/>
+                    		<field name="number" invisible="1" attrs="{'readonly': [('state','=','inward')]}"/>
+		                    <field name="supplier_id" required="1" domain="[('supplier','=',True)]" attrs="{'readonly': [('state','=','inward')]}"
+		                    	options="{'no_create': True, 'no_open': True}" context="{'default_customer':0,'default_supplier':1}" />
+		                    <field name="location_id" required="1" attrs="{'readonly': [('state','=','inward')]}" options="{'no_create': True, 'no_open': True}"/>
+							<field name="product_id" readonly="1" options="{'no_create': True, 'no_open': True}"/>
+                        </group>
+                        <group>
+                        	<field name="short_number" attrs="{'readonly': [('state','=','inward')]}"/>
+						    <label for="quantity"/>
+							  <div name='quantity'>
+							      <div>
+							      </div>
+							      <div>
+                    				<field name="quantity" required="1" attrs="{'readonly': [('state','=','inward')]}"/>
+		                    		<field name="product_uom_id" required="1" domain="[('name','in',['Meter','m','meter','kg'])]" attrs="{'readonly': [('state','=','inward')]}" options="{'no_create': True, 'no_open': True}"/>
+							      </div>
+							  </div>
+							<field name="company_id" attrs="{'readonly': [('state','=','inward')]}"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_inward_material_filter" model="ir.ui.view">
+            <field name="name">inward.material.list.select</field>
+            <field name="model">inward.material</field>
+            <field name="arch" type="xml">
+                <search string="Search Inward Material">
+                    <field name="name" string="Inward Material" filter_domain="[('name','ilike',self)]"/>
+                    <field name="product_uom_id"/>
+                    <field name="supplier_id"/>
+                    <field name="location_id"/>
+                    <field name="state"/>
+                    <separator/>
+                    <filter string="Unread Messages" name="message_needaction" domain="[('message_needaction','=',True)]"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Name" domain="[]" context="{'group_by':'name'}"/>
+                        <filter string="Product UOM" domain="[]" context="{'group_by':'product_uom_id'}"/>
+                        <filter string="Supplier" domain="[]" context="{'group_by':'supplier_id'}"/>
+                        <filter string="Location" domain="[]" context="{'group_by':'location_id'}"/>
+                        <filter string="State" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+
+        <record id="action_inward_material" model="ir.actions.act_window">
+            <field name="name">Inward Material</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">inward.material</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_inward_material_filter"/>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create a Inward Material.
+                </p><p>
+                    Once the Material is Inwarded, It makes Product and Stock Moves.
+                    To Make Available Stock of New Product.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_inward_material"
+            action="action_inward_material"
+            parent="production_main_menu"
+            groups="group_production_head_jober,group_production_inward_jober"
+            sequence="1"/>
+            
+    </data>
+</odoo>

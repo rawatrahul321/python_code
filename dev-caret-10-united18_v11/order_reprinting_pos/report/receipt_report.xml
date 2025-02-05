@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="external_layout_pos">
+            <div class="header">
+                <div class="row"/>
+            </div>
+            <div class="article o_report_layout_standard">
+                <t t-raw="0" />
+            </div>
+        </template>
+        <template id="receipt_report_document">
+            <t t-call="order_reprinting_pos.external_layout_pos">
+                <div class="page">
+                    <center>
+                        <div class="row" style="max-width:285px;">
+                            <div class="text-center">
+                                <span t-field="o.date_order"/>
+                                <t t-esc="o.pos_reference"/>
+                            </div>
+                            <div class="text-center">
+                                <h4><b>United18</b></h4>
+                            </div>
+                            <div class="text-left">
+                                <t t-esc="o.company_id.name"/><br />
+                                <t t-if="o.company_id.street">
+                                    <t t-esc="o.company_id.street"/><br />
+                                </t>
+                                <t t-if="o.company_id.street2">
+                                    <t t-esc="o.company_id.street2"/><br />
+                                </t>
+                                <t t-if="o.company_id.city">
+                                    <t t-esc="o.company_id.city"/>
+                                </t>
+                                <t t-if="o.company_id.zip">
+                                  - <t t-esc="o.company_id.zip"/><br />
+                                </t>
+                                <t t-if="o.company_id.phone">
+                                    Ph No: <t t-esc="o.company_id.phone"/><br />
+                                </t>
+                                <t t-if="o.company_id.vat">
+                                    GSTIN No: <t t-esc="o.company_id.vat"/>
+                                </t>
+                            </div>
+                            <hr style="border-top: 1px dashed black; margin-bottom:10px !important;" />
+                             <div>
+                                <div class="text-left">
+                                    <t t-if="o.partner_id">
+                                        Customer Name:
+                                            <t t-esc="o.partner_id.name"/><br />
+                                        Customer Ph:
+                                            <t t-if="o.partner_id.phone">
+                                                <t t-esc="o.partner_id.phone"/>
+                                            </t>
+                                            <t t-if="not o.partner_id.phone">
+                                                <t t-esc="o.partner_id.mobile"/>
+                                            </t>
+                                        <br />
+                                    </t>
+                                </div>
+                            </div>
+                            <hr style="border-top: 1px dashed black; margin-bottom:5px !important;"/>
+                            <table style="width:285px;">
+                                <colgroup>
+                                    <col width='35%' />
+                                    <col width='10%' />
+                                    <col width='25%' />
+                                    <col width='30%' />
+                                </colgroup>
+                                <tr>
+                                    <td>Product</td>
+                                    <td class="text-center">Qty</td>
+                                    <td class="text-center">Rate</td>
+                                    <td class="text-center">Value</td>
+                                </tr>
+                                <tr><td><hr style="border-top: 1px dashed black; margin-top:5px !important; margin-bottom:5px !important;" /></td>
+                                <td><hr style="border-top: 1px dashed black; margin-top:5px !important; margin-bottom:5px !important;" /></td>
+                                <td><hr style="border-top: 1px dashed black; margin-top:5px !important; margin-bottom:5px !important;" /></td>
+                                <td><hr style="border-top: 1px dashed black; margin-top:5px !important; margin-bottom:5px !important;" /></td>
+                                <td><hr style="border-top: 1px dashed black; margin-top:5px !important; margin-bottom:5px !important;" /></td></tr>
+                                <t t-set="counter" t-value="0"/>
+                                <tr t-foreach="o.lines" t-as="orderline">
+                                    <td>
+                                        <t t-esc="orderline.product_id.name"/>
+                                         <t t-if="orderline.discount > 0">
+                                            <div class="pos-disc-font">
+                                                With a <t t-esc="orderline.discount"/>% discount
+                                            </div>
+                                        </t>
+                                    </td>
+                                    <td class="text-center">
+                                        <t t-esc="'%.0f'%orderline.qty"/>
+                                        <t t-set="counter" t-value="counter+orderline.qty"/>
+                                    </td>
+                                    <td class="text-center">
+                                        <t t-esc="'%.0f'%orderline.price_unit"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <t t-esc="orderline.price_subtotal_incl" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr><td/><td/><td/><td/></tr>
+                                <tr>
+                                    <td/><td><hr style="border-top: 1px dashed black; margin-bottom:5px !important;" />
+                                    </td><td/>
+                                    <td><hr style="border-top: 1px dashed black; margin-bottom:5px !important;" /></td>
+                                </tr>
+                            </table>
+                            <table style="width:285px;">
+                                <colgroup>
+                                    <col width='35%' />
+                                    <col width='10%' />
+                                    <col width='10%' />
+                                    <col width='45%' />
+                                </colgroup>
+                                <tr>
+                                    <td>Sale Total:</td>
+                                    <td class="text-center">
+                                        <t t-esc="'%.0f'%counter"/>
+                                    </td><td/>
+                                    <td class="text-right">
+                                        <t t-esc="o.amount_total - o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tax Amount:</td><td/><td/>
+                                    <td class="text-right">
+                                        <t t-esc="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size:18px;">Total:</td><td/><td/>
+                                    <td class="text-right" style="font-size:18px;">
+                                        <t t-esc="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+                           
+                            <table style="width:285px;">
+                                <t t-foreach="o.statement_ids" t-as="statement">
+                                  <tr>
+                                      <td>
+                                          <t t-esc="statement.journal_id.name"/>
+                                          (<t t-esc="o.currency_id.name"/>)
+                                      </td><td /><td/>
+                                      <td class="text-right">
+                                          <t t-esc="statement.amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                      </td>
+                                  </tr>
+                                </t>
+                            </table>
+                            <hr style="border-top: 1px dashed black;" />
+                            <img class="img-responsive" style="max-height: 430px;" t-att-src="'/order_reprinting_pos/static/src/img/pos_info.png'"/>
+                        </div>
+                    </center>
+                </div>
+            </t>
+        </template>
+
+        <template id="order_reprinting_pos.receipt_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="order_reprinting_pos.receipt_report_document" t-lang="o.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="delivery_worksheet_custom_report" model="ir.actions.report">
+        <field name="name">Delivery Report</field>
+        <field name="model" model="ir.model" eval="obj().env.ref('custom_field_service.fsm_worksheet_template2').model_id.model" />
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">custom_field_service.delivery_report_custom_page</field>
+        <field name="report_file">custom_field_service.delivery_report_custom_page</field>
+        <field name="print_report_name">'Delivery Report - %s' % (object.x_name)</field>
+        <field name="binding_model_id" model="ir.model" eval="obj().env.ref('custom_field_service.fsm_worksheet_template2').model_id.id" />
+        <field name="binding_type">report</field>
+    </record>
+    <record id="paperformat_service_report" model="report.paperformat">
+        <field name="name">Service Report Format</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">18</field>
+        <field name="margin_bottom">22</field>
+        <field name="margin_left">20</field>
+        <field name="margin_right">20</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+    <record id="delivery_worksheet_custom_report" model="ir.actions.report">
+        <field name="paperformat_id" ref="custom_field_service.paperformat_service_report" />
+    </record>
+</odoo>

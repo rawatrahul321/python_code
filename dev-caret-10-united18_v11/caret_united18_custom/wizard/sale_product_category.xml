@@ -1,0 +1,67 @@
+<odoo>
+    <data>
+        <record id="sale_product_category_wizard_view" model="ir.ui.view">
+            <field name="name">Select Product Category</field>
+            <field name="model">sale.product.category.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Select Product Category">
+                    <group>
+                        <group>
+                            <field name="order_ids" widget="many2many_tags" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="category_ids" widget="many2many_tags"/>
+                        </group>
+                            <field name="sol_ids" nolabel="1" widget="one2many_list">
+                                <tree editable="bottom" create="0" delete="0">
+                                    <field name="product_id" readonly="1"/>
+                                    <field name="name"/>
+                                    <field name="order_partner_id" invisible="1"/>
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="product_uom_qty"
+                                        string="Ordered Qty"
+                                        context="{'partner_id':order_partner_id, 'quantity':product_uom_qty, 'uom':product_uom, 'company_id':company_id}"
+                                    />
+                                    <field name="qty_delivered"
+                                        attrs="{'readonly': [('qty_delivered_updateable', '=', False)]}"/>
+                                    <field name="qty_invoiced"/>
+                                    <field name="qty_to_invoice" invisible="1"/>
+                                    <field name="product_uom"
+                                        readonly="1"/>
+                                    <field name="price_unit"
+                                        attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
+                                    <field name="state" invisible="1"/>
+                                    <field name="qty_delivered_updateable" invisible="1"/>
+                                    <field name="tax_id" widget="many2many_tags" options="{'no_create': True}" domain="[('type_tax_use','=','sale'),('company_id','=',company_id)]"
+                                        attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
+                                    <field name="discount" groups="sale.group_discount_per_so_line"/>
+                                    <field name="price_subtotal" widget="monetary" groups="sale.group_show_price_subtotal"/>
+                                    <field name="price_total" widget="monetary" groups="sale.group_show_price_total"/>
+                                    <field name="invoice_status" invisible="1"/>
+                                    <field name="customer_lead" invisible="1"/>
+                                    <field name="currency_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        <footer>
+                            <button name="print_sale_order_report" string="Print" type="object" class="btn-primary"/>
+                        </footer>
+                    </group>
+                </form>
+           </field>
+        </record>
+
+        <record id="filter_sale_order_report" model="ir.actions.report">
+            <field name="name">Sale Order Report</field>
+            <field name="model">report.caret_united18_custom.gst_sale_template_report_id</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">caret_united18_custom.gst_sale_template_report_id</field>
+        </record>
+
+        <act_window id="action_product_category_sale_order_report"
+            name="Filter Sale Order Report"
+            src_model="sale.order"
+            res_model="sale.product.category.wizard"
+            view_type="form" view_mode="form"
+            key2="client_action_multi" target="new"/>
+    </data>
+</odoo>

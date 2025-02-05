@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    	<record id="invoice_form_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="team_id" position="after">
+                    <field name="marketplace_id"/>
+                    <field name="sale_order_id" invisible="1"/>
+                </field>
+                <field name="partner_id" position="attributes">
+                    <attribute name="context">{'search_default_customer':1, 'show_address': 1, 'default_is_company': True, 'show_vat': True, 'show_only_child_name': 1}</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="invoice_tree_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.tree.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="marketplace_id"/>
+                </field>
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                    <attribute name="attrs">{'column_invisible': True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='residual_signed']" position="attributes">
+                    <attribute name="attrs">{'column_invisible': True}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_invoice_filter_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.select.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="marketplace_id" string="MarketPlace Order ID"/>
+                </field>
+            </field>
+        </record>
+
+	</data>
+</odoo>

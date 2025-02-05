@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_order_wizard" model="ir.ui.view">
+        <field name="name">pos.order.wizard.form</field>
+        <field name="model">pos.order.wizard</field>
+        <field name="arch" type="xml">
+            <form string="POS Order">
+                <group>
+                </group>
+                <group>
+                    <group>
+                        <field name="start_date" widget="date"/>
+                        <field name="group_by_customer"/>
+                    </group>
+                    <group>
+                       <field name="end_date" widget="date"/>
+                       <field name="sales_person"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="generate_pos_report" string="Print" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!--  Wizard for sale order report  -->
+    <record id="action_report_pos_order_details" model="ir.actions.act_window">
+        <field name="name">POS Order Report</field>
+        <field name="res_model">pos.order.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_report_pos_order_details" name="POS Order Report" action="action_report_pos_order_details" parent="point_of_sale.menu_point_rep" sequence="5"/>
+
+    <record id="view_pos_order_excel_form" model="ir.ui.view">
+        <field name="name">pos.order.excel.form</field>
+        <field name="model">pos.order.excel</field>
+        <field name="arch" type="xml">
+            <form string="Excel Report file" version="7.0">
+                <group>
+                    <field name="excel_file" readonly="1" filename="file_name"/>
+                    <field name="file_name" invisible="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pos_order_excel_form" model="ir.actions.act_window">
+        <field name="name">POS Order Excel Report </field>
+        <field name="view_id" ref="view_pos_order_excel_form"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="res_model">pos.order.excel</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="product_category_inherit_form_view" model="ir.ui.view">
+        <field name="name">product.category.inherit.form</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/group/field[@name='parent_id']" position="after">
+               <field name="tax"/>
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

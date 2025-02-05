@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form to render when "pay" button clicked. -->
+    <template id="knet_form">
+        <input type="hidden" name="data_set" t-att-data-action-url="request_url" data-remove-me=""/>
+        <script type="text/javascript" src="/payment_acquirer_knet/static/src/js/knet.js"></script>
+    </template>
+
+    <template id="payment_knet_confirmation" inherit_id="website_sale.confirmation">
+        <xpath expr="//t[@t-call='website_sale.payment_confirmation_status']" position="after">
+            <div class="payment_transaction_details container">
+                <div class="row justify-content-md-center offset-md-3">
+                    <div class="col-md-12 offset-md-3">
+                        <h4>
+                            <i t-attf-class="fa #{payment_tx_id.state in ['cancel', 'error'] and 'fa-times' or 'fa-check' }" t-attf-style="color: #{payment_tx_id.state in ['cancel', 'error'] and 'red' or 'green'};"></i>
+                            <t t-if="payment_tx_id.state in ['cancel', 'error']">Transaction Declined</t>
+                            <t t-else="">Transaction Successful</t>
+                        </h4>
+                    </div>
+                    <div class="col-md-12 offset-md-3"><h5>Transaction Details</h5></div>
+                    <table class="table table-responsive">
+                        <tbody>
+                            <tr>
+                                <td>Transaction Status</td>
+                                <t t-if="payment_tx_id.state == 'done'">
+                                    <td style="color: green;font-size: 18px;">Paid</td>
+                                </t>
+                                <t t-elif="payment_tx_id.state in ['pending','error']">
+                                    <td style="color: red;font-size: 18px;">Unpaid/Decline</td>
+                                </t>
+                                <t t-elif="payment_tx_id.state  == 'cancel'">
+                                    <td style="font-size: 18px;">Cancel</td>
+                                </t>
+                            </tr>
+                            <tr>
+                                <td>Transaction Date</td>
+                                <td><span t-field="payment_tx_id.date"/></td>
+                            </tr>
+                            <tr>
+                                <td>Total Amount</td>
+                                <td><span t-field="payment_tx_id.amount"/></td>
+                            </tr>
+                            <tr>
+                                <td>Payment Method</td>
+                                <td><t t-esc="payment_tx_id.acquirer_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td>Payment ID</td>
+                                <td><t t-esc="payment_tx_id.acquirer_reference"/></td>
+                            </tr>
+                            <tr>
+                                <td>Reference</td>
+                                <td><t t-esc="payment_tx_id.reference"/></td>
+                            </tr>
+                            <tr>
+                                <td>Invoice</td>
+                                <td><t t-esc="payment_tx_id.payment_id.name"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

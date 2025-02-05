@@ -1,0 +1,1 @@
+import stock_unique_number

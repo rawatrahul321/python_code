@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="payment_mastercard.acquirer_form" model="ir.ui.view">
+            <field name="name">acquirer.form.mastercard</field>
+            <field name="model">payment.acquirer</field>
+            <field name="inherit_id" ref="payment.acquirer_form"/>
+            <field name="arch" type="xml">
+               <xpath expr='//group[@name="acquirer"]' position='after'>
+                    <group attrs="{'invisible': [('provider', '!=', 'mastercard')]}">
+                        <field name="mastercard_merchant_id"/>
+                        <field name="mastercard_merchant_access_code"/>
+                        <field name="mastercard_hash_secret"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="payment_mastercard.transaction_form" model="ir.ui.view">
+            <field name="name">acquirer.transaction.form.mastercard</field>
+            <field name="model">payment.transaction</field>
+            <field name="inherit_id" ref="payment.transaction_form"/>
+            <field name="arch" type="xml">
+              <xpath expr="//field[@name='acquirer_reference']" position="after">
+                    <field name="mastercard_txnid" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="action_client_open_acquire" model="ir.actions.client">
+            <field name="name">Open Acquirer Menu</field>
+            <field name="tag">reload</field>
+            <field name="params" eval="{'menu_id': ref('payment.payment_acquirer_menu')}"/>
+        </record>
+        <record id="base.open_menu" model="ir.actions.todo">
+            <field name="action_id" ref="action_client_open_acquire"/>
+            <field name="state">open</field>
+        </record>
+
+    </data>
+</openerp>

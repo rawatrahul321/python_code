@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_product_template_form_inherit" model="ir.ui.view">
+            <field name="name">product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button string="Accept" type="object"
+                        name="action_accept"
+                        attrs="{'invisible': [('is_review_product', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//notebook/page[@name='inventory']" position="after">
+                    <page name="channable" string="Channable">
+                        <group>
+                            <field name="channable_product_id"/>
+                            <field name="channable_brand"/>
+                            <field name="channable_product_price" widget="many2many_tags" domain="[('product_id', '=', product_variant_id)]"/>
+                            <field name="is_review_product" invisible="1"/>
+                        </group>
+                        <group string="Vendors" name="vendors">
+                            <field name="channable_vendor_ids" nolabel="1"/>
+                        </group>
+                        <group name="fbm">
+                            <field name="is_fba"/>
+                            <field name="is_fbb"/>
+                        </group>
+                    </page>
+                </xpath>
+                <!-- <xpath expr="//page[@name='general_information']/group/group[1]/field[@name='type']" position="after">
+                    <field name="parent_reference"/>
+                    <field name="product_date"/>
+                    <field name="variant_date"/>
+                    <field name="category_ref"/>
+                </xpath> -->
+            </field>
+        </record>
+
+        <record id="view_channable_product_price_tree" model="ir.ui.view">
+            <field name="name">channable.product.price.tree</field>
+            <field name="model">channable.product.price</field>
+            <field name="arch" type="xml">
+                <tree string="Product Price">
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="channable_price_amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_channable_product_price_form" model="ir.ui.view">
+            <field name="name">channable.product.price.form</field>
+            <field name="model">channable.product.price</field>
+            <field name="arch" type="xml">
+                <form string="Product Price form">
+                    <group col="4">
+                        <field name="name" required="1"/>
+                        <field name="channable_price_amount"/>
+                        <field name="product_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_channable_product_price" model="ir.actions.act_window">
+            <field name="name">Product Price</field>
+            <field name="res_model">channable.product.price</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_channable_config"
+            name="Channable"
+            parent="sale.menu_sale_config"/>
+
+        <menuitem id="menu_channable_product_price"
+            name="Product Price"
+            action="action_channable_product_price"
+            parent="menu_channable_config"/>
+
+    </data>
+</odoo>

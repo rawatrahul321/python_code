@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="product_xlsx"
+        model="product.template"
+        string="Available Product"
+        report_type="xlsx"
+        name="caret_united18_custom.product_xlsx"
+        file="product_available"
+        attachment_use="False"
+    />
+
+    <template id="assets_backend" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/caret_united18_custom/static/src/js/xls_report.js"/>
+        </xpath>
+    </template>
+</odoo>
+

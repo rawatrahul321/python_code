@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_product_set_form_inherit" model="ir.ui.view">
+        <field name="name">product.set.form.inherit</field>
+        <field name="model">product.set</field>
+        <field name="inherit_id" ref="sale_product_set.view_product_set_form"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="category_id" required="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_template_only_form_view_inherit" model="ir.ui.view">
+        <field name="name">product.template.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <field name="barcode" position="after">
+                <field  name="attribute_ids" invisible="1"/>
+                <field name="attrubute_restrict_id" domain="[('id', 'in', attribute_ids)]"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

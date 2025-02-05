@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+    <data noupdate="1">
+    	
+    	<record id="bol_warehouse" model="stock.warehouse">
+            <field name="name">BOL Virtual Warehouse</field>
+            <field name="code">BVWH</field>
+        </record>
+
+        <record id="amazon_eu_warehouse" model="stock.warehouse">
+            <field name="name">Amazon EU Virtual Warehouse</field>
+            <field name="code">AVWH</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="action_finishing_order" model="ir.actions.act_window">
+            <field name="name">Finishing &amp; QA</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">production.process</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        	<field name="context">{'search_default_finishqa':1}</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <!-- <menuitem id="menu_finishing_order"
+            action="action_finishing_order"
+            parent="production_main_menu"
+            sequence="5"
+            groups="group_production_head_jober,group_production_finishing_jober"/> -->
+
+    </data>
+</odoo>

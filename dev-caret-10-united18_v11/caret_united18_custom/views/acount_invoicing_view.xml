@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--  Hide Invoicing menu on top of menus. -->
+        <record model="ir.ui.menu" id="account.menu_finance">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]" />
+        </record>
+
+        <!--  Create new menu for show sales receipts and purchase receipt -->
+        <menuitem name="Bill Receipt"
+            id="menu_bill_receipt"
+            web_icon="account_invoicing,static/description/icon.png"
+            sequence="41"/>
+
+        <menuitem name="Sales Payments"
+                  id="menu_paymemt_sale"
+                  parent="menu_bill_receipt"
+                  action="account.action_account_payments"/>
+        <menuitem name="Purchase Payments"
+                  id="menu_paymemt_purchase"
+                  parent="menu_bill_receipt"
+                  action="account.action_account_payments_payable"/>
+
+        <record id="view_account_payment_form_inherit" model="ir.ui.view">
+            <field name="name">account.payment.form</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="before">
+                    <field name="company_id" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="context">{'account_payment_partner': partner_type}</attribute>
+                    <attribute name="options">{'no_create_edit': True, 'no_create':True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='journal_id']" position="attributes">
+                    <attribute name="context">{'account_journal_id': company_id}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='payment_transaction_id']" position="attributes">
+                    <attribute name="groups">base.group_system</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="invoice_supplier_form_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="replace">
+                    <field name="product_id" context="{'partner_id': parent.partner_id}" domain="[('purchase_ok','=',True), ('type','=','service')]" options="{'no_create_edit': True}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="invoice_form_u18_inh" model="ir.ui.view">
+            <field name="name">account.invoice.form.u18</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='product_id']" position="attributes">
+                    <attribute name="options">{'no_create_edit': True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_invoice']" position="after">
+                    <field name="picking_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="account_common_report_view_inherit" model="ir.ui.view">
+            <field name="name">Common Report Inherit</field>
+            <field name="model">account.report.general.ledger</field>
+            <field name="inherit_id" ref="account.account_report_general_ledger_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/group[1]" position="before">
+                    <p>Print Report General Ledger.</p>
+                </xpath>
+                <xpath expr="//form/group[1]" position="attributes">
+                    <attribute name="groups">account.group_account_manager</attribute>
+                </xpath>
+                <xpath expr="//form/group[2]" position="attributes">
+                    <attribute name="groups">account.group_account_manager</attribute>
+                </xpath>
+                <xpath expr="//field[@name='sortby']" position="attributes">
+                    <attribute name="groups">account.group_account_manager</attribute>
+                </xpath>
+                <xpath expr="//field[@name='display_account']" position="attributes">
+                    <attribute name="groups">account.group_account_manager</attribute>
+                </xpath>
+                <xpath expr="//field[@name='initial_balance']" position="attributes">
+                    <attribute name="groups">account.group_account_manager</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_account_general_ledger_menu" model="ir.actions.act_window">
+            <field name="name">General Ledger</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.report.general.ledger</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account_common_report_view_inherit"/>
+            <field name="target">new</field>
+            <field name="context">{'flag':1}</field>
+            <field name="binding_model_id" ref="account.model_account_account" />
+            <field name="binding_type">report</field>
+        </record>
+
+        <menuitem
+            id="menu_general_ledger_franchise"
+            name="General Ledger"
+            parent="menu_bill_receipt"
+            action="action_account_general_ledger_menu"
+            groups="account.group_account_invoice"
+           />
+
+        <!-- <menuitem
+            id="menu_general_ledger_franchise_inherit"
+            name="General Ledger Report"
+            parent="menu_bill_receipt"
+            action="action_account_general_ledger_menu_inherit"
+            groups="account.group_account_invoice"
+           /> -->
+
+        <record model="ir.ui.view" id="view_sale_receipt_form_u18_inh">
+            <field name="name">account.voucher.sale.form.u18</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_sale_receipt_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='product_id']" position="attributes">
+                    <attribute name="options">{'no_create_edit': True}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_purchase_receipt_form_u18_inh">
+            <field name="name">account.voucher.purchase.form.u18</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_purchase_receipt_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='product_id']" position="attributes">
+                    <attribute name="options">{'no_create_edit': True}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

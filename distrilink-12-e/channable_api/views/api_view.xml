@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="channable_connection_tree" model="ir.ui.view">
+            <field name="name">channable.connection.tree</field>
+            <field name="model">channable.connection</field>
+            <field name="arch" type="xml">
+                <tree string="Connection Tree">
+                    <field name="name"/>
+                    <field name="api_project_id"/>
+                    <field name="api_company_id"/>
+                    <field name="api_token"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="channable_connection_form" model="ir.ui.view">
+            <field name="name">channable.connection.form</field>
+            <field name="model">channable.connection</field>
+            <field name="arch" type="xml">
+                <form string="Connection Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="api_project_id" required="1"/>
+                            <field name="api_company_id" required="1"/>
+                            <field name="api_offset"/>
+                            <field name="api_token" required="1"/>
+                        </group>
+                        <group>
+                            <field name="vendor_shipping_hours"/>
+                        </group>
+                        <group>
+                            <button name="test_channable_connection" type="object" string="Test Connection" icon="fa-television"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_channable_connection">
+            <field name="name">Connection</field>
+            <field name="res_model">channable.connection</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_channable"
+                  name="Channable Integration"
+                  parent="base.menu_administration"
+                  sequence="2"/>
+        <menuitem id="menu_channable_configuration"
+                  name="Channable"
+                  parent="menu_channable"/>
+        <menuitem id="menu_channable_connection"
+                  name="Configuration"
+                  parent="menu_channable_configuration"
+                  action="action_channable_connection"/>
+
+    </data>
+</odoo>

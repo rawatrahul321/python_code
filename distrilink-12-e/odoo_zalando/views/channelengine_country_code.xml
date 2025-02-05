@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_channelengine_country_code_tree" model="ir.ui.view">
+            <field name="name">channelengine.country.code.tree</field>
+            <field name="model">channelengine.country.code</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_channelengine_country_code">
+            <field name="name">ChannelOrderCountryCode</field>
+            <field name="res_model">channelengine.country.code</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_channelengine_country_code"
+                  name="ChannelOrderCountryCode"
+                  parent="channable_api.menu_channable"
+                  action="action_channelengine_country_code"
+                  sequence="20"/>
+
+    </data>
+</odoo>

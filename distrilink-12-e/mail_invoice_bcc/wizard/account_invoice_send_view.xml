@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="account_invoice_send_wizard_form_inh">
+            <field name="name">account.invoice.send.form.inh</field>
+            <field name="model">account.invoice.send</field>
+            <field name="inherit_id" ref="account.account_invoice_send_wizard_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='subject']" position="before">
+                    <field name="email_cc" placeholder="Comma-separated carbon copy recipients addresses"/>
+                    <field name="email_bcc" placeholder="Comma-separated blind carbon copy recipients addresses"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

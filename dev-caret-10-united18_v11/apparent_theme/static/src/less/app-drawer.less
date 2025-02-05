@@ -1,0 +1,192 @@
+
+.app-drawer-nav {
+  border-color: @dropdown-border;
+  background-color: @dropdown-bg;
+  border: 1px solid @dropdown-fallback-border;
+  border: 1px solid @dropdown-border;
+  -webkit-border-radius: @border-radius-base;
+  -moz-border-radius: @border-radius-base;
+  border-radius: @border-radius-base;
+  .box-shadow(0 6px 12px rgba(0, 0, 0, .175));
+  background-clip: padding-box;
+  z-index: 10000;
+
+  .o_tooltip {
+    z-index: 1051;
+  }
+
+  .oe_logo {
+    margin-top: -11px;
+    position: relative;
+    img {
+      height: @app-drawer-title-height;
+    }
+    .oe_logo_edit {
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+      padding: 4px;
+      display: none;
+      color: @odoo-list-footer-bg-color;
+      background: rgba(37,37,37,0.9);
+    }
+    &:hover .oe_logo_edit_admin {
+      display: block;
+    }
+  }
+
+  .navbar-left {
+    width: 100%;
+    li {
+      padding: 0;
+    }
+  }
+
+  .app-drawer-title {
+    float: none;
+    font-weight: bold; // Bold titles for apps in the app-drawer
+  }
+
+  .app-drawer-panel-title {
+    line-height: 16px;
+    > .drawer-toggle {
+      padding-top: 17px;
+      padding-bottom: 17px;
+      cursor: pointer;
+    }
+  }
+
+  .app-drawer-icon-app {
+    height: 100%;
+    width: 100%;
+    max-width: @app-drawer-icon-size;
+    max-height: @app-drawer-icon-size;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 3%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .panel-body {
+    padding-top: @app-drawer-title-height;
+    margin: auto;
+    max-width: 768px;
+    width: 90%;
+  }
+
+  #appDrawerAppPanelHead {
+    position: absolute;
+    height: @app-drawer-title-height;
+    width: 100%;
+  }
+}
+
+.drawer-nav {
+  width: @app-drawer-width;
+  background: transparent url('/apparent_theme/static/src/img/bg.jpg') no-repeat scroll center center / cover;
+  z-index: 9999;
+  .app-drawer-panel-title {
+    margin-left: -14px;
+  }
+  .panel-body {
+    padding-top: 80px;
+  }
+  #appDrawerAppPanelHead {
+    z-index: 9999;
+  }
+}
+
+.drawer--left .drawer-nav {
+  left: -@app-drawer-width;
+}
+
+.drawer--left.drawer-open .drawer-hamburger {
+  left: @app-drawer-width;
+}
+
+.drawer--right .drawer-nav {
+  right: -@app-drawer-width;
+}
+
+.drawer-open .oe-right-toolbar {
+  display: none;
+}
+
+.drawer-closed .oe-right-toolbar {
+  display: block;
+}
+
+/* App Drawer Toggle */
+.app-drawer-toggle {
+  background-color: transparent;
+}
+
+.app-drawer-toggle.navbar-toggle {
+  margin-left: 1em;
+}
+
+.panel-default {
+  .panel-heading {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Remove Drawer Animate Effect.
+.drawer--left .drawer-nav {
+  -webkit-transition: left .1ms cubic-bezier(0.190, 1.000, 0.220, 1.000) !important;
+  transition: left .1ms cubic-bezier(0.190, 1.000, 0.220, 1.000) !important;
+}
+
+.app-drawer-icon-open {
+  color: @brand-primary;
+}
+
+.app-drawer-nav .app-drawer-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: white;
+}
+
+.app-drawer-nav {
+  border: 0px !important;
+  border-radius: 0px !important;
+}
+
+.panel-heading {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+}
+
+.oe_secondary_menu > li.app-name {
+  padding: 7px 12px !important;
+}
+.main-nav > .container-fluid .o_sub_menu > .o_sub_menu_content > .oe_secondary_menu > li.app-name > .oe_menu_text {
+  font-size: 22px !important;
+  color: white;
+  margin-right: 35px;
+}
+
+.main-nav > .container-fluid .o_sub_menu > .o_sub_menu_content > .oe_secondary_menu > li > a {
+  height: @navbar-height;
+  padding: 0px 8px !important;
+  line-height: @navbar-height !important;
+}
+
+.main-nav .navbar-systray > .oe_user_menu_placeholder > li > a .caret {
+  top: 0px !important;
+}
+
+.o_mail_navbar_item .o_notification_counter {
+  background: #00a09d !important;
+  color: white !important;
+  margin-top: 1em;
+  margin-right: 0;
+}
+
+.drawer--left.drawer-open .drawer-nav, .drawer--left .drawer-hamburger, .drawer--left.drawer-open .drawer-navbar .drawer-hamburger {
+  left: 0 !important;
+}

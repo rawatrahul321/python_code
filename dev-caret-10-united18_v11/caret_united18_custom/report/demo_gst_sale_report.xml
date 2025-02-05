@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="external_layout_sale_header">
+        <div class="header">
+            <div class="row">
+                <div class="col-xs-4">
+                    <img
+                        t-att-src="'data:image/png;base64,%s' % to_text(company.logo)"
+                        style="max-height:3cm; max-width:3cm; margin_bottom:15px;margin-top: 15px" />
+                </div>
+                <div class="col-xs-4" style="padding-left:-20px;">
+                    <span /><br/>
+                    <span /><br/>
+
+                    <h3 style="color: #000000;margin-left:45px; font-size: 24px; margin-top: 1px;">
+                        <strong><t t-esc="o.partner_id.city"/></strong>
+                    </h3>
+                    <h3 style="color: #000000;margin-left:15px; font-size: 18px; margin-top: 15px;">
+                        <strong><b>Sale Order: </b><t t-esc="o.name"/><br/></strong>
+                    </h3>
+                </div>
+                <div class="col-xs-4" style="font-size: 16px;margin-top:40px;">
+                    <t t-if="company.name">
+                        <b style="font-size:16px"><t t-esc="company.name"/></b><br/>
+                    </t>
+                    <t t-if="company.street2">
+                        <t t-esc="company.street2"/>
+                    </t>
+                    <t t-if="company.city">
+                       <t t-esc="company.city"/><br/>
+                    </t>
+                    <t t-if="company.state_id.name">
+                        <t t-esc="company.state_id.name"/>
+                    </t>
+                    <t t-if="company.country_id">
+                        <t t-esc="company.country_id.name"/>
+                    </t>
+                    <t t-if="company.zip">
+                        <t t-esc="company.zip"/>
+                    </t>
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <div class="article o_report_layout_standard">
+            <t t-raw="0" />
+        </div>
+    </template>
+
+    <template id="external_layout_sale">
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id.sudo()"></t>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"></t>
+        </t>
+        <t t-call="caret_united18_custom.external_layout_sale_header" >
+        <t t-raw="0" /></t>
+    </template>
+    <template id="gst_sale_report_without_filter">
+        <tr t-foreach="o.order_line" t-as="l">
+            <td> <t t-esc="l_index+1"/></td>
+            <td> <t t-esc="l.name"/></td>
+            <td colspan="2"> <t t-esc="l.product_specification"/></td>
+            <td> <t t-esc="l.product_id.hsn_code"/></td>
+            <td> <t t-esc="l.product_uom_qty"/></td>
+            <!-- <td> <t t-esc="l.product_uom.name"/></td> -->
+            <td> <t t-esc="l.price_unit"/></td>
+            <td> <t t-esc="l.price_subtotal"/></td>
+            <!-- <td> <t t-esc="l.discount"/></td> -->
+            <td> <t t-esc="l.price_tax"/> </td>
+            <td>
+                <table>
+                    <tr t-foreach="l.tax_id" t-as="t">
+                        <td t-if="'Taxes' == t.tax_group_id.name"><t t-esc="t.children_tax_ids[0].amount"/>%</td>
+                        <td t-if="'CGST' in t['name']"><t t-esc="t.amount"/>%</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr t-foreach="l.tax_id" t-as="t">
+                        <t t-set="textvalue" t-value="l.price_subtotal*t.amount/100"/>
+                        <t t-if="'Taxes' == t.tax_group_id.name" t-set="gsttextvalue" t-value="l.price_subtotal*t.children_tax_ids[0].amount/100"/>
+                        <tr>
+                            <td t-if="'CGST' in t['name']"><t t-esc="textvalue"/></td>
+                            <td t-if="'Taxes' == t.tax_group_id.name"><t t-esc="gsttextvalue"/></td>
+                        </tr>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr t-foreach="l.tax_id" t-as="t">
+                        <td t-if="'Taxes' == t.tax_group_id.name"><t t-esc="t.children_tax_ids[1].amount"/>%</td>
+                        <td t-if="'SGST' in t['name']"><t t-esc="t.amount"/>%</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr t-foreach="l.tax_id" t-as="t">
+                        <t t-set="textvalue" t-value="l.price_subtotal*t.amount/100"/>
+                        <t t-if="'Taxes' == t.tax_group_id.name" t-set="gsttextvalue" t-value="l.price_subtotal*t.children_tax_ids[1].amount/100"/>
+                        <tr>
+                            <td t-if="'SGST' in t['name']"><t t-esc="textvalue"/></td>
+                            <td t-if="'Taxes' == t.tax_group_id.name"><t t-esc="gsttextvalue"/></td>
+                        </tr>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr t-foreach="l.tax_id" t-as="t">
+                        <td t-if="'IGST' in t['name']"><t t-esc="t.amount"/>%</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr t-foreach="l.tax_id" t-as="t">
+                        <t t-set="textvalue" t-value="l.price_subtotal*t.amount/100"/>
+                        <tr>
+                            <td t-if="'IGST' in t['name']"><t t-esc="textvalue"/></td>
+                        </tr>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"></td>
+            <td width="10%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="10%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+        </tr>
+        <tr>
+            <td colspan="9" align="center"><b>Sales Value (In Words)</b></td>
+            <td colspan="5" align="right"><b>Total</b></td>
+            <td align="right">
+                <span t-field="o.amount_untaxed" />
+            </td>
+        </tr>
+        <tr t-foreach="o._get_cgst_tax_rate_amount()" t-as="d">
+            <td rowspan="5" colspan="9" align="center">
+                 <span t-esc="o.amount_to_text(o.amount_total, o.currency_id)"/>
+            </td>
+            <td colspan="5" align="right"><b>Add : CGST</b> </td>
+            <td><span t-esc="d['amount']" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+        </tr>
+        <tr t-if="not o._get_cgst_tax_rate_amount()">
+            <td rowspan="5" colspan="9" align="center">
+                 <span t-esc="o.amount_to_text(o.amount_total, o.currency_id)"/>
+            </td>
+            <td colspan="5" align="right"><b>Add : CGST</b> </td>
+            <td>-</td>
+        </tr>
+        <tr t-foreach="o._get_sgst_tax_rate_amount()" t-as="d">
+            <td colspan="5" align="right"><b>Add : SGST</b></td>
+            <td><span t-esc="d['amount']" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+        </tr>
+        <tr t-if="not o._get_sgst_tax_rate_amount()">
+            <td colspan="5" align="right"><b>Add : SGST</b></td>
+            <td>-</td>
+        </tr>
+        <tr t-foreach="o._get_igst_tax_rate_amount()" t-as="d">
+            <td colspan="5" align="right"><b>Add : IGST</b></td>
+            <td><span t-esc="d['amount']" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+        </tr>
+        <tr t-if="not o._get_igst_tax_rate_amount()">
+            <td colspan="5" align="right"><b>Add : IGST</b></td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td colspan="5" align="right"><b>Tax Amount : GST</b></td>
+            <td><span t-field="o.amount_tax"/></td>
+        </tr>
+        <tr>
+            <td colspan="5" align="right"><b>Total Amount After Tax</b></td>
+            <td align="right">
+                <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+            </td>
+        </tr>
+    </template>
+    <template id="gst_sale_report_with_filter">
+        <t t-set="untaxed_amount" t-value="0"/>
+        <t t-set="tax_amount" t-value="0"/>
+        <t t-set="cgst_amount" t-value="0"/>
+        <t t-set="sgst_amount" t-value="0"/>
+        <t t-set="igst_amount" t-value="0"/>
+        <t t-set="cgst_tax_value" t-value="0"/>
+        <t t-set="sgst_tax_value" t-value="0"/>
+        <tr t-foreach="order_lines.filtered(lambda l: l.order_id.id in [o.id])" t-as="l">
+            <td> <t t-esc="l_index+1"/></td>
+            <td> <t t-esc="l.name"/></td>
+            <td colspan="2"> <t t-esc="l.product_specification"/></td>
+            <td> <t t-esc="l.product_id.hsn_code"/></td>
+            <td> <t t-esc="l.product_uom_qty"/></td>
+            <!-- <td> <t t-esc="l.product_uom.name"/></td> -->
+            <td> <t t-esc="l.price_unit"/></td>
+            <td> <t t-esc="l.price_subtotal"/></td>
+            <!-- <td> <t t-esc="l.discount"/></td> -->
+            <td> <t t-esc="l.price_tax"/> </td>
+            <t t-set="untaxed_amount" t-value="untaxed_amount+l.price_subtotal"/>
+            <t t-set="tax_amount" t-value="tax_amount+l.price_tax"/>
+            <td>
+                <table>
+                    <tr t-foreach="l.tax_id" t-as="t">
+                        <td t-if="'Taxes' == t.tax_group_id.name"><t t-esc="t.children_tax_ids[0].amount"/>%</td>
+                        <td t-if="'CGST' in t['name']">
+                            <t t-esc="t.amount"/>%
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr t-foreach="l.tax_id" t-as="t">
+                        <t t-set="textvalue" t-value="l.price_subtotal*t.amount/100"/>
+                        <t t-if="'Taxes' == t.tax_group_id.name" t-set="gsttextvalue" t-value="l.price_subtotal*t.children_tax_ids[0].amount/100"/>
+                        <tr>
+                            <td t-if="'CGST' in t['name']">
+                                <t t-set="cgst_amount" t-value="cgst_amount+textvalue"/>
+                                <t t-esc="textvalue"/>
+                            </td>
+                            <td t-if="'Taxes' == t.tax_group_id.name">
+                                <t t-set="cgst_tax_value" t-value="cgst_tax_value+gsttextvalue"/>
+                                <t t-esc="gsttextvalue"/>
+                            </td>
+                        </tr>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr t-foreach="l.tax_id" t-as="t">
+                        <td t-if="'Taxes' == t.tax_group_id.name"><t t-esc="t.children_tax_ids[1].amount"/>%</td>
+                        <td t-if="'SGST' in t['name']"><t t-esc="t.amount"/>%</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr t-foreach="l.tax_id" t-as="t">
+                        <t t-set="textvalue" t-value="l.price_subtotal*t.amount/100"/>
+                        <t t-if="'Taxes' == t.tax_group_id.name" t-set="gsttextvalue" t-value="l.price_subtotal*t.children_tax_ids[1].amount/100"/>
+                        <tr>
+                            <td t-if="'SGST' in t['name']">
+                                <t t-set="sgst_amount" t-value="sgst_amount+textvalue"/>
+                                <t t-esc="textvalue"/>
+                            </td>
+                            <td t-if="'Taxes' == t.tax_group_id.name">
+                                <t t-set="sgst_tax_value" t-value="sgst_tax_value+gsttextvalue"/>
+                                <t t-esc="gsttextvalue"/>
+                            </td>
+                        </tr>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr t-foreach="l.tax_id" t-as="t">
+                        <td t-if="'IGST' in t['name']"><t t-esc="t.amount"/>%
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr t-foreach="l.tax_id" t-as="t">
+                        <t t-set="textvalue" t-value="l.price_subtotal*t.amount/100"/>
+                        <tr>
+                            <td t-if="'IGST' in t['name']">
+                                <t t-set="igst_amount" t-value="igst_amount+textvalue"/>
+                                <t t-esc="textvalue"/>
+                            </td>
+                        </tr>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"></td>
+            <td width="10%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="10%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+        </tr>
+        <tr>
+            <td colspan="9" align="center"><b>Sales Value (In Words)</b></td>
+            <td colspan="5" align="right"><b>Total</b></td>
+            <td align="right">
+                <span t-esc="untaxed_amount" />
+            </td>
+        </tr>
+
+        <tr t-if="cgst_amount != 0">
+            <td rowspan="5" colspan="9" align="center">
+                 <span t-esc="o.amount_to_text(tax_amount+untaxed_amount, o.currency_id)"/>
+            </td>
+            <td colspan="5" align="right"><b>Add : CGST</b> </td>
+            <td><span t-esc="cgst_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+        </tr>
+        <tr t-if="cgst_amount == 0">
+            <td rowspan="5" colspan="9" align="center">
+                 <span t-esc="o.amount_to_text(tax_amount+untaxed_amount, o.currency_id)"/>
+            </td>
+            <td colspan="5" align="right"><b>Add : CGST</b> </td>
+            <td><span t-esc="cgst_tax_value"/></td>
+        </tr>
+        <tr t-if="sgst_amount != 0">
+            <td colspan="5" align="right"><b>Add : SGST</b></td>
+            <td><span t-esc="sgst_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+        </tr>
+        <tr t-if="sgst_amount == 0">
+            <td colspan="5" align="right"><b>Add : SGST</b></td>
+            <td><span t-esc="sgst_tax_value"/></td>
+        </tr>
+        <tr t-if="igst_amount != 0">
+            <td colspan="5" align="right"><b>Add : IGST</b></td>
+            <td><span t-esc="igst_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+        </tr>
+        <tr t-if="igst_amount == 0">
+            <td colspan="5" align="right"><b>Add : IGST</b></td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td colspan="5" align="right"><b>Tax Amount : GST</b></td>
+            <td><span t-esc="tax_amount"/></td>
+        </tr>
+        <tr>
+            <td colspan="5" align="right"><b>Total Amount After Tax</b></td>
+            <td align="right">
+                <span t-esc="tax_amount+untaxed_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+            </td>
+        </tr>
+    </template>
+    <template id="gst_sale_template_report_main">
+        <t t-call="caret_united18_custom.external_layout_sale">
+            <div class="page">
+                <div class="row" style="font-size:11px">
+                    <div class="col-xs-12">
+                        <table class="table table-bordered">
+                            <tr>
+                                <td colspan="7">
+                                    <span style="font-size: 14px;"><b>Customer Details</b></span><br/>
+                                    <b> Name: </b> <t t-esc="o.partner_id.name"/><br/>
+                                    <b> Address:</b>
+                                    <t t-esc="o.partner_id.street"/>,
+                                    <t t-esc="o.partner_id.street2"/>,
+                                    <t t-esc="o.partner_id.city"/><br/>
+                                    <b> State:</b> <t t-esc="o.partner_id.state_id.name"/><br/>
+                                    <b> Zip code:</b> <t t-esc="o.partner_id.zip"/><br/>
+                                    <b> GSTIN Number:</b> <t t-esc="o.partner_id.vat"/>
+                                    <br/>
+                                    <b> Mobile Number:</b>
+                                    <t t-esc="o.partner_id.mobile"/>
+                                </td>
+                                <td colspan="8">
+                                    <span style="font-size: 14px;"><b>Sales Details</b></span><br/>
+                                    <b> Sales Date: </b><span t-field="o.date_order" t-options="{&quot;format&quot;: &quot;dd-MM-yyyy&quot;}" /><br/>
+                                    <b> GSTIN Number: </b><t t-esc="o.company_id.vat"/><br/>
+                                    <b> A/c Holder: </b> <br/>
+                                    <b> A/c No.:</b> <b> Bank: </b><br/>
+                                    <b> ISFC:</b>  <b> SWIFT:</b><br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="2%" rowspan="2"><b>No</b></td>
+                                <td width="22%" rowspan="2"><b> Description</b></td>
+                                <td width="20%" rowspan="2" colspan="2"><b> Product Note</b></td>
+                                <td width="10%" rowspan="2"><b>HSN/SAC</b></td>
+                                <td width="3%" rowspan="2"><b>Qty</b></td>
+                                <!-- <td width="3%" rowspan="2"><b>UOM</b></td> -->
+                                <td width="3%" rowspan="2"><b>Rate</b></td>
+                                <td width="5%" rowspan="2"><b>Total</b></td>
+                               <!--  <td width="4%" rowspan="2"><b>Discount</b></td> -->
+                                <td width="5%" rowspan="2"><b>Taxable values</b></td>
+                                <td width="10%" colspan="2" align="center"><b>CGST</b></td>
+                                <td width="10%" colspan="2" align="center"><b>SGST</b></td>
+                                <td width="10%" align="center" colspan="2" ><b>IGST</b></td>
+                            </tr>
+                            <tr>
+                                <td width="5%" align="center"><b>Rate</b></td>
+                                <td width="5%" align="center"><b>Amount</b></td>
+                                <td width="5%" align="center"><b>Rate</b></td>
+                                <td width="5%" align="center"><b>Amount</b></td>
+                                <td width="5%" align="center"><b>Rate</b></td>
+                                <td width="5%" align="center"><b>Amount</b></td>
+                            </tr>
+                            <t t-if="not categories">
+                                <t t-call="caret_united18_custom.gst_sale_report_without_filter"/>
+                            </t>
+                            <t t-if="categories">
+                                <t t-call="caret_united18_custom.gst_sale_report_with_filter"/>
+                            </t>
+                            <tr>
+                                <td colspan="8" align="center"><b>YOUR TERM and CONDITION OF SALE</b></td>
+                                <td colspan="7" align="center"><b><t t-esc="o.company_id.name"/></b></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="4" colspan="8"><t t-esc="o.note"/></td>
+                                <td colspan="7">Signature:</td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" align="center"><b>Authorised Signatory</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7">Name:<t t-esc="o.user_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7">Designation:</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="gst_sale_template_report_id">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="caret_united18_custom.gst_sale_template_report_main" t-lang="o.name"/>
+            </t>
+        </t>
+    </template>
+</odoo>
