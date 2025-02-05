@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_stock_unique_number,access_stock_unique_number,model_stock_unique_number,,1,1,1,1
-access_stock_unique_traceability,access_stock_unique_traceability,model_stock_unique_traceability,,1,1,1,1
-access_auto_generate_unique_number,access_auto_generate_unique_number,model_auto_generate_unique_number,,1,1,1,1
