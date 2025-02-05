@@ -13,6 +13,7 @@ for i in range(len(words)):
             break
 print(out)   
 
+
 words = ['flower','flow','float']
 prefix = words[0]
 for word in words[1:]:

@@ -72,3 +72,11 @@ def longest_common_string(strs):
     return prefix
 print(longest_common_string(["flower", "flow", "flight"]))
 
+def highest_product(list_of_ints):
+    if len(list_of_ints) < 3:
+        return None
+    sorted_ints = sorted(list_of_ints)
+    print (sorted_ints[0] , sorted_ints[1] , sorted_ints[-1], sorted_ints[-3] , sorted_ints[-2] , sorted_ints[-1])
+    return max(sorted_ints[0] * sorted_ints[1] * sorted_ints[-1], sorted_ints[-3] * sorted_ints[-2] * sorted_ints[-1])
+    # return sorted_ints[-1]*sorted_ints[-2]*sorted_ints[-3]
+print(highest_product([-100,-98,-1,2,3,4]))
