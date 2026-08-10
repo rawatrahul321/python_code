@@ -1,43 +1,43 @@
-# def f(x=[]):
-#     x.append(len(x))
-#     return x
-# print (f())
-# print (f())
-# print (f())
-# def f(x=None):
-#     if x is None:
-#         x = []
-#     x.append(len(x))
-#     return x
-# print (f())
-# print (f())
+def f(x=[]):
+    x.append(len(x))
+    return x
+print (f())
+print (f())
+print (f())
+def f(x=None):
+    if x is None:
+        x = []
+    x.append(len(x))
+    return x
+print (f())
+print (f())
 def d(f):
-    def _(*args,**kwargs):
-        return f(*args,**kwargs)
-    return _
-   
+    def _(*args,**kwargs):
+        return f(*args,**kwargs)
+    return _
+   
 @d
 def f(x=[]):
-    x.append(len(x))
-    return x
+    x.append(len(x))
+    return x
 print (f())
 print (f())
 print (f())
 
-sorting dictionery: dic1 = {234:'Mango',345:'Apple',121:'Banana'}
-# dic2 = {}
-# d = sorted(dic1.keys())
-# for i in d:
-#     dic2[i]=dic1[i]
+sorting dictionery: dic1 = {234:'Mango',345:'Apple',121:'Banana'}
+dic2 = {}
+d = sorted(dic1.keys())
+for i in d:
+    dic2[i]=dic1[i]
 dic2 = {key:value for key,value in sorted(dic1.items(), key=lambda x:x[1])}
-print(dic2)    
+print(dic2)    
 
 Sorting List:list1 = [2,3,4,5,45435,435,3454,54,545]
 n = len(list1)
 for i in range(n):
-    for j in range(i+1,n):
-        if list1[i]>list1[j]:
-            list1[i],list1[j]=list1[j],list1[i]
+    for j in range(i+1,n):
+        if list1[i]>list1[j]:
+            list1[i],list1[j]=list1[j],list1[i]
 print(list1)
 
 # Find the max character in basestring
@@ -45,10 +45,10 @@ print(list1)
 string = "nitintitnitnitnitnti"
 ch = {}
 for i in string:
-    if i in ch:
-        ch[i]+=1
-    else:
-        ch[i]= 1
+    if i in ch:
+        ch[i]+=1
+    else:
+        ch[i]= 1
 max_char = max(ch,key=ch.get)
 print(max_char,ch)
 
@@ -58,11 +58,11 @@ l = [2,5,4,3,7]
 maximum = l[0]
 minimum = l[0]
 for i in l:
-    if i>maximum:
-        maximum = i
-    if i<minimum:
-        minimum = i
-    
+    if i>maximum:
+        maximum = i
+    if i<minimum:
+        minimum = i
+    
 print(maximum,"maximum")
 print(minimum,"minimum")
 
@@ -70,29 +70,29 @@ print(minimum,"minimum")
 ls = ["aa", "ab", "bc", "bd"]
 ans = sorted(ls, key=lambda x:(x[0], -ord(x[1])))
 print(ans)
-Armstrong Number- n = int(input("Enter the Number:"))
+Armstrong Number- n = int(input("Enter the Number:"))
 sum = 0
 temp = n
 count = len(str(n))
 while temp>0:
-    digit = temp % 10
-    sum = sum + digit ** count
-    temp = temp // 10
-    
+    digit = temp % 10
+    sum = sum + digit ** count
+    temp = temp // 10
+    
 if sum==n:
-    print("Yes",sum)
+    print("Yes",sum)
 else:
-    print("No",sum)
+    print("No",sum)
 
-Check the Number is Armstrong number or not 
+Check the Number is Armstrong number or not 
 n = int(input("Enter the number:"))
 digits = [int(digit) for digit in str(n)]
 count = len(digits)
 sum1 = sum([digit ** count for digit in digits])
 if sum1==n:
-    print("Armstrong Number",sum1)
+    print("Armstrong Number",sum1)
 else:
-    print("Not Armstrong Number",sum1)
+    print("Not Armstrong Number",sum1)
 
 
 aaaabbcccd4a2b3c1dstr1 = 'aaaabbcccd'
@@ -100,22 +100,22 @@ output = ''
 char = str1[0]
 count = 0 
 for i in str1:
-    if i==char:
-        count+=1
-    else:
-        output= output+str(count)+char
-        char = i
-        count = 1
+    if i==char:
+        count+=1
+    else:
+        output= output+str(count)+char
+        char = i
+        count = 1
 output= output+str(count)+char
 print (output)
 
 def find_least_positive_integer(lst):
-    num_set = set(lst)
-    print (num_set)
-    i = 1
-    while i in num_set:
-        i += 1
-    return i
+    num_set = set(lst)
+    print (num_set)
+    i = 1
+    while i in num_set:
+        i += 1
+    return i
 
 list1 = [1,2,4,5,6,-1,-3,100]
 print(find_least_positive_integer(list1))
@@ -125,71 +125,371 @@ list2 = [li for li in range(list1[0],list1[-1]+1) if li not in list1]
 print(list2)
 
 def first_non_repeating_char(string):
-    dict = {}
-    size = len(string)
-    for i in range(size):
-        key = string[i]
-        if key not in dict:
-            dict[key] = 1
-        else:
-            dict[key] = dict[key] + 1
-    for key,value in dict.items():
-        if value==1:
-            print(key,value)
-            break
+    dict = {}
+    size = len(string)
+    for i in range(size):
+        key = string[i]
+        if key not in dict:
+            dict[key] = 1
+        else:
+            dict[key] = dict[key] + 1
+    for key,value in dict.items():
+        if value==1:
+            print(key,value)
+            break
 first_non_repeating_char('netosentat')
 
 def frquency_words():
-    string = input("enter the string:")
-    str_split = string.split()
-    dict = {}
-    for i in str_split:
-        if i not in dict.keys():
-            dict[i] = 0
-        dict[i] = dict[i] + 1
-    print(dict)
-    
+    string = input("enter the string:")
+    str_split = string.split()
+    dict = {}
+    for i in str_split:
+        if i not in dict.keys():
+            dict[i] = 0
+        dict[i] = dict[i] + 1
+    print(dict)
+    
 frquency_words()
 
 # Fibonacci Series with Generator -
 
 def fib_gen(n):
-    a, b = 0, 1
-    count = 0
-    while count < n:
-        yield a
-        a, b = b, a + b
-        count += 1
+    a, b = 0, 1
+    count = 0
+    while count < n:
+        yield a
+        a, b = b, a + b
+        count += 1
 
 for i in fib_gen(10):
-    print(i, end=" ")
+    print(i, end=" ")
 
 def rotate_string(n):
-    size = len(n)
-    temp = n + n
-    for i in range(size):
-        for j in range(size):
-            print(temp[i+j],end=" ")
-        print()
-        
+    size = len(n)
+    temp = n + n
+    for i in range(size):
+        for j in range(size):
+            print(temp[i+j],end=" ")
+        print()
+        
 rotate_string('STATE')
 
 def check_rotate(str1,str2):
-    if len(str1)!=len(str2):
-        return False
-    size = len(str1)
-    s = str1+str1
-    if str2 in s:
-        print(f'{str1} is matching with {str2}')
-    else:
-        print('Not Matching')
+    if len(str1)!=len(str2):
+        return False
+    size = len(str1)
+    s = str1+str1
+    if str2 in s:
+        print(f'{str1} is matching with {str2}')
+    else:
+        print('Not Matching')
 check_rotate('rah','ahr')
 def reverse(string):
-    size = len(string)
-    if size==0:
-        return 
-    last_char = string[size-1]
-    print(last_char,end="")
-    reverse(string[0:size-1])
+    size = len(string)
+    if size==0:
+        return 
+    last_char = string[size-1]
+    print(last_char,end="")
+    reverse(string[0:size-1])
 reverse("netstat")
-        
+
+# https://apps.odoo.com/apps/themes/9.0/web_menu_hide_9/
+
+inputs = "a3b2c4"
+l = []
+for i in inputs:
+    if not i.isdigit():
+        var = i
+#     else:
+        num = int(i)
+        print(var*num,end="")
+def appensd(ele,t=[]):
+    t.append(ele)
+    return t
+
+list_1 = appensd(56)
+# print(appensd.__defaults__)
+print(list_1,end= '')
+list_2 = appensd(23)
+# print(appensd.__defaults__)
+print(list_2,end=" ")
+
+
+
+m = ['a','b','c']
+print (m[-1])
+for m[-1] in m:
+    print(m[-1])
+
+
+my_dict = {'organe':'fruit','potato':'vegetable','banana':'fruit'}
+
+output = {}
+for ele in my_dict:
+    print (ele,my_dict[ele])
+    if my_dict[ele] not in output:
+        output[my_dict[ele]] = [ele]
+#     else:
+        output[my_dict[ele]].append(ele)
+print(output)
+
+st = "aaaabbbccd"
+count =0
+d = []
+for i in st:
+    if i not in d:
+        d.append(st.count(i))
+        d.append(i)
+print (d,type(d))
+print(''.join(str(l) for l in d))
+
+
+# For Reverse String
+def reverse(n):
+    result = ""
+    for i in n:
+        result = i + result
+    return result
+    
+print(reverse("rahul"))
+
+# For Duplicate and not in the List
+l = [22,11,12,11,22]
+d = []
+for i in range(len(l)):
+    for j in range(i+1,len(l)):
+        if l[i] == l[j] and l[i] not in d:
+            d.append(l[i])
+print(d)
+for i in l:
+    if l.count(i)==1:
+        d.append(i)
+print(d)
+l1 = [num for num in l if l.count(num)==1]
+print (''.join(str(l1).split()))
+
+
+
+my_str = "a,a,a,b,b,c,c,c"
+my_list = my_str.split(",")
+d = []
+final_list = []
+for num in my_list:
+    if num not in d:
+        final_list.append(f"{num}:{my_list.count(num)}")
+        d.append(num)
+print(final_list)
+print(",".join(final_list))
+
+
+string = '[{()}]'
+def is_valid(string):
+    stack = []
+    CloseToOpen = {')':'(','}':'{',']':'['}
+    for i in string:
+        if i in CloseToOpen:
+            if stack and stack[-1]==CloseToOpen[i]:
+                print(stack)
+                stack.pop()
+            else:
+                return False
+        else:
+            stack.append(i)
+    return True if not stack else False
+   
+print(is_valid(string))
+       
+            
+
+Reverse a string:- 
+
+l = ['a','b','c','d','e']
+rev = ['e','d','c','b','a']
+stack = []
+for i in l:
+    stack.append(i)
+i = 0
+while stack:
+    l[i]= stack.pop()
+    i+=1
+print(l)
+
+def compress_string(s):
+    result = ''
+    count = 1
+    for i in range(1,len(s)):
+        if s[i]==s[i-1]:
+            count +=1
+        else:
+            result+=s[i-1]+str(count)
+            count = 1
+    result += s[-1] + str(count)
+    return result
+
+print(compress_string("aaabbbcc"))
+
+ 
+# ─────────────────────────────────────────────
+# 7. SLIDING WINDOW — MAX SUM SUBARRAY OF SIZE K
+# ─────────────────────────────────────────────
+def max_sum_subarray(arr, k):
+    window_sum = sum(arr[:k])
+    max_sum = window_sum
+    for i in range(k, len(arr)):
+        window_sum += arr[i] - arr[i - k]
+        max_sum = max(max_sum, window_sum)
+    return max_sum
+ 
+print(max_sum_subarray([2, 1, 5, 1, 3, 2], 3))  # 9 (5+1+3)
+
+def find_duplicates(nums):
+    seen = set()
+    duplicates = set()
+    for i in nums:
+        if i in seen:
+            duplicates.add(i)
+        else:
+            seen.add(i)
+    return list(duplicates)
+
+
+
+print(find_duplicates([1, 2, 3, 2, 4, 3, 5]))  # [2, 3]
+
+def flatten(list1):
+    result = []
+    for i in list1:
+        if isinstance(i,list):
+            result.extend(flatten(i))
+        else:
+            result.append(i)
+    return result
+   
+print(flatten([1, [2, [3, [4]], 5]]))
+
+
+def is_balanced(s):
+    stack = []
+    mapping = {')': '(', '}': '{', ']': '['}
+    for i in s:
+        if i in mapping:
+            top = stack.pop() if stack else ''
+            if mapping[i]!=top:
+                return False
+        else:
+            stack.append(i)
+    return not stack
+print(is_balanced("({[]})"))   # True
+print(is_balanced("({[})"))    # False
+print(is_balanced("((()))")) 
+
+from collections import defaultdict
+
+def group_anagrams(s):
+    d = defaultdict(list)
+    print(d)
+    for i in s:
+        key = tuple(sorted(i))
+        print(key)
+        d[key].append(i)
+        print(d)
+    return list(d.values())
+       
+print(group_anagrams(["eat","tea","tan","ate","nat","bat"]))
+
+
+import copy
+ 
+original = [[1, 2, 3], [4, 5, 6]]
+shallow = copy.copy(original)
+deep = copy.deepcopy(original)
+original[0][0]=99
+print(shallow,deep)
+
+
+import sys
+list_num = [x**2 for x in range(10000)]
+gen_num = (x**2 for x in range(10000))
+print(sys.getsizeof(list_num))
+print(sys.getsizeof(gen_num))
+
+
+def squares(num):
+    for i in num:
+        yield i**3
+       
+print(list(squares([1,2,3])))
+
+def filter_even(nums):
+    for i in nums:
+        if i%2==0:
+            yield i
+
+print(list(filter_even([1,2,3,4,22,22,33,44])))
+
+def missing_number_xor(nums):
+    l = len(nums)
+    return l*(l+1)//2 - sum(nums)
+
+print(missing_number_xor([9,6,4,2,3,5,7,0,1]))
+
+def two_sum(nums,target):
+    num_of_index = {}
+    for i,num in enumerate(nums):
+        compliment = target - num
+        if compliment in num_of_index:
+            return [num_of_index[compliment],i]
+        num_of_index[num] = i
+    return []
+nums = [2, 7, 11, 15]
+target = 18
+print(two_sum(nums, target))  # Output: [0, 1]
+
+def length_of_longest_substring(s):
+    char_set = set()
+    left = 0
+    max_length = 0
+   
+    for right in range(len(s)):
+        while s[right] in char_set:
+            char_set.remove(s[left])
+            left += 1
+        char_set.add(s[right])
+        max_length = max(max_length, right - left + 1)
+   
+    return max_length
+
+# Example usage:
+s = "abcabcbb"
+print(length_of_longest_substring(s))  # Output: 3
+
+Two Sum when the element is not sorted array:- 
+nums = [12,3,4,5,1,2]
+target = 4
+prevMap = {}
+def two_sum(nums):
+    for i,j in enumerate(nums):
+        diff = target - j
+        if diff in prevMap:
+            return prevMap[diff],i
+        prevMap[j] =i
+print(two_sum(nums))
+
+Two Sum when the element is sorted Array:- 
+
+nums = [1,2,3,4,5,6,7,10,11]
+target = 9
+def two_sum_binary(nums,target):
+    left,right = 0,len(nums)-1
+    while(left<right):
+        curretSum = nums[left]+nums[right]
+        if curretSum > target:
+            right -=1
+        elif curretSum < target:
+            left +=1
+        else:
+            return [left+1,right+1]
+    return []
+print(two_sum_binary(nums,target))
+
+
