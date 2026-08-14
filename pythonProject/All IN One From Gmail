@@ -1,4 +1,13 @@
 from collections import defaultdict
+names = ["Alice", "Bob", "Anna", "Charlie", "Bill"]
+group_names = defaultdict(list)
+for name in names:
+    first_name = name[0]
+    group_names[first_name].append(name)
+print(dict(group_names))
+
+
+from collections import defaultdict
 words = ["apple", "banana", "apple", "cherry", "banana", "apple"]
 
 counts = defaultdict(int)
