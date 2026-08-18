@@ -1,3 +1,25 @@
+function greet() {
+  console.log(`Hello, ${this.name}`);
+}
+const user = {'name':'Rahul'}
+let g = greet(user)
+var f = greet.call(user)
+var f = greet.apply(user)
+var d = greet.bind(user)
+console.log(d)
+var bread = greet.bind(user)
+bread()
+// console.log(g)
+// console.log(f)
+
+console.log("1");
+setTimeout(() => console.log("2"), 0);
+Promise.resolve().then(() => console.log("3"));
+console.log("4");
+
+
+
+
 // reduce 
 let arr = [12,3,4,34,2,3,4]
 let unique_num=(arr)=>{
