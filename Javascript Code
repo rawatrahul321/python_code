@@ -1,0 +1,293 @@
+// reduce 
+let arr = [12,3,4,34,2,3,4]
+let unique_num=(arr)=>{
+  return arr.reduce((acc,ele)=> {
+    return acc.includes(ele) ? acc : [...acc,ele]
+  },[])
+}
+console.log(unique_num(arr))
+
+// Call & Bind & Apply
+var userdetails={
+  'name':'Rahul'
+}
+var userdetails1={
+  'name':'Vinod'
+}
+var personaldetails = function(state){
+  console.log(this.name+' '+state)
+}
+personaldetails.call(userdetails,"Delhi")
+personaldetails.apply(userdetails1,["Delhi"])
+var store = personaldetails.bind(userdetails1,"Delhi")
+store()
+
+// Call
+let userdetails={
+  'name':'Rahul',
+  personaldetails:function(){
+    return this.name
+  }
+}
+let userdetails1={
+  'name':'Vinod'
+}
+d = userdetails.personaldetails.call(userdetails1)
+d1 = userdetails.personaldetails()
+console.log(d)
+console.log(d1)
+
+// Closure 
+var sum = function(a,b,c){
+  return {
+    getSumtwo:function(){
+      return a+b
+    },
+    getSumthree:function(){
+      return a+b+c
+    }
+  }
+  
+}
+var store = sum(1,2,3)
+console.log(store.getSumtwo())
+console.log(store.getSumthree())
+
+
+function sum(a){
+  console.log("Value of Sum ",a)
+  return function(c){
+    return a+c
+  }
+}
+var store = sum(2)
+console.log(store(3))
+
+// Async / Await 
+datas = [{'name':'rahul','profession':'SE'},
+{'name':'deepak','profession':'EE'}]
+
+function getData(){
+    let output  = '';
+    datas.forEach((data,index)=>{
+      output+= `<li>${data.name}</li>`
+    })
+    document.write(output)
+}
+
+function createData(newdata){
+  return new Promise((resolve,reject)=>{
+    datas.push(newdata);
+    let error= false;
+    if (!error){
+      resolve();
+    }
+    else{
+      reject();
+    }
+  })
+
+}
+async function start(){
+   await createData({'name':'vinod','profession':'DE'})
+getData()
+}
+start()
+
+
+
+// Promise
+datas = [{'name':'rahul','profession':'SE'},
+{'name':'deepak','profession':'EE'}]
+
+function getData(){
+    let output  = '';
+    datas.forEach((data,index)=>{
+      output+= `<li>${data.name}</li>`
+    })
+    document.body.innerHTML = output
+}
+
+function createData(newdata){
+  return new Promise((resolve,reject)=>{
+    datas.push(newdata);
+    let error= false;
+    if (!error){
+      resolve();
+    }
+    else{
+      reject();
+    }
+  })
+
+}
+createData({'name':'vinod','profession':'DE'}).then(getData())
+
+
+
+
+// CallBackdatas = [{'name':'rahul','profession':'SE'},
+{'name':'deepak','profession':'EE'}]
+
+function getData(){
+  setTimeout(()=>{
+    let output  = '';
+    datas.forEach((data,index)=>{
+      output+= `<li>${data.name}</li>`
+    })
+    document.body.innerHTML = output
+  },1000)
+}
+
+function createData(newdata,callback){
+  setTimeout(()=>{
+    datas.push(newdata);
+    callback();
+  },2000);
+}
+createData({'name':'vinod','profession':'DE'},getData)
+getData()
+
+
+
+let arr = [3,4,5,5,4,3]
+let arr1= [ ]
+let d =   arr.forEach(ele=>{
+  arr1.push(ele*2)
+})
+
+console.log(arr,arr1)
+
+let arr = [3,4,5,5,4,3]
+arr1  = []
+for (i=0;i<arr.length;i++){
+  if (arr1.includes(arr[i]) ){
+
+  }
+  else {
+    arr1.push(arr[i])
+  }
+}
+console.log(arr1)
+
+function Maxi(n){
+  return Math.max(...n)
+}
+console.log(Maxi([1,2,3,4,4]))
+
+function Factorial(n){
+  return n<= 1?1: n*Factorial(n-1)
+}
+console.log(Factorial(6))
+
+
+let arr = [1,2,3,4,2131232,12232,31213,12]
+s = arr.sort((a,b)=>a-b)
+console.log(s)
+
+let arr = [11,22,33,44,55]
+a = arr.filter(ele =>{
+  return ele%2==0
+})
+console.log(a)
+
+
+let arr = [1,2,3,4,5]
+mapped = arr.map((ele)=>ele*2)
+console.log(mapped)
+
+arr = [1,2,3,4,2,3,1]
+var c = [...new Set(arr)]
+console.log(c)
+
+let arr  = [1,2,3,4,5]
+let result = arr.reduce((cur,acc)=>{
+  return cur+acc
+},0)
+console.log(result)
+const numbers = [1,2,3,4,5]
+// const filter_number = numbers.filter(function(number){
+//     return number % 2 ==0;
+// });
+const filter_number = numbers.filter(number =>number % 2 == 0)
+console.log(filter_number);
+
+function feed({ name, meal, diet }) {
+    return `Feed ${name} ${meal} kilos of ${diet}`;
+}
+console.log(feed({name:'Loinf',meal:2,diet:"dear"}))
+
+function person(str,age){
+    const Agestr = age > 5 ? 'old': 'young';
+    return Agestr
+}
+console.log(person(4))
+
+li = [1,2,3]
+li = [4,5,6,...li]
+console.log(li)
+
+const arr = {name:'rahul',age:5}
+const arr1 = {class:5}
+const v = Object.assign(arr,arr1)
+const v1 = Object.assign(arr1,arr)
+const v2 = {...arr, ...arr1}
+console.log(arr)
+console.log(v2)
+
+const orders = [23123,3,12312,321,1,21,2,31,100]
+total = 0 
+high = []
+reduce_order = orders.reduce((acc,cur) => acc + cur)
+console.log(reduce_order)
+filter_order = orders.filter(order => order > 100)
+console.log(filter_order)
+for (i=1;i<orders.length;i++){
+    if (orders[i]> 100){
+        high.push(orders[i])
+    }
+}
+console.log(high)
+
+
+arr = [1,2,3,4]
+function arg(a,b,c){
+    return a+b+c
+}
+
+var c = arg(...arr)
+console.log(c)
+
+
+let compare = (a,b) =>{
+    return a - b
+}
+
+num = [3,5,7,8,5,4,3,9]
+n = num.sort(compare)
+
+name = "haary"
+let a = Array.from(name)
+for (let i of a){
+    console.log(i)
+}
+
+a = [1,2,3,4,5]
+let b = a.map((element,index,array)=>{
+    console.log(element,index,array)
+    return element+1
+})
+console.log(b)
+
+
+let b  = a.reduce((c,d)=>{
+    return c+d
+})
+console.log(b)
+
+let b = ((c,d)=>{
+    return c+d
+})
+
+let s = a.reduce(b)
+console.log(s)
