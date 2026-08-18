@@ -1,3 +1,139 @@
+def has_pair_with_sum(arr, target):
+    left, right = 0, len(arr) - 1
+    
+    while left < right:
+        current_sum = arr[left] + arr[right]
+        
+        if current_sum == target:
+            return True
+        elif current_sum < target:
+            left += 1
+        else:
+            right -= 1
+    
+    return False
+
+# Example
+arr = [1, 2, 4, 7, 11, 15]
+print(has_pair_with_sum(arr, 15))
+
+
+nums = [1,2,3,4,5]
+def binary(nums,target):
+    l,h=0,len(nums)-1
+    while l<=h:
+        mid = (l+h)//2
+        if nums[mid]==target:
+            return mid
+        elif nums[mid]<target:
+            l = mid + 1
+        else:
+            h = mid - 1
+    return -1
+print(binary(nums,4))
+nums = [4, 5, 6, 7, 0, 1, 2]
+def normal_search(nums,target):
+    if target in nums:
+        return nums.index(target)
+    return -1
+    
+print(normal_search(nums,7))
+Missing Number - 
+nums=[2,3,5,0,1]
+total = len(nums)
+t = total*(total+1)//2
+sum = sum(nums)
+d = t - sum
+print(d)
+Filter Mapped Reduce
+nums = [ 1,2,0,4,0,5]
+a = list(filter(lambda x:x!=0,nums))
+b = list(map(lambda x:x*x,nums))
+print(a + b)
+from functools import reduce
+
+d = reduce(lambda x,y:x+y,nums)
+print(d)
+print(a)
+Dictionary Count Numbers - 
+d = {}
+a = []
+for i in nums:
+    d[i] = d.get(i,0)+1
+    if d[i]==3:
+        a.append(i)
+return(a)
+Two Add Numbers- 
+l1 = [1,2,3]
+l2 = [4,5,6]
+Output: [5,7,9]
+
+a = []
+b = ''
+for i,j in zip(l1,l2):
+    a.append(i+j)
+for i in sorted(a,reverse=True):
+    b += (("".join(str(i))))
+print(b)
+Longest Substring Without Repeating Characters
+s = "pwwkew"
+output = 3
+
+count = 0
+a = []
+for i in s:
+    if i in a:  
+        # Remove all characters up to and including the duplicate
+        a = a[a.index(i)+1:]
+    a.append(i)
+    count = max(count, len(a))
+print(count,a)
+Sliding Window Technique - 
+s = "pwwkew"
+
+charSet = set()  # Stores current window's characters
+l = 0            # Left pointer
+res = 0          # Stores max length found so far
+
+for r in range(len(s)):        # r = right pointer
+    while s[r] in charSet:     # If current char already in window
+        charSet.remove(s[l])   # Remove leftmost char
+        l += 1                 # Shrink window from left
+    charSet.add(s[r])          # Add current char to set
+    res = max(res, r - l + 1)  # Update max length
+print(res, charSet)
+Find the Duplicate Number - 
+nums = [1,2,3,2,2]
+
+Output: 2
+count = 0 
+a = []
+for i in nums:
+    if i in a:
+        continue
+    a.append(i)
+    c = nums.count(i)
+    if c>count:
+        count = c
+        s = i
+print(s)
+Group Anagram - 
+from collections import defaultdict
+strs = ["act","pots","tops","cat","stop","hat"]
+s = []
+w = []
+def anagram_group(strs):
+    groups  = defaultdict(list)
+    for i in strs:
+        key = ' '.join(sorted(i))
+        groups[key].append(i)
+    return list(groups.values())
+    
+print(anagram_group(strs))
+
+
+
+
 li = [2,34,53,33]
 output = [2,7,8,6]
 li1 = []
