@@ -1,0 +1,343 @@
+    CRM (Customer Relationship Management):
+        Leads: Potential customers or sales opportunities.
+        Opportunities: Leads that have been qualified.
+        Pipeline: A visualization of your sales process, showing the stages of sales opportunities.
+        Activities: Tasks or actions linked to records, like calls, emails, meetings, etc.
+
+    Sales:
+        Quotations: Offers sent to customers.
+        Sales Orders: Confirmed orders from customers.
+        Customers: Businesses or individuals purchasing from you.
+
+    Purchase:
+        RFQ (Request for Quotation): A request sent to suppliers for a quote on specific products.
+        Purchase Orders: Confirmed orders to vendors.
+        Vendors: Businesses or individuals you purchase from.
+
+    Inventory:
+        Products: Items you sell or purchase. Can be storable, consumable, or services.
+        Warehouse: Physical locations where products are stored.
+        Pickings: Represent stock moves between locations.
+        Routes: Define the flow of products e.g. Buy, Manufacture, or Replenish.
+
+    Manufacturing:
+        Bill of Materials (BoM): A list of components required to produce a product.
+        Routing: Steps or processes required in the manufacturing process.
+        Work Orders: Represent specific operations in the manufacturing process.
+
+    Accounting & Finance:
+        Invoices: Documents requesting payment.
+        Bills: Documents representing what you owe to vendors.
+        Journal Entries: Records of transactions.
+        Chart of Accounts: List of all accounts used in the general ledger of an organization.
+
+    Human Resources:
+        Employees: People working in your company.
+        Contracts: Employment agreements.
+        Attendances: Track when employees clock in and out.
+        Leaves: Track time off and vacations.
+
+    Project:
+        Tasks: Activities or work items.
+        Stages: Represent the progress of tasks.
+        Projects: Grouping of tasks, representing a specific initiative or goal.
+
+    Point of Sale (POS):
+        Sessions: Time during which a POS is open.
+        Orders: Sales made during a session.
+
+    Website & E-commerce:
+        Products: Items or services sold on your website.
+        Orders: Purchases made by customers online.
+        Blogs: Articles or news you publish.
+        Pages: Static pages like 'About Us' or 'Contact'.
+
+    Events:
+        Tickets: Types of admissions for an event.
+        Registrations: People or businesses attending an event.
+
+    Appraisals:
+        Evaluations: Assessment of employees by managers or peers.
+        Feedback Requests: Asking employees for feedback on peers, subordinates, or managers.
+
+
+    Analytic Accounting: This is used to track costs & income for specific projects or departments, independent of the general ledger.
+
+    Analytic Accounts: Represents a project, department, or any specific entity you want to allocate costs or income to.
+
+    Analytic Tags: Labels that can be assigned to transactions to categorize or provide specific attributes.
+
+    Cost Centers: Typically, an analytic account (or tag) that represents a department or unit within a company which doesn't generate direct profits but incurs costs.
+
+    Budgets: Forecasts of future revenues and expenses, and can be compared with actual financial data. In Odoo, budgets often use analytic accounts to allocate the budgets to specific projects or departments.
+
+    Assets Management: The process of handling the company's tangible and intangible assets (like buildings, machinery, licenses). In accounting, this might refer to depreciation.
+
+    Deferred Revenues: Revenues that are received but not yet earned. For instance, if a customer pays upfront for a year of service, the amount is recognized gradually over the year.
+
+    Reconciliation: The process of ensuring two sets of records (usually the balances of two accounts) match. In Odoo, bank statement reconciliation is a common activity where you match bank statement lines with your accounting entries.
+
+    Journal Entries: The logging of transactions into accounting records. Every transaction has a journal entry.
+
+    Chart of Accounts: A listing of all accounts used in the general ledger of an organization.
+
+    Fiscal Positions: Used to adapt taxes and accounts for particular customers or vendors. For instance, adapting taxes for international sales.
+
+    Tax Mapping: Redefining taxes for certain operations or when certain conditions apply.
+
+    Consolidation: The process of combining multiple financial statements of a company's subsidiaries into consolidated financial statements.
+
+    Cash Rounding: The practice of adjusting the cash amount to a nearest number, usually because of the absence of smaller coin denominations.
+
+    Cash Basis & Accrual: Two methods of accounting. Cash basis recognizes revenue and expenses when they are realized in cash. Accrual recognizes them when they are earned or incurred, regardless of the cash movement.
+
+    Payment Terms: Conditions of a sale, like "Net 30 days", which means payment is due 30 days from the invoice date.
+
+Odoo, as a comprehensive ERP system, provides different modules to cater to various financial and operational needs of businesses. Let's delve into the differences between Assets, Budget, and Analytic Account management in Odoo:
+
+    Assets Management:
+        This refers to the management of fixed assets (like machinery, office equipment, buildings, etc.) that a company owns and uses in its operations to generate income.
+        In Odoo, the Assets module allows for the creation and management of assets, and the computation of depreciation on those assets.
+        An asset can be purchased and its value decreases over time (depreciation). Odoo will help you track this financial information.
+        The primary functions of this module include creating assets, setting up depreciation methods, and automating depreciation entries.
+
+    Budget Management:
+        A budget represents a company's financial plan for a defined period, often a year. It lays out the company's expected income and expenses for that period.
+        Odoo's Budget Management system allows organizations to define budgetary positions, set up budgetary limits for those positions, and monitor actual financial performance against those budgets.
+        With the Budget module, you can compare the actual amounts from analytic accounts with a set budget, and get real-time reports on the variances.
+        This helps organizations ensure they do not overspend and stay within their financial means.
+
+    Analytic Account Management:
+        Analytic accounts in Odoo provide a way to track and analyze your income and expenses, not from the perspective of accounting or budgeting, but more from an operational or project-based view.
+        For example, if you are running multiple projects and you want to track the expenses and revenues for each project separately, you would use Analytic Accounts.
+        This allows for more granular tracking of costs and revenues, not linked directly to a specific accounting entry but more to activities or operations.
+        It's used often in scenarios like project management, where you want to know the profitability of individual projects, or in situations where you want to allocate internal costs to different departments or teams.
+
+In essence, while all three modules (Assets, Budget, and Analytic Account) deal with the financial aspects of a business, they cater to different needs and aspects:
+
+    Assets deal with long-term items that lose value over time.
+    Budgets deal with planning and monitoring financial plans.
+    Analytic Accounts deal with tracking and analyzing income and expenses from an operational or project perspective.
+
+Certainly! From a functional standpoint, newer versions of Odoo have introduced additional features and applications that bring new terminologies or concepts. Here are some functional terms and features that users and business analysts might come across:
+
+    Odoo Documents: This app allows users to share, send, categorize, archive scanned documents.
+
+    Odoo Field Service: This application is for on-site interventions. You can schedule appointments, assign tasks to field workers, etc.
+
+    Odoo eLearning and Odoo Slides: This app allows for managing eLearning platforms and content. It lets you create courses, configure quizzes, and certify learners.
+
+    Odoo Rental: Manage rental orders, product availability, and schedule.
+
+    Odoo Social Marketing: It's an all-in-one marketing application allowing you to manage social media, push notifications, and live chat.
+
+    Odoo Approvals: A module to manage and track employee requests.
+
+    Odoo SMS Marketing: Allows businesses to create, send and track SMS campaigns.
+
+    Odoo Sign: An app to easily send, sign, and approve documents online.
+
+    Odoo IoT (Internet of Things): With Odoo IoT, users can connect devices and manage them directly from the Odoo instance.
+
+    Odoo Subscriptions: This app allows businesses to manage and set up subscription-based services and products.
+
+    Odoo POS: While the Point of Sale app isn't new, newer versions come with improved interfaces and features.
+
+    Odoo Referral Program: A module introduced to allow users to refer friends and get rewards.
+
+    Odoo Consolidation: Used for managing financial consolidation for businesses operating with multiple companies.
+
+    Odoo Helpdesk: This app allows businesses to provide support to their customers, manage tickets, and track issues.
+
+    Odoo Payroll: While Payroll isn't entirely new, newer versions often come with improved features and localizations for different regions.
+
+    Odoo Timesheets & Planning: The ability to manage and plan projects, tasks, and workforce is enhanced with this.
+
+    Odoo Spread: This feature allows users to spread costs or revenues over time.
+
+    Odoo Lunch: Allows employees to order their lunch from predefined menus.
+
+    Odoo Employee Referral: This encourages employees to refer friends for jobs within the organization.
+
+    Odoo Website Builder: While not new, newer versions come with additional drag-and-drop blocks, themes, and functionalities.
+
+    Odoo Attendances: For tracking employee attendance.
+
+    Odoo Leaves: Manage employee leaves, allocation, and requests.
+
+Remember, while these terminologies or features might be present in newer versions, some may not be available in all versions or editions (like Community vs. Enterprise). Always refer to the official Odoo documentation or the respective app's documentation for detailed information
+
+
+Certainly! From a functional standpoint, Odoo continues to evolve its suite of business applications, refining existing features and introducing new ones. As of my last update in September 2021, here are some functional terminologies and concepts you might find in Odoo:
+
+    Point of Sale (POS): This is a system where sales transactions are completed. It's where payment is exchanged for goods or services.
+
+    Subscriptions: A module to manage and track subscription-based services and products.
+
+    Helpdesk: A module to manage customer support tickets and issues.
+
+    Odoo Discuss: A communication tool within Odoo where users can chat, send messages, and manage communications.
+
+    Attendances: Part of the HR suite where employee attendance can be tracked.
+
+    Leaves: Used to manage employee leave or absence requests.
+
+    Odoo eLearning: A platform to provide online courses and manage certifications.
+
+    Odoo Field Service: Helps companies assign tasks to field workers, schedule appointments, and manage on-site interventions.
+
+    Odoo Rental: Used to manage rental products, contracts, and invoicing.
+
+    Odoo Social: A module to manage social media posts and visitor engagement.
+
+    Product Variants: Different versions of a product, like a t-shirt that comes in different sizes and colors.
+
+    Fiscal Positions: Used in the accounting module to handle taxes for different countries or states.
+
+    Analytic Accounts: Used to track costs and revenues at a granular level, often for specific projects or departments.
+
+    Odoo Sign: A tool to send, sign, and approve documents online.
+
+    Loyalty Programs: Part of the POS module where businesses can set up loyalty points and rewards for customers.
+
+    Odoo IoT (Internet of Things): A module that allows Odoo to connect and interact with IoT devices.
+
+    Odoo Timesheets: For tracking employee time spent on projects or tasks.
+
+    Odoo Surveys: For creating and managing online surveys or feedback forms.
+
+    Odoo VoIP: Integrated telephony system to make calls directly from Odoo apps.
+
+    Odoo Expenses: To manage and track employee expenses.
+
+Remember, these are general functional concepts and terminologies. Depending on the industry, customization, and specific use-case, there might be many other terminologies that one might encounter. Always refer to the official Odoo documentation or the user manuals for a comprehensive understanding..
+
+
+Certainly! From a functional point of view, Odoo introduces various terminologies and concepts in its different apps. Here are some functional terminologies across different Odoo apps based on versions up to 2021:
+
+    Business Opportunities: In the CRM app, potential sales or deals are called business opportunities.
+
+    Lead: In the CRM context, a lead represents a potential interest, which can later be converted into a business opportunity.
+
+    Quotations: In the Sales app, a quotation is a proposal to sell products at specified prices and terms.
+
+    Sale Orders: Once a quotation is confirmed, it becomes a sale order.
+
+    Vendor Bills: In the Purchases app, this represents the invoices that the company receives from its vendors.
+
+    Pickings: In the Inventory app, pickings represent internal moves, receipts, and delivery orders.
+
+    Routings: In the Manufacturing app, routings define the production or assembly steps of products.
+
+    BOM (Bill of Materials): It lists all the materials and components needed to produce a product.
+
+    Journal Entries: In the Accounting app, all transactions are recorded as journal entries.
+
+    Reconciliation: In Accounting, it's the process of matching one set of data to another; for example, comparing transactions of an account's ledger to a bank statement.
+
+    POS (Point of Sale): Refers to the interface or location where sales transactions occur. Odoo has an app specifically for POS.
+
+    Timesheets: Used in the Project and Timesheet apps, timesheets are a method for recording the amount of time workers spend on specific tasks or projects.
+
+    Attendances: In the HR app, attendances record employee check-ins and check-outs.
+
+    Payroll: In the HR app, this is used to manage employee salaries, benefits, and deductions.
+
+    Leaves: Represent employee time-off requests.
+
+Routes and Rules: In the context of the inventory and manufacturing modules, routes define the path products will take in your warehouse, and rules (like push and pull rules) determine operations triggered by product movements.
+
+BoM (Bill of Materials): A list of materials required for manufacturing a product.
+
+Routings: In manufacturing, they define the production processes and steps.
+
+    Helpdesk Tickets: In the Helpdesk app, tickets are used to track customer issues or support requests.
+
+    E-commerce: With the Odoo E-commerce app, terminologies like product variants, product attributes, payment acquirers, and shop configurations become relevant.
+
+    Events: In the Events app, you'll have terminologies like tickets, stages, and attendees.
+
+    Website Builder: This introduces terms related to website themes, blocks, snippets, and the overall design and layout of the website.
+
+    eLearning: In the eLearning app, there are terms like courses, content, certifications, and badges.
+
+These are just a few examples. Each Odoo app brings its own set of terminologies that align with its functional domain. The specifics might vary based on the version of Odoo and any custom modules or adaptations you might have. For the most detailed and up-to-date functional terminologies, the Odoo user documentation is always a reliable resource.
+
+In Odoo, a Reordering Rule defines when and how much of a product should be automatically replenished. The concept of reordering rules is to automate the procurement of products, either by purchase, manufacturing, or transfer, when certain conditions are met.
+
+Here are the primary attributes or types of information you define in a Reordering Rule:
+
+    Product: The product for which the rule is being defined.
+
+    Warehouse: The warehouse where the product is or will be stored.
+
+    Minimum Quantity: This is the minimum product quantity that should trigger the replenishment. When the quantity on hand goes below this minimum quantity, Odoo will create a procurement to reach the maximum quantity.
+
+    Maximum Quantity: This is the quantity to which the product should be replenished. For example, if you have a minimum quantity of 5 units and a maximum quantity of 10 units, when the stock goes below 5, Odoo will create a procurement for the quantity that will bring the stock level back to 10.
+
+    Quantity Multiple: If set, the order/production quantity will be rounded up to this multiple. For instance, if you want to order batteries in packs of 10, you'll set the quantity multiple to 10. So, if your stock goes below the minimum and the system calculates that 15 units are required, it will round up to 20 (next multiple of 10).
+
+    Lead Days: This determines how many days before the expected stock-out the procurement should be created and validated. It helps in considering the expected delivery or production time.
+
+    Company: If operating a multi-company environment, you can specify which company this rule applies to.
+
+    Route: You can define the route for this product (e.g., Buy, Manufacture, Replenish). This tells Odoo how to handle the procurement - whether to buy the product, produce it, or transfer it from another location.
+
+These are the primary components of a Reordering Rule in Odoo. The system monitors stock levels, and when the quantity of a product drops below the defined minimum, a procurement is automatically triggered to bring the stock level back up to the defined maximum. This ensures a smoother inventory management process and helps in reducing stockouts.
+
+In Odoo, "MTO" stands for "Make to Order." It is a route for a product which dictates how the product should be procured or produced once a sales order for the product is confirmed. Here's a brief overview:
+Make to Order (MTO)
+
+When a product is configured with the "Make to Order" route:
+
+    Upon confirmation of a sales order, a procurement is generated for that product.
+    Depending on the product's configuration, this procurement can lead to either the creation of a purchase order (to buy from a vendor) or a manufacturing order (to produce in-house).
+
+The MTO route ensures that products are not produced or purchased until an order for them is confirmed. This is in contrast to the traditional stock-based approach where items are produced or purchased in advance and then taken from stock when sold.
+Other Routes in Odoo:
+
+    Buy: This route allows for the product to be purchased from vendors. When the stock goes below the minimum stock rules or when triggered by an MTO route, a purchase order is generated.
+
+    Manufacture: This route indicates that the product is manufactured in-house. When stock rules are triggered or when coupled with MTO, it generates a manufacturing order.
+
+    Dropship: This is another route where, upon confirmation of a sales order, a purchase order is generated to buy the product directly from the vendor and have it shipped directly to the customer. The product never comes into your own stock.
+
+    Replenish on Order (MTO + Buy): This combines the MTO route with the Buy route. When a sales order is confirmed, a purchase order is generated to buy the product from the vendor.
+
+    Manufacture on Order (MTO + Manufacture): Combines the MTO route with the Manufacture route. When a sales order is confirmed, a manufacturing order is generated to produce the product.
+
+When setting up routes, it's important to consider the specific business needs and configure products accordingly. Routes determine the flow of products through the supply chain and have significant implications for inventory management, lead times, and costs.
+In Odoo, the concept of routes defines the path that products will follow throughout a warehouse. They are particularly useful to configure complex paths such as drop-shipping, cross-docking, and multi-warehousing scenarios. Here are the main types of routes and their typical use cases:
+
+    Buy:
+        Used when products are bought from a supplier.
+        Typically results in a Purchase Order being created when the product's stock goes below the re-ordering rule threshold.
+
+    Manufacture:
+        Used for products that are manufactured in-house.
+        Activating this route generally triggers manufacturing orders when the product's stock goes below the re-ordering rule threshold.
+
+    Dropship:
+        Products are sent directly from the supplier to the customer, bypassing the company's stock.
+        Useful to avoid holding inventory for specific products.
+
+    Replenish On Order (MTO - Make To Order):
+        Products are procured or produced only when there is a confirmed customer order.
+        Helps to avoid maintaining stock for items that are infrequently ordered or are customized per order.
+
+    Push & Pull Routes:
+        Push rules: Define operations that are triggered automatically when a move is processed. They dictate what needs to be done next.
+        Pull rules: Determine what operation needs to be sourced. For example, when a location is running out of stock, a pull rule can trigger a route to resupply it.
+
+    Cross-Dock:
+        Products are received in an input zone and then directly shipped out from the output zone, minimizing storage in the internal location.
+
+    Put Away Strategies:
+        They define where products should be stored in the warehouse once they've been received. While not a route in the traditional sense, it's an integral part of product routing within the warehouse.
+
+    Transship (if set up):
+        Useful for multi-warehouse setups. When one warehouse is out of stock, it can procure the product from another warehouse within the same company.
+
+Remember, the available routes can be based on the specific modules installed in your Odoo instance. For instance, if you don't have the Manufacturing module installed, you won't have manufacturing-related routes.
+
+Routes can be set on the product and product category level, and they can be combined to achieve complex logistics scenarios. This flexibility is one of the reasons why Odoo's inventory management is powerful and can cater to various business needs.
