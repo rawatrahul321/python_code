@@ -1,0 +1,1255 @@
+li = [2,34,53,33]
+output = [2,7,8,6]
+li1 = []
+for i in li:
+    sum1 = 0
+    str1 = str(i)
+    print(str1)
+    for j in str1:
+        sum1+=int(j)
+    li1.append(sum1)
+print(li1)
+
+str1 = 'bye'
+sub_string = []
+for i in range(len(str1)):
+    for j in range(i+1,len(str1)+1):
+        sub_string.append(str1[i:j])
+print(sub_string)
+
+str1 = 'a=2&c=3&nuber=4'
+dict_output = []
+for i in str1.split('&'):
+    dict_output.append(i.split('='))
+print(dict(dict_output))
+       
+input1 = 'abcaba'
+output = 'abcaabbaaa'
+my_dict = {}
+for i in input1:
+    if i not in my_dict:
+        my_dict[i]=1
+        print(i,end=" ")
+    else:
+        my_dict[i]+=1
+        print(i*my_dict[i],end=" ")
+print(my_dict)
+input1 = 'abcaba'
+output_list = []
+count_tracker = {}  # To track the count of each character
+
+for char in input1:
+    # Increase the count for each character
+    count_tracker[char] = count_tracker.get(char, 0) + 1
+    # Append the character multiplied by its count to the output list
+    output_list.append(char * count_tracker[char])
+
+# Join the list to form the output string
+output = ''.join(output_list)
+print(output)
+print(count_tracker)
+ 
+input1 = 'abcabaabababaccd'
+output_list = []
+count_tracker = {}
+
+for char in input1:
+    count_tracker[char] = count_tracker.get(char,0)+1
+print(count_tracker)
+
+
+string = 'abcdcdsdzfaa'
+added_list = []
+count_tracker = {}
+for i in string:
+    count_tracker[i]=count_tracker.get(i,0)+1
+print(count_tracker)
+
+input1 = 2,512
+output = 8
+result = 2
+count = 0
+while result!=512:
+    result = result*2
+    count+=1
+print(count)
+
+def count(n):
+    if n<10:
+        return 1
+    return 1+count(n//10)
+print(count(34234234))
+
+li = [203,303,405,450]
+output = [23,33,45,45]
+output_list = []
+for i in range(len(li)):
+    str_num = str(li[i])
+    output_list.append(int("".join(str_num.split('0'))))
+print(output_list)
+
+Longest Palindrome in String:-
+
+def is_palindrome(substring):
+    return substring == substring[::-1]
+s = 'babad'
+longest = s[0]
+for i in range(len(s)):
+    for j in range(i+1,len(s)+1):
+        if is_palindrome(s[i:j]) and len(s[i:j])>len(longest):
+            longest = s[i:j]
+print(longest)
+        
+nums = [1,2,6,4,3]
+
+def missing_number(nums):
+    s  = len(nums)+1
+    n = s * (s+1) //2
+    actual_s = sum(nums)
+    return n - actual_s
+    
+print(missing_number(nums))
+
+Non - Repeating Char First one -  
+def first_uniq_char(s):
+    feq = {}
+    for i in s:
+        feq[i] = feq.get(i,0)+1
+    for i,char in enumerate(s):
+        if feq[char]==1:
+            return i
+    return -1
+    
+print(first_uniq_char('dhhdhaksdaskasas'))
+
+def binary_search(nums,target):
+    left , right  = 0 ,len(nums)-1
+    while left <= right:
+        mid = left  + (right - left) // 2
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid -1 
+    return -1 
+    
+print(binary_search([1, 2, 3, 4, 5, 6], 6))
+
+# Input: s = "abcabcbb"
+# Output: 3
+# Explanation: The answer is "abc", with the length of 3.
+
+# Input: s = "pwwkew"
+# Output: 3
+# Explanation: The answer is "wke", with the length of 3.
+# Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+def non_repeating_first(s):
+    d = set()
+    max_length = 0
+    left = 0
+    start_index_of_longest = 0  # To store the start index of the longest substring
+
+    for right, char in enumerate(s):
+        while char in d:
+            d.remove(s[left])
+            left += 1
+        d.add(char)
+        print(d,right,left,max_length,start_index_of_longest)
+        if right - left + 1 > max_length:
+            max_length = right - left + 1
+            start_index_of_longest = left
+
+    return s[start_index_of_longest:start_index_of_longest + max_length], max_length
+
+s = 'pwwkew'
+print(non_repeating_first(s))  # Expected output: ('wke', 3)
+def is_valid_parentheses(s):
+    stack = []
+    mapping = {')':'(','}':'{',']':'['}
+    for char in s:
+        if char in mapping:
+            top_element = stack.pop()
+            if mapping[char]!=top_element:
+                return False
+        else:
+            stack.append(char)
+    return not stack
+print(is_valid_parentheses('[({([])})]'))
+
+
+# Python Program to find the factors of a number
+
+# def print_factorial(x):
+#     for i in range(1,x+1):
+#         if x % i == 0:
+#             print(i,end= " ")
+# print_factorial(120)
+
+# Find the factorial of number
+# def find_factorial(x):
+#     factorial = 1
+
+#     for i in range(1,x+1):
+#         factorial = factorial * i
+#     print (factorial)
+        
+# find_factorial(7)
+
+# Find a factorial of Number through Recursion
+
+def factorial(x):
+    if x==1:
+        return 1
+    else:
+        return (x * factorial(x-1))
+        
+print (factorial(7))
+
+# Magic and Dunder Method 
+class Vector:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+        
+    def __add__(self,other):
+        return Vector(self.x +  other.x, self.y + other.y)
+        
+v1 = Vector(10,20)
+v2 = Vector(20,20)
+v3 = Vector(20,20)
+v4 = v1 + v2  + v3
+print (v4.x)
+print(v4.y)
+
+items=[x for x in input().split(',')]
+items.sort()
+print(','.join(items))
+
+
+x = int(input())
+d = {}
+for i in range(1,x+1):
+    d[i] = i * i
+print (d)
+
+s = input()
+d={"UPPER CASE":0, "LOWER CASE":0}
+for c in s:
+    if c.isupper():
+        d["UPPER CASE"]+=1
+    elif c.islower():
+        d["LOWER CASE"]+=1
+    else:
+        pass
+print ("UPPER CASE", d["UPPER CASE"])
+print ("LOWER CASE", d["LOWER CASE"])
+
+
+def putNumbers(n):
+    i = 0
+    while i<n:
+        j=i
+        i=i+1
+        if j%7==0:
+            yield j
+
+for i in putNumbers(70):
+    print (i)
+
+# Decorator
+
+def my_dec(function):
+    def wrapper(*args, **kwargs):
+        function(*args)
+        print("I am With Dec")
+    return wrapper
+    
+@my_dec
+def hello(person):
+    print (f"Hello {person}!")
+
+hello("Rahul")
+
+def mydec(function):
+    def wrapper():
+        print("My Dec")
+        function()
+    return wrapper
+
+@mydec
+def hello_world():
+    print("Hello World")
+    
+hello_world()
+
+def my_doc(function):
+    def wrapper(*args,**kwargs):
+        return_value = function(*args)
+        print("I am with Deco")
+        return return_value
+    return wrapper
+    
+@my_doc
+def hello(person):
+    return f"Hello {person}"
+    
+print (hello("Rahul"))
+
+def my_doc(function):
+    def wrapper(*args,**kwargs):
+        return_value = function(*args)
+        print("I am with Deco")
+        return return_value
+    return wrapper
+    
+@my_doc
+def hello(person):
+    return f"Hello {person}"
+    
+print (hello("Rahul"))
+
+# generator 
+
+def my_generator(n):
+    for x in range(2,n):
+        yield x**3
+        
+values = my_generator(900000)
+print(next(values))
+print(next(values))
+print(next(values))
+
+
+def inifinte_sequence():
+    result = 1
+    while True:
+        yield result
+        result = result*5
+values = inifinte_sequence()
+for x in range(5):
+    print(next(values))
+
+def make_class(x):
+    class Dog:
+        def __init__(self,name):
+            self.name = name
+        def print_value(self):
+            print(x)
+    return Dog
+    
+cls = make_class(10)
+d = cls("Tim")
+print(d.name)
+d.print_value()
+print(cls)
+
+
+def func(f):
+    def wrapper(*args,**kwargs):
+        print("started")
+        f(*args)
+        print("ENDED")
+    return wrapper
+@func   
+def func2():
+    print("I am Here")
+@func
+def func3(x):
+    print(x)
+func2()
+func3(3)
+
+gen = (i**2 for i in range(100))
+print(next(gen))
+print(next(gen))
+print(next(gen))
+for i in gen:
+    print(i,end=" ")
+    
+def generator(n):
+    for i in range(n):
+        yield i**2
+g = generator(100)
+for i in g:
+    print(i,end=" ")
+
+def apply(fx,value):
+    return 1+fx(value)
+sq = lambda x:x**2
+print(apply(sq,2))
+print(apply(lambda x:x**3,2))
+
+Binary Search:
+import math 
+def binary_search(li,element):
+    bottom = 0 
+    top  = len(li)-1
+    index = -1
+    
+    while top>=bottom and index==-1:
+        mid = int(math.floor((top+bottom)/2))
+        if li[mid]==element:
+            index = mid 
+            
+        elif li[mid]>element:
+            top = mid-1
+        else:
+            bottom = mid+1
+    return index
+print(binary_search([1,2,23,4,5,6,7,8,9],5))
+
+
+Linear Search 
+def linear_search(li,element):
+    for i in range(len(li)+1):
+        if li[i]==element:
+            return i
+print(linear_search([1,2,3,4,5,66,7,8,99],99))
+
+
+Quick Sort 
+def quick_sort(arr):
+    if len(arr)<=1:
+        return arr
+    else:
+        pivot = arr[0]
+        left = [x for x in arr[1:] if x < pivot]
+        right = [x for x in arr[1:] if x >= pivot]
+        return quick_sort(left) + [pivot] + quick_sort(right)
+print(quick_sort([3,43,54,534,52354,1425,345,34532,32,23,2,33]))
+       Sorting with Swapping 
+li = [23,2,33,44,3,22]
+for _ in range(len(li)):
+    for i in range(len(li)-1):
+        if li[i] > li[i+1]:
+            li[i],li[i+1]=li[i+1],li[i]
+print(li)
+Bubble Sort
+def bubble_sort(nums):
+    swapped = True
+    while swapped:
+        swapped = False
+        for i in range(len(nums)-1):
+            if nums[i]>nums[i+1]:
+                nums[i],nums[i+1] = nums[i+1],nums[i]
+                swapped = True
+nums = [2,33,21212,222,12]
+p1 = bubble_sort(nums)
+print(nums) 
+Even Number values = []
+for i in range(1000, 3001):
+    s = str(i)
+    if (int(s[0])%2==0) and (int(s[1])%2==0) and (int(s[2])%2==0) and (int(s[3])%2==0):
+        values.append(s)
+print(",".join(values))
+
+d1 = 'abcdefgabc'
+s = {}
+for d in d1:
+    s[d] = s.get(d,0)+1
+    print(s[d])
+print(' '.join([str((k,v)) for k,v in s.items()]))
+print(' '.join(['%s,%s' % (k, v) for k, v in s.items()]))
+
+n = int(input())
+fact = 1
+for i in range(1,n+1):
+    fact = fact * i
+print(fact)
+
+string = 'without,hello,bag,world'
+items = [i for i in string.split(",")]
+items.sort()
+print(",".join(items))
+
+my_nums = [0,15,68,1,0,-55]
+def get_largest(nums):
+    largest = nums[0]
+    for num in nums:
+        if num>largest:
+            largest = num
+    return largest
+print(get_largest(my_nums))
+
+my_nums = [0,15,68,1,0,-55]
+def get_second_largest(nums):
+    largest = nums[0]
+    second_largest = nums[0]
+    for i in range(1,len(nums)):
+        if nums[i]>largest:
+            second_largest = largest
+            largest = nums[i]
+        elif nums[i]>second_largest:
+            second_largest = nums[i]
+    return second_largest
+print(get_second_largest(my_nums))
+
+my_nums = [2,3,4,5,6]
+
+def get_second_smallest(nums):
+    smallest = float('inf')
+    second_smallest = float('inf')
+    for i in range(len(nums)):
+        if nums[i] < smallest:
+            second_smallest = smallest
+            smallest = nums[i]
+        elif nums[i] < second_smallest:
+            second_smallest = nums[i]
+    return second_smallest
+
+print(get_second_smallest(my_nums))
+
+# Decorator Example of Add and square 
+def deco_fun(func):
+    def squr(x,y):
+        return func(x**2,y**2)
+    return squr
+    
+@deco_fun
+def add_num(a,b):
+    c = a+b
+    return c
+    
+s = add_num(4,5)
+print(s)
+
+# Count the number of char and place it in front of it 
+
+def compress(s):
+    n = len(s)
+    new_s = ''
+    count = 1
+    for i in range(n-1):
+        if s[i]==s[i+1]:
+            count+=1
+        else:
+            new_s = new_s + s[i] + str(count)
+            count = 1
+    new_s = new_s + s[n-1] + str(count)
+    return new_s
+    
+print(compress('aaabbbeeeiiiiii'))
+
+# least repeating Char in the string
+def least_char(s):
+    ch = {}
+    for i in s:
+        if i in ch:
+            ch[i] = ch[i]+1
+        else:
+            ch[i] = 1
+    print(ch)
+    result = min(ch,key = ch.get)
+    print(result)
+    
+least_char("aaaaaaabsbnntsdjdjdfjfjh")
+
+
+# Count the Occurence of given keyword 
+
+def count_search_word(s,search_word):
+    ch = {}
+    for i in s:
+        if i in ch:
+            ch[i] = ch[i]+1
+        else:
+            ch[i] = 1
+            
+    try:
+        print(ch[search_word])
+    except:
+        print(0)
+count_search_word('asdghasdagh','d')
+
+
+s_input = 'this_is_good_morning'
+s_output = 'tHIS.iS.gOOD.mORNING'
+
+def format_string(s):
+    l = []
+    temp = s.split("_")
+    for i in temp:
+        l.append(i[0].lower()+i[1:].upper())
+    print('.'.join(l))
+    
+format_string(s_input)
+
+# Find second Highest Number in list
+
+def second_highest(l):
+    if l[0]>l[1]:
+        first = l[0]
+        second = l[1]
+    else:
+        second = l[0]
+        first = l[1]
+        
+    for i in range(2,len(l)):
+        if l[i]>first:
+            second = first
+            first = l[i]
+        elif l[i]>second and first!=l[i]:
+            second = l[i]
+    return second
+print(second_highest([2,3,4,5,6,7,7]))
+
+fib = [0,1]
+for i in range(500):
+    fib.append(fib[-1]+fib[-2])
+fib = ' '.join(str(e) for e in fib)
+print(fib)
+
+
+def var(n):
+    print("my generator program")
+    while n>0:
+        yield n
+        n-=1        
+v=var(5)
+print(next(v))        
+print(next(v))
+print(next(v))
+print(next(v))
+print(next(v))
+print(next(v))
+
+
+Encapsulation example-
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def _protected_method(self):
+        print("protected method")
+    def __private_method(self):
+        print("privated method")
+
+if __name__ == "__main__":
+    p = Person("mohan", 23)
+    p._protected_method() # shows a warning
+    p.__private_method()  # throws Attribute error saying no such method exists
+
+Polymorphous example-
+
+class Employee1:
+    def __init__(self,name,age):
+        self.name=name
+        self.age=age
+        
+    def show_salary(self):
+        print('the is unknown')
+class Employee2(Employee1):
+    def __init__(self,name,age,salary):
+        super().__init__(name,age)
+        self.salary=salary
+        
+    def show_salary(self):
+        print("The salary",self.salary)
+if __name__=='__main__':
+    p=Employee1('rahul',23)
+    
+    x=Employee2('atul',32,3124234)
+    p.show_salary()
+    x.show_salary()
+
+class Dog:
+    def sound(self):
+        return "Boow"
+class Cat:
+    def sound(self):
+        return "Meow"
+        
+def animal_sound(self):
+    return self.sound()
+    
+cat = Cat()
+dog = Dog()
+
+print(animal_sound(cat))
+print(animal_sound(dog))
+
+
+# Generator Example:-
+
+def count_num_up_to(n):
+    num =1 
+    while num<=n:
+        yield num
+        num +=1
+for i in count_num_up_to(10):
+    print(i*i)
+
+My Decorator:-
+
+def my_deco(func):
+    def wrappper():
+        print("Call Before")
+        func()
+        print("call After")
+    return wrappper
+    
+@my_deco
+def say_hello():
+    print("HHello!!!!!!")
+say_hello()
+
+Fibonacci Series with proper Memory Uses:-
+
+fibo_chache = {}
+def fibo(n):
+    if n in fibo_chache:
+        return fibo_chache[n]
+    if n==1:
+        value =1
+    elif n==2:
+        value =2 
+    elif n>2:
+        value = fibo(n-1)+fibo(n-2)
+        
+    fibo_chache[n] = value
+    return value
+    
+for i in range(1,2000):
+    print(fibo(i),end=" ")
+
+Fibonacci with Iterators:-
+
+def fibo_iterator(n):
+    if n<=0:
+        return 1
+    elif n==1:
+        return 1
+    elif n==2:
+        return 2
+    a,b = 1,2
+    for _ in range(3,n+1):
+        a,b = b, a+b
+    return b
+for i in range(0,200):
+    print(fibo_iterator(i),end=" ")
+
+#Operator Overloading 
+
+class Student:
+    def __init__(self,m1,m2):
+        self.m1 = m1
+        self.m2 = m2
+        
+    def __add__(self,other):
+        m1 = self.m1+ other.m1
+        m2 = self.m2+ other.m2
+        s3 = Student(m1,m2)
+        return s3
+        
+s1 = Student(2,3)
+s2 = Student(4,1)
+s3 = s1 + s2
+print(s3.m1)
+print(s3.m2)
+
+def are_parentheses_balanced(s):
+    stack = []
+    mapping = {")": "(", "}": "{", "]": "["}
+
+    for char in s:
+        if char in mapping:  # if the character is a closing bracket
+            # pop the topmost element from the stack, if the stack is not empty
+            # otherwise assign a dummy value like '#'
+            top_element = stack.pop() if stack else '#'
+
+            # check if the popped element matches the corresponding opening bracket
+            if mapping[char] != top_element:
+                return False
+        else:
+            stack.append(char)
+
+    # if the stack is empty, then all brackets were matched and balanced
+    return not stack
+
+# Test
+expression = "3 + (4 * 5) - (6 / 3)"
+print(are_parentheses_balanced(expression))  # True
+
+open_list = ["[","{","("]
+close_list = ["]","}",")"]
+ 
+# Function to check parentheses
+def check(myStr):
+    stack = []
+    for i in myStr:
+        if i in open_list:
+            stack.append(i)
+        elif i in close_list:
+            pos = close_list.index(i)
+            if ((len(stack) > 0) and
+                (open_list[pos] == stack[len(stack)-1])):
+                print(open_list[pos],      stack[len(stack)-1],stack)
+                stack.pop()
+            else:
+                return "Unbalanced"
+    if len(stack) == 0:
+        return "Balanced"
+    else:
+        return "Unbalanced"
+print(check('3*{ ([5 + 9])}'))
+
+def check(my_string):
+    brackets = ['()', '{}', '[]']
+    while any(x in my_string for x in brackets):
+        for br in brackets:
+            my_string = my_string.replace(br, '')
+            print(my_string)
+    return not my_string
+  
+# Driver code
+string = "{[]{()}}"
+print(string, "-", "Balanced"
+      if check(string) else "Unbalanced")
+
+Sum of Digits 
+
+n = 123412
+result = 0
+for i in range(n+1):
+    result = result + n%10
+    n = n//10
+print(result)
+
+Closure :-
+
+def outer():
+    x = 3
+    def inner():
+        y = 3
+        result = x + y
+        return result
+    return inner
+    
+a = outer()
+print(a())
+
+def outer():
+    msg = "Hello"
+    def inner():
+        print(msg)
+    return inner
+    
+a = outer()
+a()
+
+Shallow Copy :-
+
+Creates a new object that stores the reference of the original elements
+
+li = [1,2,3,4,[5,6]]
+>>> from copy import copy
+>>> li2 = copy(li)
+>>> li2
+[1, 2, 3, 4, [5, 6]]
+>>> li2.append('88')
+>>> li2
+[1, 2, 3, 4, [5, 6], '88']
+>>> li
+[1, 2, 3, 4, [5, 6]]
+>>> li2[4][1]=77
+>>> li2
+[1, 2, 3, 4, [5, 77], '88']
+>>> li
+[1, 2, 3, 4, [5, 77]]
+
+
+DeepCopy :-
+
+creates a new object and recursively adds the copies of nested objects present in the original elements
+
+>>> li
+[1, 2, 3, 4, [5, 77]]
+>>> from copy import deepcopy
+>>> l3 = deepcopy(li)
+>>> l3
+[1, 2, 3, 4, [5, 77]]
+>>> l3[4][1] = 88
+>>> l3
+[1, 2, 3, 4, [5, 88]]
+>>> li
+[1, 2, 3, 4, [5, 77]]
+>>>
+
+def binary_search(list1,key):
+    low = 0
+    high = len(list1)-1
+    found = False
+    while low<=high and not found:
+        mid = (low+high)//2
+        if key==list1[mid]:
+            found = True
+        elif key>list1[mid]:
+            low = mid+1
+        else:
+            high = mid - 1
+            
+    if found:
+        print("Key is Found in index",mid)
+    else:
+        print("Key is not found")
+list1 = [3,4,65,543,53]
+list1.sort()
+print(list1)
+binary_search(list1,543)
+
+def quick_sort(arr,left,right):
+    if left<right:
+        parition_pos = partition(arr,left,right)
+        quick_sort(arr,left,parition_pos-1)
+        quick_sort(arr,parition_pos+1,right)
+        
+def partition(arr,left,right):
+    i = left
+    j = right-1
+    pivot = arr[right]
+    while i<j:
+        while i<right and arr[i]<pivot:
+            i+=1
+        while j>left and arr[i]>=pivot:
+            j-=1
+        if i<j:
+            arr[i],arr[j]=arr[j],arr[i]
+    if arr[i]>pivot:
+        arr[i],arr[right]=arr[right],arr[i]
+        
+    return i
+    
+arr = [43,4,5,454,53,335,53]
+quick_sort(arr,0,len(arr)-1)
+print(arr)
+             
+def twosum(nums,target):
+    visited = set()
+    tuples = []
+    for num in nums:
+        if target-num in visited:
+            tuples.append([target-num,num])
+            print(tuples,"tt")
+        else:
+            visited.add(num)
+            print(visited,"slls")
+    return tuples
+
+print(twosum([2,5,4,8,1],6))
+
+K th Terms Max Number 
+
+def k_largest(arr,k):
+    for i in range(k-1):
+        arr.remove(max(arr))
+    return max(arr)
+    
+print(k_largest([1,2,3,4,5,6,7,8],4))
+
+def sort_aplha(string):
+    li = sorted(list(string))
+    new_letter = ''
+    for i in li:
+        new_letter+=i
+    return new_letter
+print(sort_aplha("hello"))
+
+def sort_aplha(string):
+    li = sorted(list(string))
+    lower_li = sorted(list(string.lower()))
+    caps = []
+    new_letter = ''
+    for i in li:
+        if i.isupper():
+            caps.append(i)
+    for i in lower_li:
+        if caps.count(i.upper())!=0:
+            new_letter+=i.upper()
+            caps.pop(caps.index(i.upper()))
+        else:
+            new_letter +=i
+    return new_letter
+print(sort_aplha("easwEAAE"))
+        
+        
+Rotate Last two digits from list:- 
+listt = [23, 12, 5, 24, 23, 76, 86, 24, 86, 24, 75]  
+  
+for _ in range(0,2):  
+    temp = listt[len(listt)-1]  
+    for i in range(len(listt)-1,-1,-1):  
+        listt[i]=listt[i-1]  
+    listt[0]=temp  
+print("After implementing right rotation the list is :")  
+print(listt)  
+
+
+#Move zero at the end of the list
+
+li = [1,2,0,4,0,5]
+for i in li:
+    if i ==0:
+        li.remove(i)
+        li.append(i)
+print(li)
+
+n = int(input("enter the number:"))
+temp = n
+rev = 0 
+while(n>0):
+    dig = n%10
+    rev = rev * 10 + dig
+    n = n //10
+    
+if temp==rev:
+    print("Number is Palindrome",temp)
+else:
+    print("Number is not Palindrome",temp)
+
+
+def char_star(n):
+    number = 65
+    for i in range(0,n):
+        for j in range(0,i+1):
+            char = chr(number)
+            print(char,end=" ")
+            number +=1
+        print(" ")
+char_star(4)
+
+def print_star(n):
+    for i in range(n):
+        for j in range(i):
+            print("*",end=" ")
+        print(" ")
+print_star(6)
+
+for i in range(6):
+    for j in range(i):
+        print(j,end= " ")
+    print("\n")
+
+# Call by Value and Call by Reference
+def pass_ref(arr):
+    arr.append(4)
+    
+arr = [1,2,3]
+print(arr)  # Call by Value
+pass_ref(arr)
+print(arr)  # Call by Reference
+
+n = int(input("Enter the number:"))
+temp = n
+sum = 0
+while n>0:
+    dig = n%10
+    sum += dig ** 3
+    n = n // 10
+if temp == sum:
+    print("The Number is Armstrong:",temp)
+else:
+    print("The Number is not Armstrong",temp)
+
+def pyramid_pattern(n):
+    for i in range(n):
+        print(' '*(n-i-1)+'* '*(i+1))
+    for j in range(n-1,0,-1):
+        print(' '*(n-j)+'* '*(j))
+pyramid_pattern(5)
+
+Hallow Diamond -
+row = 5
+
+# Upper part of hollow diamond
+for i in range(1, row+1):
+    for j in range(1,row-i+1):
+        print(" ", end="")
+    for j in range(1, 2*i):
+        if j==1 or j==2*i-1:
+            print("*", end="")
+        else:
+            print(" ", end="")
+    print()
+    
+for i in range(row-1,0, -1):
+    for j in range(1,row-i+1):
+        print(" ", end="")
+    for j in range(1, 2*i):
+        if j==1 or j==2*i-1:
+            print("*", end="")
+        else:
+            print(" ", end="")
+    print()
+
+n = 5
+for i in range(n,0,-1):
+    for j in range(i,0,-1):
+        print("*",end=" ")
+    for j in range(2*(n-i)):
+        print(" ",end=" ")
+    for j in range(i,0,-1):
+        print("*",end=" ")
+    print()
+    
+for i in range(1,n):
+    for j in range(i+1):
+        print("*",end=" ")
+    for j in range(2*(n-i-1)):
+        print(" ",end=" ")
+    for j in range(i+1):
+        print("*",end=" ")
+    print()
+
+def sieve_of_eratosthenes(limit):
+    prime_flags = [True] * (limit + 1)
+    p = 2
+    while p * p <= limit:
+        if prime_flags[p]:
+            for i in range(p * p, limit + 1, p):
+                prime_flags[i] = False
+        p += 1
+
+    primes = [p for p in range(2, limit) if prime_flags[p]]
+    return primes
+
+# Find primes between 10 and 1000000
+primes_between_10_and_1000000 = sieve_of_eratosthenes(1000)
+print(primes_between_10_and_1000000)
+
+
+Pattern Printing- 
+n = int(input("Enter the number:"))
+for i in range(1,n+1):
+    print(" "*(n-i),end="")
+    for j in range(1,2*i):
+        print(j,end="")
+    print()
+input_string = input("enter the string:")
+n = int(input("Enter the String:"))
+alphabhet = 'abcdefghijklmnopqrstuvwxyz'
+rev = alphabhet[::-1]
+dict1 = dict(zip(alphabhet,rev))
+# print(dict1)
+
+prefix = input_string[0:n-1]
+suffix = input_string[n-1:]
+print(prefix)
+print(suffix)
+mirror = ''
+for i in range(0,len(suffix)):
+    mirror = mirror + dict1[suffix[i]]
+    
+print(prefix+mirror)
+Sum of 0
+arr = [-9,-4,2,-1,1,3,4,8,11]
+left = 0 
+right = len(arr) - 1
+
+while left<right:
+    sum = arr[left] + arr[right]
+    if sum==0:
+        print(arr[left],arr[right])
+        break
+    elif sum<0:
+        left +=1
+    else:
+        right -=1
+
+arr = [-9,-4,2,-1,1,3,4,8,11]
+for i in range(len(arr)):
+    for j in range(i):
+        sum = arr[i]+arr[j]
+        
+        if sum==0:
+            print(arr[i],arr[j])
+            break
+
+Sum Until single digits - 
+num = 587
+sum = 0
+while(num>0):
+    sum += num%10
+    num //= 10
+    if (num==0 and sum>9):
+        num=sum
+        sum = 0 
+print(sum)
+
+num = '57'
+sum = 0
+sum_next = 0
+for i in num:
+    sum+=int(i)
+for i in str(sum):
+    sum_next+=int(i)
+    
+print(sum)
+print(sum_next)
+
+Prices = [7,1,5,3,6,4]
+output is 5 
+
+Buy on day 2 =1 and sell on day 5 = 6 profit will be 5 
+Note that buying on day 2  and selling on day 1 is not allowed. you must sell what you buy first
+
+def max_profit(prices):
+    # Initialize variables for the minimum price and maximum profit
+    min_price = float('inf')
+    max_profit = 0
+
+    # Iterate over each price
+    for price in prices:
+        # Update the minimum price if the current price is lower
+        if price < min_price:
+            min_price = price
+        # Calculate the profit if the stock bought at min_price is sold at the current price
+        elif price - min_price > max_profit:
+            max_profit = price - min_price
+    print(max_profit,price,min_price)
+
+    return max_profit
+
+# Test the function with the provided list of prices
+prices = [7, 1, 5, 3, 6, 4]
+result = max_profit(prices)
+print("Maximum profit:", result)
+
+# Find the Number is perfect number or not
+
+n = int(input("enter the number:"))
+sum = 0 
+for i in range(1,n):
+    if (n%i==0):
+        sum +=i
+if sum==n:
+    print("The Number is perfect number",sum)
+else:
+    print("The Number is not perfect number",sum)
+
+
+n = int(input("enter the number:"))
+sum = 0 
+temp = n
+while (n>0):
+    i = 1
+    fact = 1
+    rem = n % 10
+    while(i<=rem):
+        fact = fact*i
+        i+=1
+    sum+=fact
+    n = n // 10
+if temp==sum:
+    print("number is strong number",sum)
+else:
+    print("number is not strong number",sum)
+
+simple_list = []
+n = int(input("enter the number:"))
+for i in range(n):
+    b = int(input("enter the element of above number:"))
+    simple_list.append(b)
+    simple_list.sort()
+print("the second largest  number is list is:",simple_list[n-2])
