@@ -1,3 +1,13 @@
+def sort_alpha(string):
+    # Sort by the lowercase letter first, then by the original character value
+    # (Since 'A' has a lower ASCII value than 'a', 'A' will come first)
+    sorted_list = sorted(string, key=lambda char: (char.lower(), char))
+    
+    # Join the list back into a single string
+    return "".join(sorted_list)
+
+print(sort_alpha("easwEAAE"))
+
 def has_pair_with_sum(arr, target):
     left, right = 0, len(arr) - 1
     
