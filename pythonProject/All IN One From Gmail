@@ -1,3 +1,25 @@
+from operator import attrgetter
+
+class User:
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age 
+        
+    def __repr__(self):
+        return f"{self.name} ({self.age})"
+        
+        
+users = [
+    User("Alice", 30),
+    User("Bob", 25),
+    User("DHDHDHD",33),
+    User("Charlie", 35)
+]
+
+users.sort(key=attrgetter('name'))
+
+print(users,type(users))
+
 li = [1,20,3,0,5,0,6,4]
 index = 1
 d = []
